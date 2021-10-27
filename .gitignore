@@ -22,6 +22,13 @@
 .directory
 *.phar
 *.crate
+
+# Temp hold.
+audio/tauonmb/
+network/discord/
+network/telegram/
+
+# Better not overwritten.
 academic/mathics/
 audio/sonata/
 business/trytond/

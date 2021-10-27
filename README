@@ -14,5 +14,5 @@ apply https://codeload.github.com/RSKYS/SBo-git/zip/refs/heads/develop
 to path of your sboui.
 /var/lib/sboui/repo
 
-If you have any new package pull requests, feel free contribute to
-"develop"!
+If you have any pull requests, feel free contribute to "master" or if
+it's new package "develop" can be other option too.

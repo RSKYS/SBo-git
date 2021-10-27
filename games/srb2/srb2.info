@@ -1,0 +1,12 @@
+PRGNAM="srb2"
+VERSION="2.2.8"
+HOMEPAGE="https://www.srb2.org/"
+DOWNLOAD="https://github.com/STJr/SRB2/archive/SRB2_release_2.2.8/SRB2-SRB2_release_2.2.8.tar.gz \
+          https://github.com/STJr/SRB2/releases/download/SRB2_release_2.2.8/SRB2-v2.2.8-Full.zip"
+MD5SUM="24485b3fac77cc2de5ff164f29da81f1 \
+        46df8c6d29c1bca8c82af434e8f64313"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES=""
+MAINTAINER="B. Watson"
+EMAIL="yalhcru@gmail.com"

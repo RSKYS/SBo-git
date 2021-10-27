@@ -1,0 +1,28 @@
+Regina is a Rexx interpreter that has been ported to most Unix platforms
+(Linux, FreeBSD, Solaris, AIX, HP-UX, etc.) and also to OS/2, eCS, DOS,
+Win9x/Me/NT/2k/XP, Amiga, AROS, QNX4.x, QNX6.x, BeOS, MacOS X, EPOC32,
+AtheOS, OpenVMS, SkyOS and OpenEdition.
+
+Rexx is a programming language that was designed to be easy to use for
+inexperienced programmers yet powerful enough for experienced users.
+It is also a language ideally suited as a macro language for other
+applications.
+
+To create the normal dynamic version just do this:
+  sh regina-rexx.SlackBuild
+
+Or to create a static version of the rexx binary executable do this:
+
+ 1) The Slackware 14.2 ncurses package is built without static libs.
+    This prevents the static build of regina-rexx from loading properly.
+    In this case:
+   a) Modify the ncurses.SlackBuild and change the "--without-normal"
+                                         option to "--with-normal"
+   b) Rebuild and reinstall the ncurses package.
+   2) FLAVOR=static sh regina-rexx.SlackBuild
+
+After installation of the package, a startup script for the rxstack is
+created: /etc/rc.d/rc.rxstack
+
+If this needs to run, then it could be started from the
+/etc/rc.d/rc.local file.

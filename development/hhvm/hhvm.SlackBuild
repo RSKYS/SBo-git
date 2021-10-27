@@ -1,0 +1,159 @@
+#!/bin/bash
+
+# Slackware build script for HHVM
+
+# Copyright 2015-2021 Eugene Wissner, Dachau, Germany
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+cd $(dirname $0) ; CWD=$(pwd)
+
+PRGNAM=hhvm
+VERSION=${VERSION:-4.104.1}
+BUILD=${BUILD:-1}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
+
+OPAM_STAMP="221708b"
+CARGO_BUILD="1"
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
+
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2 -fPIC"
+  LIBDIRSUFFIX="64"
+else
+  echo "$ARCH is not supported."
+  exit 1
+fi
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar Jxvf $CWD/$PRGNAM-$VERSION.tar.xz
+cd $PRGNAM-$VERSION
+
+mkdir -p hphp/hack/facebook third-party/brotli/bundled_brotli-prefix/src
+
+mkdir -p hphp/hack/_build/opam
+tar Jxvf $CWD/hack-switch-$OPAM_STAMP.tar.xz -C hphp/hack/_build/opam
+# hhvm prepares an opam switch (an isolated envrionment with a specific OCaml
+# compiler version) during the build, it downloads and builds all dependencies.
+# To avoid doing this at runtime, I provide a prebuilt switch. Unfortunately
+# it contains references to absolute paths it has been built in. Therefore if
+# the user doesn't build in the standard directory, we put a link there, so
+# that opam can find binaries.
+if [ "$TMP" != '/tmp/SBo' ]
+then
+  rm -rf /tmp/SBo/hhvm-$VERSION/hphp/hack/_build/opam
+  mkdir -p /tmp/SBo/hhvm-$VERSION/hphp/hack/_build/opam
+  ln -s $TMP/$PRGNAM-$VERSION/hphp/hack/_build/opam/hack-switch \
+    /tmp/SBo/hhvm-$VERSION/hphp/hack/_build/opam/hack-switch
+fi
+
+tar Jxvf $CWD/cargo-home-$CARGO_BUILD.tar.xz -C hphp/hack
+tar Jxvf $CWD/brotli-4b5771be.tar.xz -C third-party/brotli/bundled_brotli-prefix/src
+
+install -m 0755 -D $CWD/opam-2.0.7-x86_64-linux \
+  third-party/opam/opamDownload-prefix/src/opam-2.0.7-x86_64-linux
+install -m 0644 -D $CWD/rust-1.43.0-x86_64-unknown-linux-gnu.tar.gz \
+  third-party/rustc/bundled_rust-prefix/src/rust-1.43.0-x86_64-unknown-linux-gnu.tar.gz
+install -m 0644 -D $CWD/fmt-6.1.2.zip third-party/fmt/fmt-prefix/src/fmt-6.1.2.zip
+install -m 0644 -D $CWD/fb-prod8-202010.tar.gz \
+  third-party/fb-mysql/bundled_fbmysqlclient-prefix/src/fb-prod8-202010.tar.gz
+
+# The working directory is hphp/hack.
+cat << EOF > hphp/hack/facebook/fetch_opam2_repo_hack.sh
+#!/bin/sh
+cp $CWD/index-$OPAM_STAMP.tar.gz facebook/
+echo facebook/index-$OPAM_STAMP
+EOF
+chmod 0755 hphp/hack/facebook/fetch_opam2_repo_hack.sh
+
+patch -p1 --verbose -i $CWD/0001-Link-static-libiberty.patch
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+export CMAKE_PREFIX_PATH=`pwd`
+cmake \
+  -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
+  -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
+  -DCMAKE_CXX_STANDARD=17 \
+  -DCMAKE_INSTALL_PREFIX=/usr \
+  -DCMAKE_INSTALL_LIBDIR=lib${LIBDIRSUFFIX} \
+  -DENABLE_MCROUTER=false \
+  -DENABLE_EXTENSION_IMAGICK=false \
+  -DNON_DISTRIBUTABLE_BUILD=true \
+  -DENABLE_LD_GOLD=true \
+  -DUSE_JEMALLOC=true \
+  -DFORCE_BUNDLED_LZ4=OFF \
+  -DMYSQL_UNIX_SOCK_ADDR=/var/run/mysqld/mysqld.sock \
+  -DCMAKE_BUILD_TYPE=Release .
+make || make -j1
+make install DESTDIR=$PKG
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/usr/man
+mv hphp/doc/man $PKG/usr/man/man1
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+
+install -m 644 -D $CWD/etc/rc.hhvm $PKG/etc/rc.d/rc.hhvm.new
+install -m 644 -D $CWD/etc/server.ini $PKG/etc/hhvm/server.ini.new
+install -m 644 -D $CWD/etc/php.ini $PKG/etc/hhvm/php.ini.new
+
+mkdir -p $PKG/var/log/hhvm $PKG/usr/lib64/hhvm/extensions
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a *.md LICENSE* hphp/doc/* $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

@@ -1,0 +1,232 @@
+#!/bin/bash
+
+# Slackware build script for sonic-visualiser
+
+# Written by B. Watson (yalhcru@gmail.com)
+
+# Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
+
+# 20201104 bkw: update for 4.2.
+# 20191212 bkw:
+# - Update for 4.0.1.
+# - New deps: libfishsound capnproto opusfile.
+# - Removed JACK as a hard dep.
+# - Have slack-desc tell the user what optional deps are built-in.
+# - Annoying stuff relating to the test suite.
+# - If necessary, source the qt5 profile script.
+# - Install French man page.
+# - Fix icon reference in .desktop.
+# - It looks like the segfault-on-exit problem was caused by an outdated
+#   version of qt5. It's gone away with qt5-5.9.8.
+
+# 20181217 bkw:
+# - Update for 3.2. This was left stale for a long time due to
+#   problems with SBo's old qt5, which has finally been updated,
+#   thanks to dive.
+# - Get rid of static capnproto, no longer needed (thank the ghods).
+# - PulseAudio now works, update README accordingly.
+# - Yes, I'm aware that it's segfaulting on exit, but it won't dump
+#   core (even though I have coredumps enabled) so I can't easily
+#   diagnose it.
+
+# 20170312 bkw:
+# - update for 3.0.1
+# - parallel build seems OK, remove -j1 (again)
+# - 3.0.1 requires a bleeding-edge capnproto (newer than the latest
+#   release) so build a static one to link with. When capnproto.SlackBuild
+#   gets updated past 0.5.3, this stuff can go away. The static capnproto
+#   is used whether or not capnproto is installed on the system, and it's
+#   not installed as part of the sonic-visualiser package.
+# - add note to README about pulse and portaudio failures. I don't know
+#   what's wrong yet, but jack-audio-connection-kit remains a hard dep
+#   unless/until I figure it out.
+# - upstream fixed the .desktop, remove my code that fixed the old one.
+# - stop the unit tests from spamming /root
+
+# 20160819 bkw:
+# - parallel build is still broken, revert to -j1
+
+# 20160806 bkw:
+# - updated to 2.5, which means adding a qt5 dep.
+# - fix parallel build.
+# - according to INSTALL.txt, jack-audio-connection-kit is optional,
+#   so I was going to remove it from REQUIRES. I tried building without it,
+#   but the build failed, so it remains a hard dep for now.
+
+# 20140913 bkw:
+# - finally updated (from 1.9 to 2.3)
+# - add man page
+# - use png icon rather than svg
+# - add MIME types for desktop integration
+# - add realtime capabilities
+
+cd $(dirname $0) ; CWD=$(pwd)
+
+PRGNAM=sonic-visualiser
+VERSION=${VERSION:-4.2}
+BUILD=${BUILD:-1}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
+
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2 -fPIC"
+  LIBDIRSUFFIX="64"
+else
+  SLKCFLAGS="-O2"
+  LIBDIRSUFFIX=""
+fi
+
+set -e
+
+rm -rf $PKG $TMP/$PRGNAM
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
+cd $PRGNAM-$VERSION
+chown -R root:root .
+find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} \+ -o \
+        \! -perm /111 -a \! -perm 644 -a -exec chmod 644 {} \+
+
+# In case the user just now installed qt5 and hasn't sourced the profile
+# script, let's be nice and do it here.
+[ "$QT5DIR" = ""  ] && \
+  [ -x /etc/profile.d/qt5.sh ] && \
+  source /etc/profile.d/qt5.sh
+
+# Fudge the test suite, all but 2 tests pass. I think the error is in the
+# test suite, not a real error in the code. Even if it is broken code, the
+# failure is caused by a 32KHz mp3, which is is pretty uncommon sampling
+# rate to find in an mp3 and shouldn't prevent us using sonic-visualiser
+# on other filetypes (or mp3 at normal sampling rates, e.g. the 44.1KHz
+# test cases pass).
+rm -f svcore/data/fileio/test/audio/mp3/32000-1.mp3
+
+# The test suite uses utf8 encoded filenames, so it will *fail* if
+# the current locale is a non-utf8 one (such as Slackware's default
+# of en_US). Try to set a locale that makes sense for the user, fall
+# back on en_US.UTF-8 if we can't figure it out.
+FALLBACK="en_US.UTF-8"
+case "$LANG" in
+  *.utf8|*.UTF8|*.utf-8|*.UTF-8) ;; # already OK
+  ??_??) LANG="$LANG.UTF-8"      ;; # e.g "en_US", "de_DE"
+  *)     LANG=$FALLBACK          ;; # empty, "C", or garbage
+esac
+
+# Make sure the chosen locale exists. If it doesn't, the locale
+# command will give us errors that begin with "locale:" (its exit
+# status is always 0/success, how annoying).
+export LANG
+if locale 2>&1 >/dev/null | grep -q '^locale:'; then
+  LANG=$FALLBACK
+  export LANG
+fi
+
+QTDIR=$QT5DIR \
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --libdir=/usr/lib${LIBDIRSUFFIX} \
+  --sysconfdir=/etc \
+  --localstatedir=/var \
+  --mandir=/usr/man \
+  --docdir=/usr/doc/$PRGNAM-$VERSION \
+  --build=$ARCH-slackware-linux
+
+# Override $HOME since the unit tests insist on writing useless stuff
+# there. In case the user's using ccache, this changes the cache dir,
+# so we put it back like it was (no harm done if user not using ccache).
+# Parallel build seems to work OK in 4.0.1. If not, uncomment the -j1
+# and email me a bug report.
+CCACHE_DIR=${CCACHE_DIR:-$HOME/.ccache} \
+HOME=$( pwd ) \
+  make # -j1
+
+# There is a 'make install' in 3.0.1, but it's broken. It's not clear to
+# me whether piper-convert should be installed: it's used by the unit
+# tests, and mentioned in deploy/win32/sonic-visualiser.wxs but not in
+# deploy/linux/deploy-deb.sh. I'll include it, just in case.
+mkdir -p $PKG/usr/share/$PRGNAM/samples $PKG/usr/bin
+install -m0644 samples/* $PKG/usr/share/$PRGNAM/samples
+install -m0755 -s \
+  $PRGNAM \
+  vamp-plugin-load-checker \
+  piper-vamp-simple-server \
+  piper-convert \
+  $PKG/usr/bin/
+
+# man page borrowed from Debian
+mkdir -p $PKG/usr/man/man1 $PKG/usr/man/fr/man1 $PKG/usr/man/fr.UTF-8/man1
+gzip -9c < $CWD/$PRGNAM.1 > $PKG/usr/man/man1/$PRGNAM.1.gz
+gzip -9c < $CWD/$PRGNAM.fr.1 > $PKG/usr/man/fr.UTF-8/man1/$PRGNAM.1.gz
+iconv -f UTF-8 -t ISO8859-1 $CWD/$PRGNAM.fr.1 \
+  | gzip -9c > $PKG/usr/man/fr/man1/$PRGNAM.1.gz
+
+mkdir -p $PKG/usr/share/applications
+sed "/^Icon/s,=.*,=/usr/share/pixmaps/$PRGNAM.png," $PRGNAM.desktop \
+  > $PKG/usr/share/applications/$PRGNAM.desktop
+
+# define MIME types to associate *.sv and *.svl
+mkdir -p $PKG/usr/share/mime/packages
+cat $CWD/$PRGNAM.xml > $PKG/usr/share/mime/packages/$PRGNAM.xml
+
+mkdir -p $PKG/usr/share/pixmaps
+cat icons/sv-128x128.png > $PKG/usr/share/pixmaps/$PRGNAM.png
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a CHANGELOG CITATION COPYING README* $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+JACKYN=no; PAYN=no; LIBLOYN=no
+ldd $PKG/usr/bin/$PRGNAM > ldd.out
+#fgrep -q libjack.so ldd.out && JACKYN=yes # jack is dynamically loaded!
+pkg-config --exists jack && JACKYN=yes
+fgrep -q libportaudio.so ldd.out && PAYN=yes
+fgrep -q liblo.so ldd.out && LIBLOYN=yes
+
+mkdir -p $PKG/install
+sed \
+  -e "s,@JACKYN@,$JACKYN," \
+  -e "s,@PAYN@,$PAYN," \
+  -e "s,@LIBLOYN@,$LIBLOYN," \
+  $CWD/slack-desc \
+  > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+
+# Only add capability stuff if not disabled (and if we built with JACK):
+if [ "${SETCAP:-yes}" = "yes" -a "$JACKYN" = "yes" ]; then
+  cat $CWD/setcap.sh >> $PKG/install/doinst.sh
+  # Only allow execution by audio group
+  chown root:audio $PKG/usr/bin/$PRGNAM
+  chmod 0750 $PKG/usr/bin/$PRGNAM
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

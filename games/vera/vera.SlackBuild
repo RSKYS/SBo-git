@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Slackware build script for vera
+
+# Written by B. Watson (yalhcru@gmail.com)
+
+# Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
+
+# 20201024 bkw: updated for v1.24
+
+cd $(dirname $0) ; CWD=$(pwd)
+
+PRGNAM=vera
+VERSION=${VERSION:-1.24}
+BUILD=${BUILD:-1}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
+
+ARCH=noarch
+
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
+
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
+cd $PRGNAM-$VERSION
+chown -R root:root .
+find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} \+ -o \
+        \! -perm /111 -a \! -perm 644 -a -exec chmod 644 {} \+
+
+# Fix TL;DR and BP;DR entries.
+patch -p1 < $CWD/semicolons.diff
+
+makeinfo --force $PRGNAM.texi
+
+mkdir -p $PKG/usr/info
+for i in $PRGNAM.info*; do
+  gzip -9c < $i > $PKG/usr/info/$i.gz
+done
+
+# Generate wtf(6) database from VERA contents.
+# Yes, this conflicts with bsd-games, but it's not like it's going to break
+# anyone's system. As shipped, /usr/share/misc/acronyms is about useless.
+mkdir -p $PKG/usr/share/misc
+perl $CWD/mkwtfdb.pl > $PKG/usr/share/misc/acronyms
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a changelog README $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

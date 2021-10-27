@@ -1,0 +1,11 @@
+--- cnijfilter2-source-6.10-1.orig/lgmon3/src/cnijlgmon3.c	2020-06-18 14:22:58.000000000 +1200
++++ cnijfilter2-source-6.10-1/lgmon3/src/cnijlgmon3.c	2021-09-06 10:42:18.796063817 +1200
+@@ -55,7 +55,7 @@
+ int (*GET_STATUS)(char *, int, int *, int * , char *);
+ int (*GET_STATUS2)(char *, int, char *, int *, int * , char *, char *);
+ int (*GET_STATUS2_MAINTENANCE)(char *, int, char *, int *, int * , char *, char *);
+-int (*GET_PROTOCOL)(char *, size_t);
++static int (*GET_PROTOCOL)(char *, size_t);
+ 
+ 
+  int main(int argc, char *argv[])

@@ -1,0 +1,12 @@
+PRGNAM="paml"
+VERSION="4.9j"
+HOMEPAGE="http://abacus.gene.ucl.ac.uk/software/paml.html"
+DOWNLOAD="http://abacus.gene.ucl.ac.uk/software/paml4.9j.tgz \
+          http://ponce.cc/slackware/sources/repo/MCMCtree.Tutorials.pdf"
+MD5SUM="50c1760512b7a5df50305e5fd26d0ca5 \
+        29c851d887eea56b949c01ab42cc48fb"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES=""
+MAINTAINER="Petar Petrov"
+EMAIL="slackalaxy@gmail.com"

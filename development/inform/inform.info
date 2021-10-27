@@ -1,0 +1,14 @@
+PRGNAM="inform"
+VERSION="6.35_r2"
+HOMEPAGE="http://www.inform-fiction.org/"
+DOWNLOAD="https://slackware.uk/~urchlay/src/inform-6.35-r2.tar.gz \
+          http://www.ifarchive.org/if-archive/infocom/compilers/inform6/manuals/designers_manual_4.zip \
+          http://www.ifarchive.org/if-archive/infocom/compilers/inform6/manuals/IBG.pdf"
+MD5SUM="9035fb1469ae9a39c077b5b55f05aebc \
+        0063968c3378636add1a0697b6d1fc16 \
+        b2635d3d61313bed286409500fc55bed"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES=""
+MAINTAINER="B. Watson"
+EMAIL="yalhcru@gmail.com"

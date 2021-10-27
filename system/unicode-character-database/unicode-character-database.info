@@ -1,0 +1,12 @@
+PRGNAM="unicode-character-database"
+VERSION="14.0.0"
+HOMEPAGE="https://www.unicode.org/ucd/"
+DOWNLOAD="https://www.unicode.org/Public/zipped/14.0.0/UCD.zip \
+          https://www.unicode.org/Public/zipped/14.0.0/Unihan.zip"
+MD5SUM="e6c9cf1080b5f6cc83bc560bcdd32acf \
+        205b0d542ec35ce1ed0199f3d68f8bcc"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES=""
+MAINTAINER="Willy Sudiarto Raharjo"
+EMAIL="willysr@slackbuilds.org"

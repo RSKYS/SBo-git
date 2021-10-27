@@ -1,0 +1,61 @@
+diff -Naur fbpdf-20200617_f590024/README fbpdf-20200617_f590024.patched/README
+--- fbpdf-20200617_f590024/README	2021-09-27 04:15:02.000000000 -0400
++++ fbpdf-20200617_f590024.patched/README	2021-09-29 02:31:51.610212471 -0400
+@@ -21,7 +21,9 @@
+ G		go to page (the last page if no prefix)
+ o		set page number (for 'G' command only)
+ O		set page number and go to current page
+-z		zoom; prefix multiplied by 10 (i.e. '15z' = 150%)
++z/=	zoom; prefix multiplied by 10 (i.e. '12z' = 120%). Default 15.
+++		increase zoom by 10%
++-		decrease zoom by 10%
+ r		set rotation in degrees
+ i		print some information
+ I		invert colors
+diff -Naur fbpdf-20200617_f590024/fbpdf.c fbpdf-20200617_f590024.patched/fbpdf.c
+--- fbpdf-20200617_f590024/fbpdf.c	2021-09-27 04:15:02.000000000 -0400
++++ fbpdf-20200617_f590024.patched/fbpdf.c	2021-09-29 16:07:26.245764122 -0400
+@@ -269,6 +269,7 @@
+ 				srow = prow;
+ 			break;
+ 		case 'z':
++		case '=':
+ 			count *= 10;
+ 			zoom_page(getcount(zoom_def));
+ 			break;
+@@ -319,10 +320,20 @@
+ 		case ' ':
+ 		case CTRLKEY('d'):
+ 			srow += srows * getcount(1) - step;
++			if(srow >= (prow + prows)) {
++				srow = 0;
++				loadpage(num + 1);
++				srow = prow;
++			}
+ 			break;
+ 		case 127:
+ 		case CTRLKEY('u'):
+ 			srow -= srows * getcount(1) - step;
++			if(srow <= 0) {
++				srow = prows - step;
++				loadpage(num - 1);
++				srow = prow;
++			}
+ 			break;
+ 		case '[':
+ 			scol = pcol;
+@@ -342,6 +353,14 @@
+ 			invert = !invert;
+ 			loadpage(num);
+ 			break;
++		case '+':
++			count = 0;
++			zoom_page(zoom + 1);
++			break;
++		case '-':
++			count = 0;
++			if(zoom > 0) zoom_page(zoom - 1);
++			break;
+ 		default:	/* no need to redraw */
+ 			continue;
+ 		}

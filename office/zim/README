@@ -1,0 +1,25 @@
+Zim aims to bring the concept of a wiki to your desktop. Every page is
+saved as a text file with wiki markup. Pages can contain links to other
+pages, and are saved automatically. Creating a new page is as easy as
+linking to a non-existing page. This tool is intended to keep track of
+TODO lists or to serve as a personal scratch book. But it will also
+serve you when writing longer and more complicated documents.
+
+A "desktop wiki" means that we try to capture the idea of a wiki, not
+as a webpage but as a collection of files on your local file system
+that can be edited with a GUI application. The main focus is a kind
+of personal wiki that serves for all kind of notes: todo-lists,
+addresses, brainstorm ideas etc.
+
+But we want to go further then just a wiki filled with random content.
+It should also be possible to use you random notes as the basis for
+more structured data: articles, presentations etc. Zim will not include
+tools to layout a presentation or something like that, you should use
+your office suite of choice for that, but it should be a tool that can
+deliver all the content for a presentation in a form that only needs a
+template and some layout before usage. Therefore certain features
+normally not found in wikis will be added.
+
+NOTE: Zim can be expanded with plugins.  From 'preferences' go to
+'plugins' and anything marked 'failed' can be installed either
+from SBo or pip.  These aren't dependencies; Zim runs without them.

@@ -1,0 +1,6 @@
+A python script that converts RSS/Atom newsfeeds to email.
+
+It is the successor to the rss2email by Aaron Swartz, available on SBo
+as r2e.
+
+rss2email will conflict with r2e.

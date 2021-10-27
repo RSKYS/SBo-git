@@ -1,0 +1,10 @@
+Tauon music box is a modern streamlined music player with a minimal
+interface that's packed with features! An emphasis on playlists and
+direct file importing puts you in control of your music collection.
+Uses PHAZOR and GStreamer for playback.
+
+Note:
+If you ran into artcover cache problem, reinstall python-pillow from
+Slackware official repository.
+
+By ~red

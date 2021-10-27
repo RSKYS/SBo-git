@@ -1,0 +1,18 @@
+This is ~red's current SlackBuilds repository and even hardly
+maintained at some points, this is not official SlackBuilds git!
+The purpose of this repository is to bring a little bit bleeding edge
+softwares to Slackware;
+Sure I want stable system, but I want latest daily softwares as well.
+Slackware is damn good at system part, absolutely sucks at the rest.
+
+I've modified sboui to specificly work with this repository, check it
+out: https://github.com/RSKYS/SBo-git/tree/develop/system/sboui
+
+Also mention that develop branch is basically programs we maintain
+including their dependencies from others too as well, feel free to
+apply https://codeload.github.com/RSKYS/SBo-git/zip/refs/heads/develop
+to path of your sboui.
+/var/lib/sboui/repo
+
+If you have any new package pull requests, feel free contribute to
+"develop"!

@@ -1,0 +1,6 @@
+patchage (a modular patch bay for audio)
+
+Patchage is a modular patch bay for audio and MIDI systems based on Jack
+and/or Alsa.
+
+jack is an optional build dependency.

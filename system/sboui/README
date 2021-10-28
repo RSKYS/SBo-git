@@ -28,5 +28,3 @@ TERMINAL_EMULATOR=(user choice; default xterm) set the terminal emulator to run
 
 USE_NINJA=yes|no (default no): use ninja instead of GNU Make for the build. If
   enabled, ninja becomes a dependency.
-
-Modified by ~red

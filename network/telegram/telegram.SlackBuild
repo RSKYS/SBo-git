@@ -23,14 +23,14 @@
 # with this program (most likely, a file named COPYING).  If not, see
 # <http://www.gnu.org/licenses/>.
 
-# Modified by Mario Preksavec <mario@slackware.hr>
+# Modified by RSKYS <Pouria.rz@outlook.com>
 
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=telegram
 SRCNAM=tsetup
 SRCDIR=Telegram
-VERSION=${VERSION:-3.1.1}
+VERSION=${VERSION:-3.1.8}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}

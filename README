@@ -5,7 +5,7 @@ softwares to Slackware;
 Sure I want stable system, but I want latest daily softwares as well.
 Slackware is damn good at system part, absolutely sucks at the rest.
 
-I've modified sboui to specificly work with this repository availble
+I've modified sboui to specificly work with this repository available
 under system/sboui.
 
 This repo contains apps we maintain including their dependencies.

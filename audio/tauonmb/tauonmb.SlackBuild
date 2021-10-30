@@ -76,7 +76,7 @@ mkdir -p lib
 mv libphazor.so lib/libphazor.so
 
 # Compile translator
-python3 compile-translations.py
+python3 compile-translations.py install --root=$PKG
 rm -fR compile* mac.spec requirements.txt snapcraft.yaml src update-translations.py
 
 mkdir -p $PKG/opt/tauon-music-box $PKG/usr/bin

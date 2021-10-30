@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
    |-----handy-ruler------------------------------------------------------|
-jdk: jdk (Java(TM)
+jdk: jdk (Java Platform Development Kit Version 17)
 jdk:
-jdk: The Java 2 SDK software includes tools for developing, testing, and
-jdk: running programs written in the Java programming language.  This
-jdk: package contains everything you need to run Java(TM).
+jdk: The Java Platform Standard Edition Development Kit (JDK) includes
+jdk: both the runtime environment (Java virtual machine,
+jdk: the Java platform classes and supporting files) and development tools
+jdk: (compilers, debuggers, tool libraries and other tools).
+jdk: The JDK is a development environment for building applications,
+jdk: applets and components that can be deployed with the
+jdk: Java Platform Standard Edition Runtime Environment.
 jdk:
-jdk: For additional information, refer to this web page:
-jdk: http://java.com/
-jdk:
-jdk:
-jdk:
+jdk: https://developer.oracle.com/java/

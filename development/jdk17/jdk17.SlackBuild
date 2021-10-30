@@ -25,6 +25,7 @@
 PRGNAM=jdk17
 VERSION=${VERSION:-17.0.1}
 SRCNAM=jre-17
+ALTNAM=jdk
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -52,9 +53,9 @@ set -e
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-mkdir -p $PRGNAM-$VERSION
-cd $PRGNAM-$VERSION
+rm -rf $ALTNAM-$VERSION
+mkdir -p $ALTNAM-$VERSION
+cd $ALTNAM-$VERSION
 tar -I zstd -xvf $CWD/${SRCNAM}-${BUILD}-${ARCH}.pkg.tar.zst
 chown -R root:root .
 find -L . \
@@ -74,11 +75,11 @@ cp -r usr/share $PKG/usr/
 
 ln -s /usr/lib64/jvm/java-17-jdk/bin/java $PKG/usr/bin/java
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+mkdir -p $PKG/usr/doc/$ALTNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$ALTNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/jdk-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+/sbin/makepkg -l y -c n $OUTPUT/$ALTNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}

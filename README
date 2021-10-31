@@ -8,6 +8,7 @@ Slackware is damn good at system part, absolutely sucks at the rest.
 I've modified sboui to specificly work with this repository available
 under system/sboui.
 
-This repo contains apps we maintain including their dependencies.
+This repo contains unofficial apps we maintain including their
+dependencies.
 
 If you have any pull requests, feel free contribute to "master".

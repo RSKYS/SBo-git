@@ -1,9 +1,7 @@
 This is ~red's current SlackBuilds repository and even hardly
 maintained at some points, this is not official SlackBuilds git!
 The purpose of this repository is to bring a little bit bleeding edge
-softwares to Slackware;
-Sure I want stable system, but I want latest daily softwares as well.
-Slackware is damn good at system part, absolutely sucks at the rest.
+softwares to Slackware.
 
 I've modified sboui to specificly work with this repository available
 under system/sboui.
@@ -11,4 +9,4 @@ under system/sboui.
 This repo contains unofficial apps we maintain including their
 dependencies.
 
-If you have any pull requests, feel free contribute to "master".
+If you have any pull requests, feel free contribute to "master"

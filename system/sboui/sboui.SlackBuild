@@ -120,10 +120,6 @@ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | gr
 find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
-mv $PKG/etc/sboui/sboui.conf $PKG/etc/sboui/
-mv $PKG/etc/sboui/sboui-backend.conf $PKG/etc/sboui/
-mv $PKG/etc/sboui/package_blacklist $PKG/etc/sboui/
-
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a AUTHORS ChangeLog INSTALL LICENSE README.md \
   $PKG/usr/doc/$PRGNAM-$VERSION

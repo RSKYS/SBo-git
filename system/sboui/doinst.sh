@@ -10,10 +10,6 @@ config() {
   # Otherwise, we leave the .new copy for the admin to consider...
 }
 
-config etc/sboui/sboui.conf.new
-config etc/sboui/sboui-backend.conf.new
-config etc/sboui/package_blacklist.new
-
 if [ -x /usr/bin/update-desktop-database ]; then
   /usr/bin/update-desktop-database -q usr/share/applications >/dev/null 2>&1
 fi

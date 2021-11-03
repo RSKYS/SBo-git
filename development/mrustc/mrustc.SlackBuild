@@ -91,16 +91,16 @@ tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
 cd $PRGNAM-$VERSION
 
 # Patch mrustc
-cp -rf $CWD/patches/pmrustc .
-for i in pmrustc/* ; do patch -p1 < $i ; done
+cp -rf $CWD/patch-mrustc .
+for i in patch-mrustc/* ; do patch -p1 < $i ; done
 
 tar xvf $CWD/rustc-$RUSTCVERSION-src.tar.xz
 
 # Patch rustc
 ( cd rustc-$RUSTCVERSION-src
-  cp -rf $CWD/patches/prustc .
-  cp ../rustc-$RUSTCVERSION-src.patch prustc/
-  for i in prustc/* ; do patch -p1 < $i ; done )
+  cp -rf $CWD/patch-rustc .
+  cp -f ../rustc-$RUSTCVERSION-src.patch patch-rustc/
+  for i in patch-rustc/* ; do patch -p1 < $i ; done )
 
 sed -i 's/\(TargetVersion.*TargetVersion.*=.*\)TargetVersion::Rustc1_29/\1TargetVersion::Rustc1_19/' src/main.cpp
 

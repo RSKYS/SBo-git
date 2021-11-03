@@ -81,6 +81,11 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 
+# New build dependencies: gtest jq libcpuid >lowdown:
+# Failed to build even with version bump.
+#
+#xzcat $CWD/config/configure.xz > ./configure
+#chmod +x ./configure
 autoreconf -vfim
 autoheader
 CFLAGS="$SLKCFLAGS" \
@@ -107,9 +112,7 @@ mkdir -p $PKG/nix/var/nix/profiles
 mkdir -p $PKG/nix/var/nix/daemon-socket
 
 rm -fR $PKG/etc/init.d
-rm -fR $PKG/usr/lib/systemd
-
-mv $PKG/usr/lib/pkgconfig/ $PKG/usr/lib${LIBDIRSUFFIX}/pkgconfig/
+rm -fR $PKG/usr/lib${LIBDIRSUFFIX}/systemd
 
 find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done

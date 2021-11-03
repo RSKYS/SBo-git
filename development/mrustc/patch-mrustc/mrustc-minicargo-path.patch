@@ -1,0 +1,12 @@
+diff --git a/tools/minicargo/build.cpp b/tools/minicargo/build.cpp
+--- a/tools/minicargo/build.cpp
++++ b/tools/minicargo/build.cpp
+@@ -1298,7 +1298,7 @@ Builder::Builder(BuildOptions opts):
+ # endif
+         {
+             // On any error, just hard-code as if running from root dir
+-            strcpy(buf, "tools/bin/minicargo");
++            strcpy(buf, "bin/minicargo");
+         }
+ 
+         ::helpers::path minicargo_path { buf };

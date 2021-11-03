@@ -25,7 +25,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=lowdown
-VERSION=${VERSION:-0.5.4}
+VERSION=${VERSION:-0.9.2}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -82,7 +82,8 @@ find -L . \
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
-	PREFIX="/usr"
+  PREFIX=/usr \
+  LIBDIR=/usr/lib${LIBDIRSUFFIX}
 
 make
 make install DESTDIR=$PKG
@@ -92,6 +93,13 @@ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | gr
 
 find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+
+if [ "$ARCH" = "x86_64" ]; then
+  rm -rf $PKG/usr/lib
+fi
+
+mkdir -p $PKG/usr/share
+mv $PKG/usr/man $PKG/usr/share/
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \

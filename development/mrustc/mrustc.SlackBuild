@@ -25,9 +25,9 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=mrustc
-VERSION=${VERSION:-0.9}
-RUSTCVERSION=${RUSTCVERSION:-1.19.0}
-MRUSTCTARGETVERSION=${MRUSTCTARGETVERSION:-1.19}
+VERSION=${VERSION:-0.9.16}
+RUSTCVERSION=${RUSTCVERSION:-1.54.0}
+MRUSTCTARGETVERSION=${MRUSTCTARGETVERSION:-1.54}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -90,13 +90,17 @@ rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
 cd $PRGNAM-$VERSION
 
-tar -xf "$CWD/rustc-$RUSTCVERSION-src.tar.xz"
+# Patch mrustc
+cp -rf $CWD/patches/pmrustc .
+for i in pmrustc/* ; do patch -p1 < $i ; done
 
-(
-  cd "rustc-$RUSTCVERSION-src"
-  patch -p0 < ../"rustc-$RUSTCVERSION-src.patch"
-  echo "$RUSTCVERSION" > dl-version
-)
+tar xvf $CWD/rustc-$RUSTCVERSION-src.tar.xz
+
+# Patch rustc
+( cd rustc-$RUSTCVERSION-src
+  cp -rf $CWD/patches/prustc .
+  cp ../rustc-$RUSTCVERSION-src.patch prustc/
+  for i in prustc/* ; do patch -p1 < $i ; done )
 
 sed -i 's/\(TargetVersion.*TargetVersion.*=.*\)TargetVersion::Rustc1_29/\1TargetVersion::Rustc1_19/' src/main.cpp
 
@@ -145,7 +149,7 @@ make test RUSTC_TARGET="$RUSTC_TARGET"
 
 mkdir -p $PKG/usr/bin
 install -m 0755 bin/mrustc $PKG/usr/bin/mrustc
-install -m 0755 tools/bin/minicargo $PKG/usr/bin/minicargo
+install -m 0755 bin/minicargo $PKG/usr/bin/minicargo
 
 mkdir -p $PKG/usr/lib$LIBDIRSUFFIX/
 cp -a output $PKG/usr/lib$LIBDIRSUFFIX/mrust

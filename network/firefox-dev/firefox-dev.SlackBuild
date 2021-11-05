@@ -62,7 +62,7 @@ mv usr/lib64/$SRCNAM usr/lib64/$PRGNAM
 mv usr/bin/$SRCNAM usr/bin/$PRGNAM
 mv usr/share/applications/$SRCNAM.desktop usr/share/applications/$PRGNAM.desktop
 rm -f usr/lib64/$PRGNAM/firefox-bin
-patch -p1 < $CWD/updater
+patch -p1 < "$CWD/updater.diff"
 
 chown -R root:root .
 find -L . \

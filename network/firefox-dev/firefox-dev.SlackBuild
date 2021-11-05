@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=firefox-dev
-VERSION=${VERSION:-94.0b6}
+VERSION=${VERSION:-95.0b2}
 SRCNAM=firefox-developer-edition
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -56,6 +56,14 @@ rm -rf $PRGNAM-$VERSION
 mkdir -p $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
 tar -I zstd -xvf $CWD/${SRCNAM}-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
+
+mv usr/lib usr/lib64
+mv usr/lib64/$SRCNAM usr/lib64/$PRGNAM
+mv usr/bin/$SRCNAM usr/bin/$PRGNAM
+mv usr/share/applications/$SRCNAM.desktop usr/share/applications/$PRGNAM.desktop
+rm -f usr/lib64/$PRGNAM/firefox-bin
+patch -p1 < $CWD/updater
+
 chown -R root:root .
 find -L . \
 \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
@@ -63,16 +71,20 @@ find -L . \
 \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
 -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Move binary and configs to lib64 instead of lib
-mkdir -p $PKG/usr/lib64 $PKG/usr/bin
-cp -r usr/lib/* $PKG/usr/lib64/
+mv usr $PKG/
 
-# Move share files into it's place
-mkdir -p $PKG/usr/share
-cp -r usr/share/* $PKG/usr/share/
-cp -f $CWD/$PRGNAM.desktop $PKG/usr/share/applications/$SRCNAM.desktop
+# Moving icons right way.
+( cd $PKG/usr/share/icons/hicolor
+  rm -fR 128x128 192x192 384x384 64x64 symbolic
+  mv 16x16/apps/$SRCNAM.png 16x16/apps/$PRGNAM.png
+  mv 22x22/apps/$SRCNAM.png 22x22/apps/$PRGNAM.png
+  mv 24x24/apps/$SRCNAM.png 24x24/apps/$PRGNAM.png
+  mv 256x256/apps/$SRCNAM.png 256x256/apps/$PRGNAM.png
+  mv 32x32/apps/$SRCNAM.png 32x32/apps/$PRGNAM.png
+  mv 48x48/apps/$SRCNAM.png 48x48/apps/$PRGNAM.png
+  mv scalable/apps/$SRCNAM.svg scalable/apps/$PRGNAM.svg )
 
-ln -s /usr/lib64/firefox-developer-edition/firefox $PKG/usr/bin/firefox-dev
+ln -s $PKG/usr/bin/$PRGNAM $PKG/usr/lib64/$PRGNAM/firefox-bin
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild

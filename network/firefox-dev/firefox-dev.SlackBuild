@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=firefox-dev
-VERSION=${VERSION:-95.0b2}
+VERSION=${VERSION:-94.0b9}
 SRCNAM=firefox-developer-edition
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -73,16 +73,17 @@ find -L . \
 
 mv usr $PKG/
 
-# Moving icons right way.
+# Moving icons right path.
 ( cd $PKG/usr/share/icons/hicolor
-  rm -fR 128x128 192x192 384x384 64x64 symbolic
+  rm -fR 128x128 192x192 384x384 64x64 #symbolic
   mv 16x16/apps/$SRCNAM.png 16x16/apps/$PRGNAM.png
   mv 22x22/apps/$SRCNAM.png 22x22/apps/$PRGNAM.png
   mv 24x24/apps/$SRCNAM.png 24x24/apps/$PRGNAM.png
   mv 256x256/apps/$SRCNAM.png 256x256/apps/$PRGNAM.png
   mv 32x32/apps/$SRCNAM.png 32x32/apps/$PRGNAM.png
-  mv 48x48/apps/$SRCNAM.png 48x48/apps/$PRGNAM.png
-  mv scalable/apps/$SRCNAM.svg scalable/apps/$PRGNAM.svg )
+  mv 48x48/apps/$SRCNAM.png 48x48/apps/$PRGNAM.png )
+# Might get available
+#mv scalable/apps/$SRCNAM.svg scalable/apps/$PRGNAM.svg
 
 ln -s $PKG/usr/bin/$PRGNAM $PKG/usr/lib64/$PRGNAM/firefox-bin
 

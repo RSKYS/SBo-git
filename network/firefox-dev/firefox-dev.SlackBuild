@@ -73,7 +73,7 @@ find -L . \
 
 mv usr $PKG/
 
-# Moving icons right path.
+# Moving icons in right path.
 ( cd $PKG/usr/share/icons/hicolor
   rm -fR 128x128 192x192 384x384 64x64 #symbolic
   mv 16x16/apps/$SRCNAM.png 16x16/apps/$PRGNAM.png

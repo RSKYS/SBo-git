@@ -60,8 +60,6 @@ tar -I zstd -xvf $CWD/${SRCNAM}-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
 mv usr/lib usr/lib64
 mv usr/lib64/$SRCNAM usr/lib64/$PRGNAM
 mv usr/bin/$SRCNAM usr/bin/$PRGNAM
-mv usr/share/applications/$SRCNAM.desktop usr/share/applications/$PRGNAM.desktop
-rm -f usr/lib64/$PRGNAM/firefox-bin
 patch -p1 < "$CWD/updater.diff"
 
 chown -R root:root .
@@ -85,6 +83,10 @@ mv usr $PKG/
 # Might get available
 #mv scalable/apps/$SRCNAM.svg scalable/apps/$PRGNAM.svg
 
+rm -f $PKG/usr/share/applications/$SRCNAM.desktop
+cp $CWD/$PRGNAM.desktop $PKG/usr/share/applications/
+
+rm -f $PKG/usr/lib64/$PRGNAM/firefox-bin
 ln -s $PKG/usr/bin/$PRGNAM $PKG/usr/lib64/$PRGNAM/firefox-bin
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION

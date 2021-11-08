@@ -10,7 +10,7 @@ mdbook: mdbook (mdBook Rust Tool)
 mdbook:
 mdbook: Create book from markdown files, like Gitbook but implemented in Rust.
 mdbook:
-mdbook: Homepage: https://github.com/rust-lang-nursery/mdBook
+mdbook: Homepage: https://github.com/rust-lang/mdBook
 mdbook:
 mdbook:
 mdbook:

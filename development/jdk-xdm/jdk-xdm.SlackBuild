@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for JDK+JRE 17
+# Slackware build script for jdk-xdm
 
 # Copyright 2019-2021 Pouria Rezaei <Pouria.rz@outlook.com>
 # All rights reserved.
@@ -22,11 +22,14 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-PRGNAM=jdk
+cd $(dirname $0) ; CWD=$(pwd)
+
+PRGNAM=jdk-xdm
 VERSION=${VERSION:-17.0.1}
 SRCNAM=jre-17
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -36,14 +39,13 @@ if [ -z "$ARCH" ]; then
   esac
 fi
 
-CWD=$(pwd)
 TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
 # Abort build if architecture is not x86_64
 if [ "$ARCH" != "x86_64" ]; then
-  echo "$ARCH is not added."
+  echo "$ARCH is not supported."
   exit 1
 fi
 
@@ -63,15 +65,14 @@ find -L . \
 \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
 -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Move binary and configs to lib64 instead of lib
-mkdir -p $PKG/etc $PKG/usr/lib64 $PKG/usr/bin
-cp -r etc/* $PKG/etc/
-cp -r usr/lib/* $PKG/usr/lib64/
-cp -r usr/share $PKG/usr/
+mv {usr,etc} $PKG/
+# Move binaries to lib64 instead of lib
+mv $PKG/usr/lib $PKG/usr/lib64
 
-# Move share files into it's place
-cp -r usr/share $PKG/usr/
+# Move man where the man likes
+mv $PKG/usr/share/man $PKG/usr/
 
+rm -f $PKG/usr/bin/java
 ln -s /usr/lib64/jvm/java-17-jdk/bin/java $PKG/usr/bin/java
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
@@ -81,4 +82,4 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+/sbin/makepkg -l y -p -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

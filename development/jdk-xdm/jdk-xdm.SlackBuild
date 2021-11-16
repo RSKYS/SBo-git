@@ -65,14 +65,15 @@ find -L . \
 \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
 -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mv {usr,etc} $PKG/
+mkdir -p $PKG/usr/bin
+mv etc $PKG/
 # Move binaries to lib64 instead of lib
-mv $PKG/usr/lib $PKG/usr/lib64
+mv usr/lib $PKG/usr/lib64
 
 # Move man where the man likes
+mv usr/share $PKG/usr/
 mv $PKG/usr/share/man $PKG/usr/
 
-rm -f $PKG/usr/bin/java
 ln -s /usr/lib64/jvm/java-17-jdk/bin/java $PKG/usr/bin/java
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION

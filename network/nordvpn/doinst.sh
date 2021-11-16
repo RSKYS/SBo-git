@@ -9,5 +9,7 @@ if [ -e usr/share/icons/hicolor/icon-theme.cache ]; then
 fi
 
 if [ -x /etc/rc.d/rc.nordvpn ]; then
-    /etc/rc.d/rc.nordvpn restart
+    groupadd -f nordvpn
+    usermod -aG nordvpn root
+    /etc/rc.d/rc.nordvpn restart > /dev/null
 fi

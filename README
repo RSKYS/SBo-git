@@ -1,7 +1,5 @@
 This is ~red's current SlackBuilds repository and even heavily
 maintained at some points, this is not official SlackBuilds git!
-The purpose of this repository is to bring a little bit bleeding edge
-softwares to Slackware.
 
 I've modified sboui to specificly work with this repository available
 under system/sboui.

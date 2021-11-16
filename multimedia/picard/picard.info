@@ -1,5 +1,5 @@
 PRGNAM="picard"
-VERSION="1.4.2"
+VERSION="2.6.4"
 HOMEPAGE="https://picard.musicbrainz.org/"
 DOWNLOAD="https://github.com/metabrainz/picard/archive/release-2.6.4/picard-2.6.4.tar.gz"
 MD5SUM="1e26ec63dad43fc44420b7386ddd9453"

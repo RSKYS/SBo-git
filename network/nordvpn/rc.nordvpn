@@ -36,7 +36,7 @@ nordvpnd_start()
     echo "Starting $BASE"
     sleep 1
     # $DAEMON start-stop-daemon --start --quiet -g "nordvpn" --pidfile $PID --exec $DAEMON
-    $DAEMON > /dev/null
+    $DAEMON > /dev/null &
     pidof $DAEMON > $PID
   fi
 }

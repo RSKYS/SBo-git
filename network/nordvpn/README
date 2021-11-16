@@ -5,6 +5,11 @@ More than 5000 servers worldwide. No logs of your online activity.
 Secure up to 6 devices with a single account.
 Access online content securely, with no restrictions.
 
+This script requires a 'nordvpn' group to exist before running.
+You can create this group like this (Run these as root):
+    groupadd -f nordvpn
+    usermod -aG nordvpn root
+
 The following can be used to start/stop NordVPN automatically:
 /etc/rc.d/rc.local
   if [ -x /etc/rc.d/rc.nordvpn ]; then
@@ -31,5 +36,3 @@ And connect using:
 
 You can always switch back to OpenVPN using this command:
 'nordvpn set technology OpenVPN'
-
-Run 'usermod -aG nordvpn $USER' to fix this issue and log out of OS afterwards for this to take an effect

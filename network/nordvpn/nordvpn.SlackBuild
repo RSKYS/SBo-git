@@ -32,6 +32,9 @@ BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
+# Select nordvpn's default group
+NORD_GROUP=${NORD_GROUP:-nordvpn}
+
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
     x86_64) ARCH=amd64 ;;
@@ -56,6 +59,19 @@ elif [ "$ARCH" = "amd64" ]; then
 else
   echo "Package for $(uname -m) architecture is not available."
   exit 1
+fi
+
+bailout() {
+  echo "  You must have a $NORD_GROUP group to run this script. "
+  echo "  Something like this should suffice for most systems (Run as root): "
+  echo "    # groupadd -f $NORD_GROUP "
+  echo "    # usermod -aG $NORD_GROUP \$USER "
+  exit 1
+}
+
+# Bail if group isn't valid on your system.
+if ! grep -q "^$NORD_GROUP:" /etc/group; then
+  bailout
 fi
 
 rm -rf $PKG

@@ -26,7 +26,6 @@ create_socket_dir() {
 nordvpnd_start()
 {
   create_socket_dir
-  rm -rf $SOCK
   if [ -s $PID ]; then
     echo "$BASE is already running: $(cat $PID)"
     exit 1
@@ -34,8 +33,8 @@ nordvpnd_start()
 
   if [ -x $DAEMON ]; then
     echo "Starting $BASE"
+    rm -rf $SOCK
     sleep 1
-    # $DAEMON start-stop-daemon --start --quiet -g "nordvpn" --pidfile $PID --exec $DAEMON
     $DAEMON > /dev/null &
     pidof $DAEMON > $PID
   fi

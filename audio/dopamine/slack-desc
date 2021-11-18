@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+        |-----handy-ruler------------------------------------------------------|
+dopamine: dopamine (A sleek looking and powerfull audio player)
+dopamine:
+dopamine: Dopamine is an audio player which tries to make organizing and
+dopamine: listening to music as simple and pretty as possible.
+dopamine: It can play wav, mp3, ogg vorbis, flac, wma, ape, opus and m4a/aac.
+dopamine: These screenshots give you a sneak peek of what you can expect
+dopamine: when using Dopamine.
+dopamine:
+dopamine:
+dopamine: https://www.digimezzo.com/software/dopamine/
+dopamine:

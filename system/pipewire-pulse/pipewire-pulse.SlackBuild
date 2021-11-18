@@ -86,20 +86,21 @@ find . \
   \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
   -exec chmod 644 {} \+
 
-mkdir -p $PKG/etc/xdg/autostart
-mkdir -p $PKG/etc/pulse
-cp -a $CWD/config/pipewire-media-session.desktop $PKG/etc/xdg/autostart/pipewire-media-session.desktop.new
-cp -a $CWD/config/pipewire-pulse.desktop $PKG/etc/xdg/autostart/pipewire-pulse.desktop.new
-cp -a $CWD/config/pipewire.desktop $PKG/etc/xdg/autostart/pipewire.desktop.new
-cp -a $CWD/config/client.conf $PKG/etc/pulse/client.conf.new
+cd $PKG
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+mkdir -p etc/xdg/autostart
+mkdir -p etc/pulse
+cp -a "$CWD/config/pipewire-media-session.desktop" etc/xdg/autostart/pipewire-media-session.desktop.new
+cp -a "$CWD/config/pipewire-pulse.desktop" etc/xdg/autostart/pipewire-pulse.desktop.new
+cp -a "$CWD/config/pipewire.desktop" etc/xdg/autostart/pipewire.desktop.new
+cp -a "$CWD/config/client.conf" etc/pulse/client.conf.new
 
-mkdir -p $PKG/install
-cat $CWD/doinst.sh > $PKG/install/doinst.sh
-cat $CWD/slack-desc > $PKG/install/slack-desc
+mkdir -p usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p install
+cat $CWD/doinst.sh > install/doinst.sh
+cat $CWD/slack-desc > install/slack-desc
 
 # Build the package:
-cd $PKG
 /sbin/makepkg -l y -p -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

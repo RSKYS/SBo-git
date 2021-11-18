@@ -1,4 +1,1 @@
-pipewire-pulse is a library and protocol for multimedia, ditch pulse
-with pipewire for better good.
-
-By ~red
+Daemon which take over media system totally by Pipewire.

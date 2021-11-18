@@ -6,11 +6,11 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
               |-----handy-ruler------------------------------------------------------|
-pipewire-pulse: pipewire-pulse (multimedia processing without pulseaudio)
+pipewire-pulse: pipewire-pulse (Replacemnet of pulse backend)
 pipewire-pulse:
-pipewire-pulse: pipewire-pulse is a library and protocol for multimedia, ditch pulse
-pipewire-pulse: with pipewire for better good.
+pipewire-pulse: Take over audio/media system totally by Pipewire this time!
 pipewire-pulse:
+pipewire-pulse: By ~red
 pipewire-pulse:
 pipewire-pulse:
 pipewire-pulse:

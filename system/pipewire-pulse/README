@@ -6,7 +6,7 @@ Blacklist following packages to prevent any reinstall for this package:
 daemon
 pulseaudio
 
-Or just don't accept any .NEW configs from pulse while you upgrade by
-slackpkg
+Or, just don't accept any .NEW configs from pulse while you upgrade by
+slackpkg.
 
 By ~red

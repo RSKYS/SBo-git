@@ -22,6 +22,8 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Modified by RSKYS <Pouria.rz@outlook.com>
+
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=google-chrome
@@ -50,23 +52,9 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-SRCNAM=$PRGNAM-stable_current
-
 set -e
 
-if [ "$ARCH" = "i586" ]; then
-  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
-  LIBDIRSUFFIX=""
-  BITS="i386"
-  echo "This package is currently only available for 64bit."
-  exit 1
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
-  BITS="i386"
-  echo "This package is currently only available for 64bit."
-  exit 1
-elif [ "$ARCH" = "x86_64" ]; then
+if [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
   LIBDIRSUFFIX="64"
   BITS="amd64"
@@ -78,13 +66,10 @@ fi
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-${VERSION}
-mkdir -p $PRGNAM-${VERSION}
-ar p $CWD/${SRCNAM}_${BITS}.deb data.tar.xz | xz -d | tar -xvf- \
-    --exclude="./etc" \
-    --exclude="./opt/google/chrome/cron" \
-    --exclude="./usr/share/menu" -C $PRGNAM-${VERSION}
-cd $PRGNAM-${VERSION}
+rm -rf $PRGNAM-$VERSION
+mkdir -p $PRGNAM-$VERSION
+cd $PRGNAM-$VERSION
+tar -I zstd -xvf $CWD/${PRGNAM}-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
@@ -92,12 +77,14 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mv opt $PKG
-mv usr $PKG
+# Move man where the man likes
+mv usr/share/man usr/
+
+mv * $PKG/
 
 mv $PKG/usr/share/doc $PKG/usr/
-mv $PKG/usr/doc/$PRGNAM-stable $PKG/usr/doc/${PRGNAM}-$VERSION
-cd $PKG/usr/doc/${PRGNAM}-$VERSION/
+mv $PKG/usr/doc/$PRGNAM-stable $PKG/usr/doc/$PRGNAM-$VERSION
+cd $PKG/usr/doc/$PRGNAM-$VERSION
 gzip -dc changelog.gz > ChangeLog; rm -f changelog.gz;
 
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild

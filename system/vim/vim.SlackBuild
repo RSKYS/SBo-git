@@ -119,7 +119,6 @@ CFLAGS="$SLKCFLAGS" \
   --with-python-config-dir=/usr/lib${LIBDIRSUFFIX}/python$PYVER/config \
   --with-python3-config-dir=$(python3-config --configdir) \
   --with-x=yes \
-  --enable-acl \
   --enable-gui \
   --enable-perlinterp=$PERLINTERP \
   --enable-pythoninterp=dynamic \

@@ -1,0 +1,234 @@
+#!/bin/bash
+
+# Copyright 2008, 2009, 2010, 2013, 2016, 2018, 2019, 2020, 2021  Patrick J. Volkerding, Sebeka, Minnesota, USA
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# Modified by RSKYS <Pouria.rz@outlook.com>
+
+cd $(dirname $0) ; CWD=$(pwd)
+
+PKGNAM=vim
+VERSION=8.2.3623
+CTAGSVER=5.8
+BUILD=${BUILD:-1}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
+
+# The possible settings for this are yes/no/dynamic.
+PERLINTERP=${PERLINTERP:-dynamic}
+
+# Automatically determine the architecture we're building on:
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) export ARCH=i586 ;;
+    arm*) export ARCH=arm ;;
+    # Unless $ARCH is already set, use uname -m for all other archs:
+       *) export ARCH=$( uname -m ) ;;
+  esac
+fi
+
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PKGNAM-$VERSION-$ARCH-$BUILD.txz"
+  exit 0
+fi
+
+# If dynamic support for Ruby works with this $ARCH, then allow it:
+if [ "$ARCH" = "x86_64" ]; then
+  RUBYDYNAMIC="=dynamic"
+fi
+
+NUMJOBS=${NUMJOBS:-" -j$(expr $(nproc) + 1) "}
+
+PYVER=$(python -V 2>&1 | cut -f 2 -d' ' | cut -f 1-2 -d.)
+
+if [ "$ARCH" = "x86_64" ]; then
+  export SLKCFLAGS="-O2 -fPIC"
+  export LIBDIRSUFFIX="64"
+else
+  export SLKCFLAGS="-O2"
+  export LIBDIRSUFFIX=""
+fi
+export SLKLDFLAGS="-L/usr/lib${LIBDIRSUFFIX}"
+
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+
+# ctags was once a part of vim,
+# but now we have to bundle it in
+cd $TMP
+rm -rf ctags-$CTAGSVER
+tar xvf $CWD/ctags-$CTAGSVER.tar.?z
+cd ctags-$CTAGSVER
+chown -R root:root .
+find . \
+  \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+  -exec chmod 755 {} \+ -o \
+  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+  -exec chmod 644 {} \+
+CFLAGS="$SLKCFLAGS" LDFLAGS="$SLKLDFLAGS" \
+./configure \
+  --prefix=/usr \
+  --build=$ARCH-slackware-linux
+make $NUMJOBS || make
+mkdir -p $PKG/usr/bin
+cat ctags > $PKG/usr/bin/ctags
+chmod 755 $PKG/usr/bin/ctags
+mkdir -p $PKG/usr/man/man1
+cat ctags.1 | gzip -9c > $PKG/usr/man/man1/ctags.1.gz
+mkdir -p $PKG/usr/doc/ctags-$CTAGSVER
+cp -a \
+  COPYING* EXTENDING.html FAQ INSTALL INSTALL.oth NEWS README* \
+  $PKG/usr/doc/ctags-$CTAGSVER
+chmod 644 $PKG/usr/doc/ctags-$CTAGSVER/*
+
+cd $TMP
+rm -rf vim-${VERSION}
+tar xvf $CWD/vim-${VERSION}.tar.?z
+
+config_vim() {
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  $* \
+  --prefix=/usr \
+  --with-python-config-dir=/usr/lib${LIBDIRSUFFIX}/python$PYVER/config \
+  --with-python3-config-dir=$(python3-config --configdir) \
+  --with-x=yes \
+  --enable-acl \
+  --enable-gui \
+  --enable-perlinterp=$PERLINTERP \
+  --enable-pythoninterp=dynamic \
+  --enable-python3interp=dynamic \
+  --enable-rubyinterp${RUBYDYNAMIC} \
+  --enable-luainterp \
+  --enable-tclinterp=dynamic \
+  --disable-canberra \
+  --enable-multibyte \
+  --enable-cscope \
+  --with-features=huge \
+  --with-compiledby="<Pouria.rz@outlook.com>" \
+  --build=$ARCH-slackware-linux
+}
+
+cd $TMP/vim-$VERSION
+
+chown -R root:root .
+find . \
+  \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+  -exec chmod 755 {} \+ -o \
+  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+  -exec chmod 644 {} \+
+
+config_vim --without-x --disable-gui
+make $NUMJOBS || make
+make install DESTDIR=$PKG
+
+rsync -lprvt $PKG/usr/share/man/ $PKG/usr/man/
+rm -r $PKG/usr/share/man
+
+# Don't make backups in /var/spool/cron/*, which fixes "crontab -e":
+zcat $CWD/vim.vimrc.diff.gz | patch -p1 --verbose
+
+cp -a runtime/vimrc_example.vim runtime/vimrc.new
+
+# Add patched vimrc to the package:
+cat runtime/vimrc.new > $PKG/usr/share/vim/vimrc.new
+
+# Don't package gvim.desktop - it will be included in the vim-gvim package:
+rm -f $PKG/usr/share/applications/gvim.desktop
+
+# Move the vim.desktop into the docs directory. There's really not much use
+# for this .desktop file. It's easy enough to just open a terminal and run
+# vim in it without this.
+mkdir -p $PKG/usr/doc/vim-$VERSION
+mv $PKG/usr/share/applications/vim.desktop $PKG/usr/doc/vim-$VERSION
+
+# Remove empty directory:
+rmdir $PKG/usr/share/applications
+
+# Fix manpage symlinks:
+if [ -d $PKG/usr/man ]; then
+  ( cd $PKG/usr/man
+    for manpagedir in $(find . -type d -name "man*") ; do
+      ( cd $manpagedir
+        for eachpage in $( find . -type l -maxdepth 1) ; do
+          ln -s $( readlink $eachpage ).gz $eachpage.gz
+          rm $eachpage
+        done
+        gzip -9 *.?
+      )
+    done
+  )
+fi
+
+# Legacy binary links:
+( cd $PKG/usr/bin ; rm -rf rview )
+( cd $PKG/usr/bin ; ln -sf vim rview )
+( cd $PKG/usr/bin ; rm -rf rvim )
+( cd $PKG/usr/bin ; ln -sf vim rvim )
+( cd $PKG/usr/bin ; rm -rf view )
+( cd $PKG/usr/bin ; ln -sf vim view )
+( cd $PKG/usr/bin ; rm -rf eview )
+( cd $PKG/usr/bin ; ln -sf vim eview )
+( cd $PKG/usr/bin ; rm -rf evim )
+( cd $PKG/usr/bin ; ln -sf vim evim )
+
+# These should not be shipped:
+rm -f $PKG/usr/bin/{ex,vi}
+
+mkdir -p $PKG/usr/doc/vim-$VERSION
+cp -a README.txt $PKG/usr/doc/vim-$VERSION
+find $PKG/usr/doc/vim-$VERSION -type f | xargs chmod 644
+( cd $PKG/usr/doc/vim-$VERSION ; rm -rf doc )
+( cd $PKG/usr/doc/vim-$VERSION ; ln -sf /usr/share/vim/vim$(echo $VIMBRANCH | tr -d .) doc )
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc.vim > $PKG/install/slack-desc
+cat << EOF > $PKG/install/doinst.sh
+#!/bin/bash
+config() {
+  NEW="\$1"
+  OLD="\$(dirname \$NEW)/\$(basename \$NEW .new)"
+  # If there's no config file by that name, mv it over:
+  if [ ! -r \$OLD ]; then
+    mv \$NEW \$OLD
+  elif [ "\$(cat \$OLD | md5sum)" = "\$(cat \$NEW | md5sum)" ]; then # toss the redundant copy
+    rm \$NEW
+  fi
+  # Otherwise, we leave the .new copy for the admin to consider...
+}
+config usr/share/vim/vimrc.new
+EOF
+
+find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+
+cd $PKG
+/sbin/makepkg -l y -p -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
+
+

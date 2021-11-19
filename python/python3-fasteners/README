@@ -1,6 +1,4 @@
-fasteners (python package that provides useful locks)
-
-It includes the following.
+Fasteners includes the following:
 
 - Locking decorator
 

@@ -226,5 +226,3 @@ find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
-
-

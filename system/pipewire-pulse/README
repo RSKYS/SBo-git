@@ -9,17 +9,7 @@ pulseaudio
 Or, just don't accept any .NEW configs from pulse while you upgrade by
 slackpkg.
 
-In case you want to switch back to pulse remove this package,
-then you need to execute commands of these two sections:
-
-Pulseaudio needs to get in charge again!
-    $ cd /etc/xdg/autostart #Switch to directory
-    $ rm -f pulseaudio.desktop #Make sure destination is clear
-    $ mv .pulseaudio.desktop.old pulseaudio.desktop
-
-We do exact same to client.conf:
-    $ cd /etc/pulse #Switch to directory
-    $ rm -f client.conf #Make sure destination is clear
-    $ mv .client.conf.old client.conf
+In case you want to switch back to pulseaudio, install
+"pulse-pipewire", it will automatically remove this package.
 
 By ~red

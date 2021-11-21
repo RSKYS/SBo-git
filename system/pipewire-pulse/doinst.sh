@@ -16,6 +16,11 @@ config() {
       mv client.conf .client.conf.old
   fi )
 
+( cd /etc/xdg/autostart
+  if [ -f "pulseaudio.desktop" ] && [ ! -f ".pulseaudio.desktop.old" ]; then
+      mv pulseaudio.desktop .pulseaudio.desktop.old
+  fi )
+
 config etc/xdg/autostart/pipewire-media-session.desktop.new
 config etc/xdg/autostart/pipewire-pulse.desktop.new
 config etc/xdg/autostart/pipewire.desktop.new

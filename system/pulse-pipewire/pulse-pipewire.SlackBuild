@@ -24,7 +24,7 @@
 
 cd $(dirname $0) ; CWD=$(pwd)
 
-PRGNAM=pipewire-pulse
+PRGNAM=pulse-pipewire
 VERSION=${VERSION:-0.0.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -70,11 +70,7 @@ find . \
 
 cd $PKG
 
-mkdir -p etc/xdg/autostart
 mkdir -p etc/pulse
-cp -a "$CWD/config/pipewire-media-session.desktop" etc/xdg/autostart/pipewire-media-session.desktop.new
-cp -a "$CWD/config/pipewire-pulse.desktop" etc/xdg/autostart/pipewire-pulse.desktop.new
-cp -a "$CWD/config/pipewire.desktop" etc/xdg/autostart/pipewire.desktop.new
 cp -a "$CWD/config/client.conf" etc/pulse/client.conf.new
 
 mkdir -p usr/doc/$PRGNAM-$VERSION

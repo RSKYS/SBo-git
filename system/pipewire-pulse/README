@@ -9,6 +9,7 @@ pulseaudio
 Or, just don't accept any .NEW configs from pulse while you upgrade by
 slackpkg.
 
-In case you want to switch back to pulseaudio, install "pulse-pipewire"
+In case you want to switch back to pulseaudio, install
+"pulse-pipewire", it will automatically remove this package.
 
 By ~red

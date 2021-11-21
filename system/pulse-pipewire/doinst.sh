@@ -18,7 +18,7 @@ removepkg pipewire-pulse > /dev/null
 )
 
 ( cd /etc/xdg/autostart
-  rm -f pipewire*.desktop .pipewire*.old
+  rm -f pipewire*.desktop .pipewire*.old .pulseaudio*.desktop
 )
 
-config etc/pulse/client.conf.new
+config etc/pulse/client.conf.newl

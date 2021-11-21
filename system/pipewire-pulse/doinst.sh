@@ -11,6 +11,11 @@ config() {
   # Otherwise, we leave the .new copy for the admin to consider...
 }
 
+( cd /etc/pulse
+  if [ -f "client.conf" ] && [ ! -f ".client.conf.old" ]; then
+      mv client.conf .client.conf.old
+  fi )
+
 config etc/xdg/autostart/pipewire-media-session.desktop.new
 config etc/xdg/autostart/pipewire-pulse.desktop.new
 config etc/xdg/autostart/pipewire.desktop.new

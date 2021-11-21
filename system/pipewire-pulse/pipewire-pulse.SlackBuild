@@ -55,10 +55,6 @@ OUTPUT=${OUTPUT:-/tmp}
 
 set -e
 
-if [ -f "/etc/pulse/client.conf" ]; then
-    mv /etc/pulse/client.conf /etc/pulse/client.conf.old
-fi
-
 rm -rf $PKG
 mkdir -p $TMP $PKG
 cd $TMP

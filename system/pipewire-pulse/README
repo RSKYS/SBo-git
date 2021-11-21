@@ -1,6 +1,6 @@
 Take over audio/media system totally by Pipewire this time!
 
-#Important Note
+##Important Notes
 Blacklist following packages to prevent any reinstall for this package:
 
 daemon
@@ -8,5 +8,8 @@ pulseaudio
 
 Or, just don't accept any .NEW configs from pulse while you upgrade by
 slackpkg.
+
+In case you want to revert back on pulse, remove this package and move
+.client.conf.old to client.conf at /etc/pulse/
 
 By ~red

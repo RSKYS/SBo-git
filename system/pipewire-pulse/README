@@ -1,6 +1,6 @@
 Take over audio/media system totally by Pipewire this time!
 
-##Important Notes
+Important Notes:
 Blacklist following packages to prevent any reinstall for this package:
 
 daemon

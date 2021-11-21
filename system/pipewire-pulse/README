@@ -10,7 +10,7 @@ Or, just don't accept any .NEW configs from pulse while you upgrade by
 slackpkg.
 
 In case you want to switch back to pulse remove this package,
-then you need to execute commands of these two section:
+then you need to execute commands of these two sections:
 
 Pulseaudio needs to take in charge again
     $ cd /etc/xdg/autostart # Switch to directory

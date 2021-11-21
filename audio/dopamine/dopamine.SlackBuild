@@ -27,7 +27,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 PRGNAM=dopamine
 SRCNAM=Dopamine
 VERSION=${VERSION:-3.0.0}
-BUILD=${BUILD:-preview.7}
+BUILD=${BUILD:-7}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -62,7 +62,7 @@ cd $TMP
 rm -rf $PRGNAM-${VERSION}-${BUILD}
 mkdir -p $PRGNAM-${VERSION}-${BUILD}
 cd $PKG
-rpm2cpio $CWD/$SRCNAM-${VERSION}-${BUILD}.rpm | cpio -idmv
+rpm2cpio $CWD/$SRCNAM-${VERSION}-preview.${BUILD}.rpm | cpio -idmv
 
 chown -R root:root opt/$SRCNAM
 

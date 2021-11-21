@@ -12,7 +12,7 @@ slackpkg.
 In case you want to switch back to pulse remove this package,
 then you need to execute commands of these two sections:
 
-Pulseaudio needs to take in charge again
+Pulseaudio needs to get in charge again
     $ cd /etc/xdg/autostart # Switch to directory
     $ mv .pulseaudio.desktop.old pulseaudio.desktop
 

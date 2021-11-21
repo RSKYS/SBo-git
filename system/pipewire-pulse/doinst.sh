@@ -18,6 +18,7 @@ config() {
 
 ( cd /etc/xdg/autostart
   if [ -f "pulseaudio.desktop" ]; then
+      rm -f .pulseaudio.desktop.old
       mv pulseaudio.desktop .pulseaudio.desktop.old
   fi )
 

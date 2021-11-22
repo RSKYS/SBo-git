@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for python3-tekore
+# Slackware build script for python-tekore
 
 # Copyright 2019-2021 Pouria Rezaei <Pouria.rz@outlook.com>
 # All rights reserved.

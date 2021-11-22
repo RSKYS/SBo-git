@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for Pipewire-pulse
+# Slackware build script for Pulse-pipewire
 
 # Copyright 2019-2021 Pouria Rezaei <Pouria.rz@outlook.com>
 # All rights reserved.

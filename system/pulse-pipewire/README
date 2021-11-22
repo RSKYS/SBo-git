@@ -1,0 +1,8 @@
+Revert back audio backend to pulseaudio.
+
+Note:
+This package with remove "pipewire-pulse" if it's installed.
+
+It also can be used if you've messed with pulseaudio configs.
+
+By ~red

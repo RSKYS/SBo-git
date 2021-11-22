@@ -35,6 +35,7 @@ checkuser() {
 #
 nordvpnd_start()
 {
+  checkuser
   create_socket_dir
   rm -rf $SOCK
   if [ -s $PID ]; then

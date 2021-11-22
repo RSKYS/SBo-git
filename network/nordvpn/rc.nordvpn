@@ -49,7 +49,7 @@ nordvpnd_start()
     $DAEMON > /dev/null &
     pidof $DAEMON > $PID
     sleep 10
-    if [ -x $SOCK ]; then
+    if [ -S "$SOCK" ]; then
       echo "$BASE has been started."
     else
       echo "$BASE failed to start. Please restart the daemon."

@@ -53,6 +53,7 @@ nordvpnd_start()
       echo "$BASE has been started."
     else
       echo "$BASE failed to start. Please restart the daemon."
+    fi
   fi
 }
 

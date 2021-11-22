@@ -20,6 +20,16 @@ create_socket_dir() {
   chown root:$BASE $SOCKDIR
 }
 
+checkuser() {
+    status=0                                                                
+    for u in $(who | awk '{print $1}' | sort | uniq)                        
+    do                                                                      
+          if [ "$u" == "$1" ]; then                                           
+                return 0                                                    
+          fi                                                                  
+    done                                                                   
+    return 1                                                                
+}
 #
 # Function that starts the daemon
 #
@@ -38,6 +48,12 @@ nordvpnd_start()
     # $DAEMON start-stop-daemon --start --quiet -g "nordvpn" --pidfile $PID --exec $DAEMON
     $DAEMON > /dev/null &
     pidof $DAEMON > $PID
+    sleep 10
+    if [ -S "$SOCK" ]; then
+      echo "$BASE has been started."
+    else
+      echo "$BASE failed to start. Please restart the daemon."
+    fi
   fi
 }
 

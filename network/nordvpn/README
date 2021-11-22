@@ -8,7 +8,7 @@ Access online content securely, with no restrictions.
 This script requires a 'nordvpn' group to exist before running.
 You can create this group like this (Run these as root):
     groupadd -f nordvpn
-    usermod -aG nordvpn $USER
+    usermod -aG nordvpn $USER (Replace $USER with your username)
 Then log out of the system and login again.
 
 The following can be used to start/stop NordVPN automatically:

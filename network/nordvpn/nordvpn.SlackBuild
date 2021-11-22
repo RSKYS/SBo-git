@@ -27,7 +27,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=nordvpn
-VERSION=${VERSION:-3.12.0}
+VERSION=${VERSION:-3.12.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -66,6 +66,7 @@ bailout() {
   echo "  Something like this should suffice for most systems (Run as root): "
   echo "    # groupadd -f $NORD_GROUP "
   echo "    # usermod -aG $NORD_GROUP \$USER "
+  echo "  Then log out of the system and login again."
   exit 1
 }
 

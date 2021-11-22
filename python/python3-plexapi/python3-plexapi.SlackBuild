@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for python-PlexAPI
+# Slackware build script for python3-PlexAPI
 
 # Copyright 2019-2021 Pouria Rezaei <Pouria.rz@outlook.com>
 # All rights reserved.

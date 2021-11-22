@@ -65,7 +65,7 @@ bailout() {
   echo "  You must have a $NORD_GROUP group to run this script. "
   echo "  Something like this should suffice for most systems (Run as root): "
   echo "    # groupadd -f $NORD_GROUP "
-  echo "    # usermod -aG $NORD_GROUP \$USER "
+  echo "    # usermod -aG $NORD_GROUP \$USER (Replace \$USER with your username)"
   echo "  Then log out of the system and login again."
   exit 1
 }
@@ -88,8 +88,6 @@ rm -fR etc usr/lib
 
 # Move man where the man likes
 mv usr/share/man usr/
-
-cd ..
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild

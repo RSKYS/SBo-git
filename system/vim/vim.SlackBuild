@@ -115,17 +115,26 @@ CFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --with-python-config-dir=/usr/lib${LIBDIRSUFFIX}/python$PYVER/config \
   --with-python3-config-dir=$(python3-config --configdir) \
+<<<<<<< HEAD
   --with-x=yes \
   --enable-gui \
   --enable-perlinterp=dynamic \
+=======
+  --enable-acl \
+  --enable-cscope \
+  --enable-gpm \
+  --enable-gui \
+  --enable-luainterp \
+  --enable-multibyte \
+  --enable-perlinterp=$PERLINTERP \
+>>>>>>> e69837deae1ccfd35b97ee3bdefe0c15523a64d7
   --enable-pythoninterp=dynamic \
   --enable-python3interp=dynamic \
   --enable-rubyinterp${RUBYDYNAMIC} \
   --enable-luainterp=dynamic \
   --enable-tclinterp=dynamic \
   --disable-canberra \
-  --enable-multibyte \
-  --enable-cscope \
+  --with-x \
   --with-features=huge \
   --with-compiledby="<Pouria.rz@outlook.com>" \
   --build=$ARCH-slackware-linux

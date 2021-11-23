@@ -69,7 +69,7 @@ fi
 export SLKLDFLAGS="-L/usr/lib${LIBDIRSUFFIX}"
 
 TMP=${TMP:-/tmp/SBo}
-PKG=$TMP/package-vim
+PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
 set -e
@@ -222,6 +222,7 @@ config() {
 removepkg vim > /dev/null
 
 config usr/share/vim/vimrc.new
+
 EOF
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Copyright 2008, 2009, 2010, 2013, 2016, 2018, 2019, 2020, 2021  Patrick J. Volkerding, Sebeka, Minnesota, USA
+# Copyright 2019-2021 Pouria Rezaei <Pouria.rz@outlook.com>
+# Based on "vim" provided by Patrick J. Volkerding, Sebeka, Minnesota, USA
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,7 +25,7 @@
 
 cd $(dirname $0) ; CWD=$(pwd)
 
-PRGNAM=vim
+PRGNAM=vim-x11
 VERSION=8.2.3623
 CTAGSVER=5.8
 BUILD=${BUILD:-1}
@@ -68,7 +69,7 @@ fi
 export SLKLDFLAGS="-L/usr/lib${LIBDIRSUFFIX}"
 
 TMP=${TMP:-/tmp/SBo}
-PKG=$TMP/package-$PRGNAM
+PKG=$TMP/package-vim
 OUTPUT=${OUTPUT:-/tmp}
 
 set -e
@@ -105,8 +106,8 @@ cp -a \
 chmod 644 $PKG/usr/doc/ctags-$CTAGSVER/*
 
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-${VERSION}.tar.?z
+rm -rf vim-$VERSION
+tar xvf $CWD/vim-${VERSION}.tar.?z
 
 config_vim() {
 CFLAGS="$SLKCFLAGS" \
@@ -131,7 +132,7 @@ CFLAGS="$SLKCFLAGS" \
   --build=$ARCH-slackware-linux
 }
 
-cd $TMP/$PRGNAM-$VERSION
+cd $TMP/vim-$VERSION
 
 chown -R root:root .
 find . \
@@ -148,21 +149,21 @@ rsync -lprvt $PKG/usr/share/man/ $PKG/usr/man/
 rm -r $PKG/usr/share/man
 
 # Don't make backups in /var/spool/cron/*, which fixes "crontab -e":
-zcat $CWD/$PRGNAM.${PRGNAM}rc.diff.gz | patch -p1 --verbose
+zcat $CWD/vim.vimrc.diff.gz | patch -p1 --verbose
 
-cp -a runtime/${PRGNAM}rc_example.$PRGNAM runtime/${PRGNAM}rc.new
+cp -a runtime/vimrc_example.vim runtime/vimrc.new
 
-# Add patched ${PRGNAM}rc to the package:
-cat runtime/${PRGNAM}rc.new > $PKG/usr/share/$PRGNAM/${PRGNAM}rc.new
+# Add patched vimrc to the package:
+cat runtime/vimrc.new > $PKG/usr/share/vim/vimrc.new
 
 # Don't package gvim.desktop - it will be included in the vim-gvim package:
-rm -f $PKG/usr/share/applications/g${PRGNAM}.desktop
+rm -f $PKG/usr/share/applications/gvim.desktop
 
 # Move the vim.desktop into the docs directory. There's really not much use
 # for this .desktop file. It's easy enough to just open a terminal and run
 # vim in it without this.
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-mv $PKG/usr/share/applications/$PRGNAM.desktop $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/usr/doc/vim-$VERSION
+mv $PKG/usr/share/applications/vim.desktop $PKG/usr/doc/vim-$VERSION
 
 # Remove empty directory:
 rmdir $PKG/usr/share/applications
@@ -201,10 +202,10 @@ mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a README.txt $PKG/usr/doc/$PRGNAM-$VERSION
 find $PKG/usr/doc/$PRGNAM-$VERSION -type f | xargs chmod 644
 ( cd $PKG/usr/doc/$PRGNAM-$VERSION ; rm -rf doc )
-( cd $PKG/usr/doc/$PRGNAM-$VERSION ; ln -sf /usr/share/vim/$PRGNAM$(echo $VIMBRANCH | tr -d .) doc )
+( cd $PKG/usr/doc/$PRGNAM-$VERSION ; ln -sf /usr/share/vim/vim$(echo $VIMBRANCH | tr -d .) doc )
 
 mkdir -p $PKG/install
-cat $CWD/slack-desc.$PRGNAM > $PKG/install/slack-desc
+cat $CWD/slack-desc > $PKG/install/slack-desc
 cat << EOF > $PKG/install/doinst.sh
 #!/bin/bash
 config() {
@@ -218,7 +219,7 @@ config() {
   fi
   # Otherwise, we leave the .new copy for the admin to consider...
 }
-config usr/share/$PRGNAM/${PRGNAM}rc.new
+config usr/share/vim/vimrc.new
 EOF
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \

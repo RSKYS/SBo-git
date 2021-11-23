@@ -6,3 +6,6 @@ Vim's development is led by Bram Moolenaar.
 
 This package also contains the Exuberant Ctags program
 written by Darren Hiebert.
+
+# Important Note
+This package will remove "vim" official package.

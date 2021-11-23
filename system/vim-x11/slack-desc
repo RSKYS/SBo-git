@@ -6,14 +6,14 @@
 # customary to leave one space after the ':'.
 
    |-----handy-ruler------------------------------------------------------|
-vim: vim (Vi IMproved)
-vim:
-vim: Vim is an almost compatible version of the UNIX editor vi. Many new
-vim: features have been added: multi level undo, command line history, 
-vim: filename completion, block operations, and more.
-vim:
-vim: Vim's development is led by Bram Moolenaar.
-vim:
-vim: This package also contains the Exuberant Ctags program
-vim: written by Darren Hiebert.
-vim:
+vim-x11: vim-x11 (Vi IMproved with X-clipboard)
+vim-x11:
+vim-x11: Vim is an almost compatible version of the UNIX editor vi. Many new
+vim-x11: features have been added: multi level undo, command line history,
+vim-x11: filename completion, block operations, and more.
+vim-x11:
+vim-x11: Vim's development is led by Bram Moolenaar.
+vim-x11:
+vim-x11: This package also contains the Exuberant Ctags program
+vim-x11: written by Darren Hiebert.
+vim-x11:

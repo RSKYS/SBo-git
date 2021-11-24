@@ -1,7 +1,8 @@
 Revert back audio backend to pulseaudio.
 
 Note:
-This package with remove "pipewire-pulse" if it's installed.
+This package with remove "pipewire-pulse" if it's installed;
+So you can recognize what mode you're on.
 
 It also can be used if you've messed with pulseaudio configs.
 

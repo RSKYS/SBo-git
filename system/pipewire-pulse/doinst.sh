@@ -11,7 +11,7 @@ config() {
   # Otherwise, we leave the .new copy for the admin to consider...
 }
 
-removepkg pulse-pipewire > /dev/null
+removepkg pulseaudio-pipe > /dev/null
 
 ( cd /etc/pulse
 if [ -f "client.conf" ] && [ ! -f ".client.conf.old" ]; then

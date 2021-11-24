@@ -17,7 +17,7 @@ removepkg pipewire-pulse > /dev/null
 if [ -f client.conf ]; then
     md5check="$(md5sum client.conf | cut -d' ' -f1)"
     if [ $md5check != "5843366c456d2cd1bc50836d5eedce14" ]; then
-        rm -f client.conf
+        rm -f client.conf .client.conf.old
     fi
 fi
 

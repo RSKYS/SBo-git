@@ -3,6 +3,7 @@
 # Slackware build script for Pipewire-pulse
 
 # Copyright 2019-2021 Pouria Rezaei <Pouria.rz@outlook.com>
+# Inspired from many, thanks to LQ specially LuckyCyborg for this suggestion.
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is

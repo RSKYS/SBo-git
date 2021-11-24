@@ -42,6 +42,9 @@ if [ -f "system.pa" ]; then
     fi
 fi )
 
+( cd /etc/xdg/autostart
+  rm -f pipewire*.desktop )
+
 config etc/pulse/client.conf.new
 config etc/pulse/daemon.conf.new
 config etc/pulse/default.pa.new

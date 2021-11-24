@@ -14,15 +14,15 @@ config() {
 removepkg pulse-pipewire > /dev/null
 
 ( cd /etc/pulse
-  if [ -f "client.conf" ] && [ ! -f ".client.conf.old" ]; then
-      mv client.conf .client.conf.old
-  fi )
+if [ -f "client.conf" ] && [ ! -f ".client.conf.old" ]; then
+    mv client.conf .client.conf.old
+fi )
 
 ( cd /etc/xdg/autostart
-  if [ -f "pulseaudio.desktop" ]; then
-      rm -f .pulseaudio.desktop.old
-      mv pulseaudio.desktop .pulseaudio.desktop.old
-  fi )
+if [ -f "pulseaudio.desktop" ]; then
+    rm -f .pulseaudio.desktop.old
+    mv pulseaudio.desktop .pulseaudio.desktop.old
+fi )
 
 config etc/xdg/autostart/pipewire-media-session.desktop.new
 config etc/xdg/autostart/pipewire-pulse.desktop.new

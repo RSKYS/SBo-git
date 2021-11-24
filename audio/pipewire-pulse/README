@@ -10,7 +10,7 @@ Or, just don't accept any .NEW configs from pulse while you upgrade by
 slackpkg.
 
 In case you want to switch back to pulseaudio, install
-"pulseaudio-pipe", it will automatically remove this package;
-So you can recognize what mode you're on.
+"pulseaudio-pipe", it will automatically remove this package if it's
+installed; So you can recognize what mode you're on.
 
 By ~red

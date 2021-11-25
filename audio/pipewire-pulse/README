@@ -13,4 +13,6 @@ In case you want to switch back to pulseaudio, install
 "pulseaudio-pipe", it will automatically remove this package if it's
 installed; So you can recognize what mode you're on.
 
+You need to reboot or atleast re-login, so changes appear.
+
 By ~red

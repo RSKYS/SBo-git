@@ -47,4 +47,4 @@ config etc/pulse/client.conf.new
 config etc/pulse/daemon.conf.new
 config etc/pulse/default.pa.new
 config etc/pulse/system.pa.new
-config etc/xdg/autostart/pulseaudio.desktop
+config etc/xdg/autostart/pulseaudio.desktop.new

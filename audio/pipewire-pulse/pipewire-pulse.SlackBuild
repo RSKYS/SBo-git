@@ -75,18 +75,17 @@ cd $PKG
 mkdir -p usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
-mkdir -p install
+mkdir -p install etc/pulse
 cat $CWD/slack-desc > install/slack-desc
 if [ "$PIPEWIRE" = "disable" ]; then
     cat $CWD/config/doinst.sh > install/doinst.sh
-    mkdir -p etc/pulse
     cp -a "$CWD/config/client.conf" etc/pulse/client.conf.new
     cp -a "$CWD/config/daemon.conf" etc/pulse/daemon.conf.new
     cp -a "$CWD/config/default.pa" etc/pulse/default.pa.new
     cp -a "$CWD/config/system.pa" etc/pulse/system.pa.new
 elif [ "$PIPEWIRE" = "enable" ]; then
     cat $CWD/doinst.sh > install/doinst.sh
-    mkdir -p etc/pulse etc/xdg/autostart
+    mkdir -p etc/xdg/autostart
     cp -a "$CWD/config/pipewire-media-session.desktop" etc/xdg/autostart/pipewire-media-session.desktop.new
     cp -a "$CWD/config/pipewire-pulse.desktop" etc/xdg/autostart/pipewire-pulse.desktop.new
     cp -a "$CWD/config/pipewire.desktop" etc/xdg/autostart/pipewire.desktop.new

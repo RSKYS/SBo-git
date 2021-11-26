@@ -9,9 +9,10 @@ pulseaudio
 Or, just don't accept any .NEW configs from pulse while you upgrade by
 slackpkg.
 
-In case you want to switch back to pulseaudio, install
-"pulseaudio-pipe", it will automatically remove this package if it's
-installed; So you can recognize what mode you're on.
+In case you want to switch back to pulseaudio, you need to execute this
+build with "disable" option for Pipewire:
+
+$ PIPEWIRE=disable ./pipewire-pulse.SlackBuild
 
 You need to reboot or atleast re-login, so changes appear.
 

@@ -30,6 +30,7 @@ VERSION=${VERSION:-1.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
+PIPEWIRE=${PIPEWIRE:-enable}
 
 # Automatically determine the architecture we're building on:
 if [ -z "$ARCH" ]; then
@@ -63,27 +64,34 @@ rm -rf $PRGNAM-$VERSION
 mkdir -p $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
 chown -R root:root .
-find . \
-  \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
-  -exec chmod 755 {} \+ -o \
-  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
-  -exec chmod 644 {} \+
+find -L . \
+	\( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+	-o -perm 511 \) -exec chmod 755 {} \; -o \
+	\( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+	-o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 cd $PKG
-
-mkdir -p etc/xdg/autostart
-mkdir -p etc/pulse
-cp -a "$CWD/config/pipewire-media-session.desktop" etc/xdg/autostart/pipewire-media-session.desktop.new
-cp -a "$CWD/config/pipewire-pulse.desktop" etc/xdg/autostart/pipewire-pulse.desktop.new
-cp -a "$CWD/config/pipewire.desktop" etc/xdg/autostart/pipewire.desktop.new
-cp -a "$CWD/config/client.conf" etc/pulse/client.conf.new
 
 mkdir -p usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p install
-cat $CWD/doinst.sh > install/doinst.sh
 cat $CWD/slack-desc > install/slack-desc
+if [ "$PIPEWIRE" = "disable" ]; then
+    cat $CWD/config/doinst.sh > install/doinst.sh
+    mkdir -p etc/pulse
+    cp -a "$CWD/config/client.conf" etc/pulse/client.conf.new
+    cp -a "$CWD/config/daemon.conf" etc/pulse/daemon.conf.new
+    cp -a "$CWD/config/default.pa" etc/pulse/default.pa.new
+    cp -a "$CWD/config/system.pa" etc/pulse/system.pa.new
+elif [ "$PIPEWIRE" = "enable" ]; then
+    cat $CWD/doinst.sh > install/doinst.sh
+    mkdir -p etc/pulse etc/xdg/autostart
+    cp -a "$CWD/config/pipewire-media-session.desktop" etc/xdg/autostart/pipewire-media-session.desktop.new
+    cp -a "$CWD/config/pipewire-pulse.desktop" etc/xdg/autostart/pipewire-pulse.desktop.new
+    cp -a "$CWD/config/pipewire.desktop" etc/xdg/autostart/pipewire.desktop.new
+    cp -a "$CWD/client.conf" etc/pulse/client.conf.new
+fi
 
 # Build the package:
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

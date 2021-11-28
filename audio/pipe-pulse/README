@@ -3,18 +3,17 @@ Take over audio/media system totally by Pipewire this time!
 Important Notes:
 Blacklist following packages to prevent any reinstall for this package:
 
-daemon
 pulseaudio
 
 Or, just don't accept any .NEW configs from pulse while you upgrade by
 slackpkg.
 
 In case you want to switch back to pulseaudio, you need to execute this
-after installation
-    $ pipewire-pulse -d    # --enable-pulse
+after installation as superuser:
+    # pipewire-pulse -d    #--enable-pulse
 
 Same goes with revert back, again:
-    $ pipewire-pulse -e    # --enable-pipewire
+    # pipewire-pulse -e    #--enable-pipewire
 
 You need to reboot or atleast re-login, so changes appear.
 

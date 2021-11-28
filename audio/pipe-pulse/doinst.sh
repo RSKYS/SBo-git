@@ -1,3 +1,3 @@
 if [ -x "/opt/pipewire-pulse/pipewire-pulse" ]
-    pipewire-pulse -e
+    pipe-pulse -e
 fi

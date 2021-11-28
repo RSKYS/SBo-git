@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for PipeWire-pulse
+# Slackware build script for PipeWire-PulseAudio.
 
 # Copyright 2019-2021 Pouria Rezaei <Pouria.rz@outlook.com>
 # All rights reserved.

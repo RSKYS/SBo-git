@@ -1,3 +1,3 @@
-if [ -x "/opt/pipewire-pulse/pipewire-pulse" ]
+if [ -x "/usr/bin/pipe-pulse" ]; then
     pipe-pulse -e
 fi

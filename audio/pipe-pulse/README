@@ -11,10 +11,10 @@ slackpkg.
 
 In case you want to switch back to pulseaudio, you need to execute this
 after installation as superuser:
-    # pipewire-pulse -d    #--enable-pulse
+    # pipe-pulse -d    #--enable-pulse
 
 Same goes with revert back, again:
-    # pipewire-pulse -e    #--enable-pipewire
+    # pipe-pulse -e    #--enable-pipewire
 
 You need to reboot or atleast re-login, so changes appear.
 

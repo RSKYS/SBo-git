@@ -28,8 +28,8 @@ PRGNAM=pipe-pulse
 VERSION=${VERSION:-1.1}
 SRCNAM=pipewire-pulse
 BUILD=${BUILD:-1}
-TAG=${TAG:-red}
-PKGTYPE=${PKGTYPE:-txz}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -77,6 +77,7 @@ rm -f $PRGNAM.sh
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 mv README.md LICENSE $PKG/usr/doc/$PRGNAM-$VERSION/
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc

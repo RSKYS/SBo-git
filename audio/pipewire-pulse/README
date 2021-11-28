@@ -10,11 +10,12 @@ Or, just don't accept any .NEW configs from pulse while you upgrade by
 slackpkg.
 
 In case you want to switch back to pulseaudio, you need to execute this
-build with "enable" option for Pulseaudio mode("disable" by default):
+after installation
+    $ pipewire-pulse -d    # --enable-pulse
 
-$ PULSEAUDIO=enable ./pipewire-pulse.SlackBuild
+Same goes with revert back, again:
+    $ pipewire-pulse -e    # --enable-pipewire
 
-It also can be used in case you messed with your configs;
 You need to reboot or atleast re-login, so changes appear.
 
 By ~red

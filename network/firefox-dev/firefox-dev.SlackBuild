@@ -25,7 +25,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=firefox-dev
-VERSION=${VERSION:-95.0b8}
+VERSION=${VERSION:-95.0b12}
 SRCNAM=firefox-developer-edition
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}

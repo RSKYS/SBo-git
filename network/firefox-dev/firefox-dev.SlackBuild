@@ -78,9 +78,11 @@ mv usr $PKG/
 # Moving scalable
 ( cd $PKG/usr/share/icons/hicolor
   mv scalable/apps/$SRCNAM.svg ../$PRGNAM.svg
+  mv symbolic/apps/$SRCNAM-symbolic.svg ../$PRGNAM-symbolic.svg
   rm -fR *
-  mkdir -p scalable/apps
-  mv ../$PRGNAM.svg scalable/apps/ )
+  mkdir -p {scalable,symbolic}/apps
+  mv ../$PRGNAM.svg scalable/apps/
+  mv ../$PRGNAM-symbolic.svg symbolic/apps/ )
 
 rm -f $PKG/usr/lib64/$PRGNAM/firefox-bin
 ln -s $PKG/usr/bin/$PRGNAM $PKG/usr/lib64/$PRGNAM/firefox-bin

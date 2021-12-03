@@ -80,8 +80,7 @@ mv usr $PKG/
   mv scalable/apps/$SRCNAM.svg ../$PRGNAM.svg
   rm -fR *
   mkdir -p scalable/apps
-  mv ../$PRGNAM.svg scalable/apps/
-  )
+  mv ../$PRGNAM.svg scalable/apps/ )
 
 rm -f $PKG/usr/lib64/$PRGNAM/firefox-bin
 ln -s $PKG/usr/bin/$PRGNAM $PKG/usr/lib64/$PRGNAM/firefox-bin

@@ -17,8 +17,8 @@ index d327075..1e4034a 100644
 -RemotingName=firefoxdeveloperedition
 +RemotingName=firefox-dev
  CodeName=Firefox Developer Edition
- Version=95.0
- BuildID=20211127182530
+ Version=999.9
+ BuildID=99999999999999
 diff --git a/usr/lib64/firefox-dev/distribution/distribution.ini b/usr/lib64/firefox-dev/distribution/distribution.ini
 index a29bb4d..c666c79 100644
 --- a/usr/lib64/firefox-dev/distribution/distribution.ini

@@ -1,0 +1,102 @@
+From eaf7ea1fc339e1ff348ed941ed2e8c4d66f3e458 Mon Sep 17 00:00:00 2001
+From: Josh Stone <jistone@redhat.com>
+Date: Thu, 18 Feb 2021 19:14:58 -0800
+Subject: [PATCH] Revert "Auto merge of #79547 - erikdesjardins:byval,
+ r=nagisa"
+
+This reverts commit a094ff9590b83c8f94d898f92c2964a5803ded06, reversing
+changes made to d37afad0cc87bf709ad10c85319296ac53030f03.
+---
+ compiler/rustc_middle/src/ty/layout.rs               | 12 ++++++------
+ ...return-value-in-reg.rs => return-value-in-reg.rs} |  4 ++--
+ src/test/codegen/union-abi.rs                        | 11 +++--------
+ 3 files changed, 11 insertions(+), 16 deletions(-)
+ rename src/test/codegen/{arg-return-value-in-reg.rs => return-value-in-reg.rs} (74%)
+
+diff --git a/compiler/rustc_middle/src/ty/layout.rs b/compiler/rustc_middle/src/ty/layout.rs
+index b545b92c9252..545f6aee1a21 100644
+--- a/compiler/rustc_middle/src/ty/layout.rs
++++ b/compiler/rustc_middle/src/ty/layout.rs
+@@ -2849,7 +2849,7 @@ fn adjust_for_abi(&mut self, cx: &C, abi: SpecAbi) {
+             || abi == SpecAbi::RustIntrinsic
+             || abi == SpecAbi::PlatformIntrinsic
+         {
+-            let fixup = |arg: &mut ArgAbi<'tcx, Ty<'tcx>>| {
++            let fixup = |arg: &mut ArgAbi<'tcx, Ty<'tcx>>, is_ret: bool| {
+                 if arg.is_ignore() {
+                     return;
+                 }
+@@ -2887,9 +2887,9 @@ fn adjust_for_abi(&mut self, cx: &C, abi: SpecAbi) {
+                     _ => return,
+                 }
+ 
+-                // Pass and return structures up to 2 pointers in size by value, matching `ScalarPair`.
+-                // LLVM will usually pass these in 2 registers, which is more efficient than by-ref.
+-                let max_by_val_size = Pointer.size(cx) * 2;
++                // Return structures up to 2 pointers in size by value, matching `ScalarPair`. LLVM
++                // will usually return these in 2 registers, which is more efficient than by-ref.
++                let max_by_val_size = if is_ret { Pointer.size(cx) * 2 } else { Pointer.size(cx) };
+                 let size = arg.layout.size;
+ 
+                 if arg.layout.is_unsized() || size > max_by_val_size {
+@@ -2901,9 +2901,9 @@ fn adjust_for_abi(&mut self, cx: &C, abi: SpecAbi) {
+                     arg.cast_to(Reg { kind: RegKind::Integer, size });
+                 }
+             };
+-            fixup(&mut self.ret);
++            fixup(&mut self.ret, true);
+             for arg in &mut self.args {
+-                fixup(arg);
++                fixup(arg, false);
+             }
+             return;
+         }
+diff --git a/src/test/codegen/arg-return-value-in-reg.rs b/src/test/codegen/return-value-in-reg.rs
+similarity index 74%
+rename from src/test/codegen/arg-return-value-in-reg.rs
+rename to src/test/codegen/return-value-in-reg.rs
+index a69291d47821..4bc0136c5e32 100644
+--- a/src/test/codegen/arg-return-value-in-reg.rs
++++ b/src/test/codegen/return-value-in-reg.rs
+@@ -1,4 +1,4 @@
+-//! Check that types of up to 128 bits are passed and returned by-value instead of via pointer.
++//! This test checks that types of up to 128 bits are returned by-value instead of via out-pointer.
+ 
+ // compile-flags: -C no-prepopulate-passes -O
+ // only-x86_64
+@@ -11,7 +11,7 @@ pub struct S {
+     c: u32,
+ }
+ 
+-// CHECK: define i128 @modify(i128{{( %0)?}})
++// CHECK: define i128 @modify(%S* noalias nocapture dereferenceable(16) %s)
+ #[no_mangle]
+ pub fn modify(s: S) -> S {
+     S { a: s.a + s.a, b: s.b + s.b, c: s.c + s.c }
+diff --git a/src/test/codegen/union-abi.rs b/src/test/codegen/union-abi.rs
+index f282fd237054..afea01e9a2d0 100644
+--- a/src/test/codegen/union-abi.rs
++++ b/src/test/codegen/union-abi.rs
+@@ -63,16 +63,11 @@ pub union UnionU128{a:u128}
+ #[no_mangle]
+ pub fn test_UnionU128(_: UnionU128) -> UnionU128 { loop {} }
+ 
+-pub union UnionU128x2{a:(u128, u128)}
+-// CHECK: define void @test_UnionU128x2(i128 %_1.0, i128 %_1.1)
+-#[no_mangle]
+-pub fn test_UnionU128x2(_: UnionU128x2) { loop {} }
+-
+ #[repr(C)]
+-pub union CUnionU128x2{a:(u128, u128)}
+-// CHECK: define void @test_CUnionU128x2(%CUnionU128x2* {{.*}} %_1)
++pub union CUnionU128{a:u128}
++// CHECK: define void @test_CUnionU128(%CUnionU128* {{.*}} %_1)
+ #[no_mangle]
+-pub fn test_CUnionU128x2(_: CUnionU128x2) { loop {} }
++pub fn test_CUnionU128(_: CUnionU128) { loop {} }
+ 
+ pub union UnionBool { b:bool }
+ // CHECK: define zeroext i1 @test_UnionBool(i8 %b)
+-- 
+2.29.2
+

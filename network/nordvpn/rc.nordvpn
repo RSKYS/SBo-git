@@ -12,44 +12,48 @@ PID=/var/run/$BASE.pid
 SOCK=/run/$BASE/${BASE}d.sock
 SOCKDIR=/run/$BASE
 
-create_socket_dir() {
-  if [[ -d $SOCKDIR ]]; then
-    return
-  fi
-  mkdir -m 0770 $SOCKDIR
-  chown root:$BASE $SOCKDIR
+checkuser() {
+    for u in $(who | awk '{print $1}' | sort | uniq)
+    do
+        if [ "$BASE" = "$(groups $u | sed 's/ /\n/g' | grep \"$BASE\")" ]; then
+            if [ "$BASE" != "$(groups root | sed 's/ /\n/g' | grep \"$BASE\")" ]; then
+                usermod -aG nordvpn root
+            fi
+            return 0
+        fi
+    done
+    return 1
 }
 
-checkuser() {
-    status=0                                                                
-    for u in $(who | awk '{print $1}' | sort | uniq)                        
-    do                                                                      
-          if [ "$u" == "$1" ]; then                                           
-                return 0                                                    
-          fi                                                                  
-    done                                                                   
-    return 1                                                                
+create_socket_dir() {
+    if [[ ! -d $SOCKDIR ]]; then
+        checkuser
+        mkdir -pm 0770 $SOCKDIR
+        chown root:$BASE $SOCKDIR
+    fi
+
+    if [[ -d $SOCKDIR ]]; then
+        return 0
+    fi
+    return 1
 }
 #
 # Function that starts the daemon
 #
 nordvpnd_start()
 {
-  checkuser
-  create_socket_dir
-  rm -rf $SOCK
   if [ -s $PID ]; then
     echo "$BASE is already running: $(cat $PID)"
     exit 1
   fi
-
+  create_socket_dir
+  rm -f $SOCK
   if [ -x $DAEMON ]; then
     echo "Starting $BASE"
     sleep 1
-    # $DAEMON start-stop-daemon --start --quiet -g "nordvpn" --pidfile $PID --exec $DAEMON
     $DAEMON > /dev/null &
-    pidof $DAEMON > $PID
     sleep 10
+    pidof $DAEMON > $PID
     if [ -S "$SOCK" ]; then
       echo "$BASE has been started."
     else
@@ -67,7 +71,7 @@ nordvpnd_stop()
     echo "Stopping $BASE"
     sleep 1
     kill $(cat $PID)
-    rm -rf $PID $SOCK
+    rm -f $PID $SOCK
     sleep 1
     echo "$BASE has been stopped."
   else

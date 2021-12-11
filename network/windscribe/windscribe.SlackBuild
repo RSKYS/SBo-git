@@ -22,6 +22,8 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Modified by Pouria Rezaei <Pouria.rz@outlook.com>
+
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=windscribe
@@ -71,14 +73,14 @@ rpm2cpio $CWD/$PRGNAM-cli-${VERSION}-${BUILD}.${ARCH}.rpm | cpio -idmv
 rm -rf usr/lib
 
 mkdir -p usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
-mkdir -p $PKG/install
-cat $CWD/slack-desc > $PKG/install/slack-desc
-cat $CWD/doinst.sh > $PKG/install/doinst.sh
+mkdir -p install
+cat $CWD/slack-desc > install/slack-desc
+cat $CWD/doinst.sh > install/doinst.sh
 
-mkdir -p $PKG/etc/rc.d/
-cp $CWD/rc.$PRGNAM $PKG/etc/rc.d/rc.$PRGNAM
+mkdir -p etc/rc.d/
+install -m 0755 $CWD/rc.$PRGNAM etc/rc.d/rc.$PRGNAM
 
-cd $PKG
+#cd $PKG
 /sbin/makepkg -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

@@ -27,7 +27,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=google-chrome
-VERSION=${VERSION:-96.0.4664.45}
+VERSION=${VERSION:-96.0.4664.110}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}

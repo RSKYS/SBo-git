@@ -2,7 +2,7 @@
 
 # Slackware build script for skypeforlinux
 
-# Copyright 2017, 2021  Mario Preksavec, Zagreb, Croatia
+# Copyright 2017, 2018, 2019, 2020  Mario Preksavec, Zagreb, Croatia
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -22,10 +22,12 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Modified by Reza Talebi <reza.talebi.73@outlook.com>
+
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=skypeforlinux
-VERSION=${VERSION:-8.79.0.92}
+VERSION=${VERSION:-8.79.0.95}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}

@@ -1,5 +1,5 @@
 PRGNAM="smplayer"
-VERSION="20.6.0"
+VERSION="21.10.0"
 HOMEPAGE="https://www.smplayer.info/"
 DOWNLOAD="https://downloads.sourceforge.net/smplayer/smplayer-21.10.0.tar.bz2 \
           https://downloads.sourceforge.net/smplayer/smplayer-themes-20.11.0.tar.bz2 \

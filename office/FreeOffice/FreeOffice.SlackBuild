@@ -26,7 +26,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=FreeOffice
 SRCNAM=softmaker-${PRGNAM,,}
-VERSION=${VERSION:-2018_978}
+VERSION=${VERSION:-2021_1042}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}

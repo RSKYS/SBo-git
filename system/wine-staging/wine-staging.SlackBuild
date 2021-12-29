@@ -30,6 +30,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Now maintained by Dave Woodfall <dave@slackbuilds.org>
+# Modified by Pouria Rezaei <Pouria.rz@outlook.com>
 
 cd $(dirname $0) ; CWD=$(pwd)
 

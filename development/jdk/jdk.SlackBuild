@@ -28,7 +28,8 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=jdk
 VERSION=${VERSION:-17.0.1}
-SRCNAM=jre-17
+SRCNAM=jdk-17
+SRCNAM2=jre-17
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -60,6 +61,8 @@ rm -rf $PRGNAM-$VERSION
 mkdir -p $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
 tar -I zstd -xvf $CWD/${SRCNAM}-${BUILD}-${ARCH}.pkg.tar.zst
+tar -I zstd -xvf $CWD/${SRCNAM2}-${BUILD}-${ARCH}.pkg.tar.zst
+
 chown -R root:root .
 find -L . \
 \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
@@ -67,15 +70,14 @@ find -L . \
 \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
 -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
+mv usr/lib usr/lib64
+# Move man where the man likes.
+mv usr/share/man usr/
+patch -p1 < "$CWD/path.diff"
+
+mv * $PKG/
+
 mkdir -p $PKG/usr/bin
-mv etc $PKG/
-# Move binaries to lib64 instead of lib
-mv usr/lib $PKG/usr/lib64
-
-# Move man where the man likes
-mv usr/share $PKG/usr/
-mv $PKG/usr/share/man $PKG/usr/
-
 ln -s /usr/lib64/jvm/java-17-jdk/bin/java $PKG/usr/bin/java
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION

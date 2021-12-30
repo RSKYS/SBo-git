@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for jdk-xdm
+# Slackware build script for jdk
 
 # Copyright 2019-2021 Pouria Rezaei <Pouria.rz@outlook.com>
 # All rights reserved.
@@ -22,9 +22,11 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Rebased by Pouria Rezaei <Pouria.rz@outlook.com>
+
 cd $(dirname $0) ; CWD=$(pwd)
 
-PRGNAM=jdk-xdm
+PRGNAM=jdk
 VERSION=${VERSION:-17.0.1}
 SRCNAM=jre-17
 BUILD=${BUILD:-1}

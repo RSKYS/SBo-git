@@ -7,6 +7,6 @@ MD5SUM="7dd2f4ff615d7f53ba6e89fa4fadf989 \
         8a674ddfcf2e29676c4f03c9bdef3f19"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="jdk11 apache-ant perl-Archive-Zip"
+REQUIRES="jdk apache-ant perl-Archive-Zip"
 MAINTAINER="Christoph Willing"
 EMAIL="chris.willing@linux.com"

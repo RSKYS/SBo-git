@@ -69,8 +69,18 @@ set -eu
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
-cd $PKG
-ar p $CWD/${PRGNAM}-${VERSION}.deb data.tar.gz | tar zxv
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+mkdir -p $PRGNAM-$VERSION
+cd $PRGNAM-$VERSION
+tar -I zstd -xvf $CWD/${PRGNAM}-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
+
+mkdir -p usr/lib64
+mv opt/$PRGNAM usr/lib64/
+
+rm -f usr/share/{applications/$PRGNAM.desktop,pixmaps/$PRGNAM.png} usr/bin/discord
+mv usr/lib64/$PRGNAM/$PRGNAM.desktop usr/share/applications/
+mv usr/lib64/$PRGNAM/$PRGNAM.png usr/share/pixmaps/
 
 chown -R root:root .
 find -L . \
@@ -79,27 +89,19 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mkdir -p usr/lib64
-mv usr/share/$PRGNAM usr/lib64/
-
-rm -f usr/share/{applications/$PRGNAM.desktop,pixmaps/$PRGNAM.png}
-mv usr/lib64/$PRGNAM/$PRGNAM.desktop usr/share/applications/
-mv usr/lib64/$PRGNAM/$PRGNAM.png usr/share/pixmaps/
-
-patch -p1 < "$CWD/path.diff"
+mv * $PKG/
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-mkdir -p usr/doc/$PRGNAM-$VERSION
-mv usr/share/doc/discord/copyright usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+ln -s /usr/lib64/discord/Discord $PKG/usr/bin/discord
 
-# Don't need these:
-rm -fR usr/share/doc usr/share/lintian
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
-mkdir -p install
-cat $CWD/slack-desc > install/slack-desc
-cat $CWD/doinst.sh > install/doinst.sh
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
+cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

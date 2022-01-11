@@ -28,8 +28,8 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=jdk
 VERSION=${VERSION:-17.0.1}
-SRCNAM=jdk-17
-SRCNAM2=jre-17
+SRC1=jdk-17
+SRC2=jre-17
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -60,8 +60,8 @@ cd $TMP
 rm -rf $PRGNAM-$VERSION
 mkdir -p $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
-tar -I zstd -xvf $CWD/${SRCNAM}-${BUILD}-${ARCH}.pkg.tar.zst
-tar -I zstd -xvf $CWD/${SRCNAM2}-${BUILD}-${ARCH}.pkg.tar.zst
+tar -I zstd -xvf $CWD/${SRC1}-${BUILD}-${ARCH}.pkg.tar.zst
+tar -I zstd -xvf $CWD/${SRC2}-${BUILD}-${ARCH}.pkg.tar.zst
 
 chown -R root:root .
 find -L . \

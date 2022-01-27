@@ -24,15 +24,17 @@
 
 # Modified by the SlackBuilds.org Project
 
+# Modified by Reza Talebi <reza.talebi.73@outlook.com>
+
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=postgresql
-VERSION=${VERSION:-10.17}
+VERSION=${VERSION:-14.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
-PG_VERSION=${PG_VERSION:-10.17}
+PG_VERSION=${PG_VERSION:-14.1}
 PG_PORT=${PG_PORT:-5432}
 PG_UID=${PG_UID:-209}
 PG_GID=${PG_GID:-209}

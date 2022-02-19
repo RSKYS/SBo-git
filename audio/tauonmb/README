@@ -3,4 +3,8 @@ interface that's packed with features! An emphasis on playlists and
 direct file importing puts you in control of your music collection.
 Uses Phazor and GStreamer for playback.
 
+Optional dependencies:
+    python-pypresence   #Discord RPC
+    picard              #Optional tagger
+
 By ~red

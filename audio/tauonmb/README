@@ -4,7 +4,7 @@ direct file importing puts you in control of your music collection.
 Uses Phazor and GStreamer for playback.
 
 Optional dependencies:
-    python-pypresence   #Discord RPC
-    picard              #Optional tagger
+    python3-pypresence   #Discord RPC
+    picard               #Internal tagger
 
 By ~red

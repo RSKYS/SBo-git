@@ -96,7 +96,7 @@ mv locale $PKG/usr/share/
 mkdir -p $PKG/usr/share/icons/hicolor/{scalable,symbolic}/apps
 cp extra/$PRGNAM.svg $PKG/usr/share/icons/hicolor/scalable/apps/
 cp extra/$PRGNAM-symbolic.svg $PKG/usr/share/icons/hicolor/symbolic/apps/
-rm -fR extralocale/*/*/tauon.polocale/*/*/tauon.po
+rm -fR extra
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 mv *.md CHANGELOG LICENSE $PKG/usr/doc/$PRGNAM-$VERSION

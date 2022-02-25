@@ -27,8 +27,9 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=windscribe
-VERSION=${VERSION:-1.4}
-BUILD=${BUILD:-52}
+VERSION=${VERSION:-2.3.15}
+SRCVER=beta
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -69,8 +70,9 @@ cd $TMP
 rm -rf $PRGNAM-${VERSION}
 mkdir -p $PRGNAM-${VERSION}
 cd $PKG
-rpm2cpio $CWD/$PRGNAM-cli-${VERSION}-${BUILD}.${ARCH}.rpm | cpio -idmv
-rm -rf usr/lib
+rpm2cpio $CWD/${PRGNAM}_${VERSION}_${SRCVER}_${ARCH}.rpm | cpio -idmv
+rm -rf etc/systemd
+rm -rf etc/windscribe/update-systemd-resolved
 
 mkdir -p usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild

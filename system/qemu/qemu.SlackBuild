@@ -35,7 +35,6 @@ SRCVER=$(echo $VERSION | tr _ - )
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
-NUMJOBS=${NUMJOBS:-1}
 
 KVMGROUP=${KVMGROUP:-users}
 TARGETS=${TARGETS:-some}
@@ -137,7 +136,7 @@ CXXFLAGS="$SLKCFLAGS" \
   $with_vnc \
   $targets
 
-make V=1 -j${NUMJOBS}
+make V=1
 make install DESTDIR=$PKG
 
 # Remove empty /var

@@ -28,7 +28,6 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=windscribe
 VERSION=${VERSION:-2.3.15}
-SRCVER=beta
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -67,9 +66,10 @@ fi
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-${VERSION}
-mkdir -p $PRGNAM-${VERSION}
-rpm2cpio $CWD/${PRGNAM}_${VERSION}_${SRCVER}_${ARCH}.rpm | cpio -idmv
+rm -rf $PRGNAM-$VERSION
+mkdir -p $PRGNAM-$VERSION
+cd $PRGNAM-$VERSION
+rpm2cpio $CWD/${PRGNAM}_${VERSION}_beta_${ARCH}.rpm | cpio -idmv
 rm -fR etc/{systemd,windscribe/update-systemd-resolved}
 mv * $PKG/
 

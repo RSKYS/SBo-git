@@ -83,7 +83,7 @@ rm -fR locale/*/*/tauon.po compile* mac.spec requirements.txt \
 mkdir -p $PKG/opt/tauon-music-box $PKG/usr/bin
 mv * $PKG/opt/tauon-music-box
 install -m 0755 $PKG/opt/tauon-music-box/extra/$PRGNAM.sh \
-           $PKG/opt/tauon-music-box/$PRGNAM.sh
+                $PKG/opt/tauon-music-box/$PRGNAM.sh
 ln -s /opt/tauon-music-box/$PRGNAM.sh $PKG/usr/bin/tauon
 
 cd $PKG/opt/tauon-music-box

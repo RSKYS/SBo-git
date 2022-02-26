@@ -69,20 +69,19 @@ mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-${VERSION}
 mkdir -p $PRGNAM-${VERSION}
-cd $PKG
 rpm2cpio $CWD/${PRGNAM}_${VERSION}_${SRCVER}_${ARCH}.rpm | cpio -idmv
-rm -rf etc/systemd
-rm -rf etc/windscribe/update-systemd-resolved
+rm -fR etc/{systemd,windscribe/update-systemd-resolved}
+mv * $PKG/
 
-mkdir -p usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
-mkdir -p install
-cat $CWD/slack-desc > install/slack-desc
-cat $CWD/doinst.sh > install/doinst.sh
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
-mkdir -p etc/rc.d/
-install -m 0755 $CWD/rc.$PRGNAM etc/rc.d/rc.$PRGNAM
+mkdir -p $PKG/etc/rc.d/
+install -m 0755 $CWD/rc.$PRGNAM $PKG/etc/rc.d/rc.$PRGNAM
 
-#cd $PKG
+cd $PKG
 /sbin/makepkg -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

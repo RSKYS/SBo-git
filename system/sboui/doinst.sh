@@ -15,7 +15,7 @@ rm -fR /etc/sboui/*
 
 config etc/sboui/sboui.conf.new
 config etc/sboui/sboui-backend.conf.new
-config etc/sboui/package_blacklist.new
+config etc/sboui/blacklist.new
 
 if [ -x /usr/bin/update-desktop-database ]; then
   /usr/bin/update-desktop-database -q usr/share/applications >/dev/null 2>&1

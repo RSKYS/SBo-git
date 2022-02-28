@@ -122,7 +122,7 @@ for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; r
 
 mv $PKG/etc/sboui/sboui.conf $PKG/etc/sboui/sboui.conf.new
 mv $PKG/etc/sboui/sboui-backend.conf $PKG/etc/sboui/sboui-backend.conf.new
-mv $PKG/etc/sboui/package_blacklist $PKG/etc/sboui/package_blacklist.new
+mv $PKG/etc/sboui/blacklist $PKG/etc/sboui/blacklist.new
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a AUTHORS ChangeLog INSTALL LICENSE README.md \

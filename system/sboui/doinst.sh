@@ -11,7 +11,7 @@ config() {
 }
 
 # If we used official before this.
-rm -fR /etc/sboui/*
+rm -f /etc/sboui/{sboui.conf,sboui-backend.conf,blacklist}
 
 config etc/sboui/sboui.conf.new
 config etc/sboui/sboui-backend.conf.new

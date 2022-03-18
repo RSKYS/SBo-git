@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Plover
+Name=osu-lazer
 GenericName=Stenography
-Comment=Plover stenotype engine
-Icon=plover
-Exec=plover
-TryExec=Plover
+Comment=osu-lazer stenotype engine
+Icon=osu-lazer
+Exec=osu-lazer
+TryExec=osu-lazer
 Terminal=false
 Type=Application
 Categories=Office;

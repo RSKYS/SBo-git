@@ -1,4 +1,4 @@
-This is ~red's current SlackBuilds repository and even heavily maintained at some points, this is not official SlackBuilds git!
+This is !red's current SlackBuilds repository and even heavily maintained at some points, this is not official SlackBuilds git!
 
 I've modified sboui to specifically work with this repository available under [system/sboui]. \
 As well as [binary] under [frozen state]. \

@@ -20,4 +20,4 @@ https://www.oracle.com/java/technologies/javase-jdk17-downloads.html
 After installation you will need to log out from the system and log in back
 for environment variables get updated. Or just run "source /etc/profile"
 
-By ~red
+By !red

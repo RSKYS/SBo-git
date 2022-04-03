@@ -28,7 +28,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=microsoft-edge
 SRCNAM=$PRGNAM-stable-bin
-VERSION=${VERSION:-98.0.1108.62}
+VERSION=${VERSION:-100.0.1185.29}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}

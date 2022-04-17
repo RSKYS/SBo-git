@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for osu-lazer
+# Slackware build script for plover
 
 # Copyright 2020 Alan Aversa USA
 # All rights reserved.
@@ -24,7 +24,7 @@
 
 cd $(dirname $0) ; CWD=$(pwd)
 
-PRGNAM=osu-lazer
+PRGNAM=plover
 VERSION=${VERSION:-4.0.0.dev8.66.g685bd33}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}

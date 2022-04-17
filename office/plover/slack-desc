@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
       |-----handy-ruler------------------------------------------------------|
-osu-lazer: osu-lazer (Open source stenotype engine)
-osu-lazer:
-osu-lazer: osu-lazer (rhymes with "lover") is a desktop application that allows
-osu-lazer: anyone to use stenography to write on their computer, up to speeds of
-osu-lazer: 200WPM and beyond.
-osu-lazer:
-osu-lazer: osu-lazer is part of the Open Steno Project. The Open Steno Project's
-osu-lazer: goal is to provide everything you need to learn machine shorthand on
-osu-lazer: your own, from free software, to cheap hardware, to learning
-osu-lazer: resources.
-osu-lazer:
+plover: plover (Open source stenotype engine)
+plover:
+plover: Plover (rhymes with "lover") is a desktop application that allows
+plover: anyone to use stenography to write on their computer, up to speeds of
+plover: 200WPM and beyond.
+plover:
+plover: Plover is part of the Open Steno Project. The Open Steno Project's
+plover: goal is to provide everything you need to learn machine shorthand on
+plover: your own, from free software, to cheap hardware, to learning
+plover: resources.
+plover:

@@ -8,5 +8,3 @@ equivalent Linux implementation: clock_gettime.
 If no suitable implementation exists for the current platform,
 attempting to import this module (or to import from it) will cause a
 RuntimeError exception to be raised.
-
-By !red

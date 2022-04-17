@@ -22,13 +22,11 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Modified by Reza Talebi <reza.talebi.73@outlook.com>
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=FreeOffice
 SRCNAM=softmaker-${PRGNAM,,}
-VERSION=${VERSION:-2021_1042}
+VERSION=${VERSION:-2018_978}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}

@@ -27,7 +27,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=android-udev-rules
 SRCNAM=51-android.rules
-VERSION=${VERSION:-2021.10}
+VERSION=${VERSION:-2022.01.02}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -89,6 +89,8 @@ cat $CWD/LICENSE > $PKG/usr/doc/$PRGNAM-$VERSION/LICENSE
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+
 cp -r $TMP/$PRGNAM-$VERSION/etc $PKG
 
 cd $PKG

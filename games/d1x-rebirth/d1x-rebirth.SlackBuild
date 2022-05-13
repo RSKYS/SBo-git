@@ -27,10 +27,6 @@
 # TODO: the executable needs to go in /usr/games, and the .desktop
 # needs absolute paths to the icon and executable.
 
-# 20220321 bkw: Modified by SlackBuilds.org: fix 32-bit build.
-# TODO: the executable needs to go in /usr/games, and the .desktop
-# needs absolute paths to the icon and executable.
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=d1x-rebirth

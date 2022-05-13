@@ -136,9 +136,6 @@ make install-docs DESTDIR=$PKG
 # 20220414 bkw: this one binary wasn't getting stripped...
 strip $PKG/usr/lib${LIBDIRSUFFIX}/$PRGNAM/$PG_VERSION/bin/pg_config
 
-# 20220414 bkw: this one binary wasn't getting stripped...
-strip $PKG/usr/lib${LIBDIRSUFFIX}/$PRGNAM/$PG_VERSION/bin/pg_config
-
 # create symlinks to shared library for other programs to link against
 ( cd $PKG/usr/lib${LIBDIRSUFFIX}
   for i in $(ls $PRGNAM/$PG_VERSION/lib/lib*.so*) ; do ln -sf $i ; done

@@ -94,10 +94,6 @@ sed -i -e 's|Strategy;|StrategyGame;|' \
        -e '/^Encoding/d' \
        $PKG/usr/share/applications/$PRGNAM.desktop
 
-sed -i -e 's|Strategy;|StrategyGame;|' \
-       -e '/^Encoding/d' \
-       $PKG/usr/share/applications/$PRGNAM.desktop
-
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a AUTHORS CONTRIBUTING COPYING COPYING.LESSER README.rst \
   $PKG/usr/doc/$PRGNAM-$VERSION

@@ -41,11 +41,6 @@
 # - resize icon correctly so it's really 48x48.
 # - get rid of Encoding from .desktop files (deprecated).
 
-# 20220409 bkw: BUILD=2
-# - forgot to put the SlackBuild in the doc dir.
-# - resize icon correctly so it's really 48x48.
-# - get rid of Encoding from .desktop files (deprecated).
-
 # 20220302 bkw: webkit already wasn't being built, even with the
 # -webkit option passed to configure, so update the script to remove
 # the option to disable it (it's always disabled), and update the

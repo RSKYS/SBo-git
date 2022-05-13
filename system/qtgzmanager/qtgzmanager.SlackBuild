@@ -64,9 +64,6 @@ find -L . \
 # 20220413 bkw: desktop-file-validate warnings.
 sed -i -e '/^Encoding/d' -e '/^Cat/s,Application;,,' $PRGNAM.desktop
 
-# 20220413 bkw: desktop-file-validate warnings.
-sed -i -e '/^Encoding/d' -e '/^Cat/s,Application;,,' $PRGNAM.desktop
-
 # 20220210 bkw: ordered comparison...
 sed -i 's,>= 0),),' src/unixcommand.cpp
 

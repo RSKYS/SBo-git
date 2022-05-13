@@ -30,14 +30,6 @@
 # - absolute paths in .desktop
 # - install the PNG icon as spacezero.png (why was it .svg?)
 
-# 20220407 bkw: Modified by SlackBuilds.org, BUILD=3: fix doc permisssions.
-
-# 20220231 bkw: Modified by SlackBuilds.org, BUILD=2:
-# - strip the binary.
-# - binary in /usr/games.
-# - absolute paths in .desktop
-# - install the PNG icon as spacezero.png (why was it .svg?)
-
 # 20220222 bkw: Modified by SlackBuilds.org: fix build on 15.0.
 
 cd $(dirname $0) ; CWD=$(pwd)

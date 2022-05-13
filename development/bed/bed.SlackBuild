@@ -84,9 +84,6 @@ sed -i 's,getret>0,getret,' src/readhelp.cpp
 # 20220404 bkw: wtf, upstream? you included compiled binaries in the source.
 rm -f src/mkpartypes regex-*/regtest
 
-# 20220404 bkw: wtf, upstream? you included compiled binaries in the source.
-rm -f src/mkpartypes regex-*/regtest
-
 # Not sure the --without-x does anything, but it doesn't hurt either.
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -164,9 +161,6 @@ rm -f $PKGBEDLIB/bedmagic.short $PKGBEDLIB/addmagic
 
 # Don't want this (use removepkg instead):
 rm -f $PKGBEDLIB/uninstallbed.sh
-
-# 20220404 bkw: this looks utterly useless.
-rm -f $PKGBEDLIB/plugins/examples/disass-use
 
 # 20220404 bkw: this looks utterly useless.
 rm -f $PKGBEDLIB/plugins/examples/disass-use

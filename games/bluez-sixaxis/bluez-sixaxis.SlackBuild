@@ -56,9 +56,6 @@ if [ "$ARCH" = "i586" ]; then
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
   LIBDIRSUFFIX=""
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
 elif [ "$ARCH" = "s390" ]; then
   SLKCFLAGS="-O2"
   LIBDIRSUFFIX=""
@@ -122,8 +119,6 @@ LDFLAGS="-L/usr/lib$LIBDIRSUFFIX" \
 
 make
 make install DESTDIR=$PKG
-
-rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 
 rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 

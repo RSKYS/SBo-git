@@ -8,10 +8,6 @@
 # and can't be set from profile.d script. This avoid creating a /jre
 # in the package root.
 
-# 20220331 bkw: Modified by SlackBuilds.org: fail if JAVA_HOME not set
-# and can't be set from profile.d script. This avoid creating a /jre
-# in the package root.
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=jlscp

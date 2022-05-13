@@ -28,12 +28,6 @@
 #   https://stackoverflow.com/questions/34532528/undefined-reference-to-divdi3
 #   https://stackoverflow.com/questions/16088282/is-there-a-128-bit-integer-in-gcc
 
-# 20220319 bkw: Modified by SlackBuilds.org:
-# - mark as 64-bit only in .info file, since it'll never build on 32-bit.
-#   References:
-#   https://stackoverflow.com/questions/34532528/undefined-reference-to-divdi3
-#   https://stackoverflow.com/questions/16088282/is-there-a-128-bit-integer-in-gcc
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=perl-Math-Int128

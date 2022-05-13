@@ -108,8 +108,6 @@ setenv KARMABASE /opt/$PRGNAM
 EOF
 chmod 0755 $PKG/etc/profile.d/*
 
-# 20220318 bkw: Modified by SlackBuilds.org: fix build when ARCH is
-# set to i586 in the environment.
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 ln -s /opt/$PRGNAM/doc/{COPYING,README} $PKG/usr/doc/$PRGNAM-$VERSION

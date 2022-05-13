@@ -30,8 +30,8 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=aqbanking
-VERSION=${VERSION:-6.4.1}
-BUILD=${BUILD:-2}
+VERSION=${VERSION:-6.5.0}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -107,9 +107,6 @@ rm $PKG/usr/doc/$PRGNAM-$VERSION/doc/01-OVERVIEW
 rm $PKG/usr/doc/$PRGNAM-$VERSION/doc/Makefile*
 rm $PKG/usr/doc/$PRGNAM-$VERSION/doc/apidoc.h
 rm $PKG/usr/doc/$PRGNAM-$VERSION/tutorials/Makefile*
-
-rm -rf $PKG/usr/doc/$PRGNAM-$VERSION/tutorials/.libs # 20220407 bkw: no.
-rm -rf $PKG/usr/share/doc
 
 rm -rf $PKG/usr/doc/$PRGNAM-$VERSION/tutorials/.libs # 20220407 bkw: no.
 rm -rf $PKG/usr/share/doc

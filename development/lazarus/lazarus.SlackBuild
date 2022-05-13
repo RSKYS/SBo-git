@@ -28,12 +28,6 @@
 # - remove empty files from doc dir.
 # - fix broken symlink.
 
-# 20220414 bkw: BUILD=2
-# - fix PRINT_PACKAGE_NAME when ARCH not set in environment.
-# - add gtk-update-icon-cache to doinst.sh.
-# - remove empty files from doc dir.
-# - fix broken symlink.
-
 # 20210905 bkw:
 # - take over maintenance
 # - update for v2.0.12

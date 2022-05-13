@@ -9,9 +9,6 @@
 # 20220411 bkw: BUILD=3
 # - put README_SBo.txt in actual doc dir (not $PKG/install!).
 
-# 20220411 bkw: BUILD=3
-# - put README_SBo.txt in actual doc dir (not $PKG/install!).
-
 # 20210911 bkw: fix missing space before ] in doinst.sh. Grr.
 
 # We install the binary setuid nobody/nogroup by default.

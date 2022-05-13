@@ -87,22 +87,6 @@ sed -i -e '/^Encoding/d' \
        -e 's,Application;,,' \
        $D
 
-# 20220405 bkw: put the icons in the right place.
-I=$PKG/usr/share/icons
-mkdir -p $I/hicolor/{48x48,scalable}/apps
-mv $I/$PRGNAM.png $I/hicolor/48x48/apps
-mv $I/$PRGNAM.svg $I/hicolor/scalable/apps
-
-# 20220405 bkw: fix .desktop permission and contents.
-D=$PKG/usr/share/applications/$PRGNAM.desktop
-chmod 0644 $D
-sed -i -e '/^Encoding/d' \
-       -e '/^MapNotify/d' \
-       -e '/^Terminal/s,0,false,' \
-       -e 's,^XClassHintResName,X-&,' \
-       -e 's,Application;,,' \
-       $D
-
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
   docs/* docs-html/ \

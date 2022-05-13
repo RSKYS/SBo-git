@@ -79,8 +79,6 @@ set -e
 
 source /etc/profile.d/gcc5.sh
 
-source /etc/profile.d/gcc5.sh
-
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP

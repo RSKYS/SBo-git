@@ -72,12 +72,6 @@ patch -p1 < $CWD/patches/tcl_dev.patch
 # Fool autotools so it won't complain and we can simple configure and make
 find . -exec touch -m {} +
 
-# Patch the configure etc so it can compile with Slackware's tcl.
-patch -p1 < $CWD/patches/tcl_dev.patch
-
-# Fool autotools so it won't complain and we can simple configure and make
-find . -exec touch -m {} +
-
 # build including libwww adapter
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \

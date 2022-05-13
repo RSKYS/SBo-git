@@ -74,11 +74,6 @@ fixperms() {
           \! -perm /111 -a \! -perm 644 -a -exec chmod 644 {} \+
 }
 
-fixperms() {
-  find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} \+ -o \
-          \! -perm /111 -a \! -perm 644 -a -exec chmod 644 {} \+
-}
-
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP

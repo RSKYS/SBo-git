@@ -25,8 +25,6 @@
 
 # 20220320 bkw: Modified by SlackBuilds.org: fix 32-bit build.
 
-# 20220320 bkw: Modified by SlackBuilds.org: fix 32-bit build.
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=minitube

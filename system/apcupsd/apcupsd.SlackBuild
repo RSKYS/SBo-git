@@ -27,11 +27,6 @@
 # - fix desktop-file-validate warning.
 # - remove useless INSTALL instructions from doc dir.
 
-# 20220402 bkw: Modified by SlackBuilds.org, BUILD=3:
-# - don't install icons and .desktop files executable.
-# - fix desktop-file-validate warning.
-# - remove useless INSTALL instructions from doc dir.
-
 # Modified 3/3/2009 by Christopher Walker <kris240376@gmail.com>
 # * added log rotation
 
@@ -129,12 +124,6 @@ CXXFLAGS="$SLKCFLAGS -DNETSNMP_NO_LEGACY_DEFINITIONS=1" \
 
 make
 make install DESTDIR=$PKG
-
-# 20220402 bkw: bad permissions, desktop-file-validate.
-chmod 644 $PKG/usr/share/{applications,pixmaps}/*
-sed -i -e '/^Categories/s,Application;,,' \
-       -e '/^Encoding/d' \
-       $PKG/usr/share/applications/*desktop
 
 # 20220402 bkw: bad permissions, desktop-file-validate.
 chmod 644 $PKG/usr/share/{applications,pixmaps}/*

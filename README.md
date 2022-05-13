@@ -1,4 +1,7 @@
-This is !red's current SlackBuilds repository and even heavily maintained at some points, this is not official SlackBuilds git!
+## SBo-git
+
+This is !red's current SlackBuilds repository and heavily maintained at some point, \
+this is not official SlackBuilds git.
 
 I've modified sboui to specifically work with this repository available under [system/sboui]. \
 As well as [binary] under [frozen state]. \
@@ -10,5 +13,5 @@ As well as [binary] under [frozen state]. \
 [frozen state]: https://github.com/RSKYS/SBo-git/releases
 [the project]: https://github.com/montagdude/sboui
 
-This repo contains unofficial apps we maintain including their dependencies. \
-If you have any pull requests, feel free contribute to "master" branch.
+This repo contains unofficial apps we maintain; \
+"We" can include you, PR's open

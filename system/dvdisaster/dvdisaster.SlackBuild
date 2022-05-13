@@ -7,9 +7,6 @@
 # 20220410 bkw: Modified by SlackBuilds.org, BUILD=2:
 # - update icon cache in doinst.sh.
 
-# 20220410 bkw: Modified by SlackBuilds.org, BUILD=2:
-# - update icon cache in doinst.sh.
-
 # 20220211 bkw: Modified by SlackBuilds.org:
 # - fix parallel build on 15.0.
 # - new-style icons.

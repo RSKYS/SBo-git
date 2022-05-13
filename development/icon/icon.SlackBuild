@@ -105,9 +105,6 @@ sed -i -e "s|mkdir|mkdir -p|" \
 # Disable parallel building otherwise build fails
 MAKEFLAGS=-j1
 
-# Disable parallel building otherwise build fails
-MAKEFLAGS=-j1
-
 make X-Configure name=linux
 make CFLAGS="$SLKCFLAGS"
 make Test

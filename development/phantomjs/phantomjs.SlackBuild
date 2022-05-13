@@ -24,8 +24,6 @@
 
 # 20220318 bkw: Modified by SlackBuilds.org: fix 32-bit build.
 
-# 20220318 bkw: Modified by SlackBuilds.org: fix 32-bit build.
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=phantomjs
@@ -93,9 +91,6 @@ patch -p1 -i $CWD/patches/unlock-qt.patch
 
 # Point to our qmake (adapted from debian patch)
 patch -p1 -i $CWD/patches/build-qtpath.patch
-
-# 20220318 bkw: the patch contains a hardcoded lib64, fix.
-sed -i "s,lib64,lib$LIBDIRSUFFIX," build.py
 
 # 20220318 bkw: the patch contains a hardcoded lib64, fix.
 sed -i "s,lib64,lib$LIBDIRSUFFIX," build.py

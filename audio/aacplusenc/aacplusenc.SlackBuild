@@ -27,9 +27,6 @@
 # 20220407 bkw: Modified by SlackBuilds.org, BUILD=4:
 # - install the SlackBuild in the doc dir *with the correct name*!
 
-# 20220407 bkw: Modified by SlackBuilds.org, BUILD=4:
-# - install the SlackBuild in the doc dir *with the correct name*!
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=aacplusenc

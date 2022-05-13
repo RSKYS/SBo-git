@@ -67,9 +67,6 @@ find -L . \
 # Disable parallel building otherwise build fails
 MAKEFLAGS=-j1
 
-# Disable parallel building otherwise build fails
-MAKEFLAGS=-j1
-
 # Fix old-style flag
 sed -i "s/-m486/-mtune=i486/g" configure.in
 

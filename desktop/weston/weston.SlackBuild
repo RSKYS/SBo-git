@@ -76,9 +76,6 @@ cd $PRGNAM-$VERSION
 # Patches
 patch -p1 < $CWD/weston-10.0.0-elogind.patch
 
-# Patches
-patch -p1 < $CWD/weston-10.0.0-elogind.patch
-
 # Make sure ownerships and permissions are sane:
 chown -R root:root .
 find -L . \

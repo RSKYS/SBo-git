@@ -139,8 +139,6 @@ make install DESTDIR=$PKG
 
 rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 
-rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
-
 # Install init script
 install -D -m0755 -oroot -groot contrib/init/generic/$PRGNAM $PKG/etc/rc.d/rc.$PRGNAM.new
 

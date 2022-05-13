@@ -79,9 +79,6 @@ find -L . \
 # Prevent obsolesence/policy cmake warnings
 patch -p1 < $CWD/policy.diff
 
-# Prevent obsolesence/policy cmake warnings
-patch -p1 < $CWD/policy.diff
-
 mkdir -p build
 cd build
   cmake \

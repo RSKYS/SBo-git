@@ -11,12 +11,6 @@ You can create this group like this (Run these as root):
     usermod -aG nordvpn $USER (Replace $USER with your username)
 Then log out of the system and login again.
 
-This script requires a 'nordvpn' group to exist before running.
-You can create this group like this (Run these as root):
-    groupadd -g 373 nordvpn
-    usermod -aG nordvpn $USER (Replace $USER with your username)
-Then log out of the system and login again.
-
 The following can be used to start/stop NordVPN automatically:
 /etc/rc.d/rc.local
   if [ -x /etc/rc.d/rc.nordvpn ]; then

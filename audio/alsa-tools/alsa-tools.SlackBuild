@@ -231,13 +231,6 @@ rm -rf $PKG/lib/firmware/turtlebeach/
 # 20220402 bkw: /etc is included in the package for no apparent reason.
 rmdir $PKG/etc
 
-# 20220402 bkw: the firmware tarball doesn't include this firmware,
-# but 'make install' creates *broken* symlinks to it.
-rm -rf $PKG/lib/firmware/turtlebeach/
-
-# 20220402 bkw: /etc is included in the package for no apparent reason.
-rmdir $PKG/etc
-
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh

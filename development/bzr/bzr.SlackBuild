@@ -27,11 +27,6 @@
 # - add empty file in empty dir in docs, to shut sbopkglint up.
 #   Robby, you should have a look at this when you have time.
 
-# 20220404 bkw: Modified by SlackBuilds.org, BUILD=2:
-# - remove useless INSTALL from doc dir.
-# - add empty file in empty dir in docs, to shut sbopkglint up.
-#   Robby, you should have a look at this when you have time.
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=bzr

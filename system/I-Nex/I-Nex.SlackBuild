@@ -26,10 +26,6 @@
 # - don't install .desktop files +x.
 # - make /usr/bin/i-nex symlink relative.
 
-# 20220331 bkw: Modified by SlackBuilds.org, BUILD=3:
-# - don't install .desktop files +x.
-# - make /usr/bin/i-nex symlink relative.
-
 # 20220212 bkw: Modified by SlackBuilds.org: BUILD=2.
 # - add -j1 to 'make install' to avoid breaking parallel builds.
 # - fix the .desktop files

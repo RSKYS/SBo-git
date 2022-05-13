@@ -111,10 +111,6 @@ sed -i 's,OdaGetInstallDir(),"/usr/games",g' \
 sed -i '/-march=pentium-m/d' client/CMakeLists.txt
 SLKCFLAGS+=" -msse -msse2"
 
-# 20220319 bkw: cmake brokenness, fix manually.
-sed -i '/-march=pentium-m/d' client/CMakeLists.txt
-SLKCFLAGS+=" -msse -msse2"
-
 rm -rf build
 mkdir -p build
 cd build

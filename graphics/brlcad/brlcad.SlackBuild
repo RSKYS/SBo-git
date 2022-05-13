@@ -88,10 +88,6 @@ patch -p1 < $CWD/fix-step-g-segfault.diff
 # fixes build on i586.
 patch -p1 < $CWD/brlcad-7.32.4-skip-gstep.patch
 
-# thanks arch maintainers.
-# fixes build on i586.
-patch -p1 < $CWD/brlcad-7.32.4-skip-gstep.patch
-
 mkdir -p build
 cd build
 # There is a "known issue" according to the guys on #brlcad and we need

@@ -25,9 +25,6 @@
 # 20220408 bkw: Modified by SlackBuilds.org, BUILD=2:
 # - fix doc ownership, if $CWD isn't owned by root.
 
-# 20220408 bkw: Modified by SlackBuilds.org, BUILD=2:
-# - fix doc ownership, if $CWD isn't owned by root.
-
 # based on the work of:
 # Marek Buras <cyfr0n (at) go2 !dot pl>,
 # Vliegendehuiskat <vliegendehuiskat [at] gmail [dot] com> and

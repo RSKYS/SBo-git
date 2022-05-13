@@ -134,8 +134,6 @@ rmdir $PKGDOC/advance
 
 cat $CWD/$PRGNAM.SlackBuild > $PKGDOC/$PRGNAM.SlackBuild
 
-cat $CWD/$PRGNAM.SlackBuild > $PKGDOC/$PRGNAM.SlackBuild
-
 # HISTORY, README, RELEASE are identical to history.txt, readme.txt,
 # release.txt which are already installed, but the license doesn't have
 # a lowercase.txt equivalent:

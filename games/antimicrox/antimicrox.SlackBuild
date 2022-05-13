@@ -12,10 +12,6 @@
 # - remove /usr/share/doc.
 # - add gtk-update-icon-cache to doinst.sh.
 
-# 20220408 bkw: Modified by SlackBuilds.org, BUILD=2:
-# - remove /usr/share/doc.
-# - add gtk-update-icon-cache to doinst.sh.
-
 # 20220219 bkw: Modified by SlackBuilds.org:
 # - fix build on Slackware 15.0.
 # - remove option to build with qt5: it fails.

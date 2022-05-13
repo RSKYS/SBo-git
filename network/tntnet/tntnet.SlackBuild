@@ -97,8 +97,6 @@ make install DESTDIR=$PKG
 
 rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 
-rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
-
 mv $PKG/etc/$PRGNAM/$PRGNAM.xml{,.new}
 sed -i "s|www-data|apache|" $PKG/etc/$PRGNAM/$PRGNAM.xml.new
 

@@ -80,25 +80,6 @@ chmod 755 $PKG/usr/bin/$PRGNAM
 sed -i '/^Icon/s,atunes,/usr/share/pixmaps/atunes.png,' \
     $PKG/usr/share/applications/atunes.desktop
 
-# 20220408 bkw: the precompiled JNI library needed for global hotkey
-# support is 32-bit x86. remove it from the package if we can't use it.
-case "$ARCH" in
-  i?86) ;; # OK
-  *) rm -f $PKG/opt/aTunes/libJXGrabKey.so ;;
-esac
-
-# 20220408 bkw: add this wrapper so we can run the app from the shell
-# just by typing its name.
-mkdir -p $PKG/usr/bin
-cat > $PKG/usr/bin/$PRGNAM <<EOF
-#!/bin/sh
-exec /opt/aTunes/aTunes \"\$@\"
-EOF
-chmod 755 $PKG/usr/bin/$PRGNAM
-
-sed -i '/^Icon/s,atunes,/usr/share/pixmaps/atunes.png,' \
-    $PKG/usr/share/applications/atunes.desktop
-
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a license.txt $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild

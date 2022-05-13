@@ -96,8 +96,6 @@ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | gr
 
 rm -rf doc/INSTALL $PKG/usr/share/doc
 
-rm -rf doc/INSTALL $PKG/usr/share/doc
-
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
   doc/* \

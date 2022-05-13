@@ -10,12 +10,6 @@
 # - strip the binaries.
 # - check ARCH and exit if unsupported.
 
-# 20220318 bkw: Modified by SlackBuilds.org:
-# - fix build on 15.0.
-# - use SLKCFLAGS.
-# - strip the binaries.
-# - check ARCH and exit if unsupported.
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=kforth
@@ -43,19 +37,6 @@ fi
 TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
-
-if [ "$ARCH" = "i586" ]; then
-  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-else
-  SLKCFLAGS="-O2"
-fi
-
-case "$ARCH" in
-  i?86) ;; # OK
-  *) echo "Unsupported ARCH '$ARCH'"; exit 1 ;;
-esac
 
 if [ "$ARCH" = "i586" ]; then
   SLKCFLAGS="-O2 -march=i586 -mtune=i686"

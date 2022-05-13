@@ -153,10 +153,6 @@ install -c -m 755 com/libs_bin_${BITS}/*.so.* $PKG/usr/lib${LIBDIRSUFFIX}/
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-# 20220409 bkw: this bit of template was missing.
-find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
-  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
-
 # Run ldconfig in the build script so that /usr/lib{64}/libcn*.so
 # are tracked by doinst.sh
 if [ -x /sbin/ldconfig ]; then

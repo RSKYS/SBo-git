@@ -10,10 +10,6 @@
 # - fix doinst.sh: only create bin/csh symlink if bin exists, which
 #   fixes installing the package with 'installpkg -root /some/path'.
 
-# 20220409 bkw: BUILD=2
-# - fix doinst.sh: only create bin/csh symlink if bin exists, which
-#   fixes installing the package with 'installpkg -root /some/path'.
-
 # 20210827 bkw:
 # - update to latest debian patch (6), add deb version to VERSION.
 # - add -current fix for recent glibc.

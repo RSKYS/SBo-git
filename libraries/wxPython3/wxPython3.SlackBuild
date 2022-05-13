@@ -26,9 +26,6 @@
 # 20220410 bkw: Modified by SlackBuilds.org, BUILD=4:
 # - fix permissions of a couple of files.
 
-# 20220410 bkw: Modified by SlackBuilds.org, BUILD=4:
-# - fix permissions of a couple of files.
-
 # 20220214 bkw: Modified by SlackBuilds.org: make the build succeed
 # when wxPython and wxGTK3 are both installed, regardless of which one
 # was installed first.
@@ -136,11 +133,6 @@ cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 # Remove unnecessary docs
 cd $PKG/usr/doc/$PRGNAM-$VERSION/docs
 rm -rf cocoa latex mac metrowerks microwin msw palmos word
-
-# 20220410 bkw: docs and includes don't need +x permission.
-chmod 0644 \
-  $PKG/usr/include/wx-3.0/wx/wxPython/i_files/aui.i \
-  $PKG/usr/doc/$PRGNAM-$VERSION/docs/doxygen/scripts/doxymlparser.py
 
 # 20220410 bkw: docs and includes don't need +x permission.
 chmod 0644 \

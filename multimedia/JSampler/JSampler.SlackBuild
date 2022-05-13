@@ -117,18 +117,6 @@ chmod 0755 $PKG/usr/bin/$PRGNAM
 mkdir -p $PKG/usr/share/pixmaps
 cat res/fantasia/icons/LinuxSampler-logo.png > $PKG/usr/share/pixmaps/$PRGNAM.png
 
-# 20220331 bkw: for those of us who don't use KDE or XFCE or want to:
-mkdir -p $PKG/usr/bin
-cat > $PKG/usr/bin/$PRGNAM <<EOF
-#!/bin/sh
-exec java -jar $JAVA_HOME/jre/bin/$(echo "${THEME[@]^}")-0.9.jar
-EOF
-chmod 0755 $PKG/usr/bin/$PRGNAM
-
-# 20220331 bkw: icon. should be multiple sizes in /usr/share/icons...
-mkdir -p $PKG/usr/share/pixmaps
-cat res/fantasia/icons/LinuxSampler-logo.png > $PKG/usr/share/pixmaps/$PRGNAM.png
-
 # docs
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -ar \

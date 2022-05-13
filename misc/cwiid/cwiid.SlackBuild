@@ -11,11 +11,6 @@
 # - re-add --disable-ldconfig. configure claims it's unsupported, but
 #   it actually works.
 
-# 20220410 bkw: BUILD=2
-# - *really* fix permissions on header.
-# - re-add --disable-ldconfig. configure claims it's unsupported, but
-#   it actually works.
-
 # 20210910 bkw:
 # - Upgrade to 0.6.91_2 (Debian's 0.6.91-2).
 # - Actually apply SLKCFLAGS.

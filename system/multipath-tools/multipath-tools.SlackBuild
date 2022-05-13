@@ -28,14 +28,6 @@
 # - fix 32-bit build.
 # - fix path to kpart_id script in udev rules.
 
-# 20220413 bkw: Modified by SlackBuilds.org, BUILD=3:
-# - fix broken symlink in doc dir.
-# - strip binaries and libraries.
-
-# 20220321 bkw: Modified by SlackBuilds.org, BUILD=2:
-# - fix 32-bit build.
-# - fix path to kpart_id script in udev rules.
-
 # 22-Oct-2018
 # Updated for version 0.7.8
 

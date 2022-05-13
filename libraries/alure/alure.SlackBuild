@@ -25,9 +25,6 @@
 # 20220402 bkw: Modified by SlackBuilds.org, BUILD=4:
 # - get rid of empty /usr/share/doc.
 
-# 20220402 bkw: Modified by SlackBuilds.org, BUILD=4:
-# - get rid of empty /usr/share/doc.
-
 # 20220217 bkw: Modified by SlackBuilds.org, BUILD=3:
 # - fix build on 15.0.
 # - install docs to correct directory.

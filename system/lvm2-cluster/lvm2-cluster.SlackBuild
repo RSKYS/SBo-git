@@ -24,8 +24,6 @@
 
 # 20220413 bkw: Modified by SlackBuilds.org, BUILD=2: strip library.
 
-# 20220413 bkw: Modified by SlackBuilds.org, BUILD=2: strip library.
-
 # 20220222 bkw: Modified by SlackBuilds.org: fix build on 15.0.
 # This should probably be updated to match the version of lvm2 in
 # Slackware 15.0, but I leave that up to the maintainer to decide.

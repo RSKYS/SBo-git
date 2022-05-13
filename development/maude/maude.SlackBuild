@@ -28,12 +28,6 @@
 # - de-uglify script a bit, use SRCNAM (sorry, it was unreadable).
 # - add CHECK=yes option.
 
-# 20220323 bkw: Modified by SlackBuilds.org:
-# - add -j1 to the make command (parallel builds were failing).
-# - fix 32-bit build.
-# - de-uglify script a bit, use SRCNAM (sorry, it was unreadable).
-# - add CHECK=yes option.
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=maude

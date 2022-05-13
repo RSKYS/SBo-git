@@ -8,10 +8,6 @@
 # - fix permissions on man page and documentation (so they're not
 #   only readable by root!)
 
-# 20220405 bkw: Modified by SlackBuilds.org, BUILD=2:
-# - fix permissions on man page and documentation (so they're not
-#   only readable by root!)
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=ckermit

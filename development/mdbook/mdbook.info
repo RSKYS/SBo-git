@@ -1,7 +1,7 @@
 PRGNAM="mdbook"
-VERSION="0.4.15"
+VERSION="0.4.18"
 HOMEPAGE="https://github.com/rust-lang/mdBook"
-DOWNLOAD="https://github.com/rust-lang/mdBook/archive/v0.4.15/mdBook-0.4.15.tar.gz \
+DOWNLOAD="https://github.com/rust-lang/mdBook/archive/v0.4.18/mdBook-0.4.18.tar.gz \
           https://crates-io.s3-us-west-1.amazonaws.com/crates/aho-corasick/aho-corasick-0.7.18.crate \
           https://crates-io.s3-us-west-1.amazonaws.com/crates/ammonia/ammonia-3.1.2.crate \
           https://crates-io.s3-us-west-1.amazonaws.com/crates/ansi_term/ansi_term-0.11.0.crate \

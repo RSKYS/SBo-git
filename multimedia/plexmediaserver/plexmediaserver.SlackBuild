@@ -30,7 +30,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=plexmediaserver
-VERSION=${VERSION:-1.26.0.5715_8cf78dab3}
+VERSION=${VERSION:-1.26.2.5797_5bd057d2b}
 PKG_VERSION=$(echo $VERSION | tr _ -)
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -118,6 +118,10 @@ find -L . \
 
 mkdir -p $PKG/usr/lib/
 mv usr/lib/plexmediaserver $PKG/usr/lib
+
+# Second attempt at stripping files with spaces in the names. D Woodfall
+find $PKG -type f -print0 | xargs -0 -I{} file "{}" | grep -e "executable" -e "shared object" |
+ grep ELF | cut -f 1 -d : | xargs -I{} strip --strip-unneeded  "{}" 2> /dev/null || true
 
 mkdir -p $PKG/usr/share/applications/
 mv usr/share/applications/plexmediaserver.desktop $PKG/usr/share/applications

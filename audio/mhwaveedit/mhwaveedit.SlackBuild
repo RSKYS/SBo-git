@@ -3,7 +3,7 @@
 # Slackware build script for mhwaveedit
 # Originally written by Felix Krueger
 
-# Now maintained by B. Watson <yalhcru@gmail.com>. Original script
+# Now maintained by B. Watson <urchlay@slackware.uk>. Original script
 # had no license. Modified version licensed under the WTFPL. See
 # http://www.wtfpl.net/txt/copying/ for details.
 
@@ -46,7 +46,7 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
+if [ "$ARCH" = "i586" ]; then
   SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then

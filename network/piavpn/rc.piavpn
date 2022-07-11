@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+
+DAEMON=/opt/piavpn/bin/pia-daemon
+NAME=piavpn
+PIDFILE="/var/run/$NAME.pid"
+#export LD_LIBRARY_PATH=/opt/piavpn/lib
+
+
+do_start()  {
+  if [ -x $DAEMON ]; then
+    $DAEMON 2>/dev/null &
+    pidof $DAEMON > $PIDFILE
+  fi
+ }
+
+
+do_stop()  {
+  if [ -s $PIDFILE ]; then
+    kill $(cat $PIDFILE)
+    rm -rf $PIDFILE
+  fi
+}
+
+
+do_status(){
+  if [ -s $PIDFILE ]; then
+    echo "Program '$NAME' is running."
+  else
+    echo "Program '$NAME' is not running."
+  fi
+}
+
+
+case "$1" in
+  start)
+    do_start
+    ;;
+
+  stop)
+    do_stop
+    ;;
+
+  restart)
+    do_stop
+    do_start
+    ;;
+
+  status)
+    do_status
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+esac
+
+exit 0

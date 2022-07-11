@@ -52,6 +52,20 @@ fi
 
 set -e
 
+bailout() {
+  echo "  You must have a $PRGNAM group to run this script. "
+  echo "  Something like this should suffice for most systems (Run as root): "
+  echo "    # groupadd -g 373 $PRGNAM "
+  echo "    # usermod -aG $PRGNAM \$USER (Replace \$USER with your username)"
+  echo "  Then log out of the system and login again."
+  exit 1
+}
+
+# Bail if group isn't valid on your system.
+if ! grep -q "^$PRGNAM:" /etc/group; then
+  bailout
+fi
+
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 
-
 DAEMON=/opt/piavpn/bin/pia-daemon
 NAME=piavpn
 PIDFILE="/var/run/$NAME.pid"
@@ -13,7 +12,6 @@ do_start()  {
     $DAEMON 2>/dev/null &
     pidof $DAEMON > $PIDFILE
   fi
-  exit 0
  }
 
 
@@ -22,7 +20,6 @@ do_stop()  {
     kill $(cat $PIDFILE)
     rm -rf $PIDFILE
   fi
-  exit 0
 }
 
 
@@ -32,7 +29,6 @@ do_status(){
   else
     echo "Program '$NAME' is not running."
   fi
-  exit 0
 }
 
 

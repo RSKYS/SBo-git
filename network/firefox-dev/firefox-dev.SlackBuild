@@ -25,7 +25,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=firefox-dev
-VERSION=${VERSION:-98.0b5}
+VERSION=${VERSION:-104.0b4}
 SRCNAM=firefox-developer-edition
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -58,7 +58,7 @@ cd $TMP
 rm -rf $PRGNAM-$VERSION
 mkdir -p $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
-tar -I zstd -xvf $CWD/${SRCNAM}-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
+tar -I zstd -xvf $CWD/${SRCNAM}-${VERSION}-*.pkg.tar.zst
 
 mv usr/lib usr/lib64
 mv usr/lib64/$SRCNAM usr/lib64/$PRGNAM

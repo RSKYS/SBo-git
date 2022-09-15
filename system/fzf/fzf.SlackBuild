@@ -1,0 +1,163 @@
+#!/bin/bash
+
+# Slackware build script for fzf
+
+# Copyright 2016-2022 Andrew Clemons, Wellington New Zealand
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+cd $(dirname $0) ; CWD=$(pwd)
+
+PRGNAM=fzf
+VERSION=${VERSION:-0.30.0}
+BUILD=${BUILD:-1}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
+
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
+cd $PRGNAM-$VERSION
+
+# build offline with our vendored dependencies
+sed -i '/^BUILD_FLAGS/s/$/ -mod=vendor/' Makefile
+
+mkdir -p vendor/github.com
+
+for DEPENDENCY in gdamore/encoding/1.0.0 \
+                  gdamore/tcell/1.4.0 \
+                  lucasb-eyer/go-colorful/1.2.0 \
+                  mattn/go-isatty/0.0.14 \
+                  mattn/go-runewidth/0.0.13 \
+                  mattn/go-shellwords/1.0.12 \
+                  rivo/uniseg/0.2.0 \
+                  saracen/walker/0.1.2 ; do
+  DEPENDENCY_OWNER="$(echo "$DEPENDENCY" | cut -d/ -f1)"
+  DEPENDENCY_NAME="$(echo "$DEPENDENCY" | cut -d/ -f2)"
+  DEPENDENCY_REV="$(echo "$DEPENDENCY" | cut -d/ -f3)"
+
+  mkdir -p "vendor/github.com/$DEPENDENCY_OWNER"
+
+  tar xf "$CWD/$DEPENDENCY_NAME-$DEPENDENCY_REV.tar.gz"
+  mv "$DEPENDENCY_NAME-$DEPENDENCY_REV" "vendor/github.com/$DEPENDENCY_OWNER/$DEPENDENCY_NAME"
+done
+
+mkdir -p vendor/golang.org/x
+for DEPENDENCY in sync/036812b2e83c0ddf193dd5a34e034151da389d09 \
+                  sys/0f9fa26af87c481a6877a4ca1330699ba9a30673 \
+                  term/de623e64d2a6562fa463152da80477d4aa07fca0 \
+                  text/0.3.6 \
+                  tools/90fa682c2a6e6a37b3a1364ce2fe1d5e41af9d6d ; do
+  DEPENDENCY_NAME="$(echo "$DEPENDENCY" | cut -d/ -f1)"
+  DEPENDENCY_REV="$(echo "$DEPENDENCY" | cut -d/ -f2)"
+
+  tar xf "$CWD/$DEPENDENCY_NAME-$DEPENDENCY_REV.tar.gz"
+  mv "$DEPENDENCY_NAME-$DEPENDENCY_REV" "vendor/golang.org/x/$DEPENDENCY_NAME"
+done
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+FZF_VERSION="$VERSION" FZF_REVISION="$VERSION" make
+
+mkdir -p $PKG/usr/bin
+install -m 0755 target/fzf-linux_* $PKG/usr/bin/fzf
+install -m 0755 bin/fzf-tmux $PKG/usr/bin/fzf-tmux
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/usr/man/man1
+install -m 0644 man/man1/fzf.1 $PKG/usr/man/man1/fzf.1
+
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+
+mkdir -p $PKG/usr/share/bash-completion/completions/
+install -m 0644 shell/completion.bash $PKG/usr/share/bash-completion/completions/fzf
+
+mkdir -p $PKG/usr/share/zsh/site-functions/
+install -m 0644 shell/completion.zsh $PKG/usr/share/zsh/site-functions/_fzf
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a \
+  BUILD.md CHANGELOG.md LICENSE README-VIM.md README.md shell/key-bindings.zsh shell/key-bindings.bash \
+  $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/usr/share/fzf
+cp -a \
+   shell/key-bindings.zsh shell/key-bindings.bash \
+   $PKG/usr/share/fzf
+
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+WITH_VIM=${WITH_VIM:-yes}
+if [ "$WITH_VIM" = "yes" ] ; then
+  mkdir -p $PKG/usr/share/vim/vimfiles/plugin
+  install -m 0644 plugin/fzf.vim $PKG/usr/share/vim/vimfiles/plugin
+
+  mkdir -p $PKG/usr/share/vim/vimfiles/doc/
+  install -m 0644 doc/fzf.txt $PKG/usr/share/vim/vimfiles/doc/
+
+  # neovim support
+  mkdir -p $PKG/usr/share/nvim/runtime/plugin
+  mkdir -p $PKG/usr/share/nvim/runtime/doc
+  (
+    cd $PKG/usr/share/nvim/runtime
+
+
+    ln -s ../../../vim/vimfiles/plugin/fzf.vim plugin/fzf.vim
+    ln -s ../../../vim/vimfiles/doc/fzf.txt doc/fzf.txt
+  )
+else
+  mkdir -p $PKG/usr/share/fzf/vim/
+  install -m 0644 plugin/fzf.vim $PKG/usr/share/fzf/vim/
+  install -m 0644 doc/fzf.txt $PKG/usr/share/fzf/vim/
+fi
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

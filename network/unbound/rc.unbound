@@ -1,0 +1,76 @@
+#!/bin/bash
+#
+# Slackware initialization script for Unbound.
+
+
+UNBOUND=/usr/sbin/unbound
+CONFIG=/etc/unbound/unbound.conf
+PIDFILE=/var/run/unbound/unbound.pid
+
+# Unbound-control is useful but I'm not going to cram it
+# down your throat. Set this to "yes" to disable unbound-control
+# initial setup.
+DISABLE_UNBOUND_CONTROL="no"
+
+initchecks() {
+    if [ ! -e $(dirname $PIDFILE) ]; then
+        mkdir -p $(dirname $PIDFILE)
+        chown unbound:unbound $(dirname $PIDFILE)
+    fi
+    if [ ! -e $(dirname $CONFIG)/unbound_server.pem ] && [ "$DISABLE_UNBOUND_CONTROL" == "no" ]; then
+        echo "Unbound-control: unbound_server.pem not found."
+        echo "Running initial setup: /usr/sbin/unbound-control-setup"
+        /usr/sbin/unbound-control-setup || exit 1
+    fi
+}
+
+start() {
+    initchecks
+    if [ -r $PIDFILE ]; then
+        echo 'Unbound is already running!'
+        return
+    else
+	echo "Starting Unbound DNS validating resolver..."
+        $UNBOUND -c $CONFIG || echo "Failed to start! The error messages above might help."
+    fi
+}
+
+stop() {
+    if [ ! -r $PIDFILE ]; then
+        echo 'Unbound is not running.'
+        return
+    fi
+    echo "Stopping Unbound DNS validating resolver..."
+    kill `cat $PIDFILE`
+    rm -f $PIDFILE
+}
+
+reload() {
+    if [ ! -r $PIDFILE ]; then
+        echo 'Unbound is not running.'
+        return
+    fi
+    echo "Sending SIGHUP to Unbound..."
+    kill -HUP `cat $PIDFILE`
+}
+
+case "$1" in
+    'start')
+        start
+        ;;
+    'stop')
+        stop
+        ;;
+    'restart')
+        stop
+	sleep 1
+        start
+        ;;
+    'reload')
+        reload
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|reload|restart}"
+        exit 1
+        ;;
+esac

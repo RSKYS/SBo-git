@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=IceBreaker
+Exec=/usr/games/icebreaker
+Type=Application
+Icon=icebreaker
+GenericName=IceBreaker
+Categories=Game;ArcadeGame;

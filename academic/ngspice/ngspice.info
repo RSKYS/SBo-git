@@ -1,0 +1,12 @@
+PRGNAM="ngspice"
+VERSION="37"
+HOMEPAGE="http://ngspice.sourceforge.net/"
+DOWNLOAD="https://sourceforge.net/projects/ngspice/files/ng-spice-rework/37/ngspice-37.tar.gz \
+          https://sourceforge.net/projects/ngspice/files/ng-spice-rework/37/ngspice-37-manual.pdf"
+MD5SUM="88af0394c4695d04e982792832eff520 \
+        06a6e963436425389320391015eb60e8"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES="openmpi"
+MAINTAINER="R. S. Ananda Murthy"
+EMAIL="rsamurti@gmail.com"

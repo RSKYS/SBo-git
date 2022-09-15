@@ -1,0 +1,12 @@
+PRGNAM="anki"
+VERSION="2.1.53"
+HOMEPAGE="https://apps.ankiweb.net/"
+DOWNLOAD="UNSUPPORTED"
+MD5SUM=""
+DOWNLOAD_x86_64="https://files.pythonhosted.org/packages/92/19/e9ce28d505cb6c3822037292615244b4ab307810bda3d12015d2f9b5da13/anki-2.1.53-cp39-abi3-manylinux_2_28_x86_64.whl \
+https://files.pythonhosted.org/packages/a6/e3/8a5dea0f107e512fb40165b64ab75766f74c72ac95e6a8a64fe3b920e0d1/aqt-2.1.53-py3-none-any.whl"
+MD5SUM_x86_64="6bdfc0d555bf87f91bef15447e748aef \
+819dddba31c35dd03b09454c95ff1c7c"
+REQUIRES="python3-PyQtWebEngine send2trash decorator Markdown python3-jsonschema BeautifulSoup4 Flask python3-waitress protobuf3"
+MAINTAINER="Caterino Tommaso, T.O.P."
+EMAIL="alan_averNOsa@lavaSPAMbit.com (remove NO and SPAM)"

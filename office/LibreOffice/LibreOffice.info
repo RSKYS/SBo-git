@@ -1,0 +1,12 @@
+PRGNAM="LibreOffice"
+VERSION="7.4.0.3"
+HOMEPAGE="https://www.libreoffice.org"
+DOWNLOAD="https://download.documentfoundation.org/libreoffice/src/7.4.0/libreoffice-7.4.0.3.tar.xz \
+		https://sourceforge.net/projects/slackbuildsdirectlinks/files/LibreOffice/libreoffice-7.4.0.3-srcs.tar.xz"
+MD5SUM="5bfb607d302a21315faa5bb49c57cebe \
+		6bbabc7b207a3ffb2a36ad7bb9cddc2a"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES="zulu-openjdk11 apache-ant perl-Archive-Zip"
+MAINTAINER="Christoph Willing"
+EMAIL="chris.willing@linux.com"

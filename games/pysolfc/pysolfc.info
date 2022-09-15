@@ -1,0 +1,12 @@
+PRGNAM="pysolfc"
+VERSION="2.14.1"
+HOMEPAGE="https://pysolfc.sourceforge.io"
+DOWNLOAD="https://github.com/shlomif/PySolFC/archive/2.14.1/PySolFC-2.14.1.tar.gz \
+          https://downloads.sourceforge.net/pysolfc/PySolFC-Cardsets--Minimal-2.0.tar.xz"
+MD5SUM="c833407fc80c6f175d16616ba1533610 \
+        85c0edeeb0e319d54f9ebcd4165a2077"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES="configobj python3-attrs"
+MAINTAINER="B. Watson"
+EMAIL="urchlay@slackware.uk"

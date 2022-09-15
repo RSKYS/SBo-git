@@ -1,0 +1,4 @@
+fwupd - A simple daemon to allow session software to update firmware
+
+This project aims to make updating firmware on Linux automatic, safe and
+reliable.

@@ -27,7 +27,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=tauonmb
-VERSION=${VERSION:-7.2.1}
+VERSION=${VERSION:-7.7.2}
 SRCNAM=TauonMusicBox
 BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}

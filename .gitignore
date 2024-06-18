@@ -28,7 +28,6 @@ network/GeoIP/*dat.gz
 *.cabal
 academic/ngspice/ngspice-36-manual.pdf
 graphics/tesseract/eng.traineddata
-system/sboui/*
 waf-2.0.*
 *.snap
 *.rej

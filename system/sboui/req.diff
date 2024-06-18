@@ -39,3 +39,16 @@ index 6dff854..fa936d1 100644
  
    # Check if package was built successfully. Note version string can contain
    # trailing stuff like the kernel version.
+diff --git a/etc/sboui.conf b/etc/sboui.conf
+index 2a67553..7f9c5be 100644
+--- a/etc/sboui.conf
++++ b/etc/sboui.conf
+@@ -18,7 +18,7 @@ package_manager = "built-in"
+ # reinstall_cmd = "sbopkg -B -i"
+ 
+ ## Tag at end of package name identifying repository
+-# repo_tag = "_SBo"
++repo_tag = "red"
+ 
+ ## Additional CLOs and environment variables when invoking package manager 
+ # install_clos = ""

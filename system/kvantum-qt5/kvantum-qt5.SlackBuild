@@ -50,6 +50,12 @@ fi
 TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
+QTVER=$(qmake -v 2>&1 | grep -oP '(?<=Qt version )[^ ]+')
+
+# This is as far as it goes, kvantum-qt6 is needed after this point.
+if [[ ! "$QTVER" == 5* ]]; then
+  exit 1
+fi
 
 if [ "$ARCH" = "i586" ]; then
   SLKCFLAGS="-O2 -march=i586 -mtune=i686"

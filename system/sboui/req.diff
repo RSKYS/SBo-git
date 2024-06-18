@@ -1,0 +1,41 @@
+diff --git a/etc/sboui-backend.conf b/etc/sboui-backend.conf
+index 75eed41..6a35668 100644
+--- a/etc/sboui-backend.conf
++++ b/etc/sboui-backend.conf
+@@ -3,11 +3,11 @@
+ #
+ 
+ # Repository to use. Note Ponce repo is for -current only.
+-REPO=git://git.slackbuilds.org/slackbuilds.git
+-#REPO=https://github.com/Ponce/slackbuilds.git
++#REPO=git://git.slackbuilds.org/slackbuilds.git
++REPO=https://github.com/RSKYS/SBo-git.git
+ 
+ # Branch (not applicable to Ponce repo). e.g., master, 15.0, 14.2, etc.
+-BRANCH=15.0
++BRANCH=current
+ 
+ # Location to clone git repository
+ REPO_DIR=/var/lib/sboui/repo
+diff --git a/src/sboui-backend.in b/src/sboui-backend.in
+index 6dff854..fa936d1 100644
+--- a/src/sboui-backend.in
++++ b/src/sboui-backend.in
+@@ -72,7 +72,7 @@ function get_current_version ()
+ # Checks if Ponce's git repo is being used
+ function check_ponce_repo ()
+ {
+-  if [ "$REPO" == "https://github.com/Ponce/slackbuilds.git" ]; then
++  if [ "$REPO" == "https://github.com/RSKYS/SBo-git" ]; then
+     echo 1
+   else
+     echo 0
+@@ -485,7 +485,7 @@ function install_slackbuild ()
+   # Execute install script
+   local PERM=$(stat -c '%a %n' $BUILD.SlackBuild)
+   chmod +x $BUILD.SlackBuild
+-  ./$BUILD.SlackBuild
++  TAG=red PKGTYPE=txz ./$BUILD.SlackBuild
+ 
+   # Check if package was built successfully. Note version string can contain
+   # trailing stuff like the kernel version.

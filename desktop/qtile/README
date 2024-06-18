@@ -1,0 +1,15 @@
+Qtile is a full-featured, hackable tiling window manager (X11 or
+Wayland) written and configured in Python. Qtile is simple, small, and
+extensible - it is easy to write your own layouts, widgets and built-in
+commands.
+
+You will need to build python3-cairocffi with its optional
+python3-xcffib dependency.
+
+python3-dbus-next is an optional dependency for qtile.
+It sends notifications through dbus - please additionally install a
+notification daemon such as dunst for displaying notifications on qtile.
+
+This SlackBuild does not provide Wayland support. Slackware 15.0 is only
+able to build wlroots 0.15. qtile >= 0.26.0 requires wlroots 0.17 (which
+cannot be built with Slackware 15).

@@ -1,0 +1,12 @@
+PRGNAM="onlyoffice-desktopeditors"
+VERSION="8.0.1"
+HOMEPAGE="https://www.onlyoffice.com/apps.aspx"
+DOWNLOAD="UNSUPPORTED"
+MD5SUM=""
+DOWNLOAD_x86_64="https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v8.0.1/onlyoffice-desktopeditors_amd64.deb \
+                 https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v8.0.1/onlyoffice-desktopeditors-help_all.deb"
+MD5SUM_x86_64="4ddeedc179417f39f8f08d8b9a98a6cf \
+               8f36ffb4c8b3476394bffe0d64178dc2"
+REQUIRES=""
+MAINTAINER="Alexander Verbovetsky"
+EMAIL="alik@ejik.org"

@@ -1,0 +1,36 @@
+diff -Naur pipe-viewer-0.4.7/bin/gtk-pipe-viewer pipe-viewer-0.4.7.patched/bin/gtk-pipe-viewer
+--- pipe-viewer-0.4.7/bin/gtk-pipe-viewer	2023-06-11 08:55:44.000000000 -0400
++++ pipe-viewer-0.4.7.patched/bin/gtk-pipe-viewer	2023-06-29 02:19:58.827392189 -0400
+@@ -191,6 +191,13 @@
+                               fs    => q{--fullscreen},
+                               arg   => q{--really-quiet --force-media-title=*TITLE* --no-ytdl --no-terminal *VIDEO*},
+                              },
++                      mplayer => {
++                              cmd   => q{mplayer},
++                              srt   => q{-sub *SUB*},
++                              audio => q{-audiofile *AUDIO*},
++                              fs    => q{-fs},
++                              arg   => q{-prefer-ipv4 -really-quiet -title *TITLE* *VIDEO*},
++                             },
+                      },
+     video_player_selected => undef,    # autodetect it later
+ 
+diff -Naur pipe-viewer-0.4.7/bin/pipe-viewer pipe-viewer-0.4.7.patched/bin/pipe-viewer
+--- pipe-viewer-0.4.7/bin/pipe-viewer	2023-06-11 08:55:44.000000000 -0400
++++ pipe-viewer-0.4.7.patched/bin/pipe-viewer	2023-06-29 02:36:34.948298445 -0400
+@@ -200,6 +200,15 @@
+                 arg     => q{--really-quiet --force-media-title=*TITLE* --no-ytdl *VIDEO*},
+                 novideo => q{--no-video},
+                },
++
++        mplayer => {
++                cmd     => q{mplayer},
++                srt     => q{-sub *SUB*},
++                audio   => q{-audiofile *AUDIO*},
++                fs      => q{-fs},
++                arg     => q{-prefer-ipv4 -really-quiet -title *TITLE* *VIDEO*},
++                novideo => q{-novideo},
++               },
+     },
+ 
+     video_player_selected => (

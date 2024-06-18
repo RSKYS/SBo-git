@@ -1,0 +1,12 @@
+diff -Naur pastebinit-1.6.2/pastebinit.xml pastebinit-1.6.2.patched/pastebinit.xml
+--- pastebinit-1.6.2/pastebinit.xml	2022-11-14 16:33:28.000000000 -0500
++++ pastebinit-1.6.2.patched/pastebinit.xml	2024-02-09 17:49:40.311102351 -0500
+@@ -29,7 +29,7 @@
+   </refentryinfo>
+   <refmeta>
+     <refmiscinfo class="source">&dhpackage;</refmiscinfo>
+-    <refmiscinfo class="manual">User Commands</refmiscinfo>
++    <refmiscinfo class="manual">SlackBuilds.org</refmiscinfo>
+     &dhucpackage;
+     &dhsection;
+   </refmeta>

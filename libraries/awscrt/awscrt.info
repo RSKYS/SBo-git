@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/86/e1/042ff1ab855cd738084d6666
 MD5SUM="d7e2fe49099bcd527a0e7bd05b9a6ce0"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-wheel"
+REQUIRES=""
 MAINTAINER="Dimitris Zlatanidis"
 EMAIL="dslackw@gmail.com"

@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/c/cheroot/cheroot-10.0.
 MD5SUM="0fce2608fcb31c16c81945c73e283724"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-setuptools-scm-opt python3-jaraco.functools"
+REQUIRES="python3-jaraco.functools"
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

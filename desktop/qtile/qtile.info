@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/q/qtile/qtile-0.26.0.ta
 MD5SUM="7f4c1d0277267e2a9add147f52812138"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-xcffib python3-cairocffi python3-setuptools-scm-opt"
+REQUIRES="python3-xcffib python3-cairocffi"
 MAINTAINER="Isaac Yu"
 EMAIL="isaacyu@protonmail.com"

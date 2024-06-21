@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/t/tzdata/tzdata-2024.1.
 MD5SUM="6ffd87c74f67524f8e58ae32868c1a95"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-build python3-wheel"
+REQUIRES=""
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

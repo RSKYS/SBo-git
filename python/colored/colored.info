@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/dslackw/colored/-/archive/2.2.4/colored-2.2.4.tar.g
 MD5SUM="5ed55d28558ac5be2fff849a730fe073"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-build"
+REQUIRES=""
 MAINTAINER="Dimitris Zlatanidis"
 EMAIL="d.zlatanidis@gmail.com"

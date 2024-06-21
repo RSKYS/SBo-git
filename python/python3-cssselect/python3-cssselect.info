@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/scrapy/cssselect/archive/refs/tags/v1.2.0/cssselect
 MD5SUM="c7ef140d72659f327f2001574cb5e2a3"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-build python3-wheel"
+REQUIRES=""
 MAINTAINER="Jeremy Hansen"
 EMAIL="jebrhansen+SBo@gmail.com"

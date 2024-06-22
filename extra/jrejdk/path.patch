@@ -1,0 +1,39 @@
+diff --git a/usr/share/applications/java-java-jdk.desktop b/usr/share/applications/java-java-jdk.desktop
+index 7cae75d..b5299d6 100644
+--- a/usr/share/applications/java-java-jdk.desktop
++++ b/usr/share/applications/java-java-jdk.desktop
+@@ -2,7 +2,7 @@
+ Name=Oracle Java 22 Runtime
+ Comment=Oracle Java 22 Runtime
+ Keywords=java;runtime
+-Exec=/usr/lib/jvm/java-22-jdk/bin/java -jar
++Exec=/usr/lib64/jvm/java-22-jdk/bin/java -jar
+ Terminal=false
+ Type=Application
+ Icon=java-jdk
+diff --git a/usr/share/applications/jconsole-java-jdk.desktop b/usr/share/applications/jconsole-java-jdk.desktop
+index 172fbc5..fba59dd 100644
+--- a/usr/share/applications/jconsole-java-jdk.desktop
++++ b/usr/share/applications/jconsole-java-jdk.desktop
+@@ -2,7 +2,7 @@
+ Name=Oracle Java 22 Console
+ Comment=Oracle Java 22 Monitoring and Management Console
+ Keywords=java;console;monitoring
+-Exec=/usr/lib/jvm/java-22-jdk/bin/jconsole
++Exec=/usr/lib64/jvm/java-22-jdk/bin/jconsole
+ Terminal=false
+ Type=Application
+ Icon=java-jdk
+diff --git a/usr/share/applications/jshell-java-jdk.desktop b/usr/share/applications/jshell-java-jdk.desktop
+index b185c42..fb5c78e 100644
+--- a/usr/share/applications/jshell-java-jdk.desktop
++++ b/usr/share/applications/jshell-java-jdk.desktop
+@@ -2,7 +2,7 @@
+ Name=Oracle Java 22 Shell
+ Comment=Oracle Java 22 Shell
+ Keywords=java;shell
+-Exec=/usr/lib/jvm/java-22-jdk/bin/jshell
++Exec=/usr/lib64/jvm/java-22-jdk/bin/jshell
+ Terminal=true
+ Type=Application
+ Icon=java-jdk

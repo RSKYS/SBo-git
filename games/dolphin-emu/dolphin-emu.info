@@ -19,6 +19,6 @@ MD5SUM_x86_64="cda88a526bbe63c76d4cecdb79913922 \
                c871e87ede68b9c5d5ccc6b6a8173b3a \
                1288381ecdbe222e5759119ec730a6fd \
                59bc34854f5bb7492810e30f20b844eb"
-REQUIRES="cubeb qt6"
+REQUIRES="cubeb"
 MAINTAINER="Steven Voges"
 EMAIL="svoges.sbo@gmail.com"

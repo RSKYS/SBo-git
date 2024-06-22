@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/duncan-roe/netcat-openbsd/archive/refs/tags/7.4-2/n
 MD5SUM="5e1ac7719ee022a2d548b16f0e1b4a2c"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="%README% libbsd"
+REQUIRES="libbsd"
 MAINTAINER="Duncan Roe"
 EMAIL="duncan_roe@optusnet.com.au"

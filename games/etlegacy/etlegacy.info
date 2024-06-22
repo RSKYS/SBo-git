@@ -5,6 +5,6 @@ DOWNLOAD="https://ponce.cc/slackware/sources/repo/etlegacy/etlegacy-v2.82.0-i386
 MD5SUM="0b1a73b1d0b30805d4990aff6067385b"
 DOWNLOAD_x86_64="https://ponce.cc/slackware/sources/repo/etlegacy/etlegacy-v2.82.0-x86_64.tar.gz"
 MD5SUM_x86_64="18fe1febf6fe32954a6d504b56b35d4a"
-REQUIRES="%README% etlegacy-data"
+REQUIRES="etlegacy-data"
 MAINTAINER="Matteo Bernardini"
 EMAIL="ponce@slackbuilds.org"

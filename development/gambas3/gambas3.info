@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/gambas/gambas/-/archive/3.19.1/gambas-3.19.1.tar.bz
 MD5SUM="5e0d6f2b7b13625e137f519b967d494b"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="alure gtkglext webkit2gtk imlib %README%"
+REQUIRES="alure gtkglext webkit2gtk imlib"
 MAINTAINER="Tim Dickson"
 EMAIL="dickson.tim@googlemail.com"

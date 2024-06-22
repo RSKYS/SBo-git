@@ -7,6 +7,6 @@ MD5SUM="17685079ad4d5a534404285a8047e900 \
         d8f835e414202946d1c6c8192dd4315d"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-psutil %README%"
+REQUIRES="python3-psutil"
 MAINTAINER="Alexander Verbovetsky"
 EMAIL="alik@ejik.org"

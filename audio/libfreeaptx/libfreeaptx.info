@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/iamthehorker/libfreeaptx/archive/0.1.1/libfreeaptx-
 MD5SUM="58c2cf51f8b00d2414ae5f5239a64957"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="%README%"
+REQUIRES=""
 MAINTAINER="thnkman"
 EMAIL="thnkman@proton.me"

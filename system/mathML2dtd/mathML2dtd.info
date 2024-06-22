@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/N-Tek/mathML2dtd/releases/download/v1.0.0/mathML2dt
 MD5SUM="b91c3e186f3524f5ec75f18f1fd9c055"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="%README%"
+REQUIRES=""
 MAINTAINER="Necib ÇAPAR"
 EMAIL="necipcapar@gmail.com"

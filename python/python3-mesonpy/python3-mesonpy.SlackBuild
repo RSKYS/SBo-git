@@ -64,8 +64,8 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
 
 # to use updated meson
-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
-export PYTHONPATH=/opt/python$PYVER/site-packages
+
+
 
 # cannot be built from sdist so just build the wheel
 python3 -m build --wheel --no-isolation

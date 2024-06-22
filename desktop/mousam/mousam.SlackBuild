@@ -71,8 +71,8 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
 
 # Use newer meson
-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
-export PYTHONPATH=/opt/python$PYVER/site-packages/
+
+
 
 # Fix application flags for glib 2.70
 # glib2 documentation: https://docs.gtk.org/gio/flags.ApplicationFlags.html

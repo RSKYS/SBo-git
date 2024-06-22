@@ -99,8 +99,8 @@ else
   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
 fi
 
-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
-export PYTHONPATH=/opt/python$PYVER/site-packages
+
+
 
 rm -rf tests/bench
 python3 -m build --no-isolation

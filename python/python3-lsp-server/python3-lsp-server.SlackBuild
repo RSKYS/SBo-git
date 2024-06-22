@@ -87,8 +87,8 @@ sed -i "s|pyflakes>=2.5.0,<2.6.0|pyflakes>=2.5.0|" -i pyproject.toml
 sed -i "s|pylint>=2.5.0,<3|pylint>=2.5.0|" -i pyproject.toml
 
 # Use newer, non-stock setuptools due to package requirements
-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
-export PYTHONPATH=/opt/python$PYVER/site-packages/
+
+
 
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl

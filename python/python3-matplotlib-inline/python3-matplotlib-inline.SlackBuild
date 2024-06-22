@@ -68,8 +68,8 @@ find -L . \
 export SETUPTOOLS_SCM_PRETEND_VERSION=$VERSION
 
 # Use newer python packages in /opt/
-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
-export PYTHONPATH=/opt/python$PYVER/site-packages
+
+
 
 # Add unused section to avoid ERROR message from setuptools_scm
 # Make it an if statement just in case upstream decides to update

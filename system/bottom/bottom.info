@@ -347,6 +347,6 @@ MD5SUM="7a0b000bbf1e3db4ab78ca45d2ba8cbf \
         88e9b913d7f1d1b722179a38b795cdb1"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="rust16"
+REQUIRES=""
 MAINTAINER="K. Eugene Carlson"
 EMAIL="kvngncrlsn@gmail.com"

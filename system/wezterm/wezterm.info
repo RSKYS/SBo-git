@@ -1303,6 +1303,6 @@ MD5SUM="da014a91bf67d58076fa446e91a47fae \
         34437d4130faec448d42eca071d0e6fd"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="rust16"
+REQUIRES=""
 MAINTAINER="Julian Grinblat"
 EMAIL="julian@dotcore.co.il"

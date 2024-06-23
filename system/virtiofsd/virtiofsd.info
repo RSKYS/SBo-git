@@ -7,6 +7,6 @@ DOWNLOAD_x86_64="https://gitlab.com/virtio-fs/virtiofsd/-/archive/v1.10.1/virtio
                  https://ponce.cc/slackware/sources/repo/virtiofsd-1.10.1-vendor.tar.xz"
 MD5SUM_x86_64="c6fd3f5b7a83c908f9e08127ec92edc6 \
                d4538be9ccd5f48561e9dc5d98981eb6"
-REQUIRES="rust16"
+REQUIRES=""
 MAINTAINER="Matteo Bernardini"
 EMAIL="ponce@slackbuilds.org"

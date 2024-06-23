@@ -5,6 +5,6 @@ DOWNLOAD="https://download.gnome.org/sources/simple-scan/42/simple-scan-42.1.tar
 MD5SUM="bd5c3ad8559a13db93b78d0b01091eb0"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="libgusb libhandy"
+REQUIRES="libgusb"
 MAINTAINER="Johannes Schoepfer"
 EMAIL="slackbuilds@schoepfer.info"

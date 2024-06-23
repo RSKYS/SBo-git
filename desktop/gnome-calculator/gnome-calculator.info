@@ -5,6 +5,6 @@ DOWNLOAD="https://download.gnome.org/sources/gnome-calculator/41/gnome-calculato
 MD5SUM="178dc6909ee18644cb06a4164ac936c9"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="libhandy gtksourceview4"
+REQUIRES="gtksourceview4"
 MAINTAINER="Bob Funk"
 EMAIL="bobfunk11@gmail.com"

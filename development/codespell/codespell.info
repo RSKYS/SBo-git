@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/c/codespell/codespell-2
 MD5SUM="807149428419840f87ce3b3f2ab4ce38"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-setuptools-opt"
+REQUIRES=""
 MAINTAINER="B. Watson"
 EMAIL="urchlay@slackware.uk"

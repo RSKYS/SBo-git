@@ -7,6 +7,6 @@ MD5SUM="f556f36bf71167ce163ac41c6199bac0 \
         18ea8151cbb927310f2fab11e34034a0"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="libpaper SDL2_Pango fltk pngquant libunibreak"
+REQUIRES="libpaper SDL2_Pango fltk pngquant"
 MAINTAINER="Tim Dickson"
 EMAIL="dickson.tim@googlemail.com"

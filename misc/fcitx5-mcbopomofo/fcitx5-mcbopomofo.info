@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/openvanilla/fcitx5-mcbopomofo/archive/2.7/fcitx5-mc
 MD5SUM="ca825bab093fe4ba6f81cda92970f1ba"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="fcitx5"
+REQUIRES=""
 MAINTAINER="ltlnx"
 EMAIL="ltlnx@disroot.org"

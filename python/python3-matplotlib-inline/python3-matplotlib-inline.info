@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/m/matplotlib-inline/mat
 MD5SUM="96fe871bf30dc414e6724423c1e2ebb1"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="traitlets python3-setuptools-opt python3-matplotlib"
+REQUIRES="traitlets python3-matplotlib"
 MAINTAINER="Jeremy Hansen"
 EMAIL="jebrhansen+SBo@gmail.com"

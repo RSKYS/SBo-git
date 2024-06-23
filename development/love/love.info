@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/love2d/love/releases/download/11.5/love-11.5-linux-
 MD5SUM="8dc6ab3d3ecb09cb8ea9b6ed8a0ec768"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="libmodplug luajit physfs"
+REQUIRES="libmodplug physfs"
 MAINTAINER="B. Watson"
 EMAIL="urchlay@slackware.uk"

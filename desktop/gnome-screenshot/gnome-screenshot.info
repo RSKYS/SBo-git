@@ -5,6 +5,6 @@ DOWNLOAD="https://download.gnome.org/sources/gnome-screenshot/41/gnome-screensho
 MD5SUM="3d0199188d8ba07399e468a61e0174e8"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="libhandy"
+REQUIRES=""
 MAINTAINER="Bob Funk"
 EMAIL="bobfunk11@gmail.com"

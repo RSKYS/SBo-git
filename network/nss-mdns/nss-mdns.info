@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/lathiat/nss-mdns/releases/download/v0.14.1/nss-mdns
 MD5SUM="39b7f6ccfa0605321c7ee6e78478b83b"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="avahi"
+REQUIRES=""
 MAINTAINER="Robby Workman"
 EMAIL="rworkman@slackbuilds.org"

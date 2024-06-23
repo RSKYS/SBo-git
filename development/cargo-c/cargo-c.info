@@ -719,6 +719,6 @@ MD5SUM="000e0527593da3a0f259a4ebb46db79c \
         435d25733f3dfe79aaebdb55f520162d"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="rust16"
+REQUIRES=""
 MAINTAINER="Alexander Verbovetsky"
 EMAIL="alik@ejik.org"

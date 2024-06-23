@@ -209,6 +209,6 @@ MD5SUM="6ceedb7e3f923769fc24fbc889f83bf0 \
         ff740ff52ecfd509004f54630f94c3e4"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="rust16"
+REQUIRES=""
 MAINTAINER="Erich Ritz"
 EMAIL="erich.public@protonmail.com"

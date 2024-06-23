@@ -15,6 +15,6 @@ MD5SUM_x86_64="a9c767fd77587be7cec5c7932b772027 \
                e2f744abeca9a55aa7e49e652a983ebd \
                fc702efac9ba601156c27f7fc7055f98 \
                cb03a7c28b5a9b184f609f2c9b0c6fae"
-REQUIRES="fast_float rapidyaml soundtouch wxWidgets zstd-cmake"
+REQUIRES="fast_float rapidyaml soundtouch wxWidgets"
 MAINTAINER="Steven Voges"
 EMAIL="svoges.sbo@gmail.com"

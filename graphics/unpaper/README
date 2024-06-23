@@ -28,5 +28,5 @@ Petteno'.
 BUILD OPTIONS:
 
 SPHINX => set to 'true' to build the manpage for unpaper, which now
-requires "Sphinx" (available in SBo), which is a large python package
+requires "" (available in SBo), which is a large python package
 with many dependencies. Thus, it is disabled by default.

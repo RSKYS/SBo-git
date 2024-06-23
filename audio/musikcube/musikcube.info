@@ -7,6 +7,6 @@ MD5SUM="a8618ebc15424a559497bc6cd287d207 \
         343e9434cad3006dc74ba13bdf84445a"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="libev libmicrohttpd"
+REQUIRES="libmicrohttpd"
 MAINTAINER="Samuel Young"
 EMAIL="samyoung12788@gmail.com"

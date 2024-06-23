@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/dslackw/battery-notify/-/archive/1.4/battery-notify
 MD5SUM="d056b8d2cc0d614746a0aa7da7993e37"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-daemon python3-psutil"
+REQUIRES="python3-daemon"
 MAINTAINER="Dimitris Zlatanidis"
 EMAIL="dslackw@gmail.com"

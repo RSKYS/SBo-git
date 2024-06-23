@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/ozanty/sbodirectlinks/-/raw/main/kildclient/kildcli
 MD5SUM="33ec0951bcc1be38beb7480313782f13"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="perl-JSON perl-xml-libxml gtkspell3"
+REQUIRES="perl-JSON perl-xml-libxml"
 MAINTAINER="Ozan Türkyılmaz"
 EMAIL="ozan.turkyilmaz@gmail.com"

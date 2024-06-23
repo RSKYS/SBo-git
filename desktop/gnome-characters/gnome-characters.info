@@ -5,6 +5,6 @@ DOWNLOAD="https://download.gnome.org/sources/gnome-characters/41/gnome-character
 MD5SUM="9194c656869266067d32bb69cf5174f6"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="libhandy"
+REQUIRES=""
 MAINTAINER="Bob Funk"
 EMAIL="bobfunk11@gmail.com"

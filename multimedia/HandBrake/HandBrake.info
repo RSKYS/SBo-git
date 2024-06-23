@@ -27,6 +27,6 @@ MD5SUM="d411209b76aeff9f5ce018249313486d \
         af2c08cc0e695f4c0c225feed14e9f20"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="libass x264 numactl"
+REQUIRES="x264 numactl"
 MAINTAINER="Jeremy Hansen"
 EMAIL="jebrhansen+SBo@gmail.com"

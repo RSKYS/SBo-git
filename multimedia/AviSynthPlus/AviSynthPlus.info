@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/AviSynth/AviSynthPlus/archive/v3.7.3/AviSynthPlus-3
 MD5SUM="e18f562c225aa04792f318a2d3039418"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="DevIL Sphinx"
+REQUIRES="DevIL"
 MAINTAINER="Vijay Marcel"
 EMAIL="vijaymarcel@outlook.com"

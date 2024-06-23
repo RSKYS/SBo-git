@@ -9,6 +9,6 @@ DOWNLOAD_x86_64="https://www.paraview.org/files/v5.11/ParaView-v5.11.2.tar.xz \
 MD5SUM_x86_64="b5a13247fec282b8294a28d3101049fb \
                9aa92ec6c1540f2425849c4ffddd158d  \
                392a29c111c5867b51e78bcb83e64198"
-REQUIRES="gdal hdf5 python3-matplotlib Sphinx"
+REQUIRES="gdal hdf5 python3-matplotlib"
 MAINTAINER="Christoph Willing"
 EMAIL="chris.willing@linux.com"

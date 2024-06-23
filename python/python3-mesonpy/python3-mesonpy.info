@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/m/meson-python/meson_py
 MD5SUM="e91eb9946d7bb8be06e434c5a2dadd05"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-pyproject-metadata python3-meson-opt"
+REQUIRES="python3-pyproject-metadata"
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

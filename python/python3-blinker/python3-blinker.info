@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/b/blinker/blinker-1.8.2
 MD5SUM="ce2f9fb3bc0c0000db11f012f5f5afda"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-setuptools-opt"
+REQUIRES=""
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

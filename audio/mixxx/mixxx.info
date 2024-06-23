@@ -9,6 +9,6 @@ MD5SUM="95d2cc0cb35b88164615a75d9466bc0f \
         7e43f29076690ba769d73fc5fb5ddd21"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="chromaprint faad2 googlebenchmark hidapi libebur128 libmodplug libmp4v2 libshout lilv microsoft-gsl opencore-amr portaudio portmidi protobuf3 rubberband soundtouch"
+REQUIRES="chromaprint faad2 googlebenchmark hidapi libebur128 libmodplug libmp4v2 libshout lilv microsoft-gsl opencore-amr portaudio portmidi rubberband soundtouch"
 MAINTAINER="Matteo Bernardini"
 EMAIL="ponce@slackbuilds.org"

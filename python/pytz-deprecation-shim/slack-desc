@@ -11,7 +11,7 @@ pytz-deprecation-shim:
 pytz-deprecation-shim: pytz has served the Python community well for many years, but it is no
 pytz-deprecation-shim: longer the best option for providing time zones. pytz has a
 pytz-deprecation-shim: non-standard interface that is very easy to misuse; this interface was
-pytz-deprecation-shim: necessary when pmytz was created, because datetime had no way to
+pytz-deprecation-shim: necessary when pytz was created, because datetime had no way to
 pytz-deprecation-shim: represent ambiguous datetimes, but this was solved in Python 3.6,
 pytz-deprecation-shim: which added a fold attribute to datetimes in PEP 495. With the
 pytz-deprecation-shim: addition of the zoneinfo module in Python 3.9 (PEP 615), there has

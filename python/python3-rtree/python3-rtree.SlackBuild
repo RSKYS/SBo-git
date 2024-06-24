@@ -66,7 +66,6 @@ find -L . \
 
 
 
-
 # python3-rtree can be built by running setup.py directly.
 # However, this brings about a "SetuptoolsDeprecationWarning: setup.py install is deprecated."
 python3 -m build --no-isolation

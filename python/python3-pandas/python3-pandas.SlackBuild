@@ -75,7 +75,6 @@ sed -i 's/meson==/meson>=/' pyproject.toml
 # needs newer meson
 
 
-
 # cannot build sdist, specify just wheel
 python3 -m build --wheel --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl

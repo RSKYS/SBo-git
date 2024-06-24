@@ -73,7 +73,6 @@ sed -i '/oldest-supported-numpy/d' pyproject.toml
 
 
 
-
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
 

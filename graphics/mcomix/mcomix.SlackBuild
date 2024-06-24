@@ -65,7 +65,6 @@ find . -type f -a -exec chmod 644 {} + -o \
        -type d -a -exec chmod 755 {} +
 
 
-
 python3 -m build --wheel --no-isolation
 python3 -m installer --destdir "$PKG" dist/*.whl
 

@@ -78,7 +78,6 @@ find -L . \
 # Needs newer setuptools
 
 
-
 python3 -m build --no-isolation
 python3 -m installer --destdir "$PKG" dist/*.whl
 

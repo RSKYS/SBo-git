@@ -82,7 +82,6 @@ find -L . \
 
 # to use updated meson
 
-/
 
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \

@@ -11,5 +11,5 @@ https://github.com/jqlang/jq/pull/3039
 +export LC_ALL
 +
  if [ -z "${NO_VALGRIND-}" ] && which valgrind > /dev/null; then
-     VALGRIND="--error-exitcode=1 --leak-check=full \
+     VALGRIND="valgrind --error-exitcode=1 --leak-check=full \
                         --suppressions=$JQTESTDIR/onig.supp \

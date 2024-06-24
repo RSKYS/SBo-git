@@ -65,10 +65,8 @@ find -L . \
 
 
 
-
 # Use newer, non-stock setuptools due to package requirements
 # Requres python/python3-setuptools-opt build-time dependency
-
 
 
 # Add unused section to avoid ERROR message from setuptools_scm

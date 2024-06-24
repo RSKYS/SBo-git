@@ -66,7 +66,6 @@ export SETUPTOOLS_SCM_PRETEND_VERSION=$VERSION
 
 
 
-
 python3 -m build --wheel --no-isolation
 python3 -m installer --destdir=$PKG dist/*.whl
 

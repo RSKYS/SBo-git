@@ -80,7 +80,6 @@ find -L . \
 # python3-setuptools-opt, we need to adjust PYTHONPATH to use it here too.
 
 
-
 python3 -m build --wheel --no-isolation
 
 python3 -m installer --destdir "$PKG" dist/*.whl

@@ -102,7 +102,6 @@ echo "LD_LIBRARY_PATH set to ${LD_LIBRARY_PATH}"
 # thanks to fourtysixandtwo
 
 
-
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
 

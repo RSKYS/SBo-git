@@ -83,7 +83,6 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 
-
 CFLAGS="$SLKCFLAGS" CXXFLAGS="$SLKCFLAGS" python3 -m build --wheel --no-isolation
 python3 -m installer --destdir "$PKG" dist/*.whl
 

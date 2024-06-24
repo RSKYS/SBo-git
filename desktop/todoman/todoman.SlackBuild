@@ -80,7 +80,6 @@ find -L . \
 # Requires python/python3-setuptools-opt build-time dependency
 
 
-
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
 

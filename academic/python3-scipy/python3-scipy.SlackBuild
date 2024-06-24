@@ -80,7 +80,6 @@ sed -i 's|pythran>=0.15.0,<0.16.0|pythran|' pyproject.toml
 # needs newer meson
 
 
-
 python3 -m build --wheel --no-isolation
 python3 -m installer --destdir "$PKG" dist/*.whl
 

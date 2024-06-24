@@ -73,7 +73,6 @@ find -L . \
 # Use newer meson
 
 
-
 # Fix application flags for glib 2.70
 # glib2 documentation: https://docs.gtk.org/gio/flags.ApplicationFlags.html
 # glib2 version check taken from Didier Spaier: https://tinyurl.com/8s2duash

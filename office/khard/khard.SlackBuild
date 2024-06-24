@@ -78,7 +78,6 @@ find -L . \
 
 
 
-
 python3 setup.py install --root=$PKG
 
 # Strip binaries and libraries.

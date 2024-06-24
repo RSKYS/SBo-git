@@ -68,7 +68,6 @@ find -L . \
 # Otherwise, shtab does not compile properly
 
 
-
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
 

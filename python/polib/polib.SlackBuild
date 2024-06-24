@@ -102,7 +102,7 @@ if [ -x /usr/bin/sphinx-build ] ; then
         mv ./_build/* $PKG/usr/doc/$PRGNAM-$VERSION/
     )
 else
-    echo "documenting program not found"
+    echo "Sphinx documenting program not found"
     echo "Skipping document building"
 fi
 

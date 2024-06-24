@@ -84,7 +84,6 @@ find -L . \
 
 
 
-
 python3 setup.py install --root=$PKG
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \

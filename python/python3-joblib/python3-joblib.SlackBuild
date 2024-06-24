@@ -69,7 +69,6 @@ find -L . \
 # Requres python/python3-setuptools-opt build-time dependency
 
 
-
 # Add unused section to avoid ERROR message from setuptools_scm
 # Make it an if statement just in case upstream decides to update
 # it and I don't notice.

@@ -68,7 +68,6 @@ find -L . \
 # Requres python/python3-setuptools-opt build-time dependency
 
 
-
 python3 setup.py install --root $PKG
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \

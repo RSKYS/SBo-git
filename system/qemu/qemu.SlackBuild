@@ -95,7 +95,6 @@ find -L . \
 
 # Use newer meson from python3-meson-opt
 
-
   
 # Remove double CFLAGS
 sed -i "s|^\ \ CFLAGS=\"-O2\ |  CFLAGS=\"|" configure

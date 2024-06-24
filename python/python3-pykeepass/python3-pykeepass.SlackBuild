@@ -77,7 +77,6 @@ patch -p1 < $CWD/use_built_in_isoformat_support.patch
 
 
 
-
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
 

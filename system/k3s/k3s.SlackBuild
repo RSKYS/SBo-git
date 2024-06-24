@@ -26,7 +26,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=k3s
 VERSION=${VERSION:-1.30.0}
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -60,6 +60,22 @@ else
   exit 1
 fi
 
+bailout() {
+  echo "  Better to have a k3s group to run this script. "
+  echo "  create k3s group and add user to avoid always use of sudo: "
+  echo "    # groupadd k3s "
+  echo "    # chown root:k3s /etc/rancher/k3s/k3s.yaml "
+  echo "    # chmod 740 /etc/rancher/k3s/k3s.yaml "
+  echo "    # usermod -aG k3s \$USER (Replace \$USER with your username) "
+  echo "  Then restart k3s daemon. "
+  exit 1
+}
+
+# Bail if group isn't valid on your system.
+if ! grep -q "^$PRGNAM:" /etc/group; then
+  bailout
+fi
+
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
@@ -88,7 +104,6 @@ for symlink in kubectl crictl ctr; do
     ln -sf /usr/bin/k3s usr/bin/$symlink
 done
 
-rm -rf usr/share/doc
 mkdir -p usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 

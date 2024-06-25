@@ -1,0 +1,66 @@
+diff --git a/SBO-Lib/lib/SBO/Lib/Util.pm b/SBO-Lib/lib/SBO/Lib/Util.pm
+index 4fc08b7..34c94dc 100644
+--- a/SBO-Lib/lib/SBO/Lib/Util.pm
++++ b/SBO-Lib/lib/SBO/Lib/Util.pm
+@@ -202,12 +202,8 @@ will exit.
+ 
+ # %supported maps what's in /etc/slackware-version to an rsync or https URL
+ my %supported = (
+-  '14.0' => 'rsync://slackbuilds.org/slackbuilds/14.0/',
+-  '14.1' => 'rsync://slackbuilds.org/slackbuilds/14.1/',
+-  '14.2' => 'rsync://slackbuilds.org/slackbuilds/14.2/',
+-  '14.2+' => 'https://github.com/Ponce/slackbuilds.git',
+-  '15.0' => 'https://github.com/Ponce/slackbuilds.git',
+-  current => 'https://github.com/Ponce/slackbuilds.git',
++  '15.0' => 'https://github.com/RSKYS/SBo-git',
++  '15.0+' => 'https://github.com/RSKYS/SBo-git',
+ );
+ 
+ sub get_slack_version {
+@@ -381,21 +377,12 @@ returns whatever the user answered.
+ sub prompt {
+   my ($q, %opts) = @_;
+   my $def = $opts{default};
+-  $q = sprintf '%s [%s] ', $q, $def eq 'yes' ? 'y' : 'n' if defined $def;
+-
+-  print $q;
+-
+-  my $res = readline STDIN;
+ 
+   if (defined $def) {
+-    return 1 if $res =~ /^y/i;
+-    return 0 if $res =~ /^n/i;
+-    return $def eq 'yes' if $res =~ /^\n/;
+-
+-    # if none of the above matched, we ask again
+-    goto &prompt;
++      return $def eq 'yes';
+   }
+-  return $res;
++
++  return $def;
+ }
+ 
+ =head2 read_config
+@@ -421,7 +408,7 @@ sub read_config {
+   } else {
+     warn "Unable to open $conf_file.\n" if -f $conf_file;
+   }
+-  $config{SBO_HOME} = '/usr/sbo' if $config{SBO_HOME} eq 'FALSE';
++  $config{SBO_HOME} = '/tmp/sbo' if $config{SBO_HOME} eq 'FALSE';
+ }
+ 
+ =head2 script_error
+diff --git a/SBO-Lib/lib/SBO/Lib/Repo.pm b/SBO-Lib/lib/SBO/Lib/Repo.pm
+index 90182ac..0875944 100644
+--- a/SBO-Lib/lib/SBO/Lib/Repo.pm
++++ b/SBO-Lib/lib/SBO/Lib/Repo.pm
+@@ -242,7 +242,7 @@ sub git_sbo_tree {
+   } else {
+     chdir $config{SBO_HOME} or return 0;
+     remove_tree($repo_path) if -d $repo_path;
+-    $res = system(qw/ git clone --no-local /, $url, $repo_path) == 0;
++    $res = system(qw/ git clone -b master --no-local /, $url, $repo_path) == 0;
+   }
+   _race::cond '$cwd could be deleted here';
+   return 1 if chdir $cwd and $res;

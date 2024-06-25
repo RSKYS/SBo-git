@@ -23,3 +23,29 @@ index 6c6ba68..594a3f5 100644
 +REQUIRES="python3-setuptools-opt"
  MAINTAINER="Pouria Rezaei"
  EMAIL="Pouria.rz@outlook.com"
+diff --git a/python/python3-fasteners/python3-fasteners.SlackBuild b/python/python3-fasteners/python3-fasteners.SlackBuild
+index b854fa131d..34b2ae2155 100644
+--- a/python/python3-fasteners/python3-fasteners.SlackBuild
++++ b/python/python3-fasteners/python3-fasteners.SlackBuild
+@@ -72,6 +72,9 @@ find -L . \
+  \( -perm 400 -o -perm 440 -o -perm 444 \
+   -o -perm 600 -o -perm 640 -o -perm 664 -o -perm 666 \) -exec chmod 644 {} \;
+ 
++export PYTHONPATH=/opt/python$PYVER/site-packages/
++PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
++
+ python3 -m installer --destdir="$PKG" dist/*.whl
+ python3 -m build --wheel --no-isolation
+ 
+diff --git a/python/python3-fasteners/python3-fasteners.info b/python/python3-fasteners/python3-fasteners.info
+index 0fd2fe30b8..6aabf4ed04 100644
+--- a/python/python3-fasteners/python3-fasteners.info
++++ b/python/python3-fasteners/python3-fasteners.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/5f/d4/e834d929be54bfadb1f3e3b9
+ MD5SUM="e957e11c2e00629e44166e1d2881798e"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-monotonic"
++REQUIRES="python3-setuptools-opt python3-monotonic"
+ MAINTAINER="Pouria Rezaei"
+ EMAIL="Pouria.rz@outlook.com"

@@ -89,13 +89,12 @@ cd $SRCNAM-$VERSION
 # configuration tells cargo to use the configured directory
 # for dependencies intead of downloading from crates.io
 mkdir .cargo
-cat << EOF >> .cargo/config
+cat <<EOF >> .cargo/config.toml
 [source.crates-io]
-registry = 'https://github.com/rust-lang/crates.io-index'
-replace-with = 'vendored-sources'
+replace-with = "vendored-sources"
 
 [source.vendored-sources]
-directory = '$(pwd)/vendor'
+directory = "vendor"
 EOF
 
 # deps and versions come from Cargo.lock
@@ -145,7 +144,7 @@ find -L . \
 CARGO_HOME=.cargo \
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
-cargo build --release $CARGOTARGET
+cargo build --offline --release $CARGOTARGET
 
 mkdir -p $PKG/usr/bin
 find target -name $PRGNAM -exec install -s -m 755 {} $PKG/usr/bin/$PRGNAM \;

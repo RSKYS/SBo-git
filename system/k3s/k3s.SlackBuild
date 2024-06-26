@@ -68,7 +68,6 @@ bailout() {
   echo "    # chmod 740 /etc/rancher/k3s/k3s.yaml "
   echo "    # usermod -aG k3s \$USER (Replace \$USER with your username) "
   echo "  Then restart k3s daemon. "
-  exit 1
 }
 
 # Bail if group isn't valid on your system.

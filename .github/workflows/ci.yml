@@ -3,6 +3,10 @@ name: PR tests
 
 on:
   pull_request_target:
+    branches:
+      - current
+    paths:
+      - 'master/**'
     types:
       - opened
       - synchronize

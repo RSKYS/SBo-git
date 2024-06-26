@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
 
     container:
       image: aclemons/slackware:latest-full
@@ -47,5 +47,5 @@ jobs:
             BASENAME=$(basename $FILE .SlackBuild)
 
             PKGTYPE=txz TAG=red \
-              sboinstall --reinstall $BASENAME || true
+              sboinstall --reinstall $BASENAME
           done )

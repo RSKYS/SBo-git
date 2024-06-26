@@ -93,6 +93,9 @@ install -m 0755 $CWD/config/rc.k3s etc/rc.d/rc.k3s
 mkdir -p etc/rancher/$PRGNAM
 install -m 0644 $CWD/config/k3s.service.env etc/rancher/k3s/k3s.service.env.new
 
+mkdir -p usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
 chown -R root:root .
 find -L . \
 \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
@@ -103,9 +106,6 @@ find -L . \
 for symlink in kubectl crictl ctr; do
     ln -sf /usr/bin/k3s usr/bin/$symlink
 done
-
-mkdir -p usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p install
 cat $CWD/slack-desc > install/slack-desc

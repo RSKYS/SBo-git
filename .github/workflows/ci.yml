@@ -1,0 +1,50 @@
+---
+name: PR tests
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+
+    container:
+      image: aclemons/slackware:latest-full
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Test Slackware 15.0 against my -current
+      run: |
+        ( cd /tmp
+
+          COMMIT=${COMMIT:-b721b4f35e06ece50888965af5a7642013de58a2}
+          mkdir init && cd init
+          wget -c https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/sbotools.SlackBuild \
+                  https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/sbotools.info \
+                  https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/slack-desc \
+                  https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/req.diff \
+                  https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/README
+
+          export $( cat sbotools.info | \
+                    grep -E "VERSION=|DOWNLOAD=" | tr -d "\"" )
+          wget $DOWNLOAD
+          TAG=red PKGTYPE=txz sh sbotools.SlackBuild
+          upgradepkg --reinstall --install-new /tmp/sbotools-$VERSION*.t?z
+          rm -rf {.git*,*}
+          sbocheck )
+
+        ( cd /tmp/sbo/repo
+          CHANGED=$(git diff --name-only remotes/origin/current.. | grep '.SlackBuild')
+
+          for FILE in $CHANGED; do
+            BASENAME=$(basename $FILE .SlackBuild)
+
+            PKGTYPE=txz TAG=red \
+              sboinstall --reinstall $BASENAME
+          done )

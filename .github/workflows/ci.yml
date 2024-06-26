@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
 
     container:
       image: aclemons/slackware:latest-full
@@ -42,10 +42,12 @@ jobs:
         ( cd /tmp/sbo/repo
           CHANGED=$(git diff --name-only remotes/origin/current.. | grep '.SlackBuild')
           find */*/ -name "doinst.sh" -exec sed -e '1,$d' {} +
+          # rm -rf */*/doinst.sh
 
           for FILE in $CHANGED; do
             BASENAME=$(basename $FILE .SlackBuild)
 
-            PKGTYPE=txz TAG=red \
-              sboinstall --reinstall $BASENAME || true
+            python3 -c "import subprocess; \
+                        subprocess.run(\"PKGTYPE=txz TAG=red \
+                        sboinstall --reinstall $BASENAME\", shell=True)"
           done )

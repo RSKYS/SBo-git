@@ -3,6 +3,8 @@ name: PR tests
 
 on:
   pull_request_target:
+    branches:
+      - current
     types:
       - opened
       - synchronize
@@ -47,6 +49,6 @@ jobs:
           for FILE in $CHANGED; do
             BASENAME=$(basename $FILE .SlackBuild)
 
-            PKGTYPE=txz TAG=red \
-              sboinstall --reinstall $BASENAME
+            PKGTYPE=txz \
+                  sboinstall -j3 --reinstall $BASENAME
           done )

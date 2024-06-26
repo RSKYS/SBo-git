@@ -11,7 +11,7 @@ on:
 jobs:
   Build:
     name: "Build against Slackware 15"
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     container:
       image: aclemons/slackware:latest-full

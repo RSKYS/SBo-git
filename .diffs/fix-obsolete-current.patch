@@ -7506,3 +7506,723 @@ index ac0907d9..5fb2666c 100644
  
  python3 -m build --wheel --no-isolation
  python3 -m installer --destdir "$PKG" dist/*.whl
+diff --git a/academic/fityk/fityk.info b/academic/fityk/fityk.info
+index c9bdbeba0..b54211c16 100644
+--- a/academic/fityk/fityk.info
++++ b/academic/fityk/fityk.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/wojdyr/fityk/releases/download/v1.3.2/fityk-1.3.2.t
+ MD5SUM="b5c24bc3cafd0e30f32f6daf56375fac"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua xylib"
++REQUIRES="xylib"
+ MAINTAINER="Fellype do Nascimento"
+ EMAIL="fellype (at) gmail (dot) com"
+diff --git a/desktop/devilspie2/devilspie2.info b/desktop/devilspie2/devilspie2.info
+index 84032d841..b516ef747 100644
+--- a/desktop/devilspie2/devilspie2.info
++++ b/desktop/devilspie2/devilspie2.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://download.savannah.nongnu.org/releases/devilspie2/devilspie2-0.4
+ MD5SUM="60194adb85b935158c7c15017d3ab9df"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Marek Šrejma"
+ EMAIL="marek@modweb.de"
+diff --git a/desktop/ion/ion.info b/desktop/ion/ion.info
+index 36bffe1d6..d8b6cf5d8 100644
+--- a/desktop/ion/ion.info
++++ b/desktop/ion/ion.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://gajon.org/otherstuff/ion-3-20090110.tar.gz"
+ MD5SUM="1f17be1e87187b4af7de047187cc4930"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Jorge Gajon"
+ EMAIL="gajon@gajon.org"
+diff --git a/desktop/notion/notion.info b/desktop/notion/notion.info
+index dfbe13e2e..2827bfec4 100644
+--- a/desktop/notion/notion.info
++++ b/desktop/notion/notion.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/raboof/notion/archive/4.0.2/notion-4.0.2.tar.gz"
+ MD5SUM="c5458c299adaad6910442edcc9d2cd61"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Dimitris Zlatanidis"
+ EMAIL="d.zlatanidis@gmail.com"
+diff --git a/development/Fennel/Fennel.info b/development/Fennel/Fennel.info
+index 5bde0e670..1eb340e32 100644
+--- a/development/Fennel/Fennel.info
++++ b/development/Fennel/Fennel.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://git.sr.ht/~technomancy/fennel/archive/1.0.0.tar.gz"
+ MD5SUM="a42c841b00eecbe4a49402a1ab318a51"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="abooksigun"
+ EMAIL="abooksigun09@gmail.com"
+diff --git a/development/arcan/arcan.info b/development/arcan/arcan.info
+index 7d0bd13ef..522723928 100644
+--- a/development/arcan/arcan.info
++++ b/development/arcan/arcan.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/letoram/arcan/archive/0.6.1.1/arcan-0.6.1.1.tar.gz"
+ MD5SUM="30ba84fe658f4136865756ece8b2e503"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua tesseract"
++REQUIRES="tesseract"
+ MAINTAINER="Damian Perticone"
+ EMAIL="mjolnirdam@gmail.com"
+diff --git a/development/love-legacy072/love-legacy072.info b/development/love-legacy072/love-legacy072.info
+index 852461e45..b2abbe57c 100644
+--- a/development/love-legacy072/love-legacy072.info
++++ b/development/love-legacy072/love-legacy072.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/love2d/love/releases/download/0.7.2/love-0.7.2-linu
+ MD5SUM="c3e678606bb9a870c31168e85b269e7e"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua DevIL physfs libmodplug"
++REQUIRES="DevIL physfs libmodplug"
+ MAINTAINER="B. Watson"
+ EMAIL="urchlay@slackware.uk"
+diff --git a/development/love-legacy080/love-legacy080.info b/development/love-legacy080/love-legacy080.info
+index 222a7229c..541ae5846 100644
+--- a/development/love-legacy080/love-legacy080.info
++++ b/development/love-legacy080/love-legacy080.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/love2d/love/releases/download/0.8.0/love-0.8.0-linu
+ MD5SUM="9db9c32585fc7c7da3eba7e438783099"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua DevIL physfs libmodplug"
++REQUIRES="DevIL physfs libmodplug"
+ MAINTAINER="B. Watson"
+ EMAIL="urchlay@slackware.uk"
+diff --git a/development/luarocks/luarocks.info b/development/luarocks/luarocks.info
+index 55f1f9f6d..370b77c0f 100644
+--- a/development/luarocks/luarocks.info
++++ b/development/luarocks/luarocks.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://luarocks.org/releases/luarocks-2.4.1.tar.gz"
+ MD5SUM="39ae81028259164e0a1aec5577fab065"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Evandro Alves Rodrigues"
+ EMAIL="evandrofisico@gmail.com"
+diff --git a/development/premake/premake.info b/development/premake/premake.info
+index 9f6c95fe0..246c09f84 100644
+--- a/development/premake/premake.info
++++ b/development/premake/premake.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://ponce.cc/slackware/sources/repo/premake-4.4-beta5-src.zip"
+ MD5SUM="4fe6eb000726d75621a99080b2466d4d"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Matteo Bernardini"
+ EMAIL="ponce@slackbuilds.org"
+diff --git a/development/premake5/premake5.info b/development/premake5/premake5.info
+index af73ba53e..13d6f1c77 100644
+--- a/development/premake5/premake5.info
++++ b/development/premake5/premake5.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/premake/premake-core/releases/download/v5.0.0-beta2
+ MD5SUM="23b436c9b740f04e57831c76b18b76bf"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Sean Eubanks"
+ EMAIL="seanmeu@protonmail.com"
+diff --git a/development/urn/urn.info b/development/urn/urn.info
+index c88fea91a..d3cdaa44b 100644
+--- a/development/urn/urn.info
++++ b/development/urn/urn.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/urn/urn/-/archive/v0.7.2/urn-v0.7.2.tar.gz"
+ MD5SUM="190761aa2e57152ac2a1e5466462e02b"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="abooksigun"
+ EMAIL="abooksigun09@gmail.com"
+diff --git a/games/OpenRA/OpenRA.info b/games/OpenRA/OpenRA.info
+index 6be42f404..ddfbae40a 100644
+--- a/games/OpenRA/OpenRA.info
++++ b/games/OpenRA/OpenRA.info
+@@ -9,6 +9,6 @@ MD5SUM="38593fbcdda629561d8c0bc8ac1af402 \
+         ef52f92818ebc942ca98108e92a0b802"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua mono dotnet-sdk-6.0"
++REQUIRES="mono dotnet-sdk-6.0"
+ MAINTAINER="khronosschoty"
+ EMAIL="khronosschoty@posteo.org"
+diff --git a/games/SLADE/SLADE.info b/games/SLADE/SLADE.info
+index dca3d3267..0aee60e82 100644
+--- a/games/SLADE/SLADE.info
++++ b/games/SLADE/SLADE.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/sirjuddington/SLADE/archive/3.2.4/SLADE-3.2.4.tar.g
+ MD5SUM="ba3fbbbb970497e558e26856f7d7ea2c"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="wxGTK3 SFML ftgl FreeImage p7zip lua"
++REQUIRES="wxGTK3 SFML ftgl FreeImage p7zip"
+ MAINTAINER="B. Watson"
+ EMAIL="urchlay@slackware.uk"
+diff --git a/games/alephone/alephone.info b/games/alephone/alephone.info
+index c352b1c17..f677707e9 100644
+--- a/games/alephone/alephone.info
++++ b/games/alephone/alephone.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Aleph-One-Marathon/alephone/releases/download/relea
+ MD5SUM="a4ff8cd07f052190f02982d7773ca3b9"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua zziplib"
++REQUIRES="zziplib"
+ MAINTAINER="B. Watson"
+ EMAIL="urchlay@slackware.uk"
+diff --git a/games/asc/asc.info b/games/asc/asc.info
+index ec8227639..e9c22d2e1 100644
+--- a/games/asc/asc.info
++++ b/games/asc/asc.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://downloads.sourceforge.net/project/asc-hq/ASC%20Source/2.6.1/as
+ MD5SUM="b8668c378e730e982458d5c082e7e0ca"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua wxPython physfs"
++REQUIRES="wxPython physfs"
+ MAINTAINER="Dimitris Zlatanidis"
+ EMAIL="d.zlatanidis@gmail.com"
+diff --git a/games/boswars/boswars.info b/games/boswars/boswars.info
+index bc7e4c0b8..4656e5a92 100644
+--- a/games/boswars/boswars.info
++++ b/games/boswars/boswars.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://www.boswars.org/dist/releases/boswars-2.8-src.tar.gz"
+ MD5SUM="f77b1236260f3007ff43f8296baa9824"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Dimitris Zlatanidis"
+ EMAIL="d.zlatanidis@gmail.com"
+diff --git a/games/crawl/crawl.info b/games/crawl/crawl.info
+index a653d05ea..e1a38ec0f 100644
+--- a/games/crawl/crawl.info
++++ b/games/crawl/crawl.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/crawl/crawl/releases/download/0.31.0/stone_soup-0.3
+ MD5SUM="7f35dd3b6eb5b060df870a9c441bd70a"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="David Melik"
+ EMAIL="dchmelik@gmail.com"
+diff --git a/games/crossfire-client/crossfire-client.info b/games/crossfire-client/crossfire-client.info
+index 1d931a282..d8ea58bec 100644
+--- a/games/crossfire-client/crossfire-client.info
++++ b/games/crossfire-client/crossfire-client.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://sourceforge.net/projects/crossfire/files/crossfire-client/1.75
+ MD5SUM="46cc595a00da1ad323e58172e682a397"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Dimitris Zlatanidis"
+ EMAIL="d.zlatanidis@gmail.com"
+diff --git a/games/cubosphere/cubosphere.info b/games/cubosphere/cubosphere.info
+index d55a63474..965ca89fb 100644
+--- a/games/cubosphere/cubosphere.info
++++ b/games/cubosphere/cubosphere.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://downloads.sourceforge.net/cubosphere/cubosphere_beta0.3a_linux
+ MD5SUM="87a97675806a6722359c48953158b92a"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Larry Hajali"
+ EMAIL="larryhaja[at]gmail[dot]com"
+diff --git a/games/enigma-marbles/enigma-marbles.info b/games/enigma-marbles/enigma-marbles.info
+index 290699d89..150a9393d 100644
+--- a/games/enigma-marbles/enigma-marbles.info
++++ b/games/enigma-marbles/enigma-marbles.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Enigma-Game/Enigma/releases/download/1.30/Enigma-1.
+ MD5SUM="a93773a29a2b8223242c12ad3b2895a3"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua xerces-c"
++REQUIRES="xerces-c"
+ MAINTAINER="B. Spillner"
+ EMAIL="spillner@acm.org"
+diff --git a/games/fillets-ng/fillets-ng.info b/games/fillets-ng/fillets-ng.info
+index ed0e67bba..c96d6256a 100644
+--- a/games/fillets-ng/fillets-ng.info
++++ b/games/fillets-ng/fillets-ng.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://prdownloads.sourceforge.net/fillets/fillets-ng-1.0.1.tar.gz"
+ MD5SUM="bdd2dfacaab345f12d9ab0ff1d0ab6dc"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua fillets-ng-data"
++REQUIRES="fillets-ng-data"
+ MAINTAINER="Sergio Vicari"
+ EMAIL="sercari@esdebian.org"
+diff --git a/games/fs2open/fs2open.info b/games/fs2open/fs2open.info
+index 48f53d780..97e1e36e9 100644
+--- a/games/fs2open/fs2open.info
++++ b/games/fs2open/fs2open.info
+@@ -7,6 +7,6 @@ MD5SUM="19d8cd7edeb98a25b49abbf92b68246c \
+         ea83dec3b9655a27d28e7bc7cae9cd71"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua wxGTK3"
++REQUIRES="wxGTK3"
+ MAINTAINER="Danny Schmarsel"
+ EMAIL="danny@schmarsel.de"
+diff --git a/games/glestae/glestae.info b/games/glestae/glestae.info
+index 7daba3194..d97b7b8d2 100644
+--- a/games/glestae/glestae.info
++++ b/games/glestae/glestae.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://downloads.sourceforge.net/glestae/glestae-src-0.3.93.tar.bz2"
+ MD5SUM="83fec41c3c163dfb8437df93e98b5901"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua physfs"
++REQUIRES="physfs"
+ MAINTAINER="Larry Hajali"
+ EMAIL="larryhaja[at]gmail[dot]com"
+diff --git a/games/hedgewars/hedgewars.info b/games/hedgewars/hedgewars.info
+index 8e52fa021..c503f1abc 100644
+--- a/games/hedgewars/hedgewars.info
++++ b/games/hedgewars/hedgewars.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://www.hedgewars.org/download/releases/hedgewars-src-1.0.2.tar.bz
+ MD5SUM="1a91a973201c91bba2a494d428cadfbf"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="fpc lua physfs"
++REQUIRES="fpc physfs"
+ MAINTAINER="B. Watson"
+ EMAIL="urchlay@slackware.uk"
+diff --git a/games/megaglest/megaglest.info b/games/megaglest/megaglest.info
+index 8ac8b549e..1e527b952 100644
+--- a/games/megaglest/megaglest.info
++++ b/games/megaglest/megaglest.info
+@@ -9,6 +9,6 @@ MD5SUM="2b1020bb627de50fcf771bfcc335f8e2 \
+         0eb616b9effad7b630843182c1bcc07c"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="xerces-c lua ftgl wxPython"
++REQUIRES="xerces-c ftgl wxPython"
+ MAINTAINER="Larry Hajali"
+ EMAIL="larryhaja[at]gmail[dot]com"
+diff --git a/games/nlarn/nlarn.info b/games/nlarn/nlarn.info
+index 5ca5483a7..5c3a302a3 100644
+--- a/games/nlarn/nlarn.info
++++ b/games/nlarn/nlarn.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://sourceforge.net/projects/nlarn/files/nlarn/0.7.2/nlarn-0.7.2.ta
+ MD5SUM="3a1ffa3077677818081f4ad4eb0a9fdf"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Dimitris Zlatanidis"
+ EMAIL="d.zlatanidis@gmail.com"
+diff --git a/games/onscripter/onscripter.info b/games/onscripter/onscripter.info
+index 2fb605837..5f1ef879f 100644
+--- a/games/onscripter/onscripter.info
++++ b/games/onscripter/onscripter.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://onscripter.osdn.jp/onscripter-20200419.tar.gz"
+ MD5SUM="c852b16b0e7345aa1dfa2ba4b7942117"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="smpeg lua"
++REQUIRES="smpeg"
+ MAINTAINER="GOSIKI Agiri"
+ EMAIL="agiri@cocaine.ninja"
+diff --git a/games/pushover/pushover.info b/games/pushover/pushover.info
+index a48c69cf1..5847e8945 100644
+--- a/games/pushover/pushover.info
++++ b/games/pushover/pushover.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://attic-distfiles.pld-linux.org/distfiles/by-md5/8/3/831feec2d465
+ MD5SUM="831feec2d46583db01647a73295d4108"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="MLanden"
+ EMAIL="mlanden2009.home[AT]gmail.com"
+diff --git a/games/roccat-tools/roccat-tools.info b/games/roccat-tools/roccat-tools.info
+index 055c90a81..898672e3b 100644
+--- a/games/roccat-tools/roccat-tools.info
++++ b/games/roccat-tools/roccat-tools.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://downloads.sourceforge.net/roccat/roccat-tools-5.9.0.tar.bz2"
+ MD5SUM="a43a56638cce798047db2e33ed421841"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="libgaminggear lua"
++REQUIRES="libgaminggear"
+ MAINTAINER="Gerardo Zamudio"
+ EMAIL="gerardo.zamudio@linux.com"
+diff --git a/games/xmoto/xmoto.info b/games/xmoto/xmoto.info
+index 45811a003..d4b9157e5 100644
+--- a/games/xmoto/xmoto.info
++++ b/games/xmoto/xmoto.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/xmoto/xmoto/archive/0.6.1/xmoto-0.6.1.tar.gz"
+ MD5SUM="88725490243e69d5ab5cde349fa5fa3a"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua ode libxdg-basedir"
++REQUIRES="ode libxdg-basedir"
+ MAINTAINER="Alex Word"
+ EMAIL="alex_word86@yahoo.com"
+diff --git a/libraries/LuaBitOp/LuaBitOp.info b/libraries/LuaBitOp/LuaBitOp.info
+index d8e3d2a3d..52b2b7ff5 100644
+--- a/libraries/LuaBitOp/LuaBitOp.info
++++ b/libraries/LuaBitOp/LuaBitOp.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://bitop.luajit.org/download/LuaBitOp-1.0.2.tar.gz"
+ MD5SUM="d0c1080fe0c844e8477279668e2d0d06"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Gerardo Zamudio"
+ EMAIL="gerardo.zamudio@linux.com"
+diff --git a/libraries/lgi/lgi.info b/libraries/lgi/lgi.info
+index f7a72a3aa..71b92620c 100644
+--- a/libraries/lgi/lgi.info
++++ b/libraries/lgi/lgi.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/pavouk/lgi/archive/0.9.2/lgi-0.9.2.tar.gz"
+ MD5SUM="ad5d2e7a4427069f926f2ca472a5fe6d"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Heiko Rosemann"
+ EMAIL="heiko.rosemann@web.de"
+diff --git a/libraries/lua-cjson/lua-cjson.info b/libraries/lua-cjson/lua-cjson.info
+index fe51a1855..632667ed3 100644
+--- a/libraries/lua-cjson/lua-cjson.info
++++ b/libraries/lua-cjson/lua-cjson.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://www.kyne.com.au/~mark/software/download/lua-cjson-2.1.0.tar.gz
+ MD5SUM="24f270663e9f6ca8ba2a02cef19f7963"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="David O'Shaughnessy"
+ EMAIL="dev@osh.id.au"
+diff --git a/libraries/lua-filesystem/lua-filesystem.info b/libraries/lua-filesystem/lua-filesystem.info
+index d5ac17835..768a90e36 100644
+--- a/libraries/lua-filesystem/lua-filesystem.info
++++ b/libraries/lua-filesystem/lua-filesystem.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/keplerproject/luafilesystem/archive/v_1_6_3/luafile
+ MD5SUM="d0552c7e5a082f5bb2865af63fb9dc95"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Matteo Bernardini"
+ EMAIL="ponce@slackbuilds.org"
+diff --git a/libraries/lua-lpeg/lua-lpeg.info b/libraries/lua-lpeg/lua-lpeg.info
+index 62c752efd..2a87d19fb 100644
+--- a/libraries/lua-lpeg/lua-lpeg.info
++++ b/libraries/lua-lpeg/lua-lpeg.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://www.inf.puc-rio.br/~roberto/lpeg/lpeg-1.1.0.tar.gz"
+ MD5SUM="842a538b403b5639510c9b6fffd2c75b"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Alexander Verbovetsky"
+ EMAIL="alik@ejik.org"
+diff --git a/libraries/lua-md5/lua-md5.info b/libraries/lua-md5/lua-md5.info
+index 07382e377..9fa29557c 100644
+--- a/libraries/lua-md5/lua-md5.info
++++ b/libraries/lua-md5/lua-md5.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/keplerproject/md5/archive/v1.2/md5-1.2.tar.gz"
+ MD5SUM="c166f8a983401802a86655a8c733441e"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Matteo Bernardini"
+ EMAIL="ponce@slackbuilds.org"
+diff --git a/libraries/lua-mpack/lua-mpack.info b/libraries/lua-mpack/lua-mpack.info
+index de5dfdf2d..29611d778 100644
+--- a/libraries/lua-mpack/lua-mpack.info
++++ b/libraries/lua-mpack/lua-mpack.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/libmpack/libmpack-lua/releases/download/1.0.8/libmp
+ MD5SUM="ea3affb4c4168111e2be067d98d3a5c6"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Ruben Schuller"
+ EMAIL="sb@rbn.im"
+diff --git a/libraries/lua-std._debug/lua-std._debug.info b/libraries/lua-std._debug/lua-std._debug.info
+index 4f9df7a11..2fc727a81 100644
+--- a/libraries/lua-std._debug/lua-std._debug.info
++++ b/libraries/lua-std._debug/lua-std._debug.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/lua-stdlib/_debug/archive/v1.0.1/_debug-1.0.1.tar.g
+ MD5SUM="ccb440f3d84e2d56aab8c3dd6bcd0b18"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="abooksigun"
+ EMAIL="abooksigun09@gmail.com"
+diff --git a/libraries/lua-zlib/lua-zlib.info b/libraries/lua-zlib/lua-zlib.info
+index 4850711d5..99af77fcf 100644
+--- a/libraries/lua-zlib/lua-zlib.info
++++ b/libraries/lua-zlib/lua-zlib.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/brimworks/lua-zlib/archive/c0014bcbc4c3fd65ba3519b1
+ MD5SUM="3ba445324203e4e0beb2bc1cd93c547a"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Andrew Tkalia"
+ EMAIL="anddt@yandex.ua"
+diff --git a/libraries/luacrypto/luacrypto.info b/libraries/luacrypto/luacrypto.info
+index a4fcf1e01..0de42b61b 100644
+--- a/libraries/luacrypto/luacrypto.info
++++ b/libraries/luacrypto/luacrypto.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://ponce.cc/slackware/sources/repo/luacrypto-0.5.1.tar.gz"
+ MD5SUM="eda5f7e5bed499fe0c86934bb85519de"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Matteo Bernardini"
+ EMAIL="ponce@slackbuilds.org"
+diff --git a/libraries/luadbi/luadbi.info b/libraries/luadbi/luadbi.info
+index 9acd7b515..877968d93 100644
+--- a/libraries/luadbi/luadbi.info
++++ b/libraries/luadbi/luadbi.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/mwild1/luadbi/archive/v0.7.2/luadbi-0.7.2.tar.gz"
+ MD5SUM="8e80fdc9ea25845c17e9268b75980b85"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Andrew Tkalia"
+ EMAIL="anddt@yandex.ru"
+diff --git a/libraries/luaevent/luaevent.info b/libraries/luaevent/luaevent.info
+index 092d887b8..6bb0e5116 100644
+--- a/libraries/luaevent/luaevent.info
++++ b/libraries/luaevent/luaevent.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/harningt/luaevent/archive/v0.4.3/luaevent-0.4.3.tar
+ MD5SUM="3d0efc3d3751fddecedba0c25e0652df"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Andrew Tkalia"
+ EMAIL="anddt@yandex.ru"
+diff --git a/libraries/luaexpat/luaexpat.info b/libraries/luaexpat/luaexpat.info
+index 34869598b..092b5e916 100644
+--- a/libraries/luaexpat/luaexpat.info
++++ b/libraries/luaexpat/luaexpat.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/lunarmodules/luaexpat/archive/1.5.1/luaexpat-1.5.1.
+ MD5SUM="3656fb29127c725cd2669f5af8ca35c0"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Gerardo Zamudio"
+ EMAIL="gerardo.zamudio@linux.com"
+diff --git a/libraries/luasec/luasec.info b/libraries/luasec/luasec.info
+index d39e74898..23965e3af 100644
+--- a/libraries/luasec/luasec.info
++++ b/libraries/luasec/luasec.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/brunoos/luasec/archive/v1.3.1/luasec-1.3.1.tar.gz"
+ MD5SUM="73cbbeb8bb50cd7da5b7e929040dd656"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Gerardo Zamudio"
+ EMAIL="gerardo.zamudio@linux.com"
+diff --git a/libraries/luasocket/luasocket.info b/libraries/luasocket/luasocket.info
+index 1248db110..e5947d461 100644
+--- a/libraries/luasocket/luasocket.info
++++ b/libraries/luasocket/luasocket.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/lunarmodules/luasocket/archive/v3.1.0/luasocket-3.1
+ MD5SUM="abeca2891168914b57460b0ba9f9090f"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Gerardo Zamudio"
+ EMAIL="gerardo.zamudio@linux.com"
+diff --git a/libraries/lunatic-python/lunatic-python.info b/libraries/lunatic-python/lunatic-python.info
+index 8fffb6a9a..b5274adca 100644
+--- a/libraries/lunatic-python/lunatic-python.info
++++ b/libraries/lunatic-python/lunatic-python.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://pypi.python.org/packages/source/l/lunatic-python-bugfix/lunati
+ MD5SUM="42be02430fdd05b657d3a5078bbbe5af"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Dimitris Zlatanidis"
+ EMAIL="d.zlatanidis@gmail.com"
+diff --git a/libraries/tolua++/tolua++.info b/libraries/tolua++/tolua++.info
+index 256e37b9c..b60550826 100644
+--- a/libraries/tolua++/tolua++.info
++++ b/libraries/tolua++/tolua++.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/LuaDist/toluapp/archive/1.0.93/toluapp-1.0.93.tar.g
+ MD5SUM="689d952034e55d4333fa240f7516e68a"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Matteo Bernardini"
+ EMAIL="ponce@slackbuilds.org"
+diff --git a/multimedia/aegisub/aegisub.info b/multimedia/aegisub/aegisub.info
+index 7156dabec..036eeb705 100644
+--- a/multimedia/aegisub/aegisub.info
++++ b/multimedia/aegisub/aegisub.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/wangqr/Aegisub/archive/v3.3.3/Aegisub-3.3.3.tar.gz"
+ MD5SUM="08d7750b8b7732b790e9756ca3195baf"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua ffms2 wxGTK3 libuchardet"
++REQUIRES="ffms2 wxGTK3 libuchardet"
+ MAINTAINER="Willy Sudiarto Raharjo"
+ EMAIL="willysr@slackbuilds.org"
+diff --git a/multimedia/vlc/vlc.info b/multimedia/vlc/vlc.info
+index 55f80df3f..fe30c30ef 100644
+--- a/multimedia/vlc/vlc.info
++++ b/multimedia/vlc/vlc.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://get.videolan.org/vlc/3.0.20/vlc-3.0.20.tar.xz"
+ MD5SUM="e8337fcd2df92f3901dad091fb85f545"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="libdc1394 libdvbpsi libmpeg2 lua portaudio twolame gsm libtar libkate faac libdca libshout projectM jack libsidplay2 zvbi faad2 libavc1394 libmodplug musepack-tools vcdimager dirac gnome-vfs live555 rtmpdump libdvdcss schroedinger libminizip chromaprint x264 x265 libnfs"
++REQUIRES="libdc1394 libdvbpsi libmpeg2 portaudio twolame gsm libtar libkate faac libdca libshout projectM jack libsidplay2 zvbi faad2 libavc1394 libmodplug musepack-tools vcdimager dirac gnome-vfs live555 rtmpdump libdvdcss schroedinger libminizip chromaprint x264 x265 libnfs"
+ MAINTAINER="Steven Voges"
+ EMAIL="svoges.sbo@gmail.com"
+diff --git a/network/eiskaltdcpp/eiskaltdcpp.info b/network/eiskaltdcpp/eiskaltdcpp.info
+index 6400b4d2c..40debf144 100644
+--- a/network/eiskaltdcpp/eiskaltdcpp.info
++++ b/network/eiskaltdcpp/eiskaltdcpp.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/eiskaltdcpp/eiskaltdcpp/archive/v2.4.2/eiskaltdcpp-
+ MD5SUM="58e07f79de61e3cc02a4be3f96f02884"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua miniupnpc"
++REQUIRES="miniupnpc"
+ MAINTAINER="Nikolay Korotkiy"
+ EMAIL="sikmir@gmail.com"
+diff --git a/network/imapfilter/imapfilter.info b/network/imapfilter/imapfilter.info
+index 881a0d180..00e0d48cd 100644
+--- a/network/imapfilter/imapfilter.info
++++ b/network/imapfilter/imapfilter.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/lefcha/imapfilter/archive/v2.8.2/imapfilter-2.8.2.t
+ MD5SUM="16c9f950978369687b6d6d00289678e8"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Andrew Clemons"
+ EMAIL="andrew.clemons@gmail.com"
+diff --git a/network/lxi-tools/lxi-tools.info b/network/lxi-tools/lxi-tools.info
+index 506d721ad..0e6f9c511 100644
+--- a/network/lxi-tools/lxi-tools.info
++++ b/network/lxi-tools/lxi-tools.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/lxi-tools/lxi-tools/releases/download/v1.21/lxi-too
+ MD5SUM="a89aaf5841ada80ca25d9d38c0d11ead"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="liblxi lua"
++REQUIRES="liblxi"
+ MAINTAINER="Nate Bargmann"
+ EMAIL="n0nb@arrl.net"
+diff --git a/network/pdns-recursor/pdns-recursor.info b/network/pdns-recursor/pdns-recursor.info
+index 4cbb7e660..eb656f4d4 100644
+--- a/network/pdns-recursor/pdns-recursor.info
++++ b/network/pdns-recursor/pdns-recursor.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://downloads.powerdns.com/releases/pdns-recursor-4.6.0.tar.bz2"
+ MD5SUM="ada31148b47231ac61ec504d2b8a5ece"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Dejan Strbac"
+ EMAIL="me@dejanstrbac.com"
+diff --git a/network/pdns/pdns.info b/network/pdns/pdns.info
+index 2084a8104..9ab919475 100644
+--- a/network/pdns/pdns.info
++++ b/network/pdns/pdns.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://downloads.powerdns.com/releases/pdns-4.6.0.tar.bz2"
+ MD5SUM="b8af22df3bc0e0d07e3b54e2a136265e"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Dejan Strbac"
+ EMAIL="me@dejanstrbac.com"
+diff --git a/network/ptokax/ptokax.info b/network/ptokax/ptokax.info
+index bd3ca3d01..412ab4149 100644
+--- a/network/ptokax/ptokax.info
++++ b/network/ptokax/ptokax.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://www.ptokax.org/files/0.5.0.1-nix-src.tgz"
+ MD5SUM="911b97d0c696b82a75786fd8be96a626"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="mara"
+ EMAIL="mara@fail.pp.ua"
+diff --git a/network/wireshark/wireshark.info b/network/wireshark/wireshark.info
+index 03987d6ab..77212bb5f 100644
+--- a/network/wireshark/wireshark.info
++++ b/network/wireshark/wireshark.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://2.na.dl.wireshark.org/src/wireshark-4.2.5.tar.xz"
+ MD5SUM="7d04bb70a64726cdefe8da6e3aa58c26"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Willy Sudiarto Raharjo"
+ EMAIL="willysr@slackbuilds.org"
+diff --git a/office/task/task.info b/office/task/task.info
+index fb9f01efd..f38e5fc1c 100644
+--- a/office/task/task.info
++++ b/office/task/task.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://taskwarrior.org/download/task-2.6.2.tar.gz"
+ MD5SUM="a9e69fd612e8ad538b9f512c80b18122"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Jostein Berntsen"
+ EMAIL="jvbernts@online.no"
+diff --git a/system/klish/klish.info b/system/klish/klish.info
+index e7a675c54..91279cc9b 100644
+--- a/system/klish/klish.info
++++ b/system/klish/klish.info
+@@ -5,6 +5,6 @@ DOWNLOAD="http://libcode.org/attachments/download/70/klish-2.1.4.tar.xz"
+ MD5SUM="57a0b39b6e0a450007ee9e0b2ff50f03"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Jan F. Chadima"
+ EMAIL="jfch@jagda.eu"
+diff --git a/system/sysbench/sysbench.info b/system/sysbench/sysbench.info
+index ff5bc4dea..df1671921 100644
+--- a/system/sysbench/sysbench.info
++++ b/system/sysbench/sysbench.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/akopytov/sysbench/archive/1.0.19/sysbench-1.0.19.ta
+ MD5SUM="2912bfe7238cac7351459019a84e2557"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="lua"
++REQUIRES= ""
+ MAINTAINER="Sergio Vicari"
+ EMAIL="devteamtuc@gmail.com"

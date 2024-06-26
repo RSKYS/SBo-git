@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/lefcha/imapfilter/archive/v2.8.2/imapfilter-2.8.2.t
 MD5SUM="16c9f950978369687b6d6d00289678e8"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="lua"
+REQUIRES= ""
 MAINTAINER="Andrew Clemons"
 EMAIL="andrew.clemons@gmail.com"

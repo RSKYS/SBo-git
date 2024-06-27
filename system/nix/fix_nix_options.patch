@@ -125,21 +125,6 @@ index abdfd6a..d362be8 100644
  
  endif
 diff --git a/configure.ac b/configure.ac
-index 6d78237..ad8d9e7 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -300,7 +300,9 @@ AC_ARG_VAR([RAPIDCHECK_HEADERS], [include path of gtest headers shipped by RAPID
- # No pkg-config yet, https://github.com/emil-e/rapidcheck/issues/302
- AC_LANG_PUSH(C++)
- AC_SUBST(RAPIDCHECK_HEADERS)
--[CXXFLAGS="-I $RAPIDCHECK_HEADERS $CXXFLAGS"]
-+if test -n "${RAPIDCHECK_HEADERS}"; then
-+   [CXXFLAGS="-I $RAPIDCHECK_HEADERS $CXXFLAGS"]
-+fi
- [LIBS="-lrapidcheck -lgtest $LIBS"]
- AC_CHECK_HEADERS([rapidcheck/gtest.h], [], [], [#include <gtest/gtest.h>])
- dnl AC_CHECK_LIB doesn't work for C++ libs with mangled symbols
-diff --git a/configure.ac b/configure.ac
 index ad8d9e7..0833ae0 100644
 --- a/configure.ac
 +++ b/configure.ac
@@ -152,3 +137,24 @@ index ad8d9e7..0833ae0 100644
    AC_MSG_CHECKING([whether sandbox-shell has the standalone feature])
    # busybox shell sometimes allows executing other busybox applets,
    # even if they are not in the path, breaking our sandbox
+diff --git a/src/libutil/ref.hh b/src/libutil/ref.hh
+index 5d0c369..9802583 100644
+--- a/src/libutil/ref.hh
++++ b/src/libutil/ref.hh
+@@ -25,14 +25,14 @@ public:
+         : p(r.p)
+     { }
+ 
+-    explicit ref<T>(const std::shared_ptr<T> & p)
++    explicit ref(const std::shared_ptr<T> & p)
+         : p(p)
+     {
+         if (!p)
+             throw std::invalid_argument("null pointer cast to ref");
+     }
+ 
+-    explicit ref<T>(T * p)
++    explicit ref(T * p)
+         : p(p)
+     {
+         if (!p)

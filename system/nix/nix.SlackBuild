@@ -101,13 +101,11 @@ find -L . \
 # the current patches are:
 # - Stopped make process to spam actual /usr/bin directory (Updated)
 # - Disabled mdbook (Shouldn't be necessary now)
-# - Fixed issue in configure.ac to skip -I flag for RAPIDCHECK_HEADERS
-#   when not set, preventing incorrect preprocessing during
-#   compilation.
 # - Changed the sandbox_shell test to use test -n for POSIX
 #   compatibility instead of the zsh-specific ${VAR+SUBST} syntax.
 # - Modified configure.ac to check FEATURE_SH_STANDALONE only when
 #   using busybox to avoid mis-identification with bash.
+# - Fixed annoying warning of "template-id not allowed for constructor"
 patch -p1 < $CWD/fix_nix_options.patch
 
 autoreconf -vfim

@@ -1,98 +1,18 @@
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index d362be8..57dc0b5 100644
+index 71ad5c8..997872f 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
-@@ -32,7 +32,7 @@ dummy-env = env -i \
- 	NIX_STATE_DIR=/dummy \
- 	NIX_CONFIG='cores = 0'
- 
--nix-eval = $(dummy-env) $(bindir)/nix eval --experimental-features nix-command -I nix/corepkgs=corepkgs --store dummy:// --impure --raw
-+nix-eval = $(dummy-env) $(nix_DIR)/nix eval --experimental-features nix-command -I nix/corepkgs=corepkgs --store dummy:// --impure --raw
- 
- # re-implement mdBook's include directive to make it usable for terminal output and for proper @docroot@ substitution
- define process-includes
-@@ -96,52 +96,52 @@ $(d)/src/SUMMARY.md: $(d)/src/SUMMARY.md.in $(d)/src/command-ref/new-cli $(d)/sr
- 	@cp $< $@
- 	@$(call process-includes,$@,$@)
- 
--$(d)/src/command-ref/new-cli: $(d)/nix.json $(d)/utils.nix $(d)/generate-manpage.nix $(bindir)/nix
-+$(d)/src/command-ref/new-cli: $(d)/nix.json $(d)/utils.nix $(d)/generate-manpage.nix $(nix_DIR)/nix
- 	@rm -rf $@ $@.tmp
- 	$(trace-gen) $(nix-eval) --write-to $@.tmp --expr 'import doc/manual/generate-manpage.nix (builtins.readFile $<)'
- 	@mv $@.tmp $@
- 
--$(d)/src/command-ref/conf-file.md: $(d)/conf-file.json $(d)/utils.nix $(d)/src/command-ref/conf-file-prefix.md $(d)/src/command-ref/experimental-features-shortlist.md $(bindir)/nix
-+$(d)/src/command-ref/conf-file.md: $(d)/conf-file.json $(d)/utils.nix $(d)/src/command-ref/conf-file-prefix.md $(d)/src/command-ref/experimental-features-shortlist.md $(nix_DIR)/nix
- 	@cat doc/manual/src/command-ref/conf-file-prefix.md > $@.tmp
- 	$(trace-gen) $(nix-eval) --expr '(import doc/manual/utils.nix).showSettings { useAnchors = true; } (builtins.fromJSON (builtins.readFile $<))' >> $@.tmp;
- 	@mv $@.tmp $@
- 
--$(d)/nix.json: $(bindir)/nix
--	$(trace-gen) $(dummy-env) $(bindir)/nix __dump-cli > $@.tmp
-+$(d)/nix.json: $(nix_DIR)/nix
-+	$(trace-gen) $(dummy-env) $(nix_DIR)/nix __dump-cli > $@.tmp
- 	@mv $@.tmp $@
- 
--$(d)/conf-file.json: $(bindir)/nix
--	$(trace-gen) $(dummy-env) $(bindir)/nix show-config --json --experimental-features nix-command > $@.tmp
-+$(d)/conf-file.json: $(nix_DIR)/nix
-+	$(trace-gen) $(dummy-env) $(nix_DIR)/nix show-config --json --experimental-features nix-command > $@.tmp
- 	@mv $@.tmp $@
- 
--$(d)/src/contributing/experimental-feature-descriptions.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features.nix $(bindir)/nix
-+$(d)/src/contributing/experimental-feature-descriptions.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features.nix $(nix_DIR)/nix
- 	@rm -rf $@ $@.tmp
- 	$(trace-gen) $(nix-eval) --write-to $@.tmp --expr 'import doc/manual/generate-xp-features.nix (builtins.fromJSON (builtins.readFile $<))'
- 	@mv $@.tmp $@
- 
--$(d)/src/command-ref/experimental-features-shortlist.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features-shortlist.nix $(bindir)/nix
-+$(d)/src/command-ref/experimental-features-shortlist.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features-shortlist.nix $(nix_DIR)/nix
- 	@rm -rf $@ $@.tmp
- 	$(trace-gen) $(nix-eval) --write-to $@.tmp --expr 'import doc/manual/generate-xp-features-shortlist.nix (builtins.fromJSON (builtins.readFile $<))'
- 	@mv $@.tmp $@
- 
--$(d)/xp-features.json: $(bindir)/nix
--	$(trace-gen) $(dummy-env) NIX_PATH=nix/corepkgs=corepkgs $(bindir)/nix __dump-xp-features > $@.tmp
-+$(d)/xp-features.json: $(nix_DIR)/nix
-+	$(trace-gen) $(dummy-env) NIX_PATH=nix/corepkgs=corepkgs $(nix_DIR)/nix __dump-xp-features > $@.tmp
- 	@mv $@.tmp $@
- 
--$(d)/src/language/builtins.md: $(d)/language.json $(d)/generate-builtins.nix $(d)/src/language/builtins-prefix.md $(bindir)/nix
-+$(d)/src/language/builtins.md: $(d)/language.json $(d)/generate-builtins.nix $(d)/src/language/builtins-prefix.md $(nix_DIR)/nix
- 	@cat doc/manual/src/language/builtins-prefix.md > $@.tmp
- 	$(trace-gen) $(nix-eval) --expr 'import doc/manual/generate-builtins.nix (builtins.fromJSON (builtins.readFile $<)).builtins' >> $@.tmp;
- 	@cat doc/manual/src/language/builtins-suffix.md >> $@.tmp
- 	@mv $@.tmp $@
- 
--$(d)/src/language/builtin-constants.md: $(d)/language.json $(d)/generate-builtin-constants.nix $(d)/src/language/builtin-constants-prefix.md $(bindir)/nix
-+$(d)/src/language/builtin-constants.md: $(d)/language.json $(d)/generate-builtin-constants.nix $(d)/src/language/builtin-constants-prefix.md $(nix_DIR)/nix
- 	@cat doc/manual/src/language/builtin-constants-prefix.md > $@.tmp
- 	$(trace-gen) $(nix-eval) --expr 'import doc/manual/generate-builtin-constants.nix (builtins.fromJSON (builtins.readFile $<)).constants' >> $@.tmp;
- 	@cat doc/manual/src/language/builtin-constants-suffix.md >> $@.tmp
- 	@mv $@.tmp $@
- 
--$(d)/language.json: $(bindir)/nix
--	$(trace-gen) $(dummy-env) NIX_PATH=nix/corepkgs=corepkgs $(bindir)/nix __dump-language > $@.tmp
-+$(d)/language.json: $(nix_DIR)/nix
-+	$(trace-gen) $(dummy-env) NIX_PATH=nix/corepkgs=corepkgs $(nix_DIR)/nix __dump-language > $@.tmp
- 	@mv $@.tmp $@
- 
- # Generate the HTML manual.
-diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index abdfd6a..d362be8 100644
---- a/doc/manual/local.mk
-+++ b/doc/manual/local.mk
-@@ -174,22 +174,24 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
- 	@touch $@
- 
- $(docdir)/manual/index.html: $(MANUAL_SRCS) $(d)/book.toml $(d)/anchors.jq $(d)/custom.css $(d)/src/SUMMARY.md $(d)/src/command-ref/new-cli $(d)/src/contributing/experimental-feature-descriptions.md $(d)/src/command-ref/conf-file.md $(d)/src/language/builtins.md $(d)/src/language/builtin-constants.md
+@@ -218,20 +218,22 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
+ # FIXME: maybe contributing guides should live right next to the code
+ # instead of in the manual
+ $(docdir)/manual/index.html: $(MANUAL_SRCS) $(d)/book.toml $(d)/anchors.jq $(d)/custom.css $(d)/src/SUMMARY.md $(d)/src/store/types $(d)/src/command-ref/new-cli $(d)/src/contributing/experimental-feature-descriptions.md $(d)/src/command-ref/conf-file.md $(d)/src/language/builtins.md $(d)/src/language/builtin-constants.md $(d)/src/release-notes/rl-next.md $(d)/src/figures $(d)/src/favicon.png $(d)/src/favicon.svg
 -	$(trace-gen) \
 -		tmp="$$(mktemp -d)"; \
 -		cp -r doc/manual "$$tmp"; \
 -		find "$$tmp" -name '*.md' | while read -r file; do \
 -			$(call process-includes,$$file,$$file); \
 -		done; \
--		find "$$tmp" -name '*.md' | while read -r file; do \
+-		find "$$tmp" -name '*.md' ! -name 'documentation.md' | while read -r file; do \
 -			docroot="$$(realpath --relative-to="$$(dirname "$$file")" $$tmp/manual/src)"; \
 -			sed -i "s,@docroot@,$$docroot,g" "$$file"; \
 -		done; \
@@ -109,7 +29,7 @@ index abdfd6a..d362be8 100644
 +	# 	find "$$tmp" -name '*.md' | while read -r file; do \
 +	# 		$(call process-includes,$$file,$$file); \
 +	# 	done; \
-+	# 	find "$$tmp" -name '*.md' | while read -r file; do \
++	# 	find "$$tmp" -name '*.md' ! -name 'documentation.md' | while read -r file; do \
 +	# 		docroot="$$(realpath --relative-to="$$(dirname "$$file")" $$tmp/manual/src)"; \
 +	# 		sed -i "s,@docroot@,$$docroot,g" "$$file"; \
 +	# 	done; \
@@ -122,13 +42,11 @@ index abdfd6a..d362be8 100644
 +	# @rm -rf $(DESTDIR)$(docdir)/manual.tmp
 +	@echo "skipping mdbook since mdbook is not yet packaged for Debian, see:"
 +	@echo "https://github.com/NixOS/nixpkgs/blob/master/pkgs/tools/text/mdbook/default.nix"
- 
- endif
 diff --git a/configure.ac b/configure.ac
-index 6d78237..ad8d9e7 100644
+index c8f9357..207f49d 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -300,7 +300,9 @@ AC_ARG_VAR([RAPIDCHECK_HEADERS], [include path of gtest headers shipped by RAPID
+@@ -383,7 +383,9 @@ AC_ARG_VAR([RAPIDCHECK_HEADERS], [include path of gtest headers shipped by RAPID
  # No pkg-config yet, https://github.com/emil-e/rapidcheck/issues/302
  AC_LANG_PUSH(C++)
  AC_SUBST(RAPIDCHECK_HEADERS)
@@ -140,15 +58,29 @@ index 6d78237..ad8d9e7 100644
  AC_CHECK_HEADERS([rapidcheck/gtest.h], [], [], [#include <gtest/gtest.h>])
  dnl AC_CHECK_LIB doesn't work for C++ libs with mangled symbols
 diff --git a/configure.ac b/configure.ac
-index ad8d9e7..0833ae0 100644
+index 8f60bf4..48af2b2 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -343,7 +343,7 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
+@@ -418,7 +418,7 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
  AC_ARG_WITH(sandbox-shell, AS_HELP_STRING([--with-sandbox-shell=PATH],[path of a statically-linked shell to use as /bin/sh in sandboxes]),
    sandbox_shell=$withval)
  AC_SUBST(sandbox_shell)
 -if test ${cross_compiling:-no} = no && ! test -z ${sandbox_shell+x}; then
 +if test ${cross_compiling:-no} = no && test -n "${sandbox_shell}"; then
+   AC_MSG_CHECKING([whether sandbox-shell has the standalone feature])
+   # busybox shell sometimes allows executing other busybox applets,
+   # even if they are not in the path, breaking our sandbox
+diff --git a/configure.ac b/configure.ac
+index 48af2b2..cb57912 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -418,7 +418,8 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
+ AC_ARG_WITH(sandbox-shell, AS_HELP_STRING([--with-sandbox-shell=PATH],[path of a statically-linked shell to use as /bin/sh in sandboxes]),
+   sandbox_shell=$withval)
+ AC_SUBST(sandbox_shell)
+-if test ${cross_compiling:-no} = no && test -n "${sandbox_shell}"; then
++if test ${cross_compiling:-no} = no && test -n "${sandbox_shell}" &&
++   test -z "${sandbox_shell%%*busybox*}"; then
    AC_MSG_CHECKING([whether sandbox-shell has the standalone feature])
    # busybox shell sometimes allows executing other busybox applets,
    # even if they are not in the path, breaking our sandbox

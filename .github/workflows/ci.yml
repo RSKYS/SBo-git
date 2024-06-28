@@ -20,7 +20,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+
+    - name: Set branch variable
+      run: echo "branchname=${{ github.head_ref }}" >> $GITHUB_ENV
 
     - name: Slackware 15.0 vs my -current
       run: |
@@ -37,6 +42,15 @@ jobs:
           export $( cat sbotools.info | \
                     grep -E "VERSION=|DOWNLOAD=" | tr -d "\"" )
           wget $DOWNLOAD
+
+          python3 -c "import re; \
+                      path = 'req.diff'; f = open(path, 'r'); \
+                      content = f.read(); f.close(); \
+                      pattern = r'clone -b master'; \
+                      replace = r'clone -b ${{ env.branch_name }}'; \
+                      newvar = re.sub(pattern, replace, content); \
+                      f = open(path, 'w'); f.write(newvar); f.close();"
+
           TAG=red PKGTYPE=txz sh sbotools.SlackBuild
           upgradepkg --reinstall --install-new /tmp/sbotools-$VERSION*.t?z
           rm -rf {.git*,*}

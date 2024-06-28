@@ -24,9 +24,8 @@ jobs:
 
     - name: Slackware 15.0 vs my -current
       run: |
-        ( gitref="${{ github.ref }}"
-          COMMIT=${COMMIT:-b721b4f35e06ece50888965af5a7642013de58a2}
-          branchname=$(echo $gitref | sed 's/^refs\/heads\///')
+        ( export BranchName=$(echo "${{ github.head_ref }}" | sed 's/^refs\/heads\///')
+          COMMIT=${COMMIT:-60322a3b12be012f77a22a6004d22d02bc048303}
 
           cd /tmp
           mkdir init && cd init
@@ -39,14 +38,6 @@ jobs:
           export $( cat sbotools.info | \
                     grep -E "VERSION=|DOWNLOAD=" | tr -d "\"" )
           wget $DOWNLOAD
-
-          python3 -c "import re; \
-                      path = 'req.diff'; f = open(path, 'r'); \
-                      content = f.read(); f.close(); \
-                      pattern = r\"clone -b master\"; \
-                      replace = r\"clone -b $branchname\"; \
-                      newvar = re.sub(pattern, replace, content); \
-                      f = open(path, 'w'); f.write(newvar); f.close();"
 
           TAG=red PKGTYPE=txz sh sbotools.SlackBuild
           upgradepkg --reinstall --install-new /tmp/sbotools-$VERSION*.t?z

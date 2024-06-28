@@ -1,35 +1,36 @@
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index 66a8cb7..d2db2b3 100644
+index 63e7e61..e131bde 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
-@@ -24,7 +24,7 @@ dummy-env = env -i \
+@@ -31,7 +31,7 @@ dummy-env = env -i \
  	NIX_STATE_DIR=/dummy \
  	NIX_CONFIG='cores = 0'
  
 -nix-eval = $(dummy-env) $(bindir)/nix eval --experimental-features nix-command -I nix/corepkgs=corepkgs --store dummy:// --impure --raw
 +nix-eval = $(dummy-env) $(nix_DIR)/nix eval --experimental-features nix-command -I nix/corepkgs=corepkgs --store dummy:// --impure --raw
  
- $(d)/%.1: $(d)/src/command-ref/%.md
- 	@printf "Title: %s\n\n" "$$(basename $@ .1)" > $^.tmp
-@@ -48,31 +48,31 @@ $(d)/src/SUMMARY.md: $(d)/src/SUMMARY.md.in $(d)/src/command-ref/new-cli
- 	$(trace-gen) cat doc/manual/src/SUMMARY.md.in | while IFS= read line; do if [[ $$line = @manpages@ ]]; then cat doc/manual/src/command-ref/new-cli/SUMMARY.md; else echo "$$line"; fi; done > $@.tmp
+ # re-implement mdBook's include directive to make it usable for terminal output and for proper @docroot@ substitution
+ define process-includes
+@@ -89,46 +89,46 @@ $(d)/src/SUMMARY.md: $(d)/src/SUMMARY.md.in $(d)/src/command-ref/new-cli $(d)/sr
+ 	@cp $< $@
+ 	@$(call process-includes,$@,$@)
+ 
+-$(d)/src/command-ref/new-cli: $(d)/nix.json $(d)/utils.nix $(d)/generate-manpage.nix $(bindir)/nix
++$(d)/src/command-ref/new-cli: $(d)/nix.json $(d)/utils.nix $(d)/generate-manpage.nix $(nix_DIR)/nix
+ 	@rm -rf $@ $@.tmp
+ 	$(trace-gen) $(nix-eval) --write-to $@.tmp --expr 'import doc/manual/generate-manpage.nix (builtins.readFile $<)'
  	@mv $@.tmp $@
  
--$(d)/src/command-ref/new-cli: $(d)/nix.json $(d)/generate-manpage.nix $(bindir)/nix
-+$(d)/src/command-ref/new-cli: $(d)/nix.json $(d)/generate-manpage.nix $(nix_DIR)/nix
- 	@rm -rf $@
- 	$(trace-gen) $(nix-eval) --write-to $@ --expr 'import doc/manual/generate-manpage.nix { command = builtins.readFile $<; renderLinks = true; }'
- 
--$(d)/src/command-ref/conf-file.md: $(d)/conf-file.json $(d)/generate-options.nix $(d)/src/command-ref/conf-file-prefix.md $(bindir)/nix
-+$(d)/src/command-ref/conf-file.md: $(d)/conf-file.json $(d)/generate-options.nix $(d)/src/command-ref/conf-file-prefix.md $(nix_DIR)/nix
+-$(d)/src/command-ref/conf-file.md: $(d)/conf-file.json $(d)/utils.nix $(d)/src/command-ref/conf-file-prefix.md $(d)/src/command-ref/experimental-features-shortlist.md $(bindir)/nix
++$(d)/src/command-ref/conf-file.md: $(d)/conf-file.json $(d)/utils.nix $(d)/src/command-ref/conf-file-prefix.md $(d)/src/command-ref/experimental-features-shortlist.md $(nix_DIR)/nix
  	@cat doc/manual/src/command-ref/conf-file-prefix.md > $@.tmp
- 	$(trace-gen) $(nix-eval) --expr 'import doc/manual/generate-options.nix (builtins.fromJSON (builtins.readFile $<))' >> $@.tmp
+ 	$(trace-gen) $(nix-eval) --expr '(import doc/manual/utils.nix).showSettings { useAnchors = true; } (builtins.fromJSON (builtins.readFile $<))' >> $@.tmp;
  	@mv $@.tmp $@
  
 -$(d)/nix.json: $(bindir)/nix
--	$(trace-gen) $(dummy-env) $(bindir)/nix __dump-args > $@.tmp
+-	$(trace-gen) $(dummy-env) $(bindir)/nix __dump-cli > $@.tmp
 +$(d)/nix.json: $(nix_DIR)/nix
-+	$(trace-gen) $(dummy-env) $(nix_DIR)/nix __dump-args > $@.tmp
++	$(trace-gen) $(dummy-env) $(nix_DIR)/nix __dump-cli > $@.tmp
  	@mv $@.tmp $@
  
 -$(d)/conf-file.json: $(bindir)/nix
@@ -38,10 +39,28 @@ index 66a8cb7..d2db2b3 100644
 +	$(trace-gen) $(dummy-env) $(nix_DIR)/nix show-config --json --experimental-features nix-command > $@.tmp
  	@mv $@.tmp $@
  
+-$(d)/src/contributing/experimental-feature-descriptions.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features.nix $(bindir)/nix
++$(d)/src/contributing/experimental-feature-descriptions.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features.nix $(nix_DIR)/nix
+ 	@rm -rf $@ $@.tmp
+ 	$(trace-gen) $(nix-eval) --write-to $@.tmp --expr 'import doc/manual/generate-xp-features.nix (builtins.fromJSON (builtins.readFile $<))'
+ 	@mv $@.tmp $@
+ 
+-$(d)/src/command-ref/experimental-features-shortlist.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features-shortlist.nix $(bindir)/nix
++$(d)/src/command-ref/experimental-features-shortlist.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features-shortlist.nix $(nix_DIR)/nix
+ 	@rm -rf $@ $@.tmp
+ 	$(trace-gen) $(nix-eval) --write-to $@.tmp --expr 'import doc/manual/generate-xp-features-shortlist.nix (builtins.fromJSON (builtins.readFile $<))'
+ 	@mv $@.tmp $@
+ 
+-$(d)/xp-features.json: $(bindir)/nix
+-	$(trace-gen) $(dummy-env) NIX_PATH=nix/corepkgs=corepkgs $(bindir)/nix __dump-xp-features > $@.tmp
++$(d)/xp-features.json: $(nix_DIR)/nix
++	$(trace-gen) $(dummy-env) NIX_PATH=nix/corepkgs=corepkgs $(nix_DIR)/nix __dump-xp-features > $@.tmp
+ 	@mv $@.tmp $@
+ 
 -$(d)/src/language/builtins.md: $(d)/builtins.json $(d)/generate-builtins.nix $(d)/src/language/builtins-prefix.md $(bindir)/nix
 +$(d)/src/language/builtins.md: $(d)/builtins.json $(d)/generate-builtins.nix $(d)/src/language/builtins-prefix.md $(nix_DIR)/nix
  	@cat doc/manual/src/language/builtins-prefix.md > $@.tmp
- 	$(trace-gen) $(nix-eval) --expr 'import doc/manual/generate-builtins.nix (builtins.fromJSON (builtins.readFile $<))' >> $@.tmp
+ 	$(trace-gen) $(nix-eval) --expr 'import doc/manual/generate-builtins.nix (builtins.fromJSON (builtins.readFile $<))' >> $@.tmp;
  	@cat doc/manual/src/language/builtins-suffix.md >> $@.tmp
  	@mv $@.tmp $@
  
@@ -53,14 +72,67 @@ index 66a8cb7..d2db2b3 100644
  
  # Generate the HTML manual.
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index 66a8cb7..abf0d2c 100644
+index e131bde..ba2460d 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
-@@ -102,6 +102,6 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
+@@ -161,22 +161,22 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
  	@touch $@
  
- $(docdir)/manual/index.html: $(MANUAL_SRCS) $(d)/book.toml $(d)/anchors.jq $(d)/custom.css $(d)/src/SUMMARY.md $(d)/src/command-ref/new-cli $(d)/src/command-ref/conf-file.md $(d)/src/language/builtins.md
--	$(trace-gen) RUST_LOG=warn mdbook build doc/manual -d $(DESTDIR)$(docdir)/manual
-+	# $(trace-gen) RUST_LOG=warn mdbook build doc/manual -d $(DESTDIR)$(docdir)/manual
+ $(docdir)/manual/index.html: $(MANUAL_SRCS) $(d)/book.toml $(d)/anchors.jq $(d)/custom.css $(d)/src/SUMMARY.md $(d)/src/command-ref/new-cli $(d)/src/contributing/experimental-feature-descriptions.md $(d)/src/command-ref/conf-file.md $(d)/src/language/builtins.md
+-	$(trace-gen) \
+-		tmp="$$(mktemp -d)"; \
+-		cp -r doc/manual "$$tmp"; \
+-		find "$$tmp" -name '*.md' | while read -r file; do \
+-			$(call process-includes,$$file,$$file); \
+-		done; \
+-		find "$$tmp" -name '*.md' | while read -r file; do \
+-			docroot="$$(realpath --relative-to="$$(dirname "$$file")" $$tmp/manual/src)"; \
+-			sed -i "s,@docroot@,$$docroot,g" "$$file"; \
+-		done; \
+-		set -euo pipefail; \
+-		RUST_LOG=warn mdbook build "$$tmp/manual" -d $(DESTDIR)$(docdir)/manual.tmp 2>&1 \
+-			| { grep -Fv "because fragment resolution isn't implemented" || :; }; \
+-		rm -rf "$$tmp/manual"
+-	@rm -rf $(DESTDIR)$(docdir)/manual
+-	@mv $(DESTDIR)$(docdir)/manual.tmp/html $(DESTDIR)$(docdir)/manual
+-	@rm -rf $(DESTDIR)$(docdir)/manual.tmp
++	# $(trace-gen) \
++	# 	tmp="$$(mktemp -d)"; \
++	# 	cp -r doc/manual "$$tmp"; \
++	# 	find "$$tmp" -name '*.md' | while read -r file; do \
++	# 		$(call process-includes,$$file,$$file); \
++	# 	done; \
++	# 	find "$$tmp" -name '*.md' | while read -r file; do \
++	# 		docroot="$$(realpath --relative-to="$$(dirname "$$file")" $$tmp/manual/src)"; \
++	# 		sed -i "s,@docroot@,$$docroot,g" "$$file"; \
++	# 	done; \
++	# 	set -euo pipefail; \
++	# 	RUST_LOG=warn mdbook build "$$tmp/manual" -d $(DESTDIR)$(docdir)/manual.tmp 2>&1 \
++	# 		| { grep -Fv "because fragment resolution isn't implemented" || :; }; \
++	# 	rm -rf "$$tmp/manual"
++	# @rm -rf $(DESTDIR)$(docdir)/manual
++	# @mv $(DESTDIR)$(docdir)/manual.tmp/html $(DESTDIR)$(docdir)/manual
++	# @rm -rf $(DESTDIR)$(docdir)/manual.tmp
  
  endif
+diff --git a/src/libutil/ref.hh b/src/libutil/ref.hh
+index af5f830..b0cf17d 100644
+--- a/src/libutil/ref.hh
++++ b/src/libutil/ref.hh
+@@ -24,14 +24,14 @@ public:
+         : p(r.p)
+     { }
+ 
+-    explicit ref<T>(const std::shared_ptr<T> & p)
++    explicit ref(const std::shared_ptr<T> & p)
+         : p(p)
+     {
+         if (!p)
+             throw std::invalid_argument("null pointer cast to ref");
+     }
+ 
+-    explicit ref<T>(T * p)
++    explicit ref(T * p)
+         : p(p)
+     {
+         if (!p)

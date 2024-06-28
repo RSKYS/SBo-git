@@ -3,8 +3,6 @@ name: PR tests
 
 on:
   pull_request_target:
-    branches:
-      - current
     types:
       - opened
       - synchronize
@@ -44,8 +42,9 @@ jobs:
           rm -rf {.git*,*}
           sbosnap fetch )
 
-        ( cd /tmp/sbo/repo
-          CHANGED=$(git diff --name-only remotes/origin/current.. | grep '.SlackBuild')
+        ( export MainBranch=$(echo "${{ github.base_ref }}" | sed 's/^refs\/heads\///')
+          cd /tmp/sbo/repo
+          CHANGED=$(git diff --name-only remotes/origin/$MainBranch.. | grep '.SlackBuild')
           find */*/ -name "doinst.sh" -exec sed -e '1,$d' {} +
 
           for FILE in $CHANGED; do

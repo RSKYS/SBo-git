@@ -52,15 +52,23 @@ index 4fc08b7..34c94dc 100644
  
  =head2 script_error
 diff --git a/SBO-Lib/lib/SBO/Lib/Repo.pm b/SBO-Lib/lib/SBO/Lib/Repo.pm
-index 90182ac..0875944 100644
+index 90182ac..e55874f 100644
 --- a/SBO-Lib/lib/SBO/Lib/Repo.pm
 +++ b/SBO-Lib/lib/SBO/Lib/Repo.pm
-@@ -242,7 +242,7 @@ sub git_sbo_tree {
+@@ -229,6 +229,7 @@ sub git_sbo_tree {
+   my $url = shift;
+   my $cwd = getcwd();
+   my $res;
++  my $bname = $ENV{'BranchName'} // die "Please set env BranchName."; 
+   if (-d "$repo_path/.git" and check_git_remote($repo_path, $url)) {
+     _race::cond '$repo_path can be deleted after -d check';
+     chdir $repo_path or return 0;
+@@ -242,7 +243,7 @@ sub git_sbo_tree {
    } else {
      chdir $config{SBO_HOME} or return 0;
      remove_tree($repo_path) if -d $repo_path;
 -    $res = system(qw/ git clone --no-local /, $url, $repo_path) == 0;
-+    $res = system(qw/ git clone -b master --no-local /, $url, $repo_path) == 0;
++    $res = system(qw/ git clone -b /, $bname, qw/ --no-local /, $url, $repo_path) == 0;
    }
    _race::cond '$cwd could be deleted here';
    return 1 if chdir $cwd and $res;

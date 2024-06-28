@@ -43,6 +43,8 @@
 # want to look into. SlackBuilds aren't supposed to require network
 # access to run.
 
+# Test
+
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=nix

@@ -93,13 +93,19 @@ cd $PRGNAM-$VERSION
 
 # Previously added patch thanks to Pragmatic Cypher needed updates,
 # the current patches are:
-# - Disabled mdbook (Shouldn't be necessary now)
-# - Changed the sandbox_shell test to use test -n for POSIX
-#   compatibility instead of the zsh-specific ${VAR+SUBST} syntax.
+# - Appended CPPFLAGS to GLOBAL_*FLAGS, copy LDFLAGS into
+#   GLOBAL_LDFLAGS.
+# - Disabled mdbook (Shouldn't be necessary now).
+# - Changed the sandbox_shell test to use -n for POSIX compatibility
+#   instead of the zsh-specific ${VAR+SUBST} syntax.
 # - Modified configure.ac to check FEATURE_SH_STANDALONE only when
 #   using busybox to avoid mis-identification with bash.
-# - Added some clean options in builds
-# - Fixed annoying warning of "template-id not allowed for constructor"
+# - Change the sandbox_shell test to use test -n for checking if the
+#   variable is set, making it POSIX shell compatible instead of zsh
+#   specific ${VAR+SUBST}.
+# - Added some clean options in builds.
+# Handy patches from Debian huh? here's by me:
+# - Fixed annoying warning of "template-id not allowed for constructor".
 patch -p1 < $CWD/fix_nix_options.patch
 
 autoreconf -vfim

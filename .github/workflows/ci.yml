@@ -3,8 +3,6 @@ name: PR tests
 
 on:
   pull_request_target:
-    branches:
-      - current
     types:
       - opened
       - synchronize
@@ -26,8 +24,8 @@ jobs:
       run: |
         ( export BranchName=$(echo "${{ github.head_ref }}" | sed 's/^refs\/heads\///')
           COMMIT=${COMMIT:-60322a3b12be012f77a22a6004d22d02bc048303}
-
           cd /tmp
+
           mkdir init && cd init
           wget -c https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/sbotools.SlackBuild \
                   https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/sbotools.info \
@@ -41,11 +39,14 @@ jobs:
 
           TAG=red PKGTYPE=txz sh sbotools.SlackBuild
           upgradepkg --reinstall --install-new /tmp/sbotools-$VERSION*.t?z
+
           rm -rf {.git*,*}
           sbosnap fetch )
 
-        ( cd /tmp/sbo/repo
-          CHANGED=$(git diff --name-only remotes/origin/current.. | grep '.SlackBuild')
+        ( export MainBranch=$(echo "${{ github.base_ref }}" | sed 's/^refs\/heads\///')
+          cd /tmp/sbo/repo
+
+          CHANGED=$(git diff --name-only remotes/origin/$MainBranch.. | grep '.SlackBuild')
           find */*/ -name "doinst.sh" -exec sed -e '1,$d' {} +
 
           for FILE in $CHANGED; do

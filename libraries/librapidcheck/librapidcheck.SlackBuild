@@ -26,7 +26,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=librapidcheck
 VERSION=${VERSION:-r1056.ff6af6f}
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -37,9 +37,7 @@ if [ -z "$ARCH" ]; then
        *) ARCH=$( uname -m ) ;;
   esac
 fi
-# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
-# the name of the created package would be, and then exit. This information
-# could be useful to other scripts.
+
 if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
   echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
   exit 0
@@ -81,6 +79,7 @@ find -L . \
 mkdir -p build
 cd build
 	cmake \
+    -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
     -DRC_ENABLE_EXAMPLES=Off \
 		-DRC_ENABLE_TESTS=Off \
 		-DRC_INSTALL_ALL_EXTRAS=O \

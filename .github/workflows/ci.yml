@@ -55,3 +55,15 @@ jobs:
             PKGTYPE=txz \
                   sboinstall -j3 --reinstall $BASENAME
           done )
+
+    - name: Notify PR Thread
+      if: success()
+      run: |
+        curl -s -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -d '{"body": "All builds finished successfully :thumbsup:"}' \
+        https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments
+
+        curl -s -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -H "Accept: application/vnd.github.v3+json" \
+        -d '{"labels":["Success"]}' \
+        https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels

@@ -100,6 +100,7 @@ cd $PRGNAM-$VERSION
 #   using busybox to avoid mis-identification with bash.
 # - Added some clean options in builds
 # - Fixed annoying warning of "template-id not allowed for constructor"
+# - Added global CFLAGS
 patch -p1 < $CWD/fix_nix_options.patch
 
 autoreconf -vfim

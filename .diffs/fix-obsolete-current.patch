@@ -8274,3 +8274,34 @@ index f86ced3d2..079f8e8e5 100644
  cd $TMP/$SRCNAM
  # put docs in the right place
  mv $PKG/usr/share/man/man1/nvidia-* $PKG/usr/man/man1
+diff --git a/system/nvidia-kernel/nvidia-kernel.SlackBuild b/system/nvidia-kernel/nvidia-kernel.SlackBuild
+index 79360dca2..fd39b073a 100644
+--- a/system/nvidia-kernel/nvidia-kernel.SlackBuild
++++ b/system/nvidia-kernel/nvidia-kernel.SlackBuild
+@@ -29,7 +29,7 @@
+ cd $(dirname $0) ; CWD=$(pwd)
+ 
+ PRGNAM=nvidia-kernel
+-VERSION=${VERSION:-550.90.07}
++VERSION=${VERSION:-555.58.02}
+ BUILD=${BUILD:-1}
+ TAG=${TAG:-_SBo}
+ PKGTYPE=${PKGTYPE:-tgz}
+diff --git a/system/nvidia-kernel/nvidia-kernel.info b/system/nvidia-kernel/nvidia-kernel.info
+index 37b78f013..e48bd59aa 100644
+--- a/system/nvidia-kernel/nvidia-kernel.info
++++ b/system/nvidia-kernel/nvidia-kernel.info
+@@ -1,10 +1,10 @@
+ PRGNAM="nvidia-kernel"
+-VERSION="550.90.07"
++VERSION="555.58.02"
+ HOMEPAGE="https://www.nvidia.com"
+ DOWNLOAD="UNSUPPORTED"
+ MD5SUM=""
+-DOWNLOAD_x86_64="https://download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run"
+-MD5SUM_x86_64="fa8d3ff7dd40cc67ea448f0a2227942c"
++DOWNLOAD_x86_64="https://download.nvidia.com/XFree86/Linux-x86_64/555.58.02/NVIDIA-Linux-x86_64-555.58.02.run"
++MD5SUM_x86_64="f6efa3d40fccc97fbac9b55fc81e30d7"
+ REQUIRES=""
+ MAINTAINER="Lenard Spencer"
+ EMAIL="lenardrspencer@gmail.com"

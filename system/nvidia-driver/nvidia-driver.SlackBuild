@@ -51,7 +51,7 @@ if [ "$ARCH" = "x86_64" ]; then
   TARGET="x86_64"
   LIBDIRSUFFIX="64"
 # Set 32-bit compatibility flag default
-  COMPAT32=${COMPAT32:-no}
+  COMPAT32=${COMPAT32:-yes}
 else
   echo "$ARCH is not supported."
   exit 1
@@ -71,7 +71,7 @@ if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
   exit 0
 fi
 
-if [ "${PERSISTENCED:-no}" = "yes" ]; then
+if [ "${PERSISTENCED:-yes}" = "yes" ]; then
   if [ "`getent group nvidia > /dev/null`" -o "`getent passwd nvidia > /dev/null`" ]; then
     echo "User and/or group nvidia do not exist!"
     echo "Please create user and group nvidia and rerun this script."
@@ -281,6 +281,13 @@ sed -i '/Encoding/d' $PKG/usr/share/applications/nvidia-settings.desktop
 
 # Remove xorg conf file since we handle that in nvidia-kernel
 rm -rf $PKG/etc/X11/xorg.conf.d
+
+# Blacklist nouveau
+mkdir -p $PKG/etc/modprobe.d
+cat <<-EOF > $PKG/etc/modprobe.d/nvidia-installer-disable-nouveau.conf
+blacklist nouveau
+options nouveau modeset=0
+EOF
 
 cd $TMP/$SRCNAM
 # put docs in the right place

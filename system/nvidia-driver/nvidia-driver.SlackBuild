@@ -157,7 +157,7 @@ fi
 
 # Install the binary libs using nvidia-installer compiled above
 cd $TMP/$SRCNAM
-./nvidia-installer -s --no-kernel-module --no-drm --no-unified-memory \
+./nvidia-installer -s --no-kernel-module --no-unified-memory \
   -z -n -b --no-rpms --no-distro-scripts \
   --no-kernel-module-source --no-x-check --force-libglx-indirect \
   --x-prefix=$PKG/usr \
@@ -309,7 +309,7 @@ fi
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 # Add nvidia-persistenced:
-if [ "${PERSISTENCED:-no}" = "yes" ]; then
+if [ "${PERSISTENCED:-yes}" = "yes" ]; then
   cd $TMP
   rm -rf nvidia-persistenced-$VERSION.tar.bz2
   tar xvf $CWD/nvidia-persistenced-$VERSION.tar.bz2

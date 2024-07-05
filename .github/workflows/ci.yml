@@ -22,8 +22,9 @@ jobs:
 
     - name: Slackware 15.0 vs my -current
       run: |
-        ( export BranchName=$(echo "${{ github.head_ref }}" | sed 's/^refs\/heads\///')
-          COMMIT=${COMMIT:-60322a3b12be012f77a22a6004d22d02bc048303}
+        ( export REPO=$(echo "${{ github.event.pull_request.html_url }}" | sed 's/\/pull.*//')
+          export REPO_BRANCH=$(echo "${{ github.head_ref }}" | sed 's/^refs\/heads\///')
+          COMMIT=${COMMIT:-bcd9b22491929d9bbf7d85596484c5e5522c5294}
           cd /tmp
 
           mkdir init && cd init

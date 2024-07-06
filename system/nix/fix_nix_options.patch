@@ -1,8 +1,8 @@
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index 63e7e61..e131bde 100644
+index 9f2b562..ac36cb7 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
-@@ -31,7 +31,7 @@ dummy-env = env -i \
+@@ -32,7 +32,7 @@ dummy-env = env -i \
  	NIX_STATE_DIR=/dummy \
  	NIX_CONFIG='cores = 0'
  
@@ -11,7 +11,7 @@ index 63e7e61..e131bde 100644
  
  # re-implement mdBook's include directive to make it usable for terminal output and for proper @docroot@ substitution
  define process-includes
-@@ -89,46 +89,46 @@ $(d)/src/SUMMARY.md: $(d)/src/SUMMARY.md.in $(d)/src/command-ref/new-cli $(d)/sr
+@@ -96,46 +96,46 @@ $(d)/src/SUMMARY.md: $(d)/src/SUMMARY.md.in $(d)/src/command-ref/new-cli $(d)/sr
  	@cp $< $@
  	@$(call process-includes,$@,$@)
  
@@ -72,10 +72,10 @@ index 63e7e61..e131bde 100644
  
  # Generate the HTML manual.
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index e131bde..ba2460d 100644
+index b4b7283..9f2b562 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
-@@ -161,22 +161,22 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
+@@ -168,22 +168,24 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
  	@touch $@
  
  $(docdir)/manual/index.html: $(MANUAL_SRCS) $(d)/book.toml $(d)/anchors.jq $(d)/custom.css $(d)/src/SUMMARY.md $(d)/src/command-ref/new-cli $(d)/src/contributing/experimental-feature-descriptions.md $(d)/src/command-ref/conf-file.md $(d)/src/language/builtins.md
@@ -113,6 +113,8 @@ index e131bde..ba2460d 100644
 +	# @rm -rf $(DESTDIR)$(docdir)/manual
 +	# @mv $(DESTDIR)$(docdir)/manual.tmp/html $(DESTDIR)$(docdir)/manual
 +	# @rm -rf $(DESTDIR)$(docdir)/manual.tmp
++	@echo "skipping mdbook since mdbook is not yet packaged for Debian, see:"
++	@echo "https://github.com/NixOS/nixpkgs/blob/master/pkgs/tools/text/mdbook/default.nix"
  
  endif
 diff --git a/Makefile b/Makefile
@@ -129,7 +131,7 @@ index d6b4947..aead461 100644
  
  GLOBAL_CXXFLAGS += -g -Wall -include config.h -std=c++2a -I src
 diff --git a/src/libstore/sqlite.cc b/src/libstore/sqlite.cc
-index 871f2f3..21897d0 100644
+index df334c2..c42f8e6 100644
 --- a/src/libstore/sqlite.cc
 +++ b/src/libstore/sqlite.cc
 @@ -24,7 +24,7 @@ SQLiteError::SQLiteError(const char *path, const char *errMsg, int errNo, int ex
@@ -141,49 +143,8 @@ index 871f2f3..21897d0 100644
  
      auto path = sqlite3_db_filename(db, nullptr);
      auto errMsg = sqlite3_errmsg(db);
-diff --git a/configure.ac b/configure.ac
-index e587bd5..f221ae2 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -289,25 +289,7 @@ PKG_CHECK_MODULES([GTEST], [gtest_main])
- 
- 
- # Look for rapidcheck.
--AC_ARG_VAR([RAPIDCHECK_HEADERS], [include path of gtest headers shipped by RAPIDCHECK])
--# No pkg-config yet, https://github.com/emil-e/rapidcheck/issues/302
--AC_LANG_PUSH(C++)
--AC_SUBST(RAPIDCHECK_HEADERS)
--[CXXFLAGS="-I $RAPIDCHECK_HEADERS $CXXFLAGS"]
--[LIBS="-lrapidcheck -lgtest $LIBS"]
--AC_CHECK_HEADERS([rapidcheck/gtest.h], [], [], [#include <gtest/gtest.h>])
--dnl AC_CHECK_LIB doesn't work for C++ libs with mangled symbols
--AC_LINK_IFELSE([
--    AC_LANG_PROGRAM([[
--      #include <gtest/gtest.h>
--      #include <rapidcheck/gtest.h>
--    ]], [[
--      return RUN_ALL_TESTS();
--    ]])
--  ],
--  [],
--  [AC_MSG_ERROR([librapidcheck is not found.])])
--AC_LANG_POP(C++)
-+PKG_CHECK_MODULES([RAPIDCHECK], [rapidcheck rapidcheck_gtest])
- 
- fi
- 
-diff --git a/doc/internal-api/doxygen.cfg.in b/doc/internal-api/doxygen.cfg.in
-index 8f52653..c942a28 100644
---- a/doc/internal-api/doxygen.cfg.in
-+++ b/doc/internal-api/doxygen.cfg.in
-@@ -60,4 +60,4 @@ INPUT                  = \
- # RECURSIVE has no effect here.
- # This tag requires that the tag SEARCH_INCLUDES is set to YES.
- 
--INCLUDE_PATH           = @RAPIDCHECK_HEADERS@
-+INCLUDE_PATH           =
 diff --git a/src/libexpr/tests/local.mk b/src/libexpr/tests/local.mk
-index 3e5504f..8e7430f 100644
+index 331a5ea..c56848a 100644
 --- a/src/libexpr/tests/local.mk
 +++ b/src/libexpr/tests/local.mk
 @@ -16,4 +16,4 @@ libexpr-tests_CXXFLAGS += -I src/libexpr -I src/libutil -I src/libstore -I src/l

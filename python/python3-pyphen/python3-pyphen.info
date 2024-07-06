@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/4b/52/46b119f94b3f68e4193ada36
 MD5SUM="19e799bbf459ac675698c37c5fae34a8"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES=""
+REQUIRES="python3-build"
 MAINTAINER="Lockywolf"
 EMAIL="for_sbo.python3-pyphen_2023-12-04@lockywolf.net"

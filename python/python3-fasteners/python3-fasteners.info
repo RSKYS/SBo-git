@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/5f/d4/e834d929be54bfadb1f3e3b9
 MD5SUM="e957e11c2e00629e44166e1d2881798e"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-monotonic"
+REQUIRES="python3-setuptools-opt python3-monotonic"
 MAINTAINER="Pouria Rezaei"
 EMAIL="Pouria.rz@outlook.com"

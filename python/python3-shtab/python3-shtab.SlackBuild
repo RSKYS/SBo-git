@@ -66,7 +66,8 @@ find -L . \
 
 # Use newer setuptools despite not explicitly stating so within pyproject.toml.
 # Otherwise, shtab does not compile properly
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+export PYTHONPATH=/opt/python$PYVER/site-packages/
 
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl

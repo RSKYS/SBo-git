@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/f/flask-babel/flask_bab
 MD5SUM="62116080b8d3a446e1f0f07cbaf74dc1"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-poetry-core Flask"
+REQUIRES="python3-poetry-core Flask python3-babel"
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

@@ -141,96 +141,54 @@ index 871f2f3..21897d0 100644
  
      auto path = sqlite3_db_filename(db, nullptr);
      auto errMsg = sqlite3_errmsg(db);
-diff --git a/flake.nix b/flake.nix
-index 71f6270..86c0a4f 100644
---- a/flake.nix
-+++ b/flake.nix
-@@ -540,6 +540,8 @@
-             lcovFilter = [ "*/boost/*" "*-tab.*" ];
+diff --git a/configure.ac b/configure.ac
+index e587bd5..f221ae2 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -289,25 +289,7 @@ PKG_CHECK_MODULES([GTEST], [gtest_main])
  
-             hardeningDisable = ["fortify"];
-+
-+            NIX_CFLAGS_COMPILE = "-DCOVERAGE=1";
-           };
  
-         # API docs for Nix's unstable internal C++ interfaces.
-diff --git a/src/libexpr/tests/value/context.cc b/src/libexpr/tests/value/context.cc
-index 083359b..88b3f32 100644
---- a/src/libexpr/tests/value/context.cc
-+++ b/src/libexpr/tests/value/context.cc
-@@ -116,6 +116,8 @@ Gen<NixStringContextElem> Arbitrary<NixStringContextElem>::arbitrary()
+ # Look for rapidcheck.
+-AC_ARG_VAR([RAPIDCHECK_HEADERS], [include path of gtest headers shipped by RAPIDCHECK])
+-# No pkg-config yet, https://github.com/emil-e/rapidcheck/issues/302
+-AC_LANG_PUSH(C++)
+-AC_SUBST(RAPIDCHECK_HEADERS)
+-[CXXFLAGS="-I $RAPIDCHECK_HEADERS $CXXFLAGS"]
+-[LIBS="-lrapidcheck -lgtest $LIBS"]
+-AC_CHECK_HEADERS([rapidcheck/gtest.h], [], [], [#include <gtest/gtest.h>])
+-dnl AC_CHECK_LIB doesn't work for C++ libs with mangled symbols
+-AC_LINK_IFELSE([
+-    AC_LANG_PROGRAM([[
+-      #include <gtest/gtest.h>
+-      #include <rapidcheck/gtest.h>
+-    ]], [[
+-      return RUN_ALL_TESTS();
+-    ]])
+-  ],
+-  [],
+-  [AC_MSG_ERROR([librapidcheck is not found.])])
+-AC_LANG_POP(C++)
++PKG_CHECK_MODULES([RAPIDCHECK], [rapidcheck rapidcheck_gtest])
  
- namespace nix {
+ fi
  
-+#ifndef COVERAGE
-+
- RC_GTEST_FIXTURE_PROP(
-     NixStringContextElemTest,
-     prop_round_rip,
-@@ -124,4 +126,6 @@ RC_GTEST_FIXTURE_PROP(
-     RC_ASSERT(o == NixStringContextElem::parse(store(), o.to_string(store())));
- }
+diff --git a/doc/internal-api/doxygen.cfg.in b/doc/internal-api/doxygen.cfg.in
+index 8f52653..c942a28 100644
+--- a/doc/internal-api/doxygen.cfg.in
++++ b/doc/internal-api/doxygen.cfg.in
+@@ -60,4 +60,4 @@ INPUT                  = \
+ # RECURSIVE has no effect here.
+ # This tag requires that the tag SEARCH_INCLUDES is set to YES.
  
-+#endif
-+
- }
-diff --git a/src/libstore/tests/derived-path.cc b/src/libstore/tests/derived-path.cc
-index e6d32db..343f7aa 100644
---- a/src/libstore/tests/derived-path.cc
-+++ b/src/libstore/tests/derived-path.cc
-@@ -51,6 +51,8 @@ TEST_F(DerivedPathTest, force_init)
- {
- }
+-INCLUDE_PATH           = @RAPIDCHECK_HEADERS@
++INCLUDE_PATH           =
+diff --git a/src/libexpr/tests/local.mk b/src/libexpr/tests/local.mk
+index 3e5504f..8e7430f 100644
+--- a/src/libexpr/tests/local.mk
++++ b/src/libexpr/tests/local.mk
+@@ -16,4 +16,4 @@ libexpr-tests_CXXFLAGS += -I src/libexpr -I src/libutil -I src/libstore -I src/l
  
-+#ifndef COVERAGE
-+
- RC_GTEST_FIXTURE_PROP(
-     DerivedPathTest,
-     prop_legacy_round_rip,
-@@ -67,4 +69,6 @@ RC_GTEST_FIXTURE_PROP(
-     RC_ASSERT(o == DerivedPath::parse(*store, o.to_string(*store)));
- }
+ libexpr-tests_LIBS = libstore-tests libutils-tests libexpr libutil libstore libfetchers
  
-+#endif
-+
- }
-diff --git a/src/libstore/tests/outputs-spec.cc b/src/libstore/tests/outputs-spec.cc
-index 984d1d9..2832cef 100644
---- a/src/libstore/tests/outputs-spec.cc
-+++ b/src/libstore/tests/outputs-spec.cc
-@@ -222,6 +222,8 @@ Gen<OutputsSpec> Arbitrary<OutputsSpec>::arbitrary()
- 
- namespace nix {
- 
-+#ifndef COVERAGE
-+
- RC_GTEST_PROP(
-     OutputsSpec,
-     prop_round_rip,
-@@ -230,4 +232,6 @@ RC_GTEST_PROP(
-     RC_ASSERT(o == OutputsSpec::parse(o.to_string()));
- }
- 
-+#endif
-+
- }
-diff --git a/src/libstore/tests/path.cc b/src/libstore/tests/path.cc
-index 430aa00..efa35ef 100644
---- a/src/libstore/tests/path.cc
-+++ b/src/libstore/tests/path.cc
-@@ -134,6 +134,8 @@ Gen<StorePath> Arbitrary<StorePath>::arbitrary()
- 
- namespace nix {
- 
-+#ifndef COVERAGE
-+
- RC_GTEST_FIXTURE_PROP(
-     StorePathTest,
-     prop_regex_accept,
-@@ -150,4 +152,6 @@ RC_GTEST_FIXTURE_PROP(
-     RC_ASSERT(p == store->parseStorePath(store->printStorePath(p)));
- }
- 
-+#endif
-+
- }
+-libexpr-tests_LDFLAGS := $(GTEST_LIBS) -lgmock
++libexpr-tests_LDFLAGS := -lrapidcheck $(GTEST_LIBS) -lgmock

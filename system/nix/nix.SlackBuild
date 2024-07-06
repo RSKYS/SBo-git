@@ -105,7 +105,7 @@ find -L . \
 # - Added global CFLAGS.
 # - Changed to ignore offset, since function hasn't still implemented
 #   in Slackware 15's sqlite.
-# - Disabled rapidcheck tests in the coverage run.
+# - Simplified rapidcheck headers
 patch -p1 < $CWD/fix_nix_options.patch
 
 autoreconf -vfim

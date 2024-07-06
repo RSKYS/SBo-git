@@ -22,12 +22,13 @@ jobs:
 
     - name: Slackware 15.0 vs my -current
       run: |
-        ( export REPO=$(echo "${{ github.event.pull_request.html_url }}" | sed 's/\/pull.*//')
-          export REPO_BRANCH=$(echo "${{ github.head_ref }}" | sed 's/^refs\/heads\///')
-          COMMIT=${COMMIT:-bcd9b22491929d9bbf7d85596484c5e5522c5294}
-          cd /tmp
+        export REPO_BRANCH=$(echo "${{ github.head_ref }}" | sed 's/^refs\/heads\///')
+
+        ( cd /tmp
+          REPO=$(echo "${{ github.event.pull_request.html_url }}" | sed 's/\/pull.*//')
 
           mkdir init && cd init
+          COMMIT=${COMMIT:-bcd9b22491929d9bbf7d85596484c5e5522c5294}
           wget -c https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/sbotools.SlackBuild \
                   https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/sbotools.info \
                   https://raw.githubusercontent.com/RSKYS/SBo-git/$COMMIT/system/sbotools/slack-desc \
@@ -44,10 +45,9 @@ jobs:
           rm -rf {.git*,*}
           sbosnap fetch )
 
-        ( export MainBranch=$(echo "${{ github.base_ref }}" | sed 's/^refs\/heads\///')
-          cd /tmp/sbo/repo
+        ( cd /tmp/sbo/repo
 
-          CHANGED=$(git diff --name-only remotes/origin/$MainBranch.. | grep '.SlackBuild')
+          CHANGED=$(git diff --name-only remotes/origin/$REPO_BRANCH.. | grep '.SlackBuild')
           find */*/ -name "doinst.sh" -exec sed -e '1,$d' {} +
 
           for FILE in $CHANGED; do

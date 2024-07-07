@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/v/validators/validators
 MD5SUM="cce103104db757edb2a969dc7d1637c0"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-poetry-core"
+REQUIRES="python3-poetry-core python3-setuptools-opt"
 MAINTAINER="Jeremy Hansen"
 EMAIL="jebrhansen+SBo@gmail.com"

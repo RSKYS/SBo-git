@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/b/backports_tarfile/bac
 MD5SUM="6fa4cba424a2bf48a7764412e9e65dcd"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES=""
+REQUIRES="python3-setuptools-opt"
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

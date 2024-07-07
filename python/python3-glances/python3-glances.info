@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/g/glances/glances-4.0.8
 MD5SUM="b2cd2d15e772b343fe145b6389dd2298"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-defusedxml python3-orjson"
+REQUIRES="python3-psutil python3-defusedxml python3-orjson"
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

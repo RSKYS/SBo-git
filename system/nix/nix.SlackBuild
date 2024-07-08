@@ -100,8 +100,9 @@ find -L . \
 # - 20220325 bkw: patch from Debian, stops nix from installing
 #   /usr/bin/nix and its libraries during "make". spamming the real
 #   root partition is bad, m'kay? (Updated).
-# - The above patch was added thanks to Pragmatic Cypher, along with
-#   mdbook patch to make it disabled.
+# - The above patch was added thanks to Pragmatic Cypher,there are two
+#   other root spammers in new series, not happy with them at all.
+# - Disabled enforced mdbook dependency.
 # - Added global CFLAGS.
 # - Changed to ignore offset, since function hasn't still implemented
 #   in Slackware 15's sqlite.

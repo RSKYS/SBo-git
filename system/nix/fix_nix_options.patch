@@ -78,6 +78,60 @@ index abdfd6a..dea46f3 100644
  	@mv $@.tmp $@
  
  # Generate the HTML manual.
+diff --git a/mk/lib.mk b/mk/lib.mk
+index e86a7f1..5a81a0c 100644
+--- a/mk/lib.mk
++++ b/mk/lib.mk
+@@ -118,7 +118,7 @@ $(foreach mf, $(makefiles), $(eval $(call include-sub-makefile, $(mf))))
+ # Instantiate stuff.
+ $(foreach lib, $(libraries), $(eval $(call build-library,$(lib))))
+ $(foreach prog, $(programs), $(eval $(call build-program,$(prog))))
+-$(foreach script, $(bin-scripts), $(eval $(call install-program-in,$(script),$(bindir))))
++$(foreach script, $(bin-scripts), $(eval $(call install-program-in,$(script),$(nix_DIR))))
+ $(foreach script, $(bin-scripts), $(eval programs-list += $(script)))
+ $(foreach script, $(noinst-scripts), $(eval programs-list += $(script)))
+ $(foreach template, $(template-files), $(eval $(call instantiate-template,$(template))))
+diff --git a/mk/libraries.mk b/mk/libraries.mk
+index 1bc73d7..6549029 100644
+--- a/mk/libraries.mk
++++ b/mk/libraries.mk
+@@ -60,7 +60,7 @@ define build-library
+   _libs := $$(foreach lib, $$($(1)_LIBS), $$($$(lib)_PATH))
+ 
+   ifdef HOST_CYGWIN
+-    $(1)_INSTALL_DIR ?= $$(bindir)
++    $(1)_INSTALL_DIR ?= $$(nix_DIR)
+   else
+     $(1)_INSTALL_DIR ?= $$(libdir)
+   endif
+diff --git a/mk/programs.mk b/mk/programs.mk
+index 1ee1d3f..05080fe 100644
+--- a/mk/programs.mk
++++ b/mk/programs.mk
+@@ -38,7 +38,7 @@ define build-program
+   $$($(1)_PATH): $$($(1)_OBJS) $$(_libs) | $$(_d)/
+ 	+$$(trace-ld) $(CXX) -o $$@ $$(LDFLAGS) $$(GLOBAL_LDFLAGS) $$($(1)_OBJS) $$($(1)_LDFLAGS) $$(foreach lib, $$($(1)_LIBS), $$($$(lib)_LDFLAGS_USE))
+ 
+-  $(1)_INSTALL_DIR ?= $$(bindir)
++  $(1)_INSTALL_DIR ?= $$(nix_DIR)
+ 
+   ifdef $(1)_INSTALL_DIR
+ 
+diff --git a/src/nix/local.mk b/src/nix/local.mk
+index 20ea29d..a082bd1 100644
+--- a/src/nix/local.mk
++++ b/src/nix/local.mk
+@@ -22,8 +22,8 @@ nix_LDFLAGS = -pthread $(SODIUM_LIBS) $(EDITLINE_LIBS) $(BOOST_LDFLAGS) $(LOWDOW
+ 
+ $(foreach name, \
+   nix-build nix-channel nix-collect-garbage nix-copy-closure nix-daemon nix-env nix-hash nix-instantiate nix-prefetch-url nix-shell nix-store, \
+-  $(eval $(call install-symlink, nix, $(bindir)/$(name))))
+-$(eval $(call install-symlink, $(bindir)/nix, $(libexecdir)/nix/build-remote))
++  $(eval $(call install-symlink, nix, $(nix_DIR)/$(name))))
++$(eval $(call install-symlink, $(nix_DIR)/nix, $(libexecdir)/nix/build-remote))
+ 
+ src/nix-env/user-env.cc: src/nix-env/buildenv.nix.gen.hh
+ 
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
 index dea46f3..422d531 100644
 --- a/doc/manual/local.mk

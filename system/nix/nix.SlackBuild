@@ -99,10 +99,10 @@ find -L . \
 
 # - 20220325 bkw: patch from Debian, stops nix from installing
 #   /usr/bin/nix and its libraries during "make". spamming the real
-#   root partition is bad, m'kay? (Updated)
+#   root partition is bad, m'kay? (Updated).
 # - The above patch was added thanks to Pragmatic Cypher, along with
 #   mdbook patch to make it disabled.
-# - Added global CFLAGS
+# - Added global CFLAGS.
 # - Changed to ignore offset, since function hasn't still implemented
 #   in Slackware 15's sqlite.
 # - Fixed missing -lrapidcheck flag.
@@ -119,6 +119,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --mandir=/usr/man \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --sysconfdir=/etc \
+  --enable-static=rapidcheck \
   --build=$ARCH-slackware-linux \
   --host=$ARCH-slackware-linux
 
@@ -136,12 +137,6 @@ mkdir -p $PKG/nix/var/nix/daemon-socket
 
 rm -fR $PKG/etc/init.d
 rm -fR $PKG/usr/lib${LIBDIRSUFFIX}/systemd
-
-# Disable annoying error of nix search
-mkdir -p $PKG/etc/nix
-cat <<-EOF > $PKG/etc/nix/nix.conf.new
-experimental-features = nix-command flakes
-EOF
 
 # Disable annoying error of nix search
 mkdir -p $PKG/etc/nix

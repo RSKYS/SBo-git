@@ -102,7 +102,7 @@ find -L . \
 #   root partition is bad, m'kay? (Updated).
 # - The above patch was added thanks to Pragmatic Cypher, along with
 #   mdbook patch to make it disabled.
-# - Added global CFLAGS.
+# - Added global CFLAGS
 # - Changed to ignore offset, since function hasn't still implemented
 #   in Slackware 15's sqlite.
 # - Fixed missing -lrapidcheck flag.

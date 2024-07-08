@@ -1,9 +1,22 @@
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index abdfd6a..dea46f3 100644
+index abdfd6a..f1cec77 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
-@@ -32,7 +32,7 @@ dummy-env = env -i \
- 	NIX_STATE_DIR=/dummy \
+@@ -25,14 +25,16 @@ clean-files += $(d)/*.1 $(d)/*.5 $(d)/*.8
+ 
+ # Provide a dummy environment for nix, so that it will not access files outside the macOS sandbox.
+ # Set cores to 0 because otherwise nix show-config resolves the cores based on the current machine
++dum_DIR := $(realpath $(nix_DIR))
++
+ dummy-env = env -i \
+-	HOME=/dummy \
+-	NIX_CONF_DIR=/dummy \
+-	NIX_SSL_CERT_FILE=/dummy/no-ca-bundle.crt \
+-	NIX_STATE_DIR=/dummy \
++	HOME=$(dum_DIR)/dummy \
++	NIX_CONF_DIR=$(dum_DIR)/dummy \
++	NIX_SSL_CERT_FILE=$(dum_DIR)/dummy/no-ca-bundle.crt \
++	NIX_STATE_DIR=$(dum_DIR)/dummy \
  	NIX_CONFIG='cores = 0'
  
 -nix-eval = $(dummy-env) $(bindir)/nix eval --experimental-features nix-command -I nix/corepkgs=corepkgs --store dummy:// --impure --raw
@@ -11,7 +24,7 @@ index abdfd6a..dea46f3 100644
  
  # re-implement mdBook's include directive to make it usable for terminal output and for proper @docroot@ substitution
  define process-includes
-@@ -96,52 +96,52 @@ $(d)/src/SUMMARY.md: $(d)/src/SUMMARY.md.in $(d)/src/command-ref/new-cli $(d)/sr
+@@ -96,52 +98,52 @@ $(d)/src/SUMMARY.md: $(d)/src/SUMMARY.md.in $(d)/src/command-ref/new-cli $(d)/sr
  	@cp $< $@
  	@$(call process-includes,$@,$@)
  
@@ -79,10 +92,10 @@ index abdfd6a..dea46f3 100644
  
  # Generate the HTML manual.
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index dea46f3..422d531 100644
+index b4aba08..daed407 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
-@@ -174,22 +174,22 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
+@@ -176,22 +176,22 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
  	@touch $@
  
  $(docdir)/manual/index.html: $(MANUAL_SRCS) $(d)/book.toml $(d)/anchors.jq $(d)/custom.css $(d)/src/SUMMARY.md $(d)/src/command-ref/new-cli $(d)/src/contributing/experimental-feature-descriptions.md $(d)/src/command-ref/conf-file.md $(d)/src/language/builtins.md $(d)/src/language/builtin-constants.md

@@ -1,5 +1,5 @@
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index 71ad5c8..1df1641 100644
+index 71ad5c8..7a72b9b 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
 @@ -28,11 +28,13 @@ clean-files += $(d)/*.1 $(d)/*.5 $(d)/*.8
@@ -21,7 +21,7 @@ index 71ad5c8..1df1641 100644
  
  nix-eval = $(dummy-env) $(doc_nix) eval --experimental-features nix-command -I nix=doc/manual --store dummy:// --impure --raw
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index 1df1641..77a8681 100644
+index 7a72b9b..1681cc1 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
 @@ -220,20 +220,20 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
@@ -63,53 +63,21 @@ index 1df1641..77a8681 100644
 +	# @mv $(DESTDIR)$(docdir)/manual.tmp/html $(DESTDIR)$(docdir)/manual
 +	# @rm -rf $(DESTDIR)$(docdir)/manual.tmp
 diff --git a/configure.ac b/configure.ac
-index 8f60bf4..48af2b2 100644
+index 90a6d45..9eb3380 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -418,7 +418,7 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
+@@ -417,7 +417,8 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
  AC_ARG_WITH(sandbox-shell, AS_HELP_STRING([--with-sandbox-shell=PATH],[path of a statically-linked shell to use as /bin/sh in sandboxes]),
    sandbox_shell=$withval)
  AC_SUBST(sandbox_shell)
 -if test ${cross_compiling:-no} = no && ! test -z ${sandbox_shell+x}; then
-+if test ${cross_compiling:-no} = no && test -n "${sandbox_shell}"; then
-   AC_MSG_CHECKING([whether sandbox-shell has the standalone feature])
-   # busybox shell sometimes allows executing other busybox applets,
-   # even if they are not in the path, breaking our sandbox
-diff --git a/configure.ac b/configure.ac
-index 48af2b2..cb57912 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -418,7 +418,8 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
- AC_ARG_WITH(sandbox-shell, AS_HELP_STRING([--with-sandbox-shell=PATH],[path of a statically-linked shell to use as /bin/sh in sandboxes]),
-   sandbox_shell=$withval)
- AC_SUBST(sandbox_shell)
--if test ${cross_compiling:-no} = no && test -n "${sandbox_shell}"; then
 +if test ${cross_compiling:-no} = no && test -n "${sandbox_shell}" &&
 +   test -z "${sandbox_shell%%*busybox*}"; then
    AC_MSG_CHECKING([whether sandbox-shell has the standalone feature])
    # busybox shell sometimes allows executing other busybox applets,
    # even if they are not in the path, breaking our sandbox
-diff --git a/src/libexpr/local.mk b/src/libexpr/local.mk
-index ecadc5e..26e875e 100644
---- a/src/libexpr/local.mk
-+++ b/src/libexpr/local.mk
-@@ -37,7 +37,13 @@ $(d)/parser-tab.cc $(d)/parser-tab.hh: $(d)/parser.y
- $(d)/lexer-tab.cc $(d)/lexer-tab.hh: $(d)/lexer.l
- 	$(trace-gen) flex --outfile $(libexpr_DIR)/lexer-tab.cc --header-file=$(libexpr_DIR)/lexer-tab.hh $<
- 
--clean-files += $(d)/parser-tab.cc $(d)/parser-tab.hh $(d)/lexer-tab.cc $(d)/lexer-tab.hh
-+clean-files += \
-+  $(d)/fetchurl.nix.gen.hh \
-+  $(d)/flake/call-flake.nix.gen.hh \
-+  $(d)/imported-drv-to-derivation.nix.gen.hh \
-+  $(d)/primops/derivation.nix.gen.hh \
-+  $(d)/parser-tab.cc $(d)/parser-tab.hh $(d)/parser-tab.output \
-+  $(d)/lexer-tab.cc $(d)/lexer-tab.hh
- 
- $(eval $(call install-file-in, $(buildprefix)$(d)/nix-expr.pc, $(libdir)/pkgconfig, 0644))
- 
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index 997872f..94c0f82 100644
+index 1681cc1..1738867 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
 @@ -24,7 +24,8 @@ man-pages += $(foreach subcommand, \
@@ -122,7 +90,7 @@ index 997872f..94c0f82 100644
  
  # Provide a dummy environment for nix, so that it will not access files outside the macOS sandbox.
  # Set cores to 0 because otherwise `nix config show` resolves the cores based on the current machine
-@@ -111,11 +112,15 @@ $(d)/src/command-ref/new-cli: $(d)/nix.json $(d)/utils.nix $(d)/generate-manpage
+@@ -113,11 +114,15 @@ $(d)/src/command-ref/new-cli: $(d)/nix.json $(d)/utils.nix $(d)/generate-manpage
  	$(trace-gen) $(nix-eval) --write-to $@.tmp --expr 'import doc/manual/generate-manpage.nix true (builtins.readFile $<)'
  	@mv $@.tmp $@
  
@@ -138,7 +106,7 @@ index 997872f..94c0f82 100644
  $(d)/nix.json: $(doc_nix)
  	$(trace-gen) $(dummy-env) $(doc_nix) __dump-cli > $@.tmp
  	@mv $@.tmp $@
-@@ -124,36 +129,50 @@ $(d)/conf-file.json: $(doc_nix)
+@@ -126,36 +131,50 @@ $(d)/conf-file.json: $(doc_nix)
  	$(trace-gen) $(dummy-env) $(doc_nix) config show --json --experimental-features nix-command > $@.tmp
  	@mv $@.tmp $@
  
@@ -189,7 +157,7 @@ index 997872f..94c0f82 100644
  # Generate "Upcoming release" notes (or clear it and remove from menu)
  $(d)/src/release-notes/rl-next.md: $(d)/rl-next $(d)/rl-next/*
  	@if type -p changelog-d > /dev/null; then \
-@@ -164,6 +183,8 @@ $(d)/src/release-notes/rl-next.md: $(d)/rl-next $(d)/rl-next/*
+@@ -166,6 +185,8 @@ $(d)/src/release-notes/rl-next.md: $(d)/rl-next $(d)/rl-next/*
  		true > $@; \
  	fi
  
@@ -198,7 +166,7 @@ index 997872f..94c0f82 100644
  $(d)/src/SUMMARY-rl-next.md: $(d)/src/release-notes/rl-next.md
  	$(trace-gen) true
  	@if [ -s $< ]; then \
-@@ -172,6 +193,8 @@ $(d)/src/SUMMARY-rl-next.md: $(d)/src/release-notes/rl-next.md
+@@ -174,6 +195,8 @@ $(d)/src/SUMMARY-rl-next.md: $(d)/src/release-notes/rl-next.md
  	  true > $@; \
  	fi
  
@@ -207,11 +175,30 @@ index 997872f..94c0f82 100644
  # Generate the HTML manual.
  .PHONY: manual-html
  manual-html: $(docdir)/manual/index.html
+diff --git a/src/libexpr/local.mk b/src/libexpr/local.mk
+index ecadc5e..26e875e 100644
+--- a/src/libexpr/local.mk
++++ b/src/libexpr/local.mk
+@@ -37,7 +37,13 @@ $(d)/parser-tab.cc $(d)/parser-tab.hh: $(d)/parser.y
+ $(d)/lexer-tab.cc $(d)/lexer-tab.hh: $(d)/lexer.l
+ 	$(trace-gen) flex --outfile $(libexpr_DIR)/lexer-tab.cc --header-file=$(libexpr_DIR)/lexer-tab.hh $<
+ 
+-clean-files += $(d)/parser-tab.cc $(d)/parser-tab.hh $(d)/lexer-tab.cc $(d)/lexer-tab.hh
++clean-files += \
++  $(d)/fetchurl.nix.gen.hh \
++  $(d)/flake/call-flake.nix.gen.hh \
++  $(d)/imported-drv-to-derivation.nix.gen.hh \
++  $(d)/primops/derivation.nix.gen.hh \
++  $(d)/parser-tab.cc $(d)/parser-tab.hh $(d)/parser-tab.output \
++  $(d)/lexer-tab.cc $(d)/lexer-tab.hh
+ 
+ $(eval $(call install-file-in, $(buildprefix)$(d)/nix-expr.pc, $(libdir)/pkgconfig, 0644))
+ 
 diff --git a/src/nix/local.mk b/src/nix/local.mk
-index 305b0e9..f2a91fa 100644
+index 9883509..f439aba 100644
 --- a/src/nix/local.mk
 +++ b/src/nix/local.mk
-@@ -37,22 +37,34 @@ $(eval $(call install-symlink, $(bindir)/nix, $(libexecdir)/nix/build-remote))
+@@ -42,22 +42,34 @@ $(eval $(call install-symlink, $(bindir)/nix, $(libexecdir)/nix/build-remote))
  
  src/nix-env/user-env.cc: src/nix-env/buildenv.nix.gen.hh
  
@@ -247,7 +234,7 @@ index 305b0e9..f2a91fa 100644
  	@mkdir -p $$(dirname $@)
  	@echo 'R"(' >> $@.tmp
 diff --git a/src/libutil/ref.hh b/src/libutil/ref.hh
-index 5d0c369..9802583 100644
+index 03aa642..e2bf37a 100644
 --- a/src/libutil/ref.hh
 +++ b/src/libutil/ref.hh
 @@ -25,14 +25,14 @@ public:
@@ -268,14 +255,15 @@ index 5d0c369..9802583 100644
      {
          if (!p)
 diff --git a/Makefile b/Makefile
-index ea0754f..9753832 100644
+index 6c96ef5..29b57de 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -99,6 +99,7 @@ ifdef HOST_WINDOWS
- endif
- 
- GLOBAL_CXXFLAGS += -g -Wall -Wimplicit-fallthrough -include $(buildprefix)config.h -std=c++2a -I src
-+GLOBAL_CFLAGS += $(CPPFLAGS)
+@@ -102,6 +102,8 @@ GLOBAL_CXXFLAGS += -g -Wall -Wdeprecated-copy -Wignored-qualifiers -Wimplicit-fa
  
  # Include the main lib, causing rules to be defined
  
++GLOBAL_CFLAGS += $(CPPFLAGS)
++
+ include mk/lib.mk
+ 
+ # Fallback stub rules for better UX when things are disabled

@@ -47,14 +47,13 @@ jobs:
         ( export MainBranch=$(echo "${{ github.base_ref }}" | sed 's/^refs\/heads\///')
           cd /tmp/sbo/repo
 
-          CHANGED=$(git diff --name-only remotes/origin/$MainBranch.. | grep '.SlackBuild')
+          CHANGED=$(git diff --name-only remotes/origin/$MainBranch.. | awk -F/ '{print $2}' | sort -u)
           find */*/ -name "doinst.sh" -exec sed -e '1,$d' {} +
 
-          for FILE in $CHANGED; do
-            BASENAME=$(basename $FILE .SlackBuild)
+          for BASENAM in $CHANGED; do
 
             PKGTYPE=txz \
-                  sboinstall -j3 --reinstall $BASENAME
+                  sboinstall -j3 --reinstall $BASENAM
           done )
 
     - name: Notify PR Thread

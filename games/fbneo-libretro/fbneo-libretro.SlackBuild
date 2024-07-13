@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Slackware build script for breath-gtk-theme
+# Slackware build script for fbneo-libretro
 
-# Copyright 2020 Isaac Yu <isaacyu@protonmail.com>
+# Copyright 2024 ilmich < ardutu at gmail dot com >
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,14 +24,14 @@
 
 cd $(dirname $0) ; CWD=$(pwd)
 
-PRGNAM=breath-gtk-theme
-VERSION=${VERSION:-5.9.0}
+PRGNAM=fbneo-libretro
+SRCNAM=FBNeo
+LIBNAM=${PRGNAM/-/_}
+VERSION=${VERSION:-2024.06.30_004f20a}
+COMMIT=004f20a3111839bf8b0e740e3deaca9328af5df0
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
-
-SRCNAM=breath-gtk
-COMMIT=${COMMIT:-da2706640f457f89de6c26312e391b244ff550b4}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -50,55 +50,38 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i586" ]; then
-  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
-  LIBDIRSUFFIX=""
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2 -fPIC"
-  LIBDIRSUFFIX="64"
-else
-  SLKCFLAGS="-O2"
-  LIBDIRSUFFIX=""
-fi
+LIBDIRSUFFIX=
+[ "$ARCH" = x86_64 ] && LIBDIRSUFFIX=64
 
-set -e
+set -eu
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $SRCNAM-$COMMIT
-TARBALL=$CWD/$COMMIT.tar.gz
-if [ ! -e $TARBALL ] ; then
-  TARBALL=$CWD/breath-gtk-$COMMIT.tar.gz
-fi
-tar xvf $TARBALL
-cd $SRCNAM-$COMMIT
+rm -rf ${SRCNAM/-/_}-$COMMIT
+tar xvf $CWD/${SRCNAM/-/_}-$COMMIT.tar.gz
+cd ${SRCNAM/-/_}-$COMMIT
 chown -R root:root .
 find -L . \
- \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
- -exec chmod 755 {} \; -o \
- \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
- -exec chmod 644 {} \;
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mkdir build
-cd build
-  cmake -DCMAKE_C_FLAGS:STRING="${SLKCFLAGS}" \
-        -DCMAKE_CXX_FLAGS:STRING="${SLKCFLAGS}" \
-        -DCMAKE_INSTALL_PREFIX=/usr \
-        -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-        ..
-  make
-  make install DESTDIR=$PKG
-cd ..
+[ "${DEBUG:=0}" != 0 ] && DEBUG=1
 
-find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
-  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+make -C src/burner/libretro DEBUG=$DEBUG EXTERNAL_ZLIB=1
+
+install -Dm0644 src/burner/libretro/$LIBNAM.so $PKG/usr/lib${LIBDIRSUFFIX}/libretro/$LIBNAM.so
+install -Dm0644 $CWD/$LIBNAM.info $PKG/usr/lib${LIBDIRSUFFIX}/libretro/info/$LIBNAM.info
+
+if [ $DEBUG = 0 ]; then
+  find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+    | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+fi
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a README.md $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a LICENSE.md README.md gamelist.txt $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

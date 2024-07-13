@@ -502,18 +502,6 @@ index 1486cf13..19acf7d9 100644
 +REQUIRES="python-distutils-extra gnome-menus"
  MAINTAINER="Sasha Abbott"
  EMAIL="sashaa@disroot.org"
-diff --git a/desktop/mousam/mousam.info b/desktop/mousam/mousam.info
-index 21afe202..1e498049 100644
---- a/desktop/mousam/mousam.info
-+++ b/desktop/mousam/mousam.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/amit9838/mousam/archive/v1.3.1/mousam-1.3.1.tar.gz"
- MD5SUM="11194a632da23fdd99ee6e19fbecda83"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
--REQUIRES="libadwaita python3-meson-opt"
-+REQUIRES="libadwaita"
- MAINTAINER="Isaac Yu"
- EMAIL="isaacyu@protonmail.com"
 diff --git a/desktop/nautilus/nautilus.info b/desktop/nautilus/nautilus.info
 index 22165372..6188e8b9 100644
 --- a/desktop/nautilus/nautilus.info
@@ -2478,18 +2466,6 @@ index f8499de3..24f8a588 100644
 +REQUIRES="pugixml"
  MAINTAINER="Christoph Willing"
  EMAIL="chris.willing@linux.com"
-diff --git a/network/tokodon/tokodon.info b/network/tokodon/tokodon.info
-index 036bc822..944d0355 100644
---- a/network/tokodon/tokodon.info
-+++ b/network/tokodon/tokodon.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/KDE/tokodon/archive/refs/tags/v22.09/tokodon-22.09.
- MD5SUM="71c1826bb9a6d0c5f042d46613c1f594"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
--REQUIRES="kirigami-addons"
-+REQUIRES=""
- MAINTAINER="Jeremy Hansen"
- EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/network/translate/translate.info b/network/translate/translate.info
 index 349b9cd3..3ce7789e 100644
 --- a/network/translate/translate.info
@@ -6246,20 +6222,6 @@ index ea640b12..3ebaba18 100644
  
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
-diff --git a/desktop/mousam/mousam.SlackBuild b/desktop/mousam/mousam.SlackBuild
-index e2cfdbd8..67fc3af5 100644
---- a/desktop/mousam/mousam.SlackBuild
-+++ b/desktop/mousam/mousam.SlackBuild
-@@ -71,8 +71,7 @@ find -L . \
-   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
- 
- # Use newer meson
--PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
--export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
- 
- # Fix application flags for glib 2.70
- # glib2 documentation: https://docs.gtk.org/gio/flags.ApplicationFlags.html
 diff --git a/desktop/qtile/qtile.SlackBuild b/desktop/qtile/qtile.SlackBuild
 index f125ebfa..cc20ce24 100644
 --- a/desktop/qtile/qtile.SlackBuild
@@ -8238,104 +8200,27 @@ index 8bbb7c4bf..e1f34f6cc 100644
 +REQUIRES="mupdf zathura tesseract"
  MAINTAINER="B. Watson"
  EMAIL="urchlay@slackware.uk"
-diff --git a/system/nvidia-driver/nvidia-driver.SlackBuild b/system/nvidia-driver/nvidia-driver.SlackBuild
-index f86ced3d2..7d763eb44 100644
---- a/system/nvidia-driver/nvidia-driver.SlackBuild
-+++ b/system/nvidia-driver/nvidia-driver.SlackBuild
-@@ -27,7 +27,7 @@
- cd $(dirname $0) ; CWD=$(pwd)
- 
- PRGNAM=nvidia-driver
--VERSION=${VERSION:-550.90.07}
-+VERSION=${VERSION:-555.58.02}
- BUILD=${BUILD:-1}
- TAG=${TAG:-_SBo}
- PKGTYPE=${PKGTYPE:-tgz}
-@@ -51,7 +51,7 @@ if [ "$ARCH" = "x86_64" ]; then
-   TARGET="x86_64"
-   LIBDIRSUFFIX="64"
- # Set 32-bit compatibility flag default
--  COMPAT32=${COMPAT32:-no}
-+  COMPAT32=${COMPAT32:-yes}
- else
-   echo "$ARCH is not supported."
-   exit 1
-@@ -71,7 +71,7 @@ if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
-   exit 0
- fi
- 
--if [ "${PERSISTENCED:-no}" = "yes" ]; then
-+if [ "${PERSISTENCED:-yes}" = "yes" ]; then
-   if [ "`getent group nvidia > /dev/null`" -o "`getent passwd nvidia > /dev/null`" ]; then
-     echo "User and/or group nvidia do not exist!"
-     echo "Please create user and group nvidia and rerun this script."
-@@ -157,7 +157,7 @@ fi
- 
- # Install the binary libs using nvidia-installer compiled above
- cd $TMP/$SRCNAM
--./nvidia-installer -s --no-kernel-module --no-drm --no-unified-memory \
-+./nvidia-installer -s --no-kernel-module --no-unified-memory \
-   -z -n -b --no-rpms --no-distro-scripts \
-   --no-kernel-module-source --no-x-check --force-libglx-indirect \
-   --x-prefix=$PKG/usr \
-@@ -282,6 +282,13 @@ sed -i '/Encoding/d' $PKG/usr/share/applications/nvidia-settings.desktop
- # Remove xorg conf file since we handle that in nvidia-kernel
- rm -rf $PKG/etc/X11/xorg.conf.d
- 
-+# Blacklist nouveau
-+mkdir -p $PKG/etc/modprobe.d
-+cat <<-EOF > $PKG/etc/modprobe.d/nvidia-installer-disable-nouveau.conf
-+blacklist nouveau
-+options nouveau modeset=0
-+EOF
-+
- cd $TMP/$SRCNAM
- # put docs in the right place
- mv $PKG/usr/share/man/man1/nvidia-* $PKG/usr/man/man1
-@@ -302,7 +309,7 @@ fi
- cat $CWD/doinst.sh > $PKG/install/doinst.sh
- 
- # Add nvidia-persistenced:
--if [ "${PERSISTENCED:-no}" = "yes" ]; then
-+if [ "${PERSISTENCED:-yes}" = "yes" ]; then
-   cd $TMP
-   rm -rf nvidia-persistenced-$VERSION.tar.bz2
-   tar xvf $CWD/nvidia-persistenced-$VERSION.tar.bz2
-diff --git a/system/nvidia-driver/nvidia-driver.info b/system/nvidia-driver/nvidia-driver.info
-index a049d3694..4f62132f8 100644
---- a/system/nvidia-driver/nvidia-driver.info
-+++ b/system/nvidia-driver/nvidia-driver.info
-@@ -1,20 +1,20 @@
- PRGNAM="nvidia-driver"
--VERSION="550.90.07"
-+VERSION="555.58.02"
- HOMEPAGE="https://www.nvidia.com"
- DOWNLOAD="UNSUPPORTED"
- MD5SUM=""
--DOWNLOAD_x86_64="https://download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run \
--                 https://download.nvidia.com/XFree86/nvidia-installer/nvidia-installer-550.90.07.tar.bz2 \
--                 https://download.nvidia.com/XFree86/nvidia-modprobe/nvidia-modprobe-550.90.07.tar.bz2 \
--                 https://download.nvidia.com/XFree86/nvidia-persistenced/nvidia-persistenced-550.90.07.tar.bz2 \
--                 https://download.nvidia.com/XFree86/nvidia-settings/nvidia-settings-550.90.07.tar.bz2 \
--                 https://download.nvidia.com/XFree86/nvidia-xconfig/nvidia-xconfig-550.90.07.tar.bz2"
--MD5SUM_x86_64="fa8d3ff7dd40cc67ea448f0a2227942c \
--               218677cc3e767e8c464c4bce6d97e73f \
--               10568a8c9a1e0c6ba9cc228f86f3d77a \
--               df5d52818eddc3f690fd741548f9ab2a \
--               90c0b11b2189bac8e2ec0f0d02f3747c \
--               9a6a33314103d0402b2b00a4491ca06e"
-+DOWNLOAD_x86_64="https://download.nvidia.com/XFree86/Linux-x86_64/555.58.02/NVIDIA-Linux-x86_64-555.58.02.run \
-+                 https://download.nvidia.com/XFree86/nvidia-installer/nvidia-installer-555.58.02.tar.bz2 \
-+                 https://download.nvidia.com/XFree86/nvidia-modprobe/nvidia-modprobe-555.58.02.tar.bz2 \
-+                 https://download.nvidia.com/XFree86/nvidia-persistenced/nvidia-persistenced-555.58.02.tar.bz2 \
-+                 https://download.nvidia.com/XFree86/nvidia-settings/nvidia-settings-555.58.02.tar.bz2 \
-+                 https://download.nvidia.com/XFree86/nvidia-xconfig/nvidia-xconfig-555.58.02.tar.bz2"
-+MD5SUM_x86_64="f6efa3d40fccc97fbac9b55fc81e30d7 \
-+               5a49e808a0b4c50d55c5ca872d2a6a7d \
-+               970de094a882199ccb56cf0da78600d7 \
-+               d6966cbd1fdc0fbcaffe03cb20da4c25 \
-+               c3eeac1cdd10577d9bbd11016c45dbf0 \
-+               a63459dba8c8a056f664e7a0660b245f"
- REQUIRES="nvidia-kernel"
- MAINTAINER="Lenard Spencer"
- EMAIL="lenardrspencer@gmail.com"
+diff --git a/development/gambas3/gambas3.info b/development/gambas3/gambas3.info
+index 9d99d1a6..d58e0300 100644
+--- a/development/gambas3/gambas3.info
++++ b/development/gambas3/gambas3.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/gambas/gambas/-/archive/3.19.3/gambas-3.19.3.tar.bz
+ MD5SUM="99b1eafb58ae920a7efdd390c73c0c15"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="alure gtkglext webkit2gtk4.1 imlib %README%"
++REQUIRES="alure gtkglext webkit2gtk4.1 imlib"
+ MAINTAINER="Tim Dickson"
+ EMAIL="dickson.tim@googlemail.com"
+diff --git a/system/xfs_undelete/xfs_undelete.info b/system/xfs_undelete/xfs_undelete.info
+index 538c28a4..694ad63d 100644
+--- a/system/xfs_undelete/xfs_undelete.info
++++ b/system/xfs_undelete/xfs_undelete.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/ianka/xfs_undelete/archive/v14.0/xfs_undelete-14.0.
+ MD5SUM="f8bd28566e0747f14cba36fb6c0d5f6d"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="%README%"
++REQUIRES=""
+ MAINTAINER="Bloyburt"
+ EMAIL="alexpen@startmail.com"

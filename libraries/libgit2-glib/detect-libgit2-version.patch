@@ -1,111 +1,22 @@
-diff --git a/libgit2-glib/ggit-remote-callbacks.h b/libgit2-glib/ggit-remote-callbacks.h
-index 3005ff4..2340712 100644
---- a/libgit2-glib/ggit-remote-callbacks.h
-+++ b/libgit2-glib/ggit-remote-callbacks.h
-@@ -24,6 +24,7 @@
- 
- #include <glib-object.h>
- #include <git2.h>
-+#include <git2/sys/errors.h>
- #include <libgit2-glib/ggit-cred.h>
- 
- G_BEGIN_DECLS
-diff --git a/libgit2-glib/ggit-repository.c b/libgit2-glib/ggit-repository.c
-index 68fdb31..304129b 100644
---- a/libgit2-glib/ggit-repository.c
-+++ b/libgit2-glib/ggit-repository.c
-@@ -3151,7 +3151,7 @@ ggit_repository_create_commit (GgitRepository  *repository,
- 	                         message,
- 	                         _ggit_native_get (tree),
- 	                         parent_count,
--	                         (const git_commit **)parents_native);
-+	                         (gpointer)parents_native);
- 
- 	g_free (parents_native);
- 
-diff --git a/libgit2-glib/ggit-types.h b/libgit2-glib/ggit-types.h
-index 4d5accf..c8b7af4 100644
---- a/libgit2-glib/ggit-types.h
-+++ b/libgit2-glib/ggit-types.h
-@@ -355,7 +355,8 @@ typedef enum
- 	GGIT_CONFIG_LEVEL_XDG         = 3,
- 	GGIT_CONFIG_LEVEL_GLOBAL      = 4,
- 	GGIT_CONFIG_LEVEL_LOCAL       = 5,
--	GGIT_CONFIG_LEVEL_APP         = 6,
-+	GGIT_CONFIG_LEVEL_WORKTREE    = 6,
-+	GGIT_CONFIG_LEVEL_APP         = 7,
- 	GGIT_CONFIG_LEVEL_HIGHEST     = -1
- } GgitConfigLevel;
- 
 diff --git a/meson.build b/meson.build
-index a36b606..92a1d3a 100644
+index 8f30cda..84c9417 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -122,7 +122,7 @@ glib_dep = dependency('glib-2.0', version: '>=' + glib_req)
+@@ -3,7 +3,7 @@ project(
+   version: '1.1.0',
+   default_options: 'buildtype=debugoptimized',
+   license: 'LGPL2+',
+-  meson_version: '>= 0.50.0',
++  meson_version: '>= 0.59.0',
+ )
+ 
+ libgit2_glib_version = meson.project_version()
+@@ -126,7 +126,7 @@ glib_dep = dependency('glib-2.0', version: '>=' + glib_req)
  gobject_dep = dependency('gobject-2.0', version: '>=' + glib_req)
  gio_dep = dependency('gio-2.0', version: '>=' + glib_req)
  
 -libgit2_dep = dependency('libgit2', version: '>= 0.25.0')
 +libgit2_dep = dependency('libgit2', version: '>= 1.8.0')
  
- enable_gir = get_option('introspection')
- if enable_gir
-diff --git a/meson_python_compile.py b/meson_python_compile.py
-index 1ffe0c0..24a74d8 100755
---- a/meson_python_compile.py
-+++ b/meson_python_compile.py
-@@ -8,7 +8,7 @@ if not os.environ.get('DESTDIR'):
-   libdir = sys.argv[1]
- 
-   print('Byte-compiling python modules...')
--  subprocess.call(['python3', '-m', 'compileall', '-f', '-q', libdir])
-+  subprocess.check_call(['python3', '-m', 'compileall', '-f', '-q', libdir])
- 
-   print('Byte-compiling python modules (optimized versions) ...')
--  subprocess.call(['python3', '-O', '-m', 'compileall', '-f', '-q', libdir])
-+  subprocess.check_call(['python3', '-O', '-m', 'compileall', '-f', '-q', libdir])
-diff --git a/meson_vapi_link.py b/meson_vapi_link.py
-old mode 100644
-new mode 100755
-index eb64fd6..db1e4e8
---- a/meson_vapi_link.py
-+++ b/meson_vapi_link.py
-@@ -1,22 +1,28 @@
- #!/usr/bin/env python3
- 
- import os
--import subprocess
-+import shutil
- import sys
- 
--vapidir = os.path.join(os.environ['MESON_INSTALL_DESTDIR_PREFIX'], sys.argv[1], 'vala', 'vapi')
-+datadir = sys.argv[1]
-+
-+destdir = os.environ.get('DESTDIR')
-+if destdir:
-+    datadir = os.path.splitdrive(datadir)[1].lstrip(os.path.sep)
-+    datadir = os.path.join(destdir, datadir)
-+
-+vapidir = os.path.join(datadir, 'vala', 'vapi')
-+os.chdir(vapidir)
- 
- # FIXME: meson will not track the creation of these files
- #        https://github.com/mesonbuild/meson/blob/master/mesonbuild/scripts/uninstall.py#L39
- old = 'ggit-1.0'
- new = 'libgit2-glib-1.0'
- 
--wd = os.getcwd()
--os.chdir(vapidir)
--
- for ext in ['vapi', 'deps']:
--  src = os.path.join('{}.{}'.format(new, ext))
--  dest = os.path.join('{}.{}'.format(old, ext))
--  subprocess.call(['ln', '-s', '-f', src, dest])
--
--os.chdir(wd)
-+  src = '{}.{}'.format(new, ext)
-+  dest = '{}.{}'.format(old, ext)
-+  try:
-+      os.symlink(src, dest)
-+  except OSError:
-+      shutil.copy(src, dest)
+ # XXX: Not nice, but probably our best option
+ enable_gir = get_option('introspection') and find_program('g-ir-scanner', required: false).found()

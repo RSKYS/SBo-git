@@ -7,6 +7,6 @@ MD5SUM="40b235d2fefc111aad969dfac3b6d6a2 \
         6bba176f61554f0b0ccd22e2608e2f55"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-setuptools-rust-opt"
+REQUIRES="rust16 python3-setuptools-rust-opt"
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

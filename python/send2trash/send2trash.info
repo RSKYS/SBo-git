@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/hsoft/send2trash/archive/1.8.2/send2trash-1.8.2.tar
 MD5SUM="eb438133a06589d66fd0b9d401d4bbc5"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES=""
+REQUIRES="python3-build python3-wheel"
 MAINTAINER="Jeremy Hansen"
 EMAIL="jebrhansen+SBo@gmail.com"

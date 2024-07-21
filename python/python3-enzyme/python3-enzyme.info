@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Diaoul/enzyme/archive/refs/tags/0.5.2/enzyme-0.5.2.
 MD5SUM="11174fa4fa06a14fc66b8d580d6fe694"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES=""
+REQUIRES="python3-setuptools-opt"
 MAINTAINER="Jeremy Hansen"
 EMAIL="jebrhansen+SBo@gmail.com"

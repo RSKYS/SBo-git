@@ -7,6 +7,6 @@ MD5SUM="413eb813be4922f055ae84ddfcd5a017 \
 	b91563f5f48c09622493cd0dae94f2fa"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-setuptools-rust-opt"
+REQUIRES="rust16 python3-setuptools-rust-opt"
 MAINTAINER="Willy Sudiarto Raharjo"
 EMAIL="willysr@slackbuilds.org"

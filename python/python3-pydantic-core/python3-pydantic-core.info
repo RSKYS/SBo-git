@@ -7,6 +7,6 @@ MD5SUM="037c620103f13abd1c6a8988cd7a55c9 \
         9020b171db85ffff3ad2147576e430cd"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-maturin"
+REQUIRES="python3-maturin python3-hatchling"
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/49/fe/8a6d8763674b3d3814a6008a
 MD5SUM="7bad912b0af6bb504819659ffe382199"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES=""
+REQUIRES="Sphinx"
 MAINTAINER="Dimitris Zlatanidis"
 EMAIL="d.zlatanidis@gmail.com"

@@ -8132,3 +8132,81 @@ index 872a5ae2..54c76e9d 100644
 +REQUIRES="yelp-tools webkit2gtk"
  MAINTAINER="Willy Sudiarto Raharjo"
  EMAIL="willysr@slackbuilds.org"
+diff --git a/python/munch/munch.SlackBuild b/python/munch/munch.SlackBuild
+index ddeda23ee..eca850362 100644
+--- a/python/munch/munch.SlackBuild
++++ b/python/munch/munch.SlackBuild
+@@ -63,9 +63,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+-export PYTHONPATH=/opt/python$PYVER/site-packages/
+-
+ python3 setup.py install --root=$PKG
+ 
+ mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+diff --git a/python/munch/munch.info b/python/munch/munch.info
+index daf79e95b..0614ac9bc 100644
+--- a/python/munch/munch.info
++++ b/python/munch/munch.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/m/munch/munch-4.0.0.tar
+ MD5SUM="4e70cf760e3b81dcaa6050803c1dbd72"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-setuptools-opt"
++REQUIRES=""
+ MAINTAINER="Isaac Yu"
+ EMAIL="isaacyu@protonmail.com"
+diff --git a/python/python3-enzyme/python3-enzyme.SlackBuild b/python/python3-enzyme/python3-enzyme.SlackBuild
+index beb8f297a..9e499aafe 100644
+--- a/python/python3-enzyme/python3-enzyme.SlackBuild
++++ b/python/python3-enzyme/python3-enzyme.SlackBuild
+@@ -70,9 +70,6 @@ if ! grep -qF "[tool.setuptools_scm]" pyproject.toml; then
+ fi
+ export SETUPTOOLS_SCM_PRETEND_VERSION=$VERSION
+ 
+-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+-export PYTHONPATH=/opt/python$PYVER/site-packages
+-
+ python3 -m build --wheel --no-isolation
+ python3 -m installer --destdir "$PKG" dist/*.whl
+ 
+diff --git a/python/python3-enzyme/python3-enzyme.info b/python/python3-enzyme/python3-enzyme.info
+index 5f638c129..054116245 100644
+--- a/python/python3-enzyme/python3-enzyme.info
++++ b/python/python3-enzyme/python3-enzyme.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Diaoul/enzyme/archive/refs/tags/0.5.2/enzyme-0.5.2.
+ MD5SUM="11174fa4fa06a14fc66b8d580d6fe694"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-setuptools-opt"
++REQUIRES=""
+ MAINTAINER="Jeremy Hansen"
+ EMAIL="jebrhansen+SBo@gmail.com"
+diff --git a/python/subliminal/subliminal.SlackBuild b/python/subliminal/subliminal.SlackBuild
+index b2e68df0e..7e4e24976 100644
+--- a/python/subliminal/subliminal.SlackBuild
++++ b/python/subliminal/subliminal.SlackBuild
+@@ -61,9 +61,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+-export PYTHONPATH=/opt/python$PYVER/site-packages
+-
+ # Add unused section to avoid ERROR message from setuptools_scm
+ # Make it an if statement just in case upstream decides to update
+ # it and I don't notice.
+diff --git a/python/subliminal/subliminal.info b/python/subliminal/subliminal.info
+index 99a84a2b9..1761666c2 100644
+--- a/python/subliminal/subliminal.info
++++ b/python/subliminal/subliminal.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Diaoul/subliminal/archive/refs/tags/2.2.1/sublimina
+ MD5SUM="069feb8ad7e758e89993268b759e4be4"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-guessit python3-enzyme BeautifulSoup4 python3-dogpile.cache python3-srt rarfile python3-setuptools-opt python3-platformdirs python3-click-option-group python3-pysubs2"
++REQUIRES="python3-guessit python3-enzyme BeautifulSoup4 python3-dogpile.cache python3-srt rarfile python3-platformdirs python3-click-option-group python3-pysubs2"
+ MAINTAINER="Jeremy Hansen"
+ EMAIL="jebrhansen+SBo@gmail.com"

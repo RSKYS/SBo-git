@@ -61,45 +61,31 @@ cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
-  -o -perm 511 \) -exec chmod 755 {} \+ -o \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
-  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Use newer meson
+# Override ARCH
+ARCH=noarch
 
+# Copy the program into the package
+mkdir -p $PKG/usr/bin
+cp -a $PRGNAM $PKG/usr/bin/
 
-# Fix application flags for glib 2.70
-# glib2 documentation: https://docs.gtk.org/gio/flags.ApplicationFlags.html
-# glib2 version check taken from Didier Spaier: https://tinyurl.com/8s2duash
-if [[ $(grep Version /usr/lib64/pkgconfig/glib-2.0.pc | awk '{print $2}') < 2.71.0 ]]; then
-    patch -p1 < $CWD/FixApplicationFlags.patch
-fi
+# Copy the man page into the package
+mkdir -p $PKG/usr/man/man1
+cp -a $PRGNAM.man $PKG/usr/man/man1/$PRGNAM.1
 
-# Fix for Gtk4 < 4.9 (css_provider.load_from_data() takes in 2 arguments rather than 3)
-# Reference: https://gitlab.gnome.org/GNOME/pygobject/-/merge_requests/231
-if [[ $(grep Version /usr/lib64/pkgconfig/gtk4.pc | awk '{print $2}') < 4.9.0 ]]; then
-    patch -p1 < $CWD/load_from_data.patch
-fi
-
-mkdir -p build
-cd build
-  CFLAGS="$SLKCFLAGS" \
-  CXXFLAGS="$SLKCFLAGS" \
-  meson .. \
-    --prefix /usr \
-    --mandir /usr/man \
-    --libdir /usr/lib${LIBDIRSUFFIX}
-  "${NINJA:=ninja}"
-  DESTDIR=$PKG $NINJA install
-cd ..
+# Compress the man page
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a COPYING README.md $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a LICENSE README.md $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
-cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

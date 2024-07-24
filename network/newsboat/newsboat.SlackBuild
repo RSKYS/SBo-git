@@ -154,13 +154,6 @@ if [ "$CARGOTARGET" != "" ] ; then
   sed -i "s|target/release|target/$RELEASEDIR/release|" Makefile
 fi
 
-export PATH="/opt/rust16/bin:$PATH"
-if [ -z "$LD_LIBRARY_PATH" ]; then
-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
-else
-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
-fi
-
 export CARGO_HOME=.cargo
 
 CXXFLAGS="$SLKCFLAGS" \

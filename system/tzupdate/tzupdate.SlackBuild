@@ -132,13 +132,6 @@ mkdir vendor
   done
 )
 
-export PATH="/opt/rust16/bin:$PATH"
-if [ -z "$LD_LIBRARY_PATH" ]; then
-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
-else
-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
-fi
-
 CARGO_HOME=.cargo \
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \

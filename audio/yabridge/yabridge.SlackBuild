@@ -93,13 +93,6 @@ elif [ $ARCH = "x86_64" ]; then
   fi
 fi
 
-export PATH="/opt/rust16/bin:$PATH"
-if [ -z "$LD_LIBRARY_PATH" ]; then
-   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
-else
-   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
-fi
-
 TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}

@@ -194,6 +194,24 @@ index 6d7c90be..00864a54 100644
 +REQUIRES="libmicrohttpd"
  MAINTAINER="Samuel Young"
  EMAIL="samyoung12788@gmail.com"
+diff --git a/audio/ncspot/ncspot.SlackBuild b/audio/ncspot/ncspot.SlackBuild
+index 5c5db836..4b109495 100644
+--- a/audio/ncspot/ncspot.SlackBuild
++++ b/audio/ncspot/ncspot.SlackBuild
+@@ -149,13 +149,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/audio/ncspot/ncspot.info b/audio/ncspot/ncspot.info
 index dd151d4b..51b80273 100644
 --- a/audio/ncspot/ncspot.info
@@ -230,6 +248,24 @@ index 781926bd..1e877374 100644
 +REQUIRES="configobj mutagen Unidecode pyacoustid python3-levenshtein"
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
+diff --git a/audio/yabridge/yabridge.SlackBuild b/audio/yabridge/yabridge.SlackBuild
+index f54428d0..f1615198 100644
+--- a/audio/yabridge/yabridge.SlackBuild
++++ b/audio/yabridge/yabridge.SlackBuild
+@@ -93,13 +93,6 @@ elif [ $ARCH = "x86_64" ]; then
+   fi
+ fi
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ TMP=${TMP:-/tmp/SBo}
+ PKG=$TMP/package-$PRGNAM
+ OUTPUT=${OUTPUT:-/tmp}
 diff --git a/audio/yabridge/yabridge.info b/audio/yabridge/yabridge.info
 index c68975b2..549ae360 100644
 --- a/audio/yabridge/yabridge.info
@@ -602,6 +638,24 @@ index 36bffe1d..d8b6cf5d 100644
 +REQUIRES= ""
  MAINTAINER="Jorge Gajon"
  EMAIL="gajon@gajon.org"
+diff --git a/desktop/leftwm/leftwm.SlackBuild b/desktop/leftwm/leftwm.SlackBuild
+index d27a8527..9098f371 100644
+--- a/desktop/leftwm/leftwm.SlackBuild
++++ b/desktop/leftwm/leftwm.SlackBuild
+@@ -142,13 +142,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/desktop/leftwm/leftwm.info b/desktop/leftwm/leftwm.info
 index 7764e3de..6452649e 100644
 --- a/desktop/leftwm/leftwm.info
@@ -809,16 +863,15 @@ index 7483740a..7f62778d 100644
  MAINTAINER="Ozan Türkyılmaz"
  EMAIL="ozan.turkyilmaz@gmail.com"
 diff --git a/desktop/todoman/todoman.SlackBuild b/desktop/todoman/todoman.SlackBuild
-index b526d5f8..ff0a767b 100644
+index b526d5f8..f96a7d89 100644
 --- a/desktop/todoman/todoman.SlackBuild
 +++ b/desktop/todoman/todoman.SlackBuild
-@@ -78,8 +78,7 @@ find -L . \
+@@ -78,8 +78,6 @@ find -L . \
  
  # Use newer, non-stock setuptools due to package requirements
  # Requires python/python3-setuptools-opt build-time dependency
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
  
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
@@ -954,6 +1007,37 @@ index 34d17071..2a69b192 100644
 +REQUIRES="bcc cereal gtest"
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.bpftrace_2023-07-12@lockywolf.net"
+diff --git a/development/cargo-c/cargo-c.SlackBuild b/development/cargo-c/cargo-c.SlackBuild
+index 0c9fdee6..4c9f93fe 100644
+--- a/development/cargo-c/cargo-c.SlackBuild
++++ b/development/cargo-c/cargo-c.SlackBuild
+@@ -37,12 +37,6 @@ if [ -z "$ARCH" ]; then
+        *) ARCH=$( uname -m ) ;;
+   esac
+ 
+-  if [ "$ARCH" = "i586" ]; then
+-    if LD_LIBRARY_PATH="/opt/rust16/lib" /opt/rust16/bin/rustc -Vv \
+-    | grep host | grep i686 > /dev/null ; then
+-      ARCH=i686
+-    fi
+-  fi
+ fi
+ 
+ if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+@@ -141,13 +135,9 @@ find -L . \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+ CARGO_HOME=.cargo \
+-PATH="/opt/rust16/bin:$PATH" \
+-LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX" \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
+ cargo build --offline --release $CARGOTARGET
+-PATH="/opt/rust16/bin:$PATH" \
+-LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX" \
+ cargo install --offline --no-track --root "${PKG}/usr" --path="."
+ 
+ rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 diff --git a/development/cargo-c/cargo-c.info b/development/cargo-c/cargo-c.info
 index 32060ee9..e15df6f9 100644
 --- a/development/cargo-c/cargo-c.info
@@ -967,19 +1051,19 @@ index 32060ee9..e15df6f9 100644
  MAINTAINER="Alexander Verbovetsky"
  EMAIL="alik@ejik.org"
 diff --git a/development/codespell/codespell.SlackBuild b/development/codespell/codespell.SlackBuild
-index 74ec393d..d7ed802d 100644
+index 74ec393d..3a7c4814 100644
 --- a/development/codespell/codespell.SlackBuild
 +++ b/development/codespell/codespell.SlackBuild
-@@ -58,8 +58,7 @@ find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} + -o \
+@@ -58,9 +58,6 @@ find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} + -o \
  # write_to directive is broken, turns out we can do without it.
  sed -i '/^write_to/d' pyproject.toml
  
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
- 
+-
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
+ 
 diff --git a/development/codespell/codespell.info b/development/codespell/codespell.info
 index 4782d336..4fae634d 100644
 --- a/development/codespell/codespell.info
@@ -1124,6 +1208,24 @@ index d0a91e9a..6f7c0b1a 100644
 +REQUIRES="dblatex po4a"
  MAINTAINER="Fernando Lopez Jr."
  EMAIL="fernando.lopezjr@gmail.com"
+diff --git a/development/lean-elan/lean-elan.SlackBuild b/development/lean-elan/lean-elan.SlackBuild
+index 124b0c88..399f97dc 100644
+--- a/development/lean-elan/lean-elan.SlackBuild
++++ b/development/lean-elan/lean-elan.SlackBuild
+@@ -147,13 +147,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} +
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/development/lean-elan/lean-elan.info b/development/lean-elan/lean-elan.info
 index 54dc71ac..108a7321 100644
 --- a/development/lean-elan/lean-elan.info
@@ -1527,6 +1629,24 @@ index 8a2b048d..2bd1974f 100644
 +REQUIRES="python3-poetry-core binaryornot license-expression python-debian"
  MAINTAINER="Vijay Marcel"
  EMAIL="vijaymarcel@outlook.com"
+diff --git a/development/rustup/rustup.SlackBuild b/development/rustup/rustup.SlackBuild
+index 420d9f42..7722cec4 100644
+--- a/development/rustup/rustup.SlackBuild
++++ b/development/rustup/rustup.SlackBuild
+@@ -138,13 +138,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/development/rustup/rustup.info b/development/rustup/rustup.info
 index 51e66167..723cf283 100644
 --- a/development/rustup/rustup.info
@@ -2469,6 +2589,24 @@ index c4474d01..f2a57cb7 100644
 +REQUIRES="python3-docopt python-xlib python3-attrs"
  MAINTAINER="Leo C."
  EMAIL="leoc@gmx.com"
+diff --git a/graphics/veles/veles.SlackBuild b/graphics/veles/veles.SlackBuild
+index bcaf3c42..c9a2c3b5 100644
+--- a/graphics/veles/veles.SlackBuild
++++ b/graphics/veles/veles.SlackBuild
+@@ -79,13 +79,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ mkdir -p build
+ cd build
+   cmake \
 diff --git a/graphics/veles/veles.info b/graphics/veles/veles.info
 index cd8cd095..5fda33da 100644
 --- a/graphics/veles/veles.info
@@ -3756,6 +3894,48 @@ index c3cf76df..1293b561 100644
 +REQUIRES="libfdk-aac mbedtls vlc nlohmann_json"
  MAINTAINER="Christoph Willing"
  EMAIL="chris.willing@linux.com"
+diff --git a/multimedia/rav1e/rav1e.SlackBuild b/multimedia/rav1e/rav1e.SlackBuild
+index 58908083..1b04c1f7 100644
+--- a/multimedia/rav1e/rav1e.SlackBuild
++++ b/multimedia/rav1e/rav1e.SlackBuild
+@@ -37,12 +37,6 @@ if [ -z "$ARCH" ]; then
+        *) ARCH=$( uname -m ) ;;
+   esac
+ 
+-  if [ "$ARCH" = "i586" ]; then
+-    if LD_LIBRARY_PATH="/opt/rust16/lib" /opt/rust16/bin/rustc -Vv \
+-    | grep host | grep i686 > /dev/null ; then
+-      ARCH=i686
+-    fi
+-  fi
+ fi
+ 
+ if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+@@ -140,23 +134,15 @@ find -L . \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+ CARGO_HOME=.cargo \
+-PATH="/opt/rust16/bin:$PATH" \
+-LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX" \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
+ cargo build --offline --release $CARGOTARGET
+ CARGO_HOME=.cargo \
+-PATH="/opt/rust16/bin:$PATH" \
+-LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX" \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
+ cargo cbuild --offline --release $CARGOTARGET
+-PATH="/opt/rust16/bin:$PATH" \
+-LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX" \
+ cargo install --offline  --no-track --root "${PKG}/usr" --path="."
+-PATH="/opt/rust16/bin:$PATH" \
+-LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX" \
+-cargo cinstall --offline --destdir=${PKG} --prefix=/usr --libdir=/usr/lib$LIBDIRSUFFIX
++cargo install --offline --destdir=${PKG} --prefix=/usr --libdir=/usr/lib$LIBDIRSUFFIX
+ 
+ rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
+ 
 diff --git a/multimedia/strawberry/strawberry.info b/multimedia/strawberry/strawberry.info
 index 0a41421f..00f2a5fe 100644
 --- a/multimedia/strawberry/strawberry.info
@@ -4106,6 +4286,24 @@ index 9c251bbf..be4fddff 100644
 +REQUIRES="libbsd"
  MAINTAINER="Duncan Roe"
  EMAIL="duncan_roe@optusnet.com.au"
+diff --git a/network/newsboat/newsboat.SlackBuild b/network/newsboat/newsboat.SlackBuild
+index d800d0b3..feca6b68 100644
+--- a/network/newsboat/newsboat.SlackBuild
++++ b/network/newsboat/newsboat.SlackBuild
+@@ -154,13 +154,6 @@ if [ "$CARGOTARGET" != "" ] ; then
+   sed -i "s|target/release|target/$RELEASEDIR/release|" Makefile
+ fi
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ export CARGO_HOME=.cargo
+ 
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/network/newsboat/newsboat.info b/network/newsboat/newsboat.info
 index 22d20b28..f53deb93 100644
 --- a/network/newsboat/newsboat.info
@@ -4118,6 +4316,24 @@ index 22d20b28..f53deb93 100644
 +REQUIRES="stfl"
  MAINTAINER="Andrew Clemons"
  EMAIL="andrew.clemons@gmail.com"
+diff --git a/network/noip-duc/noip-duc.SlackBuild b/network/noip-duc/noip-duc.SlackBuild
+index 228b1145..70eff9f0 100644
+--- a/network/noip-duc/noip-duc.SlackBuild
++++ b/network/noip-duc/noip-duc.SlackBuild
+@@ -77,13 +77,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ cargo build --release
+ 
+ mkdir -p $PKG/usr/bin
 diff --git a/network/noip-duc/noip-duc.info b/network/noip-duc/noip-duc.info
 index bf5211f4..3e0902f8 100644
 --- a/network/noip-duc/noip-duc.info
@@ -4994,6 +5210,25 @@ index 14027c37..bf61a4ce 100644
 +REQUIRES=""
  MAINTAINER="Alexander Verbovetsky"
  EMAIL="alik@ejik.org"
+diff --git a/office/navi/navi.SlackBuild b/office/navi/navi.SlackBuild
+index 1f19421a..e5bea200 100644
+--- a/office/navi/navi.SlackBuild
++++ b/office/navi/navi.SlackBuild
+@@ -74,14 +74,6 @@ fi
+ 
+ set -e
+ 
+-# use SBo rust16 in 15.0
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ rm -rf $PKG
+ mkdir -p $TMP $PKG $OUTPUT
+ cd $TMP
 diff --git a/office/navi/navi.info b/office/navi/navi.info
 index bae613b5..7a991bc7 100644
 --- a/office/navi/navi.info
@@ -5225,16 +5460,15 @@ index baaf3d12..473d0a1d 100644
  MAINTAINER="Dimitris Zlatanidis"
  EMAIL="d.zlatanidis@gmail.com"
 diff --git a/python/cppy/cppy.SlackBuild b/python/cppy/cppy.SlackBuild
-index db7be870..eaa06384 100644
+index db7be870..0db43432 100644
 --- a/python/cppy/cppy.SlackBuild
 +++ b/python/cppy/cppy.SlackBuild
-@@ -66,8 +66,7 @@ find -L . \
+@@ -66,8 +66,6 @@ find -L . \
  
  # Use newer, non-stock setuptools due to package requirements
  # Requres python/python3-setuptools-opt build-time dependency
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
  
  python3 setup.py install --root $PKG
  
@@ -5251,16 +5485,22 @@ index 603bdd11..7ebe846a 100644
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/python/cryptography/cryptography.SlackBuild b/python/cryptography/cryptography.SlackBuild
-index 3e076868..9ba416eb 100644
+index 3e076868..c5ae92bd 100644
 --- a/python/cryptography/cryptography.SlackBuild
 +++ b/python/cryptography/cryptography.SlackBuild
-@@ -99,8 +99,7 @@ else
-   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
- fi
+@@ -92,15 +92,6 @@ export CARGO_NET_OFFLINE=true
+ # prevent cargo from writing outside of $TMP
+ export CARGO_HOME=$(pwd)/$VSDIR/.cargo
  
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages
-+
  
  rm -rf tests/bench
  python3 -m build --no-isolation
@@ -5276,6 +5516,30 @@ index 9677749f..57251221 100644
 +REQUIRES="python3-setuptools-rust-opt"
  MAINTAINER="Willy Sudiarto Raharjo"
  EMAIL="willysr@slackbuilds.org"
+diff --git a/python/cryptography/mkvendored.sh b/python/cryptography/mkvendored.sh
+index 2664e9ee..5e6430b0 100644
+--- a/python/cryptography/mkvendored.sh
++++ b/python/cryptography/mkvendored.sh
+@@ -87,19 +87,6 @@ else
+   LIBDIRSUFFIX=""
+ fi
+ 
+-# check if rust16 is installed
+-if [ ! -d /opt/rust16/bin ]; then
+-  echo "ERROR: The rust16 slackbuild is required to be installed"
+-  exit 1
+-else
+-  export PATH="/opt/rust16/bin:$PATH"
+-  if [ -z "$LD_LIBRARY_PATH" ]; then
+-    export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-  else
+-    export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-  fi
+-fi
+-
+ # Configure cargo-vendor-filterer
+   cat << EOF >> Cargo.toml
+ [package.metadata.vendor-filter]
 diff --git a/python/django-debug-toolbar/django-debug-toolbar.info b/python/django-debug-toolbar/django-debug-toolbar.info
 index 386cdd98..0bc21c02 100644
 --- a/python/django-debug-toolbar/django-debug-toolbar.info
@@ -5389,19 +5653,26 @@ index 2c1fb559..fb005d19 100644
  MAINTAINER="orphaned (no maintainer)"
  EMAIL="nobody@domain.com"
 diff --git a/python/jellyfish/jellyfish.SlackBuild b/python/jellyfish/jellyfish.SlackBuild
-index a3086a5b..cd240f44 100644
+index a3086a5b..c9981fbe 100644
 --- a/python/jellyfish/jellyfish.SlackBuild
 +++ b/python/jellyfish/jellyfish.SlackBuild
-@@ -103,8 +103,7 @@ else
-   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
- fi
+@@ -96,16 +96,6 @@ export CARGO_NET_OFFLINE=true
+ # prevent cargo from writing outside of $TMP
+ export CARGO_HOME=$(pwd)/.cargo
  
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
- 
+-
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
+ 
 diff --git a/python/josepy/josepy.info b/python/josepy/josepy.info
 index 62461ce9..0c4ada1b 100644
 --- a/python/josepy/josepy.info
@@ -5903,16 +6174,15 @@ index 33037c0c..8f23eb7f 100644
  MAINTAINER="Isaac Yu"
  EMAIL="isaacyu@protonmail.com"
 diff --git a/python/python3-astroid/python3-astroid.SlackBuild b/python/python3-astroid/python3-astroid.SlackBuild
-index 4f7bbe53..0a356e9c 100644
+index 4f7bbe53..d90e63dc 100644
 --- a/python/python3-astroid/python3-astroid.SlackBuild
 +++ b/python/python3-astroid/python3-astroid.SlackBuild
-@@ -79,8 +79,7 @@ find -L . \
+@@ -79,8 +79,6 @@ find -L . \
    -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
  
  # Beacause of the python3-setuptools-opt
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
  
  python3 -m build --wheel --no-isolation
  python3 -m installer --destdir "$PKG" dist/*.whl
@@ -6015,10 +6285,25 @@ index a84371b3..dba51f17 100644
  MAINTAINER="fourtysixandtwo"
  EMAIL="fourtysixandtwo@sliderr.net"
 diff --git a/python/python3-bcrypt/python3-bcrypt.SlackBuild b/python/python3-bcrypt/python3-bcrypt.SlackBuild
-index 666a649e..881554f2 100644
+index 666a649e..3a3c3075 100644
 --- a/python/python3-bcrypt/python3-bcrypt.SlackBuild
 +++ b/python/python3-bcrypt/python3-bcrypt.SlackBuild
-@@ -161,8 +161,7 @@ find -L . \
+@@ -82,14 +82,6 @@ rm -rf $SRCNAM-$VERSION
+ tar xvf $CWD/$SRCNAM-$VERSION.tar.gz
+ cd $SRCNAM-$VERSION
+ 
+-# Using more recent rust version
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ # build offline
+ # configuration tells cargo to use the configured directory
+ # for dependencies intead of downloading from crates.io
+@@ -161,8 +153,7 @@ find -L . \
   \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
    -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
  
@@ -6277,17 +6562,16 @@ index a6e2794d..7333a4b5 100644
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/python/python3-dogpile.cache/python3-dogpile.cache.SlackBuild b/python/python3-dogpile.cache/python3-dogpile.cache.SlackBuild
-index 92b122b0..e8ad04cc 100644
+index 92b122b0..fb7ab6a8 100644
 --- a/python/python3-dogpile.cache/python3-dogpile.cache.SlackBuild
 +++ b/python/python3-dogpile.cache/python3-dogpile.cache.SlackBuild
-@@ -63,13 +63,11 @@ find -L . \
+@@ -63,13 +63,9 @@ find -L . \
   \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
    -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
  
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
- 
+-
  # Use newer, non-stock setuptools due to package requirements
  # Requres python/python3-setuptools-opt build-time dependency
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
@@ -6410,6 +6694,18 @@ index 34b2ae21..b854fa13 100644
  python3 -m build --wheel --no-isolation
  python3 -m installer --destdir="$PKG" dist/*.whl
  
+diff --git a/python/python3-fasteners/python3-fasteners.info b/python/python3-fasteners/python3-fasteners.info
+index 6aabf4ed..0fd2fe30 100644
+--- a/python/python3-fasteners/python3-fasteners.info
++++ b/python/python3-fasteners/python3-fasteners.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/5f/d4/e834d929be54bfadb1f3e3b9
+ MD5SUM="e957e11c2e00629e44166e1d2881798e"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-setuptools-opt python3-monotonic"
++REQUIRES="python3-monotonic"
+ MAINTAINER="Pouria Rezaei"
+ EMAIL="Pouria.rz@outlook.com"
 diff --git a/python/python3-flit/python3-flit.info b/python/python3-flit/python3-flit.info
 index 472ed2b6..2ed5c7d3 100644
 --- a/python/python3-flit/python3-flit.info
@@ -6711,16 +7007,15 @@ index a71fd036..cd649f78 100644
  MAINTAINER="fourtysixandtwo"
  EMAIL="fourtysixandtwo@sliderr.net"
 diff --git a/python/python3-joblib/python3-joblib.SlackBuild b/python/python3-joblib/python3-joblib.SlackBuild
-index 066b0d43..db26556e 100644
+index 066b0d43..5b095b06 100644
 --- a/python/python3-joblib/python3-joblib.SlackBuild
 +++ b/python/python3-joblib/python3-joblib.SlackBuild
-@@ -67,8 +67,7 @@ find -L . \
+@@ -67,8 +67,6 @@ find -L . \
  
  # Use newer, non-stock setuptools due to package requirements
  # Requres python/python3-setuptools-opt build-time dependency
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
  
  # Add unused section to avoid ERROR message from setuptools_scm
  # Make it an if statement just in case upstream decides to update
@@ -6789,16 +7084,15 @@ index f598884d..3159e0ca 100644
  MAINTAINER="Isaac Yu"
  EMAIL="isaacyu@protonmail.com"
 diff --git a/python/python3-kiwisolver/python3-kiwisolver.SlackBuild b/python/python3-kiwisolver/python3-kiwisolver.SlackBuild
-index 53c78d79..26bf25e9 100644
+index 53c78d79..345f6cdb 100644
 --- a/python/python3-kiwisolver/python3-kiwisolver.SlackBuild
 +++ b/python/python3-kiwisolver/python3-kiwisolver.SlackBuild
-@@ -68,8 +68,7 @@ find -L . \
+@@ -68,8 +68,6 @@ find -L . \
  
  # Use newer, non-stock setuptools due to package requirements
  # Requres python/python3-setuptools-opt build-time dependency
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages
-+
  
  python3 -m build --wheel --no-isolation
  python3 -m installer --destdir "$PKG" dist/*.whl
@@ -6985,19 +7279,26 @@ index 66b8129b..946f106a 100644
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/python/python3-maturin/python3-maturin.SlackBuild b/python/python3-maturin/python3-maturin.SlackBuild
-index 3bd41a06..ca0244c4 100644
+index 3bd41a06..9758bea2 100644
 --- a/python/python3-maturin/python3-maturin.SlackBuild
 +++ b/python/python3-maturin/python3-maturin.SlackBuild
-@@ -97,8 +97,7 @@ else
-   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
- fi
+@@ -90,16 +90,6 @@ export CARGO_NET_OFFLINE=true
+ # prevent cargo from writing outside of $TMP
+ export CARGO_HOME=$(pwd)/.cargo
  
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages
-+
- 
+-
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
+ 
 diff --git a/python/python3-maturin/python3-maturin.info b/python/python3-maturin/python3-maturin.info
 index 6539cd7f..813e024c 100644
 --- a/python/python3-maturin/python3-maturin.info
@@ -7107,6 +7408,24 @@ index d6ca4626..5dcc4e4d 100644
 +REQUIRES="python3-pytest"
  MAINTAINER="Vijay Marcel"
  EMAIL="vijaymarcel@outlook.com"
+diff --git a/python/python3-orjson/python3-orjson.SlackBuild b/python/python3-orjson/python3-orjson.SlackBuild
+index 512687cd..9bf45419 100644
+--- a/python/python3-orjson/python3-orjson.SlackBuild
++++ b/python/python3-orjson/python3-orjson.SlackBuild
+@@ -85,13 +85,6 @@ find -L . \
+ # NOTE: this doesn't appear to be needed in this case but I'm adding it
+ export CARGO_NET_OFFLINE=true
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ python3 -m build --no-isolation
+ python3 -m installer -d "$PKG" dist/*.whl
+ 
 diff --git a/python/python3-oscrypto/python3-oscrypto.info b/python/python3-oscrypto/python3-oscrypto.info
 index b35742d9..84a42ce0 100644
 --- a/python/python3-oscrypto/python3-oscrypto.info
@@ -7298,19 +7617,26 @@ index 042607c3..95ac09b3 100644
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.python3-pybcj_2023-12-04@lockywolf.net"
 diff --git a/python/python3-pydantic-core/python3-pydantic-core.SlackBuild b/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
-index 265da2a8..e7ff193c 100644
+index 265da2a8..1afee638 100644
 --- a/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
 +++ b/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
-@@ -102,8 +102,7 @@ else
-   export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
- fi
+@@ -95,16 +95,6 @@ export CARGO_NET_OFFLINE=true
+ # prevent cargo from writing outside of $TMP
+ export CARGO_HOME=$(pwd)/.cargo
  
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
- 
+-
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
+ 
 diff --git a/python/python3-pydantic-core/python3-pydantic-core.info b/python/python3-pydantic-core/python3-pydantic-core.info
 index a9ed1cd1..b82af5d7 100644
 --- a/python/python3-pydantic-core/python3-pydantic-core.info
@@ -7929,16 +8255,15 @@ index 31ff4347..05477514 100644
  MAINTAINER="Isaac Yu"
  EMAIL="isaacyu@protonmail.com"
 diff --git a/python/python3-validators/python3-validators.SlackBuild b/python/python3-validators/python3-validators.SlackBuild
-index 07166a43..d4f1b1f3 100644
+index 07166a43..a30b1e58 100644
 --- a/python/python3-validators/python3-validators.SlackBuild
 +++ b/python/python3-validators/python3-validators.SlackBuild
-@@ -65,8 +65,7 @@ find -L . \
+@@ -65,8 +65,6 @@ find -L . \
  
  # Use newer, non-stock setuptools due to package requirements
  # Requres python/python3-setuptools-opt build-time dependency
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages
-+
  
  # Add unused section to avoid ERROR message from setuptools_scm
  # Make it an if statement just in case upstream decides to update
@@ -8516,6 +8841,24 @@ index 0a52ca6b..17548707 100644
 +REQUIRES="python3-fonttools scikit-build tqdm"
  MAINTAINER="Duncan Roe"
  EMAIL="duncan_roe@optusnet.com.au"
+diff --git a/system/alacritty/alacritty.SlackBuild b/system/alacritty/alacritty.SlackBuild
+index 03dc2e15..1d0376da 100644
+--- a/system/alacritty/alacritty.SlackBuild
++++ b/system/alacritty/alacritty.SlackBuild
+@@ -148,13 +148,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/alacritty/alacritty.info b/system/alacritty/alacritty.info
 index d585afe9..7c2181d2 100644
 --- a/system/alacritty/alacritty.info
@@ -8528,6 +8871,24 @@ index d585afe9..7c2181d2 100644
 +REQUIRES="scdoc"
  MAINTAINER="Andrew Clemons"
  EMAIL="andrew.clemons@gmail.com"
+diff --git a/system/bat/bat.SlackBuild b/system/bat/bat.SlackBuild
+index 347ed9e4..dc395212 100644
+--- a/system/bat/bat.SlackBuild
++++ b/system/bat/bat.SlackBuild
+@@ -152,13 +152,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/bat/bat.info b/system/bat/bat.info
 index f2ab5ed6..b8385028 100644
 --- a/system/bat/bat.info
@@ -8566,6 +8927,24 @@ index d1670622..adefde46 100644
 +REQUIRES=""
  MAINTAINER="Brandon Pribula"
  EMAIL="b.pribs11@gmail.com"
+diff --git a/system/bottom/bottom.SlackBuild b/system/bottom/bottom.SlackBuild
+index c89388f7..c7a4e3d1 100644
+--- a/system/bottom/bottom.SlackBuild
++++ b/system/bottom/bottom.SlackBuild
+@@ -140,13 +140,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ rm -f .cargo/config.toml
+ 
+ CARGO_HOME=.cargo \
 diff --git a/system/bottom/bottom.info b/system/bottom/bottom.info
 index 85ec0d74..94e08d45 100644
 --- a/system/bottom/bottom.info
@@ -8602,6 +8981,24 @@ index 5769a7f0..9e2470ff 100644
 +REQUIRES=""
  MAINTAINER="Sergey Poznyakoff"
  EMAIL="gray@gnu.org"
+diff --git a/system/clamav/clamav.SlackBuild b/system/clamav/clamav.SlackBuild
+index 77fad8b7..9b347084 100644
+--- a/system/clamav/clamav.SlackBuild
++++ b/system/clamav/clamav.SlackBuild
+@@ -116,13 +116,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ # Specify the desired mirror in the update config file
+ # http://www.iana.org/cctld/cctld-whois.htm
+ sed -i "s/^\#DatabaseMirror.*/DatabaseMirror db.${COUNTRY}.clamav.net/" \
 diff --git a/system/clamav/clamav.info b/system/clamav/clamav.info
 index 924bba54..e53b33d7 100644
 --- a/system/clamav/clamav.info
@@ -8674,6 +9071,24 @@ index 9128edce..2e8a8e67 100644
 +REQUIRES=""
  MAINTAINER="Petr Kletecka"
  EMAIL="petr@kle.cz"
+diff --git a/system/dust/dust.SlackBuild b/system/dust/dust.SlackBuild
+index e097215e..6bdea908 100644
+--- a/system/dust/dust.SlackBuild
++++ b/system/dust/dust.SlackBuild
+@@ -152,13 +152,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/dust/dust.info b/system/dust/dust.info
 index 5e1446e6..63e0e8af 100644
 --- a/system/dust/dust.info
@@ -8686,6 +9101,24 @@ index 5e1446e6..63e0e8af 100644
 +REQUIRES=""
  MAINTAINER="Erich Ritz"
  EMAIL="erich.public@protonmail.com"
+diff --git a/system/fd/fd.SlackBuild b/system/fd/fd.SlackBuild
+index 536e7140..6e5f58cd 100644
+--- a/system/fd/fd.SlackBuild
++++ b/system/fd/fd.SlackBuild
+@@ -142,13 +142,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/fd/fd.info b/system/fd/fd.info
 index ccf2c680..b75c8057 100644
 --- a/system/fd/fd.info
@@ -8748,6 +9181,24 @@ index 6c90296a..6a6d5d7d 100644
 +REQUIRES="python3-nvidia-ml-py python3-blessed"
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.gpustat_2023-11-30@lockywolf.net"
+diff --git a/system/greetd/greetd.SlackBuild b/system/greetd/greetd.SlackBuild
+index c163ceb9..af163321 100644
+--- a/system/greetd/greetd.SlackBuild
++++ b/system/greetd/greetd.SlackBuild
+@@ -79,13 +79,6 @@ else
+   LIBDIRSUFFIX=""
+ fi
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ set -e
+ 
+ rm -rf $PKG
 diff --git a/system/greetd/greetd.info b/system/greetd/greetd.info
 index 3e6ffea4..f4057244 100644
 --- a/system/greetd/greetd.info
@@ -8772,6 +9223,25 @@ index 689d1128..b850905a 100644
 +REQUIRES=""
  MAINTAINER="Jan F. Chadima"
  EMAIL="jfch@jagda.eu"
+diff --git a/system/helvum/helvum.SlackBuild b/system/helvum/helvum.SlackBuild
+index 693a3a80..c37a6dcf 100644
+--- a/system/helvum/helvum.SlackBuild
++++ b/system/helvum/helvum.SlackBuild
+@@ -83,14 +83,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+-
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
+   meson \
 diff --git a/system/helvum/helvum.info b/system/helvum/helvum.info
 index 7ca4bedf..327f7a06 100644
 --- a/system/helvum/helvum.info
@@ -8784,6 +9254,24 @@ index 7ca4bedf..327f7a06 100644
 +REQUIRES=""
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.helvum_2023-09-23@lockywolf.net"
+diff --git a/system/hyperfine/hyperfine.SlackBuild b/system/hyperfine/hyperfine.SlackBuild
+index 463b1b0e..77888ce5 100644
+--- a/system/hyperfine/hyperfine.SlackBuild
++++ b/system/hyperfine/hyperfine.SlackBuild
+@@ -140,13 +140,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/hyperfine/hyperfine.info b/system/hyperfine/hyperfine.info
 index 76c71087..989908d8 100644
 --- a/system/hyperfine/hyperfine.info
@@ -8821,16 +9309,15 @@ index 6a0bc47a..a4742d3e 100644
  MAINTAINER="Willy Sudiarto Raharjo"
  EMAIL="willysr@slackbuilds.org"
 diff --git a/system/locust/locust.SlackBuild b/system/locust/locust.SlackBuild
-index 8b691d68..8dad2d66 100644
+index 8b691d68..8708cdd1 100644
 --- a/system/locust/locust.SlackBuild
 +++ b/system/locust/locust.SlackBuild
-@@ -78,8 +78,7 @@ find -L . \
+@@ -78,8 +78,6 @@ find -L . \
  
  # Since dependency python3-pyzmq uses a newer version of setuptools via
  # python3-setuptools-opt, we need to adjust PYTHONPATH to use it here too.
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
  
  python3 -m build --wheel --no-isolation
  
@@ -8882,6 +9369,24 @@ index 3420e413..400de433 100644
 +REQUIRES=""
  MAINTAINER="Necib ÇAPAR"
  EMAIL="necipcapar@gmail.com"
+diff --git a/system/onefetch/onefetch.SlackBuild b/system/onefetch/onefetch.SlackBuild
+index 090e13bb..24738348 100644
+--- a/system/onefetch/onefetch.SlackBuild
++++ b/system/onefetch/onefetch.SlackBuild
+@@ -143,13 +143,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/onefetch/onefetch.info b/system/onefetch/onefetch.info
 index 813c1a79..e5ea324b 100644
 --- a/system/onefetch/onefetch.info
@@ -8968,6 +9473,24 @@ index 79ab105e..05376133 100644
 +REQUIRES="device-tree-compiler libslirp virtiofsd"
  MAINTAINER="Edward W. Koenig"
  EMAIL="kingbeowulf@linuxgalaxy.org"
+diff --git a/system/ripgrep/ripgrep.SlackBuild b/system/ripgrep/ripgrep.SlackBuild
+index 387a36fa..5eedf4be 100644
+--- a/system/ripgrep/ripgrep.SlackBuild
++++ b/system/ripgrep/ripgrep.SlackBuild
+@@ -142,13 +142,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ rm -f .cargo/config.toml
+ sed -i 's/debug = "none"/debug = 0/g' Cargo.toml
+ 
 diff --git a/system/ripgrep/ripgrep.info b/system/ripgrep/ripgrep.info
 index 97a553d5..f80a4808 100644
 --- a/system/ripgrep/ripgrep.info
@@ -9028,6 +9551,24 @@ index 5e578081..e3b9c6d1 100644
 +REQUIRES="python3-pythondialog"
  MAINTAINER="Dimitris Zlatanidis"
  EMAIL="dslackw@gmail.com"
+diff --git a/system/skim/skim.SlackBuild b/system/skim/skim.SlackBuild
+index 07044715..c0d63752 100644
+--- a/system/skim/skim.SlackBuild
++++ b/system/skim/skim.SlackBuild
+@@ -139,13 +139,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/skim/skim.info b/system/skim/skim.info
 index c47014a3..e101ba64 100644
 --- a/system/skim/skim.info
@@ -9100,6 +9641,24 @@ index 9ab849ad..2bf82a9b 100644
 +REQUIRES=""
  MAINTAINER="Isaac Yu"
  EMAIL="isaacyu@protonmail.com"
+diff --git a/system/tzupdate/tzupdate.SlackBuild b/system/tzupdate/tzupdate.SlackBuild
+index 1c6cf249..b0784a3f 100644
+--- a/system/tzupdate/tzupdate.SlackBuild
++++ b/system/tzupdate/tzupdate.SlackBuild
+@@ -132,13 +132,6 @@ mkdir vendor
+   done
+ )
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/tzupdate/tzupdate.info b/system/tzupdate/tzupdate.info
 index 66fb7692..baa4b5e2 100644
 --- a/system/tzupdate/tzupdate.info
@@ -9124,6 +9683,24 @@ index b708790b..cc836bce 100644
 +REQUIRES="libqb"
  MAINTAINER="Michael Edie"
  EMAIL="michael@sawbox.net"
+diff --git a/system/virtiofsd/virtiofsd.SlackBuild b/system/virtiofsd/virtiofsd.SlackBuild
+index fa42211b..c2fb6f14 100644
+--- a/system/virtiofsd/virtiofsd.SlackBuild
++++ b/system/virtiofsd/virtiofsd.SlackBuild
+@@ -73,13 +73,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ mkdir .cargo
+ cat <<EOT >>.cargo/config.toml
+ [source.crates-io]
 diff --git a/system/virtiofsd/virtiofsd.info b/system/virtiofsd/virtiofsd.info
 index 4f10e983..e26f7935 100644
 --- a/system/virtiofsd/virtiofsd.info
@@ -9136,6 +9713,24 @@ index 4f10e983..e26f7935 100644
 +REQUIRES=""
  MAINTAINER="Matteo Bernardini"
  EMAIL="ponce@slackbuilds.org"
+diff --git a/system/wezterm/wezterm.SlackBuild b/system/wezterm/wezterm.SlackBuild
+index ad337fa6..d929890b 100644
+--- a/system/wezterm/wezterm.SlackBuild
++++ b/system/wezterm/wezterm.SlackBuild
+@@ -152,13 +152,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+ CARGO_HOME=.cargo \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/wezterm/wezterm.info b/system/wezterm/wezterm.info
 index 5ae2f037..b2e6de7e 100644
 --- a/system/wezterm/wezterm.info
@@ -9222,3 +9817,83 @@ index 872a5ae2..54c76e9d 100644
 +REQUIRES="yelp-tools webkit2gtk"
  MAINTAINER="Willy Sudiarto Raharjo"
  EMAIL="willysr@slackbuilds.org"
+diff --git a/python/cryptography/cryptography.SlackBuild b/python/cryptography/cryptography.SlackBuild
+index 9ba416eb..952cbc09 100644
+--- a/python/cryptography/cryptography.SlackBuild
++++ b/python/cryptography/cryptography.SlackBuild
+@@ -92,15 +92,6 @@ export CARGO_NET_OFFLINE=true
+ # prevent cargo from writing outside of $TMP
+ export CARGO_HOME=$(pwd)/$VSDIR/.cargo
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+-
+-
+ rm -rf tests/bench
+ python3 -m build --no-isolation
+ python3 -m installer -d "$PKG" dist/*.whl
+diff --git a/python/jellyfish/jellyfish.SlackBuild b/python/jellyfish/jellyfish.SlackBuild
+index cd240f44..c9981fbe 100644
+--- a/python/jellyfish/jellyfish.SlackBuild
++++ b/python/jellyfish/jellyfish.SlackBuild
+@@ -96,15 +96,6 @@ export CARGO_NET_OFFLINE=true
+ # prevent cargo from writing outside of $TMP
+ export CARGO_HOME=$(pwd)/.cargo
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+-
+-
+ python3 -m build --no-isolation
+ python3 -m installer -d "$PKG" dist/*.whl
+ 
+diff --git a/python/python3-maturin/python3-maturin.SlackBuild b/python/python3-maturin/python3-maturin.SlackBuild
+index ca0244c4..9758bea2 100644
+--- a/python/python3-maturin/python3-maturin.SlackBuild
++++ b/python/python3-maturin/python3-maturin.SlackBuild
+@@ -90,15 +90,6 @@ export CARGO_NET_OFFLINE=true
+ # prevent cargo from writing outside of $TMP
+ export CARGO_HOME=$(pwd)/.cargo
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+-
+-
+ python3 -m build --no-isolation
+ python3 -m installer -d "$PKG" dist/*.whl
+ 
+diff --git a/python/python3-pydantic-core/python3-pydantic-core.SlackBuild b/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
+index e7ff193c..1afee638 100644
+--- a/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
++++ b/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
+@@ -95,15 +95,6 @@ export CARGO_NET_OFFLINE=true
+ # prevent cargo from writing outside of $TMP
+ export CARGO_HOME=$(pwd)/.cargo
+ 
+-export PATH="/opt/rust16/bin:$PATH"
+-if [ -z "$LD_LIBRARY_PATH" ]; then
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
+-else
+-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+-fi
+-
+-
+-
+ python3 -m build --no-isolation
+ python3 -m installer -d "$PKG" dist/*.whl
+ 

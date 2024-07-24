@@ -85,13 +85,6 @@ find -L . \
 # NOTE: this doesn't appear to be needed in this case but I'm adding it
 export CARGO_NET_OFFLINE=true
 
-export PATH="/opt/rust16/bin:$PATH"
-if [ -z "$LD_LIBRARY_PATH" ]; then
-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
-else
-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
-fi
-
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
 

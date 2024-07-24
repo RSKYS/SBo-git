@@ -82,14 +82,6 @@ rm -rf $SRCNAM-$VERSION
 tar xvf $CWD/$SRCNAM-$VERSION.tar.gz
 cd $SRCNAM-$VERSION
 
-# Using more recent rust version
-export PATH="/opt/rust16/bin:$PATH"
-if [ -z "$LD_LIBRARY_PATH" ]; then
-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
-else
-  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
-fi
-
 # build offline
 # configuration tells cargo to use the configured directory
 # for dependencies intead of downloading from crates.io

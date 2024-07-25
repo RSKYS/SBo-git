@@ -51,9 +51,7 @@ jobs:
           find */*/ -name "doinst.sh" -exec sed -e '1,$d' {} +
 
           for BASENAM in $CHANGED; do
-
-            PKGTYPE=txz \
-                  sboinstall -j3 --reinstall $BASENAM
+              sboinstall -j3 --reinstall $BASENAM
           done )
 
     - name: Notify PR Thread

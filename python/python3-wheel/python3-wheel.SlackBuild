@@ -1,8 +1,8 @@
 #!/bin/bash
-#
-# Slackware build script for NordVPN
-#
-# Copyright 2019-2021 Reza Talebi, Shahin Shahr, Iran.
+
+# Slackware build script for python3-wheel
+
+# Copyright 2023-2024  fourtysixandtwo <fourtysixandtwo@sliderr.net>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -22,18 +22,14 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Modified by Pouria Rezaei <Pouria.rz@outlook.com>
-
 cd $(dirname $0) ; CWD=$(pwd)
 
-PRGNAM=nordvpn
-VERSION=${VERSION:-3.17.2}
+PRGNAM=python3-wheel
+SRCNAM=${PRGNAM#python3-*}
+VERSION=${VERSION:-0.43.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
-
-# Select nordvpn's default group
-NORD_GROUP=${NORD_GROUP:-nordvpn}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -54,54 +50,31 @@ OUTPUT=${OUTPUT:-/tmp}
 
 set -e
 
-if [ "$ARCH" = "i586" ]; then
-  DEBARCH="i386"
-elif [ "$ARCH" = "i686" ]; then
-  DEBARCH="i386"
-elif [ "$ARCH" = "x86_64" ]; then
-  DEBARCH="amd64"
-else
-  echo "Package for $ARCH architecture is not available."
-  exit 1
-fi
-
-bailout() {
-  echo "  You must have a $NORD_GROUP group to run this script. "
-  echo "  Something like this should suffice for most systems (Run as root): "
-  echo "    # groupadd -g 373 $NORD_GROUP "
-  echo "    # usermod -aG $NORD_GROUP \$USER (Replace \$USER with your username)"
-  echo "  Then log out of the system and login again."
-}
-
-# Bail if group isn't valid on your system.
-if ! grep -q "^$NORD_GROUP:" /etc/group; then
-  bailout
-fi
-
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-mkdir -p $PRGNAM-$VERSION
+rm -rf $SRCNAM-$VERSION
+tar xvf $CWD/$SRCNAM-$VERSION.tar.gz
+cd $SRCNAM-$VERSION
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \+ -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
 
-cd $PKG
-ar p $CWD/${PRGNAM}_${VERSION}_${DEBARCH}.deb data.tar.gz | tar zxv
+python3 -m flit_core.wheel
+python3 -m installer -d "$PKG" dist/*.whl
 
-rm -fR etc usr/lib
-
-# Move man where the man likes
-mv usr/share/man usr/
-rm -rf $PKG/usr/share/doc
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a README.rst LICENSE.txt $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
-cat $CWD/doinst.sh > $PKG/install/doinst.sh
-
-mkdir -p $PKG/etc/rc.d
-install -m 0755 $CWD/rc.$PRGNAM $PKG/etc/rc.d/rc.$PRGNAM
 
 cd $PKG
-/sbin/makepkg -l y -p -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

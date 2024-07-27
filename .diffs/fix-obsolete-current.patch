@@ -1473,6 +1473,36 @@ index 55f1f9f6..370b77c0 100644
 +REQUIRES= ""
  MAINTAINER="Evandro Alves Rodrigues"
  EMAIL="evandrofisico@gmail.com"
+diff --git a/development/mdbook/mdbook.SlackBuild b/development/mdbook/mdbook.SlackBuild
+index 381277ff..e62cc6bf 100644
+--- a/development/mdbook/mdbook.SlackBuild
++++ b/development/mdbook/mdbook.SlackBuild
+@@ -143,13 +143,9 @@ find -L . \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
+ 
+ CARGO_HOME=.cargo \
+-PATH="/opt/rust16/bin:$PATH" \
+-LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX" \
+ CFLAGS="$SLKCFLAGS" \
+ CXXFLAGS="$SLKCFLAGS" \
+ cargo build --offline --release $CARGOTARGET
+-PATH="/opt/rust16/bin:$PATH" \
+-LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX" \
+ cargo install --offline --no-track --root "${PKG}/usr" --path="."
+ 
+ rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
+diff --git a/development/mdbook/mdbook.info b/development/mdbook/mdbook.info
+index 81c3247d..60ab1201 100644
+--- a/development/mdbook/mdbook.info
++++ b/development/mdbook/mdbook.info
+@@ -501,6 +501,6 @@ MD5SUM="aedb8898189d95e9c727a6d67c51e10d \
+         09de9d01e7331ff3da11f58be8bef0df"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="rust16"
++REQUIRES=""
+ MAINTAINER="Pouria Rezaei"
+ EMAIL="Pouria.rz@outlook.com"
 diff --git a/development/mutagen/mutagen.info b/development/mutagen/mutagen.info
 index bab8ea16..61ef88db 100644
 --- a/development/mutagen/mutagen.info
@@ -9817,83 +9847,3 @@ index 872a5ae2..54c76e9d 100644
 +REQUIRES="yelp-tools webkit2gtk"
  MAINTAINER="Willy Sudiarto Raharjo"
  EMAIL="willysr@slackbuilds.org"
-diff --git a/python/cryptography/cryptography.SlackBuild b/python/cryptography/cryptography.SlackBuild
-index 9ba416eb..952cbc09 100644
---- a/python/cryptography/cryptography.SlackBuild
-+++ b/python/cryptography/cryptography.SlackBuild
-@@ -92,15 +92,6 @@ export CARGO_NET_OFFLINE=true
- # prevent cargo from writing outside of $TMP
- export CARGO_HOME=$(pwd)/$VSDIR/.cargo
- 
--export PATH="/opt/rust16/bin:$PATH"
--if [ -z "$LD_LIBRARY_PATH" ]; then
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
--else
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
--fi
--
--
--
- rm -rf tests/bench
- python3 -m build --no-isolation
- python3 -m installer -d "$PKG" dist/*.whl
-diff --git a/python/jellyfish/jellyfish.SlackBuild b/python/jellyfish/jellyfish.SlackBuild
-index cd240f44..c9981fbe 100644
---- a/python/jellyfish/jellyfish.SlackBuild
-+++ b/python/jellyfish/jellyfish.SlackBuild
-@@ -96,15 +96,6 @@ export CARGO_NET_OFFLINE=true
- # prevent cargo from writing outside of $TMP
- export CARGO_HOME=$(pwd)/.cargo
- 
--export PATH="/opt/rust16/bin:$PATH"
--if [ -z "$LD_LIBRARY_PATH" ]; then
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
--else
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
--fi
--
--
--
- python3 -m build --no-isolation
- python3 -m installer -d "$PKG" dist/*.whl
- 
-diff --git a/python/python3-maturin/python3-maturin.SlackBuild b/python/python3-maturin/python3-maturin.SlackBuild
-index ca0244c4..9758bea2 100644
---- a/python/python3-maturin/python3-maturin.SlackBuild
-+++ b/python/python3-maturin/python3-maturin.SlackBuild
-@@ -90,15 +90,6 @@ export CARGO_NET_OFFLINE=true
- # prevent cargo from writing outside of $TMP
- export CARGO_HOME=$(pwd)/.cargo
- 
--export PATH="/opt/rust16/bin:$PATH"
--if [ -z "$LD_LIBRARY_PATH" ]; then
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
--else
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
--fi
--
--
--
- python3 -m build --no-isolation
- python3 -m installer -d "$PKG" dist/*.whl
- 
-diff --git a/python/python3-pydantic-core/python3-pydantic-core.SlackBuild b/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
-index e7ff193c..1afee638 100644
---- a/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
-+++ b/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
-@@ -95,15 +95,6 @@ export CARGO_NET_OFFLINE=true
- # prevent cargo from writing outside of $TMP
- export CARGO_HOME=$(pwd)/.cargo
- 
--export PATH="/opt/rust16/bin:$PATH"
--if [ -z "$LD_LIBRARY_PATH" ]; then
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
--else
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
--fi
--
--
--
- python3 -m build --no-isolation
- python3 -m installer -d "$PKG" dist/*.whl
- 

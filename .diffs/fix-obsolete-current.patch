@@ -984,11 +984,11 @@ index 0dd9119a..9a7cae91 100644
  MAINTAINER="Andrzej Telszewski"
  EMAIL="atelszewski@gmail.com"
 diff --git a/development/aws-cdk/aws-cdk.info b/development/aws-cdk/aws-cdk.info
-index 5bbd5a2a..988d8279 100644
+index 47b8a925..a7238e68 100644
 --- a/development/aws-cdk/aws-cdk.info
 +++ b/development/aws-cdk/aws-cdk.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.149.0.tgz"
- MD5SUM="aa4e53840221eb716e099a401a3d86ae"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.150.0.tgz"
+ MD5SUM="f400d36d8a2e1e80aa15bdce4cf63d4e"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="nodejs awscli"
@@ -2170,11 +2170,11 @@ index 537a236e..269c30ae 100644
  MAINTAINER="Jake Day"
  EMAIL="jake@ninebysix.com"
 diff --git a/games/vcmi/vcmi.info b/games/vcmi/vcmi.info
-index 72861cee..7bd8fa56 100644
+index d4c3bb4b..7a067fd7 100644
 --- a/games/vcmi/vcmi.info
 +++ b/games/vcmi/vcmi.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/vcmi/vcmi/archive/1.5.3/vcmi-1.5.3.tar.gz"
- MD5SUM="a6b12dfa9e9600b70dbcf363079e1ffa"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/vcmi/vcmi/archive/1.5.5/vcmi-1.5.5.tar.gz"
+ MD5SUM="a9b0d0977968a77894c6a3599a55af23"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="fuzzylite libminizip tbb luajit"
@@ -2320,7 +2320,7 @@ index 363dedfb..27a87561 100644
  MAINTAINER="ArTourter"
  EMAIL="artourter@gmail.com"
 diff --git a/gis/python3-netcdf4-python/python3-netcdf4-python.SlackBuild b/gis/python3-netcdf4-python/python3-netcdf4-python.SlackBuild
-index 1e9dffc2..6fa7e524 100644
+index 8f8b6ad4..23b9fee8 100644
 --- a/gis/python3-netcdf4-python/python3-netcdf4-python.SlackBuild
 +++ b/gis/python3-netcdf4-python/python3-netcdf4-python.SlackBuild
 @@ -71,8 +71,7 @@ sed -i 's/oldest-supported-numpy/numpy>=1.19.3/' pyproject.toml
@@ -2331,8 +2331,8 @@ index 1e9dffc2..6fa7e524 100644
 -export PYTHONPATH=/opt/python$PYVER/site-packages
 +
  
- python3 -m build --no-isolation
- python3 -m installer -d "$PKG" dist/*.whl
+ export CFLAGS="-fpermissive"
+ 
 diff --git a/gis/python3-netcdf4-python/python3-netcdf4-python.info b/gis/python3-netcdf4-python/python3-netcdf4-python.info
 index 7cf89365..ccca74fa 100644
 --- a/gis/python3-netcdf4-python/python3-netcdf4-python.info
@@ -3032,11 +3032,11 @@ index e8b5d73c..9f9f2f91 100644
  MAINTAINER="Vijay Marcel"
  EMAIL="vijaymarcel@outlook.com"
 diff --git a/libraries/libheif/libheif.info b/libraries/libheif/libheif.info
-index 29dc0867..947515de 100644
+index c5f419f9..2d9f603c 100644
 --- a/libraries/libheif/libheif.info
 +++ b/libraries/libheif/libheif.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/strukturag/libheif/releases/download/v1.17.6/libhei
- MD5SUM="563e2ecd15f1ca98ccb13388ee873ebe"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/strukturag/libheif/releases/download/v1.18.1/libhei
+ MD5SUM="141f7ea717c8e77cb4b9be62d8263073"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="libde265 x265 aom rav1e kvazaar dav1d svt-av1"
@@ -4945,13 +4945,13 @@ index f46f5198..adf8038c 100644
  MAINTAINER="Matteo Bernardini"
  EMAIL="ponce@slackbuilds.org"
 diff --git a/office/focuswriter-qt6/focuswriter-qt6.info b/office/focuswriter-qt6/focuswriter-qt6.info
-index 92cd9c27..24251bc1 100644
+index 088749a4..21bc8819 100644
 --- a/office/focuswriter-qt6/focuswriter-qt6.info
 +++ b/office/focuswriter-qt6/focuswriter-qt6.info
 @@ -5,6 +5,6 @@ DOWNLOAD="UNSUPPORTED"
  MD5SUM=""
- DOWNLOAD_x86_64="https://gottcode.org/focuswriter/focuswriter-1.8.6.tar.bz2"
- MD5SUM_x86_64="d09a4c0ca7d6986eca5c6c0603b12b65"
+ DOWNLOAD_x86_64="https://gottcode.org/focuswriter/focuswriter-1.8.8.tar.bz2"
+ MD5SUM_x86_64="0c47ea965c437adc7e59727eb8ec0cca"
 -REQUIRES="qt6"
 +REQUIRES=""
  MAINTAINER="Yth - Arnaud"
@@ -6080,11 +6080,11 @@ index 67052874..210513b4 100644
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/python/python3-PyMuPDF/python3-PyMuPDF.info b/python/python3-PyMuPDF/python3-PyMuPDF.info
-index 4d3a7b79..ce44f0ac 100644
+index ba765874..7e64ec85 100644
 --- a/python/python3-PyMuPDF/python3-PyMuPDF.info
 +++ b/python/python3-PyMuPDF/python3-PyMuPDF.info
-@@ -7,6 +7,6 @@ MD5SUM="2ab41dd9c317255ebf59d9b7cbbe084b \
-         66021f6b6e6f8eaba23bc7e09cc6b23e"
+@@ -7,6 +7,6 @@ MD5SUM="582044f8b14868da5dfb29b6a4ad3528 \
+         dee21c13ebfa542f3001c85b2a36b627"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-psutil %README%"
@@ -6229,11 +6229,11 @@ index ab7bed0b..600bc0ad 100644
  MAINTAINER="Dimitris Zlatanidis"
  EMAIL="dslackw@gmail.com"
 diff --git a/python/python3-atpublic/python3-atpublic.info b/python/python3-atpublic/python3-atpublic.info
-index 6fb37800..94048335 100644
+index 5ebfae31..21dc6d83 100644
 --- a/python/python3-atpublic/python3-atpublic.info
 +++ b/python/python3-atpublic/python3-atpublic.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://pypi.python.org/packages/source/a/atpublic/atpublic-4.1.0.tar.
- MD5SUM="5bbc649ac1d650232eac0481c4f1583d"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://pypi.python.org/packages/source/a/atpublic/atpublic-5.0.tar.gz
+ MD5SUM="01c2be00ea984ce9304baede0954fbc6"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-hatchling"
@@ -6906,6 +6906,31 @@ index 4b363ac1..1fe581e9 100644
 +REQUIRES="python3-dateutil"
  MAINTAINER="Tonus"
  EMAIL="tonus1@free.fr"
+diff --git a/python/python3-incremental/python3-incremental.SlackBuild b/python/python3-incremental/python3-incremental.SlackBuild
+index 0b4e66f0..856cc7f2 100644
+--- a/python/python3-incremental/python3-incremental.SlackBuild
++++ b/python/python3-incremental/python3-incremental.SlackBuild
+@@ -63,8 +63,6 @@ find -L . \
+  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ 
+-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+-export PYTHONPATH=/opt/python$PYVER/site-packages/
+ python3 -m build --no-isolation
+ python3 -m installer -d "$PKG" dist/*.whl
+ 
+diff --git a/python/python3-incremental/python3-incremental.info b/python/python3-incremental/python3-incremental.info
+index 23574607..40b61f62 100644
+--- a/python/python3-incremental/python3-incremental.info
++++ b/python/python3-incremental/python3-incremental.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://pypi.python.org/packages/source/i/incremental/incremental-24.7
+ MD5SUM="2d99430f279b04f66c1386f66ad7ec2d"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-setuptools-opt"
++REQUIRES=""
+ MAINTAINER="Yth - Arnaud"
+ EMAIL="yth@ythogtha.org"
 diff --git a/python/python3-inflate64/python3-inflate64.SlackBuild b/python/python3-inflate64/python3-inflate64.SlackBuild
 index 047e3356..bc753d48 100644
 --- a/python/python3-inflate64/python3-inflate64.SlackBuild
@@ -7828,7 +7853,7 @@ index 7ad0984f..d7c7355f 100644
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/python/python3-pytest/python3-pytest.SlackBuild b/python/python3-pytest/python3-pytest.SlackBuild
-index 58744c1e..67067f84 100644
+index 2783b23e..9dcbab54 100644
 --- a/python/python3-pytest/python3-pytest.SlackBuild
 +++ b/python/python3-pytest/python3-pytest.SlackBuild
 @@ -67,8 +67,7 @@ find -L . \
@@ -7842,11 +7867,11 @@ index 58744c1e..67067f84 100644
  python3 -m build --wheel --no-isolation
  python3 -m installer --destdir "$PKG" dist/*.whl
 diff --git a/python/python3-pytest/python3-pytest.info b/python/python3-pytest/python3-pytest.info
-index fdb28ad5..0ac7f2d0 100644
+index 4d986817..8ad2a815 100644
 --- a/python/python3-pytest/python3-pytest.info
 +++ b/python/python3-pytest/python3-pytest.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/p/pytest/pytest-8.2.2.t
- MD5SUM="dec12d9b6f5e2bd7d22aadc500d0ae89"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/p/pytest/pytest-8.3.1.t
+ MD5SUM="7be55f1c0cfd40677182249bf9401827"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-iniconfig python3-exceptiongroup python3-setuptools-opt"

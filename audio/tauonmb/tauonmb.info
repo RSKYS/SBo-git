@@ -1,10 +1,10 @@
 PRGNAM="tauonmb"
-VERSION="7.8.0"
+VERSION="7.8.rrc"
 HOMEPAGE="https://tauonmusicbox.rocks/"
-DOWNLOAD="https://github.com/Taiko2k/Tauon/archive/v7.8.0/Tauon-7.8.0.tar.gz \
+DOWNLOAD="https://github.com/RSKYS/TMB/archive/v7.8.rrc/TMB-7.8.rrc.tar.gz \
           https://github.com/mborgerding/kissfft/archive/131.1.0/kissfft-131.1.0.tar.gz \
           https://github.com/mackron/miniaudio/archive/4a5b74bef029b3592c54b6048650ee5f972c1a48/miniaudio-4a5b74bef029b3592c54b6048650ee5f972c1a48.tar.gz"
-MD5SUM="1e056ebbc649db767ff64e9275df60c1 \
+MD5SUM="50b71b90c1bcc2f8aa9f899330c96ff8 \
         981ad3e496fbd8edb99704fc0e2aa939 \
         01b821de48cdba3838239b6cbd5e13e5"
 DOWNLOAD_x86_64=""

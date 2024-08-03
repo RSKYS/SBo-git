@@ -8018,19 +8018,31 @@ index bf86a777..c993a8b1 100644
 -export PYTHONPATH=/opt/python$PYVER/site-packages
 +
 diff --git a/python/python3-setuptools-rust-opt/python3-setuptools-rust-opt.SlackBuild b/python/python3-setuptools-rust-opt/python3-setuptools-rust-opt.SlackBuild
-index 50053976..5f445aec 100644
+index 50053976..fd47f498 100644
 --- a/python/python3-setuptools-rust-opt/python3-setuptools-rust-opt.SlackBuild
 +++ b/python/python3-setuptools-rust-opt/python3-setuptools-rust-opt.SlackBuild
-@@ -66,8 +66,7 @@ find -L . \
+@@ -66,21 +66,9 @@ find -L . \
   \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
    -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
  
 -PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 -export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
- 
+-
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
+ 
+-if [ "$PKG/usr/" != "/usr/" ]; then
+-  mkdir -p $PKG/opt
+-  mv $PKG/usr/lib*/python$PYVER $PKG/opt/
+-  rmdir $PKG/usr/lib*
+-else
+-  echo "ERROR: \$PKG is not set! We don't want to move the real /usr/lib*/python$PYVE$PYVERR"
+-  exit 1
+-fi
+-
+ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+ 
 diff --git a/python/python3-setuptools-rust-opt/python3-setuptools-rust-opt.info b/python/python3-setuptools-rust-opt/python3-setuptools-rust-opt.info
 index 5d503558..d68a92c9 100644
 --- a/python/python3-setuptools-rust-opt/python3-setuptools-rust-opt.info

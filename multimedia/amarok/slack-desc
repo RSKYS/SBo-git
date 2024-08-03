@@ -8,10 +8,10 @@
       |-----handy-ruler------------------------------------------------------|
 amarok: amarok (The powerful music player for KDE)
 amarok:
-amarok: Amarok is a free, open-source, and cross-platform music player that
-amarok: works on Linux, macOS, Windows, and other Unix-like operating systems.
-amarok: It's part of the KDE project, but is released independently of the KDE
-amarok: Software Compilation release cycle. 
+amarok: Amarok is a free, open-source, and cross-platform music player
+amarok: that works on Linux, macOS, Windows, and other Unix-like
+amarok: operating systems. It's part of the KDE project, but is released
+amarok: independently of the KDE Software Compilation release cycle. 
 amarok:
 amarok: https://www.amarok-player.org/
 amarok:

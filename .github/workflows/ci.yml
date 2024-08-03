@@ -53,7 +53,7 @@ jobs:
           for BASENAM in $CHANGED; do
 
             PKGTYPE=txz \
-                  sboinstall -j3 --reinstall $BASENAM
+                  sboinstall -j9 --reinstall $BASENAM
           done )
 
     - name: Notify PR Thread

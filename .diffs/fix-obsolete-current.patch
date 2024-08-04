@@ -741,11 +741,11 @@ index 55662c82..474906d5 100644
  MAINTAINER="Jay Lanagan"
  EMAIL="j@lngn.net"
 diff --git a/desktop/nwg-panel/nwg-panel.info b/desktop/nwg-panel/nwg-panel.info
-index 3694bd08..abd2d026 100644
+index 3a5425f0..f26c605f 100644
 --- a/desktop/nwg-panel/nwg-panel.info
 +++ b/desktop/nwg-panel/nwg-panel.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/nwg-piotr/nwg-panel/archive/v0.9.36/nwg-panel-0.9.3
- MD5SUM="6d68ffed83ed3c6be6e7c5b0ede62665"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/nwg-piotr/nwg-panel/archive/v0.9.37/nwg-panel-0.9.3
+ MD5SUM="dcfb1d3a8d03d6a81f57898de95dd2f9"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="brightnessctl nwg-icon-picker playerctl python3-psutil i3ipc python3-dasbus python3-netifaces SwayNotificationCenter wlr-randr ddcutil python3-build python3-wheel"
@@ -924,11 +924,11 @@ index 5bde0e67..1eb340e3 100644
  MAINTAINER="abooksigun"
  EMAIL="abooksigun09@gmail.com"
 diff --git a/development/SQLAlchemy/SQLAlchemy.info b/development/SQLAlchemy/SQLAlchemy.info
-index 4d987f4c..a78ca5ab 100644
+index f4eaa772..cad45f1b 100644
 --- a/development/SQLAlchemy/SQLAlchemy.info
 +++ b/development/SQLAlchemy/SQLAlchemy.info
 @@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/s/sqlalchemy/SQLAlchemy
- MD5SUM="7f23ed7bea86aa696c2894845dd311bc"
+ MD5SUM="dfa687701ddf1416cba19024e6f9ec3d"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-wheel typing-extensions greenlet"
@@ -984,11 +984,11 @@ index 0dd9119a..9a7cae91 100644
  MAINTAINER="Andrzej Telszewski"
  EMAIL="atelszewski@gmail.com"
 diff --git a/development/aws-cdk/aws-cdk.info b/development/aws-cdk/aws-cdk.info
-index 47b8a925..a7238e68 100644
+index ececa173..1157e957 100644
 --- a/development/aws-cdk/aws-cdk.info
 +++ b/development/aws-cdk/aws-cdk.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.150.0.tgz"
- MD5SUM="f400d36d8a2e1e80aa15bdce4cf63d4e"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.151.0.tgz"
+ MD5SUM="04159c6f080a50b34d6975d85da1fbad"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="nodejs awscli"
@@ -1008,7 +1008,7 @@ index 34d17071..2a69b192 100644
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.bpftrace_2023-07-12@lockywolf.net"
 diff --git a/development/cargo-c/cargo-c.SlackBuild b/development/cargo-c/cargo-c.SlackBuild
-index 0c9fdee6..4c9f93fe 100644
+index 18e6aac9..ba934214 100644
 --- a/development/cargo-c/cargo-c.SlackBuild
 +++ b/development/cargo-c/cargo-c.SlackBuild
 @@ -37,12 +37,6 @@ if [ -z "$ARCH" ]; then
@@ -1039,10 +1039,10 @@ index 0c9fdee6..4c9f93fe 100644
  
  rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 diff --git a/development/cargo-c/cargo-c.info b/development/cargo-c/cargo-c.info
-index 32060ee9..e15df6f9 100644
+index 146dd200..61a51c25 100644
 --- a/development/cargo-c/cargo-c.info
 +++ b/development/cargo-c/cargo-c.info
-@@ -671,6 +671,6 @@ MD5SUM="1cc3ac7f9f2d263caae2d96f3ffa80dd \
+@@ -677,6 +677,6 @@ MD5SUM="fcef62b22546ea716c63186b4ba19242 \
          fc484f491cd0c91e5d7343776e055a77"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
@@ -1635,18 +1635,6 @@ index cf5133da..9dae1aaa 100644
 +REQUIRES="python3-funcparserlib"
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.python3-hylang_2023-12-01@lockywolf.net"
-diff --git a/development/python3-matplotlib/python3-matplotlib.info b/development/python3-matplotlib/python3-matplotlib.info
-index 3afd76cb..7e21e4cc 100644
---- a/development/python3-matplotlib/python3-matplotlib.info
-+++ b/development/python3-matplotlib/python3-matplotlib.info
-@@ -9,6 +9,6 @@ MD5SUM="6858958370a26cccfa81abc7b6dd3622 \
-         295f7332269a38279478f555cc185296"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
--REQUIRES="python3-numpy python3-dateutil pytz python3-cycler python3-kiwisolver python3-tornado"
-+REQUIRES="python3-numpy python3-dateutil python3-cycler python3-kiwisolver python3-tornado"
- MAINTAINER="Serban Udrea"
- EMAIL="S.Udrea@gsi.de"
 diff --git a/development/reuse-tool/reuse-tool.info b/development/reuse-tool/reuse-tool.info
 index 8a2b048d..2bd1974f 100644
 --- a/development/reuse-tool/reuse-tool.info
@@ -2758,10 +2746,10 @@ index c76b328b..8a3b37c3 100644
  MAINTAINER="Ozan Türkyılmaz"
  EMAIL="ozan.turkyilmaz@gmail.com"
 diff --git a/libraries/grpc/grpc.info b/libraries/grpc/grpc.info
-index 6c421f8b..e5f56938 100644
+index 2e5566f5..8ce66c1f 100644
 --- a/libraries/grpc/grpc.info
 +++ b/libraries/grpc/grpc.info
-@@ -7,6 +7,6 @@ MD5SUM="67eecd7915e505ebbdbb7fa2149610eb \
+@@ -7,6 +7,6 @@ MD5SUM="13b30e52dff1b0185f01fe08e7238c9f \
          0b208800a68548cbf2d4bff763c050a2"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
@@ -3367,6 +3355,31 @@ index c7893768..8de36433 100644
  MD5SUM_x86_64=""
 -REQUIRES="python2-numpy python2-dateutil pytz python2-cycler functools-lru-cache subprocess32 python2-kiwisolver tornado"
 +REQUIRES="python2-numpy python2-dateutil python2-cycler functools-lru-cache subprocess32 python2-kiwisolver tornado"
+ MAINTAINER="Serban Udrea"
+ EMAIL="S.Udrea@gsi.de"
+diff --git a/libraries/python3-contourpy/python3-contourpy.SlackBuild b/libraries/python3-contourpy/python3-contourpy.SlackBuild
+index eaf49886..c2507359 100644
+--- a/libraries/python3-contourpy/python3-contourpy.SlackBuild
++++ b/libraries/python3-contourpy/python3-contourpy.SlackBuild
+@@ -68,8 +68,6 @@ find -L . \
+ # the python3-setuptools-opt SlackBuild solved the problems. To make
+ # use of the newer version one needs the following two lines of code.
+ #
+-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+-export PYTHONPATH=/opt/python$PYVER/site-packages
+ 
+ python3 -m build --wheel --no-isolation
+ python3 -m installer --destdir "$PKG" dist/*.whl
+diff --git a/libraries/python3-contourpy/python3-contourpy.info b/libraries/python3-contourpy/python3-contourpy.info
+index 7c1161c1..90664603 100644
+--- a/libraries/python3-contourpy/python3-contourpy.info
++++ b/libraries/python3-contourpy/python3-contourpy.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/b4/9b/6edb9d3e334a70a212f66a84
+ MD5SUM="e0d60b16c86e66637ba5ab42245fd422"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="pybind11 python3-numpy python3-setuptools-opt"
++REQUIRES="pybind11 python3-numpy"
  MAINTAINER="Serban Udrea"
  EMAIL="S.Udrea@gsi.de"
 diff --git a/libraries/python3-ruamel.yaml.clib/python3-ruamel.yaml.clib.info b/libraries/python3-ruamel.yaml.clib/python3-ruamel.yaml.clib.info
@@ -4003,11 +4016,11 @@ index d95b1245..bf3df6d0 100644
  MAINTAINER="Martin Bångens"
  EMAIL="marbangens@gmail.com"
 diff --git a/multimedia/videomass/videomass.info b/multimedia/videomass/videomass.info
-index 3cc2de84..8011d7d9 100644
+index ad98e610..b5f505dd 100644
 --- a/multimedia/videomass/videomass.info
 +++ b/multimedia/videomass/videomass.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/jeanslack/Videomass/archive/v5.0.18/Videomass-5.0.1
- MD5SUM="d7544c33598802ab762c50a7650c2a8b"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/jeanslack/Videomass/archive/v5.0.20/Videomass-5.0.2
+ MD5SUM="e72286e2716872dacb383dfc21bd4103"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="wxPython4 python3-pubsub python3-build python3-hatchling python3-babel"
@@ -4705,10 +4718,10 @@ index 2d491d8e..c4e55139 100644
  MAINTAINER="Willy Sudiarto Raharjo"
  EMAIL="willysr@slackbuilds.org"
 diff --git a/network/radicale/radicale.info b/network/radicale/radicale.info
-index 7f1ce743..573e8fca 100644
+index 500a7122..9558a21b 100644
 --- a/network/radicale/radicale.info
 +++ b/network/radicale/radicale.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Kozea/Radicale/archive/refs/tags/v3.1.8/radicale-3.
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Kozea/Radicale/archive/refs/tags/v3.1.8/Radicale-3.
  MD5SUM="4c886b54c6926c5c463bbb80cf555998"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
@@ -4729,11 +4742,11 @@ index 65ab2d2f..058518cd 100644
  MAINTAINER="Alan Aversa"
  EMAIL="aveNOrsa@email.ariSPAMzona.edu"
 diff --git a/network/rspamd/rspamd.info b/network/rspamd/rspamd.info
-index a533c969..c9e468e1 100644
+index ed627dbf..ed386509 100644
 --- a/network/rspamd/rspamd.info
 +++ b/network/rspamd/rspamd.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/rspamd/rspamd/archive/3.8.4/rspamd-3.8.4.tar.gz"
- MD5SUM="b0277cbdcca54bd6873b1fd2ea7e61de"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/rspamd/rspamd/archive/3.9.1/rspamd-3.9.1.tar.gz"
+ MD5SUM="a64f0808c8e4ac7a8d70d51668b85f6f"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="luajit redis hyperscan"
@@ -4885,11 +4898,11 @@ index 9f7bb030..247656a4 100644
  MAINTAINER="Markus Rinne"
  EMAIL="markus.ka.rinne@gmail.com"
 diff --git a/network/yt-dlp/yt-dlp.info b/network/yt-dlp/yt-dlp.info
-index c26cec68..83aaa8b2 100644
+index 33fab86c..590b16e8 100644
 --- a/network/yt-dlp/yt-dlp.info
 +++ b/network/yt-dlp/yt-dlp.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/yt-dlp/yt-dlp/archive/2024.07.09/yt-dlp-2024.07.09.
- MD5SUM="a401a94712b5b15f1a446cf9c7e04c1f"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/yt-dlp/yt-dlp/archive/2024.08.01/yt-dlp-2024.08.01.
+ MD5SUM="8667d45487738c2787ac2f31edc18234"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-build python3-hatchling"
@@ -5515,7 +5528,7 @@ index 603bdd11..7ebe846a 100644
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/python/cryptography/cryptography.SlackBuild b/python/cryptography/cryptography.SlackBuild
-index 3e076868..c5ae92bd 100644
+index f3381287..e9f24e4f 100644
 --- a/python/cryptography/cryptography.SlackBuild
 +++ b/python/cryptography/cryptography.SlackBuild
 @@ -92,15 +92,6 @@ export CARGO_NET_OFFLINE=true
@@ -5533,19 +5546,7 @@ index 3e076868..c5ae92bd 100644
 -export PYTHONPATH=/opt/python$PYVER/site-packages
  
  rm -rf tests/bench
- python3 -m build --no-isolation
-diff --git a/python/cryptography/cryptography.info b/python/cryptography/cryptography.info
-index 9677749f..57251221 100644
---- a/python/cryptography/cryptography.info
-+++ b/python/cryptography/cryptography.info
-@@ -7,6 +7,6 @@ MD5SUM="413eb813be4922f055ae84ddfcd5a017 \
- 	b91563f5f48c09622493cd0dae94f2fa"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
--REQUIRES="rust16 python3-setuptools-rust-opt"
-+REQUIRES="python3-setuptools-rust-opt"
- MAINTAINER="Willy Sudiarto Raharjo"
- EMAIL="willysr@slackbuilds.org"
+ git init
 diff --git a/python/cryptography/mkvendored.sh b/python/cryptography/mkvendored.sh
 index 2664e9ee..5e6430b0 100644
 --- a/python/cryptography/mkvendored.sh
@@ -5682,27 +5683,6 @@ index 2c1fb559..fb005d19 100644
 +REQUIRES="python2-lxml"
  MAINTAINER="orphaned (no maintainer)"
  EMAIL="nobody@domain.com"
-diff --git a/python/jellyfish/jellyfish.SlackBuild b/python/jellyfish/jellyfish.SlackBuild
-index a3086a5b..c9981fbe 100644
---- a/python/jellyfish/jellyfish.SlackBuild
-+++ b/python/jellyfish/jellyfish.SlackBuild
-@@ -96,16 +96,6 @@ export CARGO_NET_OFFLINE=true
- # prevent cargo from writing outside of $TMP
- export CARGO_HOME=$(pwd)/.cargo
- 
--export PATH="/opt/rust16/bin:$PATH"
--if [ -z "$LD_LIBRARY_PATH" ]; then
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX"
--else
--  export LD_LIBRARY_PATH="/opt/rust16/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
--fi
--
--PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
--export PYTHONPATH=/opt/python$PYVER/site-packages/
--
- python3 -m build --no-isolation
- python3 -m installer -d "$PKG" dist/*.whl
- 
 diff --git a/python/josepy/josepy.info b/python/josepy/josepy.info
 index 62461ce9..0c4ada1b 100644
 --- a/python/josepy/josepy.info
@@ -6127,6 +6107,18 @@ index f39a7d9f..a5eb4487 100644
 +REQUIRES=""
  MAINTAINER="Steven Voges"
  EMAIL="svoges.sbo@gmail.com"
+diff --git a/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info b/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
+index cfd1ee2c..aeac3e4d 100644
+--- a/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
++++ b/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/a/aiohappyeyeballs/aioh
+ MD5SUM="aa6ab79cbdf6763d2b9ed04c08c096af"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-build python3-wheel python3-poetry-core"
++REQUIRES="python3-poetry-core"
+ MAINTAINER="Jay Lanagan"
+ EMAIL="j@lngn.net"
 diff --git a/python/python3-aksharamukha/python3-aksharamukha.info b/python/python3-aksharamukha/python3-aksharamukha.info
 index 92e272cc..917d69c5 100644
 --- a/python/python3-aksharamukha/python3-aksharamukha.info
@@ -6698,6 +6690,32 @@ index d6d2f38e..661b8881 100644
 +REQUIRES=""
  MAINTAINER="Isaac Yu"
  EMAIL="isaacyu@protonmail.com"
+diff --git a/python/python3-evdev/python3-evdev.SlackBuild b/python/python3-evdev/python3-evdev.SlackBuild
+index e70f6114..af584e75 100644
+--- a/python/python3-evdev/python3-evdev.SlackBuild
++++ b/python/python3-evdev/python3-evdev.SlackBuild
+@@ -70,9 +70,6 @@ find -L . \
+ # ... but upstream shipped evdev-1.0.0 with 660 permissions everywhere, so:
+ find -L . -perm 660 -exec chmod 644 {} \;
+ 
+-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+-export PYTHONPATH=/opt/python$PYVER/site-packages/
+-
+ python3 setup.py install --root=$PKG
+ 
+ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+diff --git a/python/python3-evdev/python3-evdev.info b/python/python3-evdev/python3-evdev.info
+index 412b6243..ff9956dc 100644
+--- a/python/python3-evdev/python3-evdev.info
++++ b/python/python3-evdev/python3-evdev.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/e/evdev/evdev-1.7.1.tar
+ MD5SUM="c20a623d2d05fd87c1f46d736ee9c3cc"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-setuptools-opt"
++REQUIRES=""
+ MAINTAINER="Isaac Yu"
+ EMAIL="isaacyu@protonmail.com"
 diff --git a/python/python3-expandvars/python3-expandvars.info b/python/python3-expandvars/python3-expandvars.info
 index 719995d2..08d65342 100644
 --- a/python/python3-expandvars/python3-expandvars.info
@@ -6835,11 +6853,11 @@ index a1ebcc67..f28afe5c 100644
  MAINTAINER="fourtysixandtwo"
  EMAIL="fourtysixandtwo@sliderr.net"
 diff --git a/python/python3-grpcio/python3-grpcio.info b/python/python3-grpcio/python3-grpcio.info
-index bc005eb2..e900eb2f 100644
+index ac3c649a..a4c9bed4 100644
 --- a/python/python3-grpcio/python3-grpcio.info
 +++ b/python/python3-grpcio/python3-grpcio.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/grpc/grpc/archive/v1.64.2/grpc-1.64.2.tar.gz"
- MD5SUM="67eecd7915e505ebbdbb7fa2149610eb"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/grpc/grpc/archive/v1.65.3/grpc-1.65.3.tar.gz"
+ MD5SUM="13b30e52dff1b0185f01fe08e7238c9f"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="protobuf3 re2"
@@ -6906,31 +6924,6 @@ index 4b363ac1..1fe581e9 100644
 +REQUIRES="python3-dateutil"
  MAINTAINER="Tonus"
  EMAIL="tonus1@free.fr"
-diff --git a/python/python3-incremental/python3-incremental.SlackBuild b/python/python3-incremental/python3-incremental.SlackBuild
-index 0b4e66f0..856cc7f2 100644
---- a/python/python3-incremental/python3-incremental.SlackBuild
-+++ b/python/python3-incremental/python3-incremental.SlackBuild
-@@ -63,8 +63,6 @@ find -L . \
-  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
-   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
- 
--PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
--export PYTHONPATH=/opt/python$PYVER/site-packages/
- python3 -m build --no-isolation
- python3 -m installer -d "$PKG" dist/*.whl
- 
-diff --git a/python/python3-incremental/python3-incremental.info b/python/python3-incremental/python3-incremental.info
-index 23574607..40b61f62 100644
---- a/python/python3-incremental/python3-incremental.info
-+++ b/python/python3-incremental/python3-incremental.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://pypi.python.org/packages/source/i/incremental/incremental-24.7
- MD5SUM="2d99430f279b04f66c1386f66ad7ec2d"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
--REQUIRES="python3-setuptools-opt"
-+REQUIRES=""
- MAINTAINER="Yth - Arnaud"
- EMAIL="yth@ythogtha.org"
 diff --git a/python/python3-inflate64/python3-inflate64.SlackBuild b/python/python3-inflate64/python3-inflate64.SlackBuild
 index 047e3356..bc753d48 100644
 --- a/python/python3-inflate64/python3-inflate64.SlackBuild
@@ -7334,7 +7327,7 @@ index 66b8129b..946f106a 100644
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/python/python3-maturin/python3-maturin.SlackBuild b/python/python3-maturin/python3-maturin.SlackBuild
-index 3bd41a06..9758bea2 100644
+index 7d1a69c8..d28b70c7 100644
 --- a/python/python3-maturin/python3-maturin.SlackBuild
 +++ b/python/python3-maturin/python3-maturin.SlackBuild
 @@ -90,16 +90,6 @@ export CARGO_NET_OFFLINE=true
@@ -7355,11 +7348,11 @@ index 3bd41a06..9758bea2 100644
  python3 -m installer -d "$PKG" dist/*.whl
  
 diff --git a/python/python3-maturin/python3-maturin.info b/python/python3-maturin/python3-maturin.info
-index 6539cd7f..813e024c 100644
+index e58964af..882cfedd 100644
 --- a/python/python3-maturin/python3-maturin.info
 +++ b/python/python3-maturin/python3-maturin.info
-@@ -7,6 +7,6 @@ MD5SUM="40b235d2fefc111aad969dfac3b6d6a2 \
-         6bba176f61554f0b0ccd22e2608e2f55"
+@@ -7,6 +7,6 @@ MD5SUM="047bf34e3e1eec5169e42ea421a4e55d \
+         957d6a98cd34a2cadaa0560eeb9e0c6d"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="rust16 python3-setuptools-rust-opt"
@@ -7464,7 +7457,7 @@ index d6ca4626..5dcc4e4d 100644
  MAINTAINER="Vijay Marcel"
  EMAIL="vijaymarcel@outlook.com"
 diff --git a/python/python3-orjson/python3-orjson.SlackBuild b/python/python3-orjson/python3-orjson.SlackBuild
-index 512687cd..9bf45419 100644
+index 23367223..d8981c4c 100644
 --- a/python/python3-orjson/python3-orjson.SlackBuild
 +++ b/python/python3-orjson/python3-orjson.SlackBuild
 @@ -85,13 +85,6 @@ find -L . \
@@ -7672,7 +7665,7 @@ index 042607c3..95ac09b3 100644
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.python3-pybcj_2023-12-04@lockywolf.net"
 diff --git a/python/python3-pydantic-core/python3-pydantic-core.SlackBuild b/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
-index 265da2a8..1afee638 100644
+index da853e54..523e3870 100644
 --- a/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
 +++ b/python/python3-pydantic-core/python3-pydantic-core.SlackBuild
 @@ -95,16 +95,6 @@ export CARGO_NET_OFFLINE=true
@@ -7693,11 +7686,11 @@ index 265da2a8..1afee638 100644
  python3 -m installer -d "$PKG" dist/*.whl
  
 diff --git a/python/python3-pydantic-core/python3-pydantic-core.info b/python/python3-pydantic-core/python3-pydantic-core.info
-index a9ed1cd1..b82af5d7 100644
+index 2deae6c1..3fa440f6 100644
 --- a/python/python3-pydantic-core/python3-pydantic-core.info
 +++ b/python/python3-pydantic-core/python3-pydantic-core.info
-@@ -7,6 +7,6 @@ MD5SUM="037c620103f13abd1c6a8988cd7a55c9 \
-         9020b171db85ffff3ad2147576e430cd"
+@@ -7,6 +7,6 @@ MD5SUM="55b6b95808ee4d1e3b08ae654ca2acf8 \
+         3f5512a618b3f74dcfc618246d764496"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-maturin python3-hatchling"
@@ -7729,7 +7722,7 @@ index 0a70a1d7..dd6db8ac 100644
  MAINTAINER="Vijay Marcel"
  EMAIL="vijaymarcel@outlook.com"
 diff --git a/python/python3-pykeepass/python3-pykeepass.SlackBuild b/python/python3-pykeepass/python3-pykeepass.SlackBuild
-index 24279521..b46281bd 100644
+index e7ca71e9..4ea29497 100644
 --- a/python/python3-pykeepass/python3-pykeepass.SlackBuild
 +++ b/python/python3-pykeepass/python3-pykeepass.SlackBuild
 @@ -67,8 +67,7 @@ find -L . \
@@ -7743,11 +7736,11 @@ index 24279521..b46281bd 100644
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
 diff --git a/python/python3-pykeepass/python3-pykeepass.info b/python/python3-pykeepass/python3-pykeepass.info
-index 01ef5d1f..8c6f2490 100644
+index 5c6fef22..78e66be5 100644
 --- a/python/python3-pykeepass/python3-pykeepass.info
 +++ b/python/python3-pykeepass/python3-pykeepass.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/libkeepass/pykeepass/archive/v4.1.0/pykeepass-4.1.0
- MD5SUM="6ae5210a8b70805c95dff0ea09731e31"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/libkeepass/pykeepass/archive/v4.1.0.post1/pykeepass
+ MD5SUM="bb1d308857b9eeef14bb5340ee9f64ca"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-argon2-cffi python3-construct python3-lxml python3-setuptools-opt pycryptodomex"
@@ -7755,13 +7748,13 @@ index 01ef5d1f..8c6f2490 100644
  MAINTAINER="Isaac Yu"
  EMAIL="isaacyu@protonmail.com"
 diff --git a/python/python3-pypandoc/python3-pypandoc.info b/python/python3-pypandoc/python3-pypandoc.info
-index c65089cd..9c3b4b10 100644
+index f236cda9..d5ebae70 100644
 --- a/python/python3-pypandoc/python3-pypandoc.info
 +++ b/python/python3-pypandoc/python3-pypandoc.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/JessicaTegner/pypandoc/archive/v1.13/pypandoc-1.13.
- MD5SUM="b442b31e0ea35b4171f0ca3dac5205c4"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
+@@ -5,6 +5,6 @@ DOWNLOAD="UNSUPPORTED"
+ MD5SUM=""
+ DOWNLOAD_x86_64="https://github.com/JessicaTegner/pypandoc/archive/v1.13/pypandoc-1.13.tar.gz"
+ MD5SUM_x86_64="b442b31e0ea35b4171f0ca3dac5205c4"
 -REQUIRES="pandoc-bin python3-wheel"
 +REQUIRES="pandoc-bin"
  MAINTAINER="Isaac Yu"
@@ -7841,11 +7834,11 @@ index e8d85683..7e70b4c8 100644
  MAINTAINER="fourtysixandtwo"
  EMAIL="fourtysixandtwo@sliderr.net"
 diff --git a/python/python3-pysubs2/python3-pysubs2.info b/python/python3-pysubs2/python3-pysubs2.info
-index 7ad0984f..d7c7355f 100644
+index f4d82846..032108c0 100644
 --- a/python/python3-pysubs2/python3-pysubs2.info
 +++ b/python/python3-pysubs2/python3-pysubs2.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/tkarabela/pysubs2/archive/refs/tags/1.7.2/pysubs2-1
- MD5SUM="3a24fb00d955186d88bc35b54c4733b1"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/tkarabela/pysubs2/archive/refs/tags/1.7.3/pysubs2-1
+ MD5SUM="1b9bcc49df75c647d8bd0264fd2a43dc"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-build python3-wheel"
@@ -7853,7 +7846,7 @@ index 7ad0984f..d7c7355f 100644
  MAINTAINER="Jeremy Hansen"
  EMAIL="jebrhansen+SBo@gmail.com"
 diff --git a/python/python3-pytest/python3-pytest.SlackBuild b/python/python3-pytest/python3-pytest.SlackBuild
-index 2783b23e..9dcbab54 100644
+index 13e026e4..996609ad 100644
 --- a/python/python3-pytest/python3-pytest.SlackBuild
 +++ b/python/python3-pytest/python3-pytest.SlackBuild
 @@ -67,8 +67,7 @@ find -L . \
@@ -7867,11 +7860,11 @@ index 2783b23e..9dcbab54 100644
  python3 -m build --wheel --no-isolation
  python3 -m installer --destdir "$PKG" dist/*.whl
 diff --git a/python/python3-pytest/python3-pytest.info b/python/python3-pytest/python3-pytest.info
-index 4d986817..8ad2a815 100644
+index f0ef3e85..ccddad91 100644
 --- a/python/python3-pytest/python3-pytest.info
 +++ b/python/python3-pytest/python3-pytest.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/p/pytest/pytest-8.3.1.t
- MD5SUM="7be55f1c0cfd40677182249bf9401827"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/p/pytest/pytest-8.3.2.t
+ MD5SUM="9e6443870618f16cad55527b8302d134"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-iniconfig python3-exceptiongroup python3-setuptools-opt"
@@ -8885,15 +8878,15 @@ index cb0def12..ed568043 100644
  MAINTAINER="fourtysixandtwo"
  EMAIL="fourtysixandtwo@sliderr.net"
 diff --git a/system/Solaar/Solaar.info b/system/Solaar/Solaar.info
-index 30bc255b..c904e56b 100644
+index b712d166..86ff0493 100644
 --- a/system/Solaar/Solaar.info
 +++ b/system/Solaar/Solaar.info
 @@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/pwr-Solaar/Solaar/archive/1.1.12/Solaar-1.1.12.tar.
  MD5SUM="587450bdca02f0b43982b1d642d88181"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
--REQUIRES="python-evdev python3-pyudev python3-xlib python3-psutil"
-+REQUIRES="python-evdev python3-pyudev python3-xlib"
+-REQUIRES="python3-evdev python3-pyudev python3-xlib python3-psutil"
++REQUIRES="python3-evdev python3-pyudev python3-xlib"
  MAINTAINER="Erich Ritz"
  EMAIL="erich.public@protonmail.com"
 diff --git a/system/afdko/afdko.info b/system/afdko/afdko.info
@@ -9199,7 +9192,7 @@ index ccf2c680..b75c8057 100644
  MAINTAINER="Andrew Clemons"
  EMAIL="andrew.clemons@gmail.com"
 diff --git a/system/fwupd/fwupd.SlackBuild b/system/fwupd/fwupd.SlackBuild
-index 60054e06..948ec6a9 100644
+index 7068ce6b..c28afc18 100644
 --- a/system/fwupd/fwupd.SlackBuild
 +++ b/system/fwupd/fwupd.SlackBuild
 @@ -81,8 +81,7 @@ find -L . \
@@ -9213,11 +9206,11 @@ index 60054e06..948ec6a9 100644
  CFLAGS="$SLKCFLAGS" \
  CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/fwupd/fwupd.info b/system/fwupd/fwupd.info
-index acd7ca89..7652cdaa 100644
+index 2d36c9ab..952f3650 100644
 --- a/system/fwupd/fwupd.info
 +++ b/system/fwupd/fwupd.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/fwupd/fwupd/archive/1.9.21/fwupd-1.9.21.tar.gz"
- MD5SUM="2aa76125d0d1fbc8988e78ffb4528667"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/fwupd/fwupd/archive/1.9.22/fwupd-1.9.22.tar.gz"
+ MD5SUM="81d29d7631c3217deae5597915ab7051"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="gcab libjcat libxmlb libgusb libsmbios pefile protobuf-c python3-toml python3-meson-opt python3-typogrify"
@@ -9595,7 +9588,7 @@ index ee1af8fe..eb58f675 100644
  MAINTAINER="marav"
  EMAIL="marav8@free.fr"
 diff --git a/system/sanoid/sanoid.info b/system/sanoid/sanoid.info
-index d01b4b31..46e5031a 100644
+index 44b69d22..c36c88c1 100644
 --- a/system/sanoid/sanoid.info
 +++ b/system/sanoid/sanoid.info
 @@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/jimsalterjrs/sanoid/archive/v2.2.0/sanoid-2.2.0.tar
@@ -9605,7 +9598,7 @@ index d01b4b31..46e5031a 100644
 -REQUIRES="%README% openzfs perl-Config-IniFiles perl-Capture-Tiny"
 +REQUIRES="openzfs perl-Config-IniFiles perl-Capture-Tiny"
  MAINTAINER="Matt Egger"
- EMAIL="bru.barwal@sdf.org"
+ EMAIL="matt.egger@gmail.com"
 diff --git a/system/sbo-create/sbo-create.info b/system/sbo-create/sbo-create.info
 index 5e578081..e3b9c6d1 100644
 --- a/system/sbo-create/sbo-create.info

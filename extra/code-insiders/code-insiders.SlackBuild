@@ -25,8 +25,8 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=code-insiders
-VERSION=${VERSION:-1722577852}
-SRCNAM=visual-studio-code-insiders-bin
+VERSION=${VERSION:-1722923357}
+SRCNAM=visual-studio-code-insiders
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -58,7 +58,7 @@ cd $TMP
 rm -rf $PRGNAM-$VERSION
 mkdir -p $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
-tar -I zstd -xvf $CWD/${SRCNAM}-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
+tar -I zstd -xvf $CWD/${SRCNAM}-bin-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
 
 chown -R root:root .
 find -L . \
@@ -69,7 +69,8 @@ find -L . \
 
 mv * $PKG/
 
-ln -sf /opt/$SRCNAM/bin/$PRGNAM $PKG/usr/bin/code
+( cd $PKG/usr/bin
+  install -m 0755 $PRGNAM code )
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild

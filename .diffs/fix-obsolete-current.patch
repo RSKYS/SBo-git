@@ -1738,11 +1738,11 @@ index ca49d177..b4c4c457 100644
  MAINTAINER="Emmanuel N. Millan"
  EMAIL="emmanueln@gmail.com"
 diff --git a/development/yarn/yarn.info b/development/yarn/yarn.info
-index dee6e587..2548746a 100644
+index 5a7c44cb..c8bdb396 100644
 --- a/development/yarn/yarn.info
 +++ b/development/yarn/yarn.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.
- MD5SUM="c04ea97bf9f72386c1a3da6b1c8510e3"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/yarnpkg/yarn/releases/download/v1.22.22/yarn-v1.22.
+ MD5SUM="368f9a4d279c2014bee630da7b7771d2"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="nodejs"
@@ -1798,11 +1798,11 @@ index a7e6485e..0aee60e8 100644
  MAINTAINER="B. Watson"
  EMAIL="urchlay@slackware.uk"
 diff --git a/games/alephone/alephone.info b/games/alephone/alephone.info
-index c352b1c1..f677707e 100644
+index 8755fa78..f233797c 100644
 --- a/games/alephone/alephone.info
 +++ b/games/alephone/alephone.info
 @@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Aleph-One-Marathon/alephone/releases/download/relea
- MD5SUM="a4ff8cd07f052190f02982d7773ca3b9"
+ MD5SUM="2bbe06eb1181e4343f3097df05dc8e1b"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="lua zziplib"
@@ -2746,10 +2746,10 @@ index c76b328b..8a3b37c3 100644
  MAINTAINER="Ozan Türkyılmaz"
  EMAIL="ozan.turkyilmaz@gmail.com"
 diff --git a/libraries/grpc/grpc.info b/libraries/grpc/grpc.info
-index 2e5566f5..8ce66c1f 100644
+index 2009822f..432d23f4 100644
 --- a/libraries/grpc/grpc.info
 +++ b/libraries/grpc/grpc.info
-@@ -7,6 +7,6 @@ MD5SUM="13b30e52dff1b0185f01fe08e7238c9f \
+@@ -7,6 +7,6 @@ MD5SUM="d4cc4f40b929469afe7d48c615e087c4 \
          0b208800a68548cbf2d4bff763c050a2"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
@@ -2959,18 +2959,6 @@ index 6003ff2c..00000000
 -kquickimageeditor:
 -kquickimageeditor:
 -kquickimageeditor:
-diff --git a/libraries/lgi/lgi.info b/libraries/lgi/lgi.info
-index f7a72a3a..71b92620 100644
---- a/libraries/lgi/lgi.info
-+++ b/libraries/lgi/lgi.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/pavouk/lgi/archive/0.9.2/lgi-0.9.2.tar.gz"
- MD5SUM="ad5d2e7a4427069f926f2ca472a5fe6d"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
--REQUIRES="lua"
-+REQUIRES= ""
- MAINTAINER="Heiko Rosemann"
- EMAIL="heiko.rosemann@web.de"
 diff --git a/libraries/libavif/libavif.info b/libraries/libavif/libavif.info
 index c6294213..c888897d 100644
 --- a/libraries/libavif/libavif.info
@@ -3020,11 +3008,11 @@ index e8b5d73c..9f9f2f91 100644
  MAINTAINER="Vijay Marcel"
  EMAIL="vijaymarcel@outlook.com"
 diff --git a/libraries/libheif/libheif.info b/libraries/libheif/libheif.info
-index c5f419f9..2d9f603c 100644
+index a1a7976d..4a29725c 100644
 --- a/libraries/libheif/libheif.info
 +++ b/libraries/libheif/libheif.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/strukturag/libheif/releases/download/v1.18.1/libhei
- MD5SUM="141f7ea717c8e77cb4b9be62d8263073"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/strukturag/libheif/releases/download/v1.18.2/libhei
+ MD5SUM="5446af621e88be0edc9373c22c198007"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="libde265 x265 aom rav1e kvazaar dav1d svt-av1"
@@ -5909,32 +5897,6 @@ index f40de2ca..84cf51b6 100644
 +REQUIRES="python-axolotl-curve25519 cryptography"
  MAINTAINER="Andrew Clemons"
  EMAIL="andrew.clemons@gmail.com"
-diff --git a/python/python-evdev/python-evdev.SlackBuild b/python/python-evdev/python-evdev.SlackBuild
-index f18028d3..f5cdff99 100644
---- a/python/python-evdev/python-evdev.SlackBuild
-+++ b/python/python-evdev/python-evdev.SlackBuild
-@@ -69,8 +69,7 @@ find -L . \
- # ... but upstream shipped evdev-1.0.0 with 660 permissions everywhere, so:
- find -L . -perm 660 -exec chmod 644 {} \;
- 
--PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
--export PYTHONPATH=/opt/python$PYVER/site-packages/
-+
- python3 setup.py install --root=$PKG
- 
- find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
-diff --git a/python/python-evdev/python-evdev.info b/python/python-evdev/python-evdev.info
-index 76e1d03c..655e2ce2 100644
---- a/python/python-evdev/python-evdev.info
-+++ b/python/python-evdev/python-evdev.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/e/evdev/evdev-1.7.0.tar
- MD5SUM="ef6d242ed75a92f93022b8715c4c8fe5"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
--REQUIRES="python3-setuptools-opt"
-+REQUIRES=""
- MAINTAINER="Erich Ritz"
- EMAIL="erich.public@protonmail.com"
 diff --git a/python/python-jeepney/python-jeepney.info b/python/python-jeepney/python-jeepney.info
 index d7c23e5c..4d3687e7 100644
 --- a/python/python-jeepney/python-jeepney.info
@@ -6108,11 +6070,11 @@ index f39a7d9f..a5eb4487 100644
  MAINTAINER="Steven Voges"
  EMAIL="svoges.sbo@gmail.com"
 diff --git a/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info b/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
-index cfd1ee2c..aeac3e4d 100644
+index 474c0e40..385fa0ed 100644
 --- a/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
 +++ b/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
 @@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/a/aiohappyeyeballs/aioh
- MD5SUM="aa6ab79cbdf6763d2b9ed04c08c096af"
+ MD5SUM="3bc096ab998e9eaa6736c761c791d6a9"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-build python3-wheel python3-poetry-core"
@@ -6853,11 +6815,11 @@ index a1ebcc67..f28afe5c 100644
  MAINTAINER="fourtysixandtwo"
  EMAIL="fourtysixandtwo@sliderr.net"
 diff --git a/python/python3-grpcio/python3-grpcio.info b/python/python3-grpcio/python3-grpcio.info
-index ac3c649a..a4c9bed4 100644
+index f801def0..a019d14b 100644
 --- a/python/python3-grpcio/python3-grpcio.info
 +++ b/python/python3-grpcio/python3-grpcio.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/grpc/grpc/archive/v1.65.3/grpc-1.65.3.tar.gz"
- MD5SUM="13b30e52dff1b0185f01fe08e7238c9f"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/grpc/grpc/archive/v1.65.4/grpc-1.65.4.tar.gz"
+ MD5SUM="d4cc4f40b929469afe7d48c615e087c4"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="protobuf3 re2"
@@ -7106,7 +7068,7 @@ index 55dcc963..fd6f7803 100644
  MAINTAINER="Erich Ritz"
  EMAIL="erich.public@protonmail.com"
 diff --git a/python/python3-keyring/python3-keyring.SlackBuild b/python/python3-keyring/python3-keyring.SlackBuild
-index 37ae6fff..f356f693 100644
+index 073a32f8..71ac202c 100644
 --- a/python/python3-keyring/python3-keyring.SlackBuild
 +++ b/python/python3-keyring/python3-keyring.SlackBuild
 @@ -65,8 +65,7 @@ find -L . \
@@ -7120,11 +7082,11 @@ index 37ae6fff..f356f693 100644
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
 diff --git a/python/python3-keyring/python3-keyring.info b/python/python3-keyring/python3-keyring.info
-index f598884d..3159e0ca 100644
+index a280ef0a..7633e16e 100644
 --- a/python/python3-keyring/python3-keyring.info
 +++ b/python/python3-keyring/python3-keyring.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/k/keyring/keyring-25.2.
- MD5SUM="f5c4b4a83032af4b8599c74d1eafe101"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/k/keyring/keyring-25.3.
+ MD5SUM="024f9ec53601f6b91670c31d705546fe"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python-importlib_metadata python3-jaraco.classes python3-jaraco.context python3-jaraco.functools secretstorage"
@@ -7586,6 +7548,18 @@ index e965a3da..2acc76b7 100644
 +REQUIRES=""
  MAINTAINER="fourtysixandtwo"
  EMAIL="fourtysixandtwo@sliderr.net"
+diff --git a/python/python3-poetry-dynamic-versioning/python3-poetry-dynamic-versioning.info b/python/python3-poetry-dynamic-versioning/python3-poetry-dynamic-versioning.info
+index 512ccff9..d9b3f26c 100644
+--- a/python/python3-poetry-dynamic-versioning/python3-poetry-dynamic-versioning.info
++++ b/python/python3-poetry-dynamic-versioning/python3-poetry-dynamic-versioning.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/c3/97/85afdb5be70267474d0a7449
+ MD5SUM="dadd01dbb4cd1196dbea873f8b6d1388"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-tomlkit python3-wheel"
++REQUIRES="python3-tomlkit"
+ MAINTAINER="Willy Sudiarto Raharjo"
+ EMAIL="willysr@slackbuilds.org"
 diff --git a/python/python3-pooch/python3-pooch.SlackBuild b/python/python3-pooch/python3-pooch.SlackBuild
 index a7bda19d..e8ca2fa7 100644
 --- a/python/python3-pooch/python3-pooch.SlackBuild
@@ -9072,11 +9046,11 @@ index 924bba54..e53b33d7 100644
  MAINTAINER="Matteo Bernardini"
  EMAIL="ponce@slackbuilds.org"
 diff --git a/system/cronie/cronie.info b/system/cronie/cronie.info
-index 236f53e3..f88ef9fb 100644
+index b5514ed8..13ce90c3 100644
 --- a/system/cronie/cronie.info
 +++ b/system/cronie/cronie.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/cronie-crond/cronie/releases/download/cronie-1.7.1/
- MD5SUM="e7528df4b0d7d59307677da7c82e4f70"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/cronie-crond/cronie/releases/download/cronie-1.7.2/
+ MD5SUM="2dacf4a7198b26dbd497a418cf31443d"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="%README%"

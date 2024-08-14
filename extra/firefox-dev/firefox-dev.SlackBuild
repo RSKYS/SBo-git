@@ -55,7 +55,7 @@ fi
 set -e
 
 ( cd $CWD
-  rm -rf *.tar.zst.*
+  rm -rf *.tar.zst*
   wget --content-disposition -c \
     https://mirror.yandex.ru/archlinux/extra/os/x86_64/firefox-developer-edition-$VERSION-1-x86_64.pkg.tar.zst
 )
@@ -69,6 +69,10 @@ cd $PRGNAM-$VERSION
 tar -I zstd -xvf $CWD/${SRCNAM}-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
 rm -rf $CWD/*.tar.zst
 
+# We're not even close to gnome-shell
+rm -rf usr/share/gnome-shell
+
+# Everything in it's right place
 mv usr/lib usr/lib64
 mv usr/lib64/$SRCNAM usr/lib64/$PRGNAM
 mv usr/bin/$SRCNAM usr/bin/$PRGNAM
@@ -104,4 +108,5 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
-/sbin/makepkg -l y -p -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
+/sbin/makepkg -l y -p -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE  \
+  && exit 1 # Prevent loop since this is out of structure package.

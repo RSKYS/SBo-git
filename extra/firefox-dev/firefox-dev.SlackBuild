@@ -25,7 +25,9 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=firefox-dev
-VERSION=${VERSION:-129.0b6}
+VERSION=$(curl -sI \
+  "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US" | \
+  grep -i location | awk -F/ '{print $NF}' | sed 's/firefox-\(.*\)\.tar\.bz2/\1/' | tr -d '\r')
 SRCNAM=firefox-developer-edition
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -51,6 +53,12 @@ if [ "$ARCH" != "x86_64" ]; then
 fi
 
 set -e
+
+( cd $CWD
+  rm -rf *.tar.zst.*
+  wget --content-disposition -c \
+    https://mirror.yandex.ru/archlinux/extra/os/x86_64/firefox-developer-edition-$VERSION-1-x86_64.pkg.tar.zst
+)
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT

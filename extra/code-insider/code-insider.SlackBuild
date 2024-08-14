@@ -55,7 +55,7 @@ fi
 set -e
 
 ( cd $CWD
-  rm -rf *.tar.zst.*
+  rm -rf *.tar.zst*
   wget --content-disposition -c \
     https://builds.garudalinux.org/repos/chaotic-aur/x86_64/${SRCNAM}-bin-${VERSION}-1-x86_64.pkg.tar.zst
 )
@@ -89,4 +89,5 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
-/sbin/makepkg -l y -p -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
+/sbin/makepkg -l y -p -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE \
+  && exit 1 # Prevent loop since this is out of structure package.

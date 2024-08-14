@@ -67,6 +67,7 @@ rm -rf $PRGNAM-$VERSION
 mkdir -p $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
 tar -I zstd -xvf $CWD/${SRCNAM}-${VERSION}-${BUILD}-${ARCH}.pkg.tar.zst
+rm -rf $CWD/*.tar.zst
 
 mv usr/lib usr/lib64
 mv usr/lib64/$SRCNAM usr/lib64/$PRGNAM

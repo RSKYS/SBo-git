@@ -24,8 +24,10 @@
 
 cd $(dirname $0) ; CWD=$(pwd)
 
-PRGNAM=code-insiders
-VERSION=${VERSION:-1722923357}
+PRGNAM=code-insider
+VERSION=$(curl -s \
+  https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=visual-studio-code-insiders-bin \
+  | grep '^pkgver=' | awk -F= '{print $2}')
 SRCNAM=visual-studio-code-insiders
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -52,6 +54,12 @@ fi
 
 set -e
 
+( cd $CWD
+  rm -rf *.tar.zst.*
+  wget --content-disposition -c \
+    https://builds.garudalinux.org/repos/chaotic-aur/x86_64/${SRCNAM}-bin-${VERSION}-1-x86_64.pkg.tar.zst
+)
+
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
@@ -70,7 +78,7 @@ find -L . \
 mv * $PKG/
 
 ( cd $PKG/usr/bin
-  install -m 0755 $PRGNAM code )
+  install -m 0755 ${PRGNAM}s code )
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild

@@ -25,7 +25,15 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=discord
-VERSION=${VERSION:-0.0.64}
+
+# I'm tired of this bump game.
+( cd $CWD
+  rm -rf *.deb.*
+  wget --content-disposition -c \
+    https://discord.com/api/download/stable?platform=linux&format=deb \
+    || exit 1 )
+VERSION=$(ls $PRGNAM-*.deb | awk -F '-' '{print $2}' | sed 's/.deb//')
+
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -64,6 +72,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $PKG
 ar p $CWD/${PRGNAM}-${VERSION}.deb data.tar.gz | tar zxv
+rm -rf $CWD/*.deb
 
 chown -R root:root .
 find -L . \

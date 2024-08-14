@@ -25,15 +25,9 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=discord
-
-# I'm tired of this bump game.
-( cd $CWD
-  rm -rf *.deb.*
-  wget --content-disposition -c \
-    https://discord.com/api/download/stable?platform=linux&format=deb \
-    || exit 1 )
-VERSION=$(ls $PRGNAM-*.deb | awk -F '-' '{print $2}' | sed 's/.deb//')
-
+VERSION=$(curl -sI \
+  "https://discord.com/api/download?platform=linux&format=deb" | \
+  grep -i location | awk -F/ '{print $NF}' | sed "s/$PRGNAM-\(.*\)\.deb/\1/" | tr -d '\r')
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -68,6 +62,12 @@ fi
 
 set -eu
 
+( cd $CWD
+  rm -rf *.deb*
+  wget --content-disposition -c \
+    https://dl.discordapp.net/apps/linux/${VERSION}/discord-${VERSION}.deb
+)
+
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $PKG
@@ -99,4 +99,5 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE \
+  && exit 1 # Prevent loop since this is out of structure package.

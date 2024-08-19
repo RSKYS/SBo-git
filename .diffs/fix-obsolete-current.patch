@@ -789,7 +789,7 @@ index a80b4f35..a1a1646a 100644
  MAINTAINER="Alexander Verbovetsky"
  EMAIL="alik@ejik.org"
 diff --git a/desktop/qtile/qtile.SlackBuild b/desktop/qtile/qtile.SlackBuild
-index d06bd153..4bb78852 100644
+index 5971520c..d3a4a6a5 100644
 --- a/desktop/qtile/qtile.SlackBuild
 +++ b/desktop/qtile/qtile.SlackBuild
 @@ -63,8 +63,7 @@ find -L . \
@@ -803,11 +803,11 @@ index d06bd153..4bb78852 100644
  # qtile provides a setup.py - however, setuptools > 58.2.0 does not recommend running setup.py directly
  python3 -m build --no-isolation
 diff --git a/desktop/qtile/qtile.info b/desktop/qtile/qtile.info
-index 4675c14f..351688f5 100644
+index 6ad5eaff..86f5c98b 100644
 --- a/desktop/qtile/qtile.info
 +++ b/desktop/qtile/qtile.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/q/qtile/qtile-0.27.0.ta
- MD5SUM="bd7006ff83193f0ed3f3a01429e8bef8"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/q/qtile/qtile-0.28.0.ta
+ MD5SUM="da88844b4257f08bccd32318b5e01fa1"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-xcffib python3-cairocffi python3-setuptools-scm-opt"
@@ -984,11 +984,11 @@ index 0dd9119a..9a7cae91 100644
  MAINTAINER="Andrzej Telszewski"
  EMAIL="atelszewski@gmail.com"
 diff --git a/development/aws-cdk/aws-cdk.info b/development/aws-cdk/aws-cdk.info
-index ececa173..1157e957 100644
+index b48e388e..185bb58d 100644
 --- a/development/aws-cdk/aws-cdk.info
 +++ b/development/aws-cdk/aws-cdk.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.151.0.tgz"
- MD5SUM="04159c6f080a50b34d6975d85da1fbad"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.151.1.tgz"
+ MD5SUM="f32d0746c71489fcb938cd9f5c275a2b"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="nodejs awscli"
@@ -1089,11 +1089,11 @@ index 2cd29469..ecf046a6 100644
  MAINTAINER="Christopher Luck"
  EMAIL="kermitdafrog8@gmail.com"
 diff --git a/development/gambas3/gambas3.info b/development/gambas3/gambas3.info
-index 9d99d1a6..d58e0300 100644
+index a8939f0c..7de133fc 100644
 --- a/development/gambas3/gambas3.info
 +++ b/development/gambas3/gambas3.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/gambas/gambas/-/archive/3.19.3/gambas-3.19.3.tar.bz
- MD5SUM="99b1eafb58ae920a7efdd390c73c0c15"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/gambas/gambas/-/archive/3.19.4/gambas-3.19.4.tar.bz
+ MD5SUM="e7a39486dc39d8c055dcde3bae6b186a"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="alure gtkglext webkit2gtk4.1 imlib %README%"
@@ -1539,6 +1539,32 @@ index a393d481..a8cdad25 100644
 +REQUIRES=""
  MAINTAINER="Gwenhael Le Moine"
  EMAIL="gwenhael.le.moine@gmail.com"
+diff --git a/development/ophis/ophis.SlackBuild b/development/ophis/ophis.SlackBuild
+index 4d98a2d5..34dbd767 100644
+--- a/development/ophis/ophis.SlackBuild
++++ b/development/ophis/ophis.SlackBuild
+@@ -44,9 +44,6 @@ chown -R root:root .
+ find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} \+ -o \
+         \! -perm /111 -a \! -perm 644 -a -exec chmod 644 {} \+
+ 
+-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+-export PYTHONPATH=/opt/python$PYVER/site-packages/
+-
+ python3 -m build --wheel --no-isolation
+ python3 -m installer --destdir "$PKG" dist/*.whl
+ 
+diff --git a/development/ophis/ophis.info b/development/ophis/ophis.info
+index bb10051f..439b1a17 100644
+--- a/development/ophis/ophis.info
++++ b/development/ophis/ophis.info
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/michaelcmartin/Ophis/archive/v2.2/Ophis-2.2.tar.gz"
+ MD5SUM="901a7333105625ae0fd0f441a81a5e31"
+ DOWNLOAD_x86_64=""
+ MD5SUM_x86_64=""
+-REQUIRES="python3-setuptools-opt"
++REQUIRES=""
+ MAINTAINER="B. Watson"
+ EMAIL="urchlay@slackware.uk"
 diff --git a/development/pandas/pandas.info b/development/pandas/pandas.info
 index 57c56b8f..8ab6e028 100644
 --- a/development/pandas/pandas.info
@@ -2386,7 +2412,7 @@ index 26699c0d..9a766534 100644
  MAINTAINER="ArTourter"
  EMAIL="artourter@gmail.com"
 diff --git a/gis/python3-xarray/python3-xarray.SlackBuild b/gis/python3-xarray/python3-xarray.SlackBuild
-index 8011b815..e6d2fd18 100644
+index 1df29092..419f3e6f 100644
 --- a/gis/python3-xarray/python3-xarray.SlackBuild
 +++ b/gis/python3-xarray/python3-xarray.SlackBuild
 @@ -66,8 +66,7 @@ find -L . \
@@ -2400,11 +2426,11 @@ index 8011b815..e6d2fd18 100644
  python3 -m build --wheel --no-isolation
  python3 -m installer --destdir "$PKG" dist/*.whl
 diff --git a/gis/python3-xarray/python3-xarray.info b/gis/python3-xarray/python3-xarray.info
-index e3b137aa..4de6c321 100644
+index 9d58af02..cc05a2e5 100644
 --- a/gis/python3-xarray/python3-xarray.info
 +++ b/gis/python3-xarray/python3-xarray.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/pydata/xarray/archive/v2024.05.0/xarray-2024.05.0.t
- MD5SUM="c39e5000598286364a560198a13d0ce8"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/pydata/xarray/archive/v2024.07.0/xarray-2024.07.0.t
+ MD5SUM="e6ba8e6ec2c9c5fd9420d8dd0c751364"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-pandas python3-setuptools-scm-opt"
@@ -2960,11 +2986,11 @@ index 6003ff2c..00000000
 -kquickimageeditor:
 -kquickimageeditor:
 diff --git a/libraries/libavif/libavif.info b/libraries/libavif/libavif.info
-index c6294213..c888897d 100644
+index 2d23ad89..686cbade 100644
 --- a/libraries/libavif/libavif.info
 +++ b/libraries/libavif/libavif.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/AOMediaCodec/libavif/archive/v1.0.4/libavif-1.0.4.t
- MD5SUM="8c786fd21f8757ace8cc011401e4d420"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/AOMediaCodec/libavif/archive/v1.1.1/libavif-1.1.1.t
+ MD5SUM="633c2113d52aecab5f0073da3456e2ae"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="aom dav1d svt-av1 libyuv"
@@ -3044,11 +3070,11 @@ index c3288474..a831618c 100644
  MAINTAINER="Nate Bargmann"
  EMAIL="n0nb@arrl.net"
 diff --git a/libraries/libopenshot/libopenshot.info b/libraries/libopenshot/libopenshot.info
-index 3625f7c8..4f781008 100644
+index e023519f..22d392d3 100644
 --- a/libraries/libopenshot/libopenshot.info
 +++ b/libraries/libopenshot/libopenshot.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/OpenShot/libopenshot/archive/v0.3.2/libopenshot-0.3
- MD5SUM="75f25beb22296368ba2d54c2af615ef4"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/OpenShot/libopenshot/archive/v0.3.3/libopenshot-0.3
+ MD5SUM="3fc1f185050bf01b73948944b8e13bc7"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="cppzmq protobuf3 unittest-cpp libopenshot-audio"
@@ -3431,11 +3457,11 @@ index 99ad154b..ec50c319 100644
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.qt6keychain_2024-03-15@lockywolf.net"
 diff --git a/libraries/re2/re2.info b/libraries/re2/re2.info
-index b51d94de..d0c40fe8 100644
+index db34f915..f07d30f6 100644
 --- a/libraries/re2/re2.info
 +++ b/libraries/re2/re2.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/google/re2/archive/2024-04-01/re2-2024-04-01.tar.gz
- MD5SUM="05e993e11aa173b63552fb4d88e6524c"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/google/re2/archive/2024-07-02/re2-2024-07-02.tar.gz
+ MD5SUM="73c94c78678bd2d641beaf8d5a3fd352"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="abseil-cpp"
@@ -3503,11 +3529,11 @@ index 8d391aa6..ba40a2b8 100644
  MAINTAINER="Fernando Lopez"
  EMAIL="fernando.lopezjr@gmail.com"
 diff --git a/libraries/webkit2gtk4.1/webkit2gtk4.1.info b/libraries/webkit2gtk4.1/webkit2gtk4.1.info
-index d8bb2229..2975da9d 100644
+index d94f74bd..58262721 100644
 --- a/libraries/webkit2gtk4.1/webkit2gtk4.1.info
 +++ b/libraries/webkit2gtk4.1/webkit2gtk4.1.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://www.webkitgtk.org/releases/webkitgtk-2.44.2.tar.xz https://git
- MD5SUM="b61ff37133cabc9ef5d870b296e9694d fc1c89b53f6dcca9c68e001743f78950 779ed44d239dba2df9a33e57c9c3ee73 66986fdc8962d0d6118839fdc614fc13"
+@@ -11,6 +11,6 @@ MD5SUM="46cf81df314acbf62f811bcfd99f4769 \
+ 	66986fdc8962d0d6118839fdc614fc13"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="bubblewrap geoclue2 wpebackend-fdo xdg-dbus-proxy libsoup3 unifdef"
@@ -3770,10 +3796,10 @@ index 147630d0..9ff10dfb 100644
  MAINTAINER="Vijay Marcel"
  EMAIL="vijaymarcel@outlook.com"
 diff --git a/multimedia/HandBrake/HandBrake.info b/multimedia/HandBrake/HandBrake.info
-index 5e4da46c..62cda562 100644
+index bae5ad38..8be7ec22 100644
 --- a/multimedia/HandBrake/HandBrake.info
 +++ b/multimedia/HandBrake/HandBrake.info
-@@ -27,6 +27,6 @@ MD5SUM="f2b32ca051e6c974cfddf5ddc948ef3a \
+@@ -27,6 +27,6 @@ MD5SUM="ea3f19addddb3e5e29f7c95d22f3e3c1 \
          af2c08cc0e695f4c0c225feed14e9f20"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
@@ -4282,11 +4308,11 @@ index 6b4539a6..cf05b985 100644
  MAINTAINER="Robby Workman"
  EMAIL="rworkman@slackbuilds.org"
 diff --git a/network/mumble-server/mumble-server.info b/network/mumble-server/mumble-server.info
-index 5e01b6ed..f912b855 100644
+index 2db8ef54..e06d4b8d 100644
 --- a/network/mumble-server/mumble-server.info
 +++ b/network/mumble-server/mumble-server.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/mumble-voip/mumble/releases/download/v1.5.613/mumbl
- MD5SUM="f700a8a388ebc5522ec791a6bbdf0ef1"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/mumble-voip/mumble/releases/download/v1.5.634/mumbl
+ MD5SUM="093f389af4512e5e42e1a431b02aacfc"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="protobuf3"
@@ -4294,11 +4320,11 @@ index 5e01b6ed..f912b855 100644
  MAINTAINER="Edward W. Koenig"
  EMAIL="kingbeowulf@linuxgalaxy.org"
 diff --git a/network/mumble/mumble.info b/network/mumble/mumble.info
-index 711ec365..945d5851 100644
+index 5c66d0e0..cb780511 100644
 --- a/network/mumble/mumble.info
 +++ b/network/mumble/mumble.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/mumble-voip/mumble/releases/download/v1.5.613/mumbl
- MD5SUM="f700a8a388ebc5522ec791a6bbdf0ef1"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/mumble-voip/mumble/releases/download/v1.5.634/mumbl
+ MD5SUM="093f389af4512e5e42e1a431b02aacfc"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="protobuf3 poco"
@@ -4318,7 +4344,7 @@ index 9c251bbf..be4fddff 100644
  MAINTAINER="Duncan Roe"
  EMAIL="duncan_roe@optusnet.com.au"
 diff --git a/network/newsboat/newsboat.SlackBuild b/network/newsboat/newsboat.SlackBuild
-index d800d0b3..feca6b68 100644
+index e1e41acc..ddd11331 100644
 --- a/network/newsboat/newsboat.SlackBuild
 +++ b/network/newsboat/newsboat.SlackBuild
 @@ -154,13 +154,6 @@ if [ "$CARGOTARGET" != "" ] ; then
@@ -4336,10 +4362,10 @@ index d800d0b3..feca6b68 100644
  
  CXXFLAGS="$SLKCFLAGS" \
 diff --git a/network/newsboat/newsboat.info b/network/newsboat/newsboat.info
-index 22d20b28..f53deb93 100644
+index e1d4f9ef..75cbaeb4 100644
 --- a/network/newsboat/newsboat.info
 +++ b/network/newsboat/newsboat.info
-@@ -241,6 +241,6 @@ MD5SUM="d9deb0b7c9995b8880642699af387ae8 \
+@@ -241,6 +241,6 @@ MD5SUM="d426e1ba85fc2ddbfd75d4d8aa7e2c52 \
          1613d0f9e24d4b05e81748ea1f355f6c"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
@@ -4874,11 +4900,11 @@ index 6727e9c6..db1119bb 100644
  MAINTAINER="Bloyburt"
  EMAIL="alexpen@startmail.com"
 diff --git a/network/yle-dl/yle-dl.info b/network/yle-dl/yle-dl.info
-index 9f7bb030..247656a4 100644
+index fceda03f..7765e516 100644
 --- a/network/yle-dl/yle-dl.info
 +++ b/network/yle-dl/yle-dl.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/aajanki/yle-dl/archive/20240706/yle-dl-20240706.tar
- MD5SUM="feca29d9c21a6e6b453554c9c765481e"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/aajanki/yle-dl/archive/20240806/yle-dl-20240806.tar
+ MD5SUM="b2ffca166bac598deaaed1b8945fa435"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-lxml python3-configargparse"
@@ -4886,11 +4912,11 @@ index 9f7bb030..247656a4 100644
  MAINTAINER="Markus Rinne"
  EMAIL="markus.ka.rinne@gmail.com"
 diff --git a/network/yt-dlp/yt-dlp.info b/network/yt-dlp/yt-dlp.info
-index 33fab86c..590b16e8 100644
+index 95b1866d..8ed40fe1 100644
 --- a/network/yt-dlp/yt-dlp.info
 +++ b/network/yt-dlp/yt-dlp.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/yt-dlp/yt-dlp/archive/2024.08.01/yt-dlp-2024.08.01.
- MD5SUM="8667d45487738c2787ac2f31edc18234"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/yt-dlp/yt-dlp/archive/2024.08.06/yt-dlp-2024.08.06.
+ MD5SUM="b93b1649c0acb6742461123755e841e6"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-build python3-hatchling"
@@ -5370,16 +5396,30 @@ index 36fe91c2..c2534a5b 100644
 +REQUIRES="python3-dateutil"
  MAINTAINER="William PC"
  EMAIL="w_calandrini[at]hotmail[dot]com"
+diff --git a/office/zathura-pdf-mupdf/zathura-pdf-mupdf.SlackBuild b/office/zathura-pdf-mupdf/zathura-pdf-mupdf.SlackBuild
+index 55daf17c..d7710fc0 100644
+--- a/office/zathura-pdf-mupdf/zathura-pdf-mupdf.SlackBuild
++++ b/office/zathura-pdf-mupdf/zathura-pdf-mupdf.SlackBuild
+@@ -66,9 +66,6 @@ chown -R root:root .
+ find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} \+ -o \
+         \! -perm /111 -a \! -perm 644 -a -exec chmod 644 {} \+
+ 
+-PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+-export PYTHONPATH=/opt/python$PYVER/site-packages/
+-
+ mkdir build
+ cd build
+   CFLAGS="$SLKCFLAGS" \
 diff --git a/office/zathura-pdf-mupdf/zathura-pdf-mupdf.info b/office/zathura-pdf-mupdf/zathura-pdf-mupdf.info
-index 8bbb7c4b..e1f34f6c 100644
+index aef3b383..b72ae10b 100644
 --- a/office/zathura-pdf-mupdf/zathura-pdf-mupdf.info
 +++ b/office/zathura-pdf-mupdf/zathura-pdf-mupdf.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/pwmt/zathura-pdf-mupdf/archive/0.4.0/zathura-pdf-mu
- MD5SUM="0de569ba18eeb82e5f276c332faf7a09"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/pwmt/zathura-pdf-mupdf/archive/0.4.4/zathura-pdf-mu
+ MD5SUM="c2f28473ecb24a86c9752c0b7f0d124c"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
--REQUIRES="mupdf zathura mujs tesseract"
-+REQUIRES="mupdf zathura tesseract"
+-REQUIRES="zathura mujs tesseract mupdf python3-meson-opt"
++REQUIRES="zathura tesseract mupdf"
  MAINTAINER="B. Watson"
  EMAIL="urchlay@slackware.uk"
 diff --git a/perl/perl-Expect/perl-Expect.info b/perl/perl-Expect/perl-Expect.info
@@ -6070,14 +6110,14 @@ index f39a7d9f..a5eb4487 100644
  MAINTAINER="Steven Voges"
  EMAIL="svoges.sbo@gmail.com"
 diff --git a/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info b/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
-index 474c0e40..385fa0ed 100644
+index 36103ae6..d62eaa9c 100644
 --- a/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
 +++ b/python/python3-aiohappyeyeballs/python3-aiohappyeyeballs.info
 @@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/a/aiohappyeyeballs/aioh
- MD5SUM="3bc096ab998e9eaa6736c761c791d6a9"
+ MD5SUM="24045f1e4e1e006194db7564f1f540c8"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
--REQUIRES="python3-build python3-wheel python3-poetry-core"
+-REQUIRES="python3-wheel python3-poetry-core"
 +REQUIRES="python3-poetry-core"
  MAINTAINER="Jay Lanagan"
  EMAIL="j@lngn.net"
@@ -8379,7 +8419,7 @@ index 7f250d69..d80bef4f 100644
  MAINTAINER="Lockywolf"
  EMAIL="for_sbo.python3-weasyprint_2023-12-04@lockywolf.net"
 diff --git a/python/python3-webcolors/python3-webcolors.SlackBuild b/python/python3-webcolors/python3-webcolors.SlackBuild
-index 6d07581e..df7959e8 100644
+index 339b2b24..2832179a 100644
 --- a/python/python3-webcolors/python3-webcolors.SlackBuild
 +++ b/python/python3-webcolors/python3-webcolors.SlackBuild
 @@ -64,8 +64,7 @@ find -L . \
@@ -8393,11 +8433,11 @@ index 6d07581e..df7959e8 100644
  python3 -m build --no-isolation
  python3 -m installer -d "$PKG" dist/*.whl
 diff --git a/python/python3-webcolors/python3-webcolors.info b/python/python3-webcolors/python3-webcolors.info
-index ac3a6ee8..7ecfc3ba 100644
+index 94f61929..84e58758 100644
 --- a/python/python3-webcolors/python3-webcolors.info
 +++ b/python/python3-webcolors/python3-webcolors.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/ubernostrum/webcolors/archive/24.6.0/webcolors-24.6
- MD5SUM="cd99c6e9210897896664bff61e58bbf4"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/ubernostrum/webcolors/archive/24.8.0/webcolors-24.8
+ MD5SUM="7f042cef7571d27c4bca54e513610417"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="python3-setuptools-opt"
@@ -8962,7 +9002,7 @@ index d1670622..adefde46 100644
  MAINTAINER="Brandon Pribula"
  EMAIL="b.pribs11@gmail.com"
 diff --git a/system/bottom/bottom.SlackBuild b/system/bottom/bottom.SlackBuild
-index c89388f7..c7a4e3d1 100644
+index f6d50507..46397f7b 100644
 --- a/system/bottom/bottom.SlackBuild
 +++ b/system/bottom/bottom.SlackBuild
 @@ -140,13 +140,6 @@ find -L . \
@@ -8980,11 +9020,11 @@ index c89388f7..c7a4e3d1 100644
  
  CARGO_HOME=.cargo \
 diff --git a/system/bottom/bottom.info b/system/bottom/bottom.info
-index 85ec0d74..94e08d45 100644
+index ff1d8125..f6f0da97 100644
 --- a/system/bottom/bottom.info
 +++ b/system/bottom/bottom.info
-@@ -347,6 +347,6 @@ MD5SUM="7a0b000bbf1e3db4ab78ca45d2ba8cbf \
-         88e9b913d7f1d1b722179a38b795cdb1"
+@@ -439,6 +439,6 @@ MD5SUM="60ab76838cd86fd5fca2d41ad21fa044 \
+         8b9abf87faaabfcedea7b9ac6381752d"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="rust16"
@@ -9016,7 +9056,7 @@ index 5769a7f0..9e2470ff 100644
  MAINTAINER="Sergey Poznyakoff"
  EMAIL="gray@gnu.org"
 diff --git a/system/clamav/clamav.SlackBuild b/system/clamav/clamav.SlackBuild
-index 77fad8b7..9b347084 100644
+index af4aea77..c888b211 100644
 --- a/system/clamav/clamav.SlackBuild
 +++ b/system/clamav/clamav.SlackBuild
 @@ -116,13 +116,6 @@ find -L . \
@@ -9034,11 +9074,11 @@ index 77fad8b7..9b347084 100644
  # http://www.iana.org/cctld/cctld-whois.htm
  sed -i "s/^\#DatabaseMirror.*/DatabaseMirror db.${COUNTRY}.clamav.net/" \
 diff --git a/system/clamav/clamav.info b/system/clamav/clamav.info
-index 924bba54..e53b33d7 100644
+index b1d41b8e..7925d59b 100644
 --- a/system/clamav/clamav.info
 +++ b/system/clamav/clamav.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Cisco-Talos/clamav/releases/download/clamav-1.3.1/c
- MD5SUM="a2617a04a69433f9f7c86ede5dcc82c6"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/Cisco-Talos/clamav/releases/download/clamav-1.4.0/c
+ MD5SUM="298f3ed915abe0b9a50d3436a38ec0cc"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="rust16 libmspack"
@@ -9166,7 +9206,7 @@ index ccf2c680..b75c8057 100644
  MAINTAINER="Andrew Clemons"
  EMAIL="andrew.clemons@gmail.com"
 diff --git a/system/fwupd/fwupd.SlackBuild b/system/fwupd/fwupd.SlackBuild
-index 7068ce6b..c28afc18 100644
+index 567736a2..17006aa5 100644
 --- a/system/fwupd/fwupd.SlackBuild
 +++ b/system/fwupd/fwupd.SlackBuild
 @@ -81,8 +81,7 @@ find -L . \
@@ -9180,11 +9220,11 @@ index 7068ce6b..c28afc18 100644
  CFLAGS="$SLKCFLAGS" \
  CXXFLAGS="$SLKCFLAGS" \
 diff --git a/system/fwupd/fwupd.info b/system/fwupd/fwupd.info
-index 2d36c9ab..952f3650 100644
+index 8283b3d9..c1abc0a7 100644
 --- a/system/fwupd/fwupd.info
 +++ b/system/fwupd/fwupd.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/fwupd/fwupd/archive/1.9.22/fwupd-1.9.22.tar.gz"
- MD5SUM="81d29d7631c3217deae5597915ab7051"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://github.com/fwupd/fwupd/archive/1.9.23/fwupd-1.9.23.tar.gz"
+ MD5SUM="40b82e9411f0476f310e664eaeefe842"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="gcab libjcat libxmlb libgusb libsmbios pefile protobuf-c python3-toml python3-meson-opt python3-typogrify"
@@ -9234,7 +9274,7 @@ index c163ceb9..af163321 100644
  
  rm -rf $PKG
 diff --git a/system/greetd/greetd.info b/system/greetd/greetd.info
-index 3e6ffea4..f4057244 100644
+index 67596378..96005045 100644
 --- a/system/greetd/greetd.info
 +++ b/system/greetd/greetd.info
 @@ -125,6 +125,6 @@ MD5SUM="72ed0ce68d0cd22911d486e4e407c733 \
@@ -9481,26 +9521,12 @@ index 8a8c5a47..477ecbb1 100644
 +REQUIRES=""
  MAINTAINER="Leo C."
  EMAIL="leoc@gmx.com"
-diff --git a/system/qemu/qemu.SlackBuild b/system/qemu/qemu.SlackBuild
-index 2d7fa89f..aef8e7d9 100644
---- a/system/qemu/qemu.SlackBuild
-+++ b/system/qemu/qemu.SlackBuild
-@@ -94,8 +94,7 @@ find -L . \
-   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} + || true
- 
- # Use newer meson from python3-meson-opt
--PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
--export PYTHONPATH=/opt/python$PYVER/site-packages
-+
-   
- # Remove double CFLAGS
- sed -i "s|^\ \ CFLAGS=\"-O2\ |  CFLAGS=\"|" configure
 diff --git a/system/qemu/qemu.info b/system/qemu/qemu.info
-index 79ab105e..05376133 100644
+index eb305e1a..9d3333b4 100644
 --- a/system/qemu/qemu.info
 +++ b/system/qemu/qemu.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://download.qemu.org/qemu-8.2.5.tar.xz"
- MD5SUM="80b7901822373d69ebdd60cb03b8515b"
+@@ -5,6 +5,6 @@ DOWNLOAD="https://download.qemu.org/qemu-9.0.2.tar.xz"
+ MD5SUM="f7f0462262d2571f146c6a8adda33b29"
  DOWNLOAD_x86_64=""
  MD5SUM_x86_64=""
 -REQUIRES="device-tree-compiler libslirp python3-meson-opt virtiofsd"
@@ -9777,18 +9803,6 @@ index 5ae2f037..b2e6de7e 100644
 +REQUIRES=""
  MAINTAINER="Julian Grinblat"
  EMAIL="julian@dotcore.co.il"
-diff --git a/system/xfile/xfile.info b/system/xfile/xfile.info
-index 70c32839..a908e861 100644
---- a/system/xfile/xfile.info
-+++ b/system/xfile/xfile.info
-@@ -5,6 +5,6 @@ DOWNLOAD="https://prdownloads.sourceforge.net/xfilemanager/xfile-src-1.0-beta.ta
- MD5SUM="fe7aeea0d2471e578252df9c9981b4cf"
- DOWNLOAD_x86_64=""
- MD5SUM_x86_64=""
--REQUIRES="%README%"
-+REQUIRES=""
- MAINTAINER="pomfland"
- EMAIL="pomfland@tfwno.gf"
 diff --git a/system/xfs_undelete/xfs_undelete.info b/system/xfs_undelete/xfs_undelete.info
 index 538c28a4..694ad63d 100644
 --- a/system/xfs_undelete/xfs_undelete.info

@@ -7,20 +7,22 @@ on:
       - opened
       - synchronize
       - reopened
+    branches:
+      - current
 
 jobs:
   Build:
-    name: "Build against Slackware 15"
+    name: "Build against Slackware Current"
     runs-on: self-hosted
 
     container:
-      image: aclemons/slackware:latest-full
+      image: aclemons/slackware:current-full
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Slackware 15.0 vs my -current
+    - name: Slackware Current vs my -current
       run: |
         ( export REPO=$(echo "${{ github.event.pull_request.html_url }}" | sed 's/\/pull.*//')
           export REPO_BRANCH=$(echo "${{ github.head_ref }}" | sed 's/^refs\/heads\///')

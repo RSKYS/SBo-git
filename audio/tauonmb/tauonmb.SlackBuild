@@ -27,7 +27,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=tauonmb
-VERSION=${VERSION:-7.8.0}
+VERSION=${VERSION:-7.8.1}
 SRCNAM=Tauon
 BUILD=${BUILD:-3}
 TAG=${TAG:-_SBo}
@@ -66,10 +66,8 @@ tar xvf $CWD/$SRCNAM-$VERSION.tar.gz
 
 cd $SRCNAM-$VERSION
 
-# - Replaced my own isounidecode with Unidecode.
-# - Pass libgme.
-# - Fixed custom theme bug.
 # - Reverted old days theme changer!
+# - Pass libgme.
 patch -p1 < $CWD/config/fix-tauon-options.patch
 
 # Make libgme optional, isn't this messy already?
@@ -90,6 +88,9 @@ find -L . \
  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 # Compile PHAZOR (Do not modify this part)
+cat compile-phazor-pipewire.sh \
+  | sed -e '/#!\/bin\/bash/d' \
+        -e '/set -e/d' >> compile-phazor.sh
 sh compile-phazor.sh
 
 # Compile translator

@@ -1,21 +1,8 @@
-diff --git a/compile-phazor.sh b/compile-phazor.sh
-index 090c318b..2313338d 100755
---- a/compile-phazor.sh
-+++ b/compile-phazor.sh
-@@ -3,7 +3,7 @@
- set -e
- 
- gcc src/phazor/kissfft/kiss_fftr.c src/phazor/kissfft/kiss_fft.c src/phazor/phazor.c \
--    `pkg-config --cflags --libs samplerate wavpack opusfile vorbisfile libmpg123 flac libopenmpt libgme` \
-+    `pkg-config --cflags --libs samplerate wavpack opusfile vorbisfile libmpg123 flac libopenmpt` \
-     -shared -o libphazor.so -fPIC -Wall -O3 -g #-Wextra
- mkdir -p lib
- mv libphazor.so lib/libphazor.so
 diff --git a/src/phazor/phazor.c b/src/phazor/phazor.c
-index e89edaf6..ecb84259 100644
+index b26ed27..e2c45d9 100644
 --- a/src/phazor/phazor.c
 +++ b/src/phazor/phazor.c
-@@ -55,7 +55,6 @@
+@@ -73,7 +73,6 @@
  #include <libopenmpt/libopenmpt_stream_callbacks_file.h>
  #include "kissfft/kiss_fftr.h"
  #include "wavpack/wavpack.h"
@@ -23,7 +10,7 @@ index e89edaf6..ecb84259 100644
  
  #define BUFF_SIZE 240000  // Decoded data buffer size
  #define BUFF_SAFE 100000  // Ensure there is this much space free in the buffer
-@@ -209,7 +208,6 @@ enum decoder_types {
+@@ -295,7 +294,6 @@ enum decoder_types {
      MPT,
      FEED,
      WAVPACK,
@@ -31,7 +18,7 @@ index e89edaf6..ecb84259 100644
  };
  
  enum result_status_enum {
-@@ -318,11 +316,6 @@ char parse_buffer[2048 * 2];
+@@ -404,11 +402,6 @@ char parse_buffer[2048 * 2];
  FILE* mod_file = 0;
  openmpt_module* mod = 0;
  
@@ -43,7 +30,7 @@ index e89edaf6..ecb84259 100644
  // FFMPEG related -----------------------------------------------------
  
  FILE *ffm;
-@@ -893,9 +886,6 @@ void stop_decoder() {
+@@ -979,9 +972,6 @@ void stop_decoder() {
          case MPT:
              openmpt_module_destroy(mod);
              break;
@@ -53,7 +40,7 @@ index e89edaf6..ecb84259 100644
      }
      //src_reset(src);
      decoder_allocated = 0;
-@@ -1132,9 +1122,6 @@ void decode_seek(int abs_ms, int sample_rate) {
+@@ -1359,9 +1349,6 @@ void decode_seek(int abs_ms, int sample_rate) {
          case MPT:
              openmpt_module_set_position_seconds(mod, abs_ms / 1000.0);
              break;
@@ -63,15 +50,7 @@ index e89edaf6..ecb84259 100644
      }
  }
  
-@@ -1281,7 +1268,6 @@ int load_next() {
-     long rate;
-     int e = 0;
-     int old_sample_rate = sample_rate_src;
--    src_channels = 2;
- 
-     char *ext;
-     ext = strrchr(loaded_target_file, '.');
-@@ -1424,21 +1410,6 @@ int load_next() {
+@@ -1748,21 +1735,6 @@ int load_next() {
                )
              ) codec = MPT;
  
@@ -93,7 +72,7 @@ index e89edaf6..ecb84259 100644
      if (codec == UNKNOWN && ext != NULL) {
          if (strcmp(ext, ".flac") == 0 || strcmp(ext, ".FLAC") == 0) {
              codec = FLAC;
-@@ -1476,25 +1447,6 @@ int load_next() {
+@@ -1800,25 +1772,6 @@ int load_next() {
          return 0;
      }
  
@@ -119,7 +98,7 @@ index e89edaf6..ecb84259 100644
      if (codec == MPT){
  
        mod_file = uni_fopen(loaded_target_file);
-@@ -1811,20 +1763,6 @@ void pump_decode() {
+@@ -2157,20 +2110,6 @@ void pump_decode() {
          pthread_mutex_unlock(&buffer_mutex);
        }
  
@@ -140,17 +119,3 @@ index e89edaf6..ecb84259 100644
      } else if (codec == FLAC) {
          // FLAC decoding
  
-@@ -1853,12 +1791,7 @@ void pump_decode() {
- 
-         unsigned int done;
- 
--        if(src_channels == 1){
--          done = op_read(opus_dec, opus_buffer, 4096, NULL);
--        }
--        else{
--          done = op_read_stereo(opus_dec, opus_buffer, 1024 * 2) * 2;
--        }
-+        done = op_read_stereo(opus_dec, opus_buffer, 1024 * 2) * 2;
- 
-         pthread_mutex_lock(&buffer_mutex);
-         read_to_buffer_s16int(opus_buffer, done);

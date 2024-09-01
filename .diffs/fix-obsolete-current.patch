@@ -10051,3 +10051,17 @@ index 872a5ae2..54c76e9d 100644
 +REQUIRES="yelp-tools webkit2gtk"
  MAINTAINER="Willy Sudiarto Raharjo"
  EMAIL="willysr@slackbuilds.org"
+diff --git a/python/python3-pythran/python3-pythran.SlackBuild b/python/python3-pythran/python3-pythran.SlackBuild
+index 12de5f283..9bdaca28d 100644
+--- a/python/python3-pythran/python3-pythran.SlackBuild
++++ b/python/python3-pythran/python3-pythran.SlackBuild
+@@ -84,9 +84,6 @@ python3 -m installer --destdir "$PKG" dist/*.whl
+ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+ 
+-# Remove bundled boost and xsimd
+-rm -r $PKG/usr/lib*/python$PYVER/site-packages/pythran/{boost,xsimd}
+-
+ mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+ cp -a AUTHORS Changelog README.rst $PKG/usr/doc/$PRGNAM-$VERSION
+ cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild

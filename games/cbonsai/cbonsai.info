@@ -5,6 +5,6 @@ DOWNLOAD="https://gitlab.com/jallbrit/cbonsai/-/archive/v1.3.1/cbonsai-v1.3.1.ta
 MD5SUM="0a422b5d93a5c899c7037c9f9f51d7a1"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="scdoc"
+REQUIRES=""
 MAINTAINER="Dustin Metcalf"
 EMAIL="metcalf.nerd+SBo@gmail.com"

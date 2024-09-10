@@ -17,6 +17,33 @@ index 75eed41..6a35668 100644
  
  # Location to clone git repository
  REPO_DIR=/var/lib/sboui/repo
+diff --git a/etc/sboui.conf b/etc/sboui.conf
+index 2a67553..7f9c5be 100644
+--- a/etc/sboui.conf
++++ b/etc/sboui.conf
+@@ -18,7 +18,7 @@ package_manager = "built-in"
+ # reinstall_cmd = "sbopkg -B -i"
+ 
+ ## Tag at end of package name identifying repository
+-# repo_tag = "_SBo"
++repo_tag = "red"
+ 
+ ## Additional CLOs and environment variables when invoking package manager 
+ # install_clos = ""
+diff --git a/src/BuildListItem.cpp b/src/BuildListItem.cpp
+index 49fe0fd..13e869e 100644
+--- a/src/BuildListItem.cpp
++++ b/src/BuildListItem.cpp
+@@ -75,6 +75,9 @@ bool BuildListItem::upgradable() const
+ 
+   if ( (getBoolProp("installed")) && (! getBoolProp("blacklisted")) )
+   {
++    if (available_version == "0")
++      available_version = installed_version;
++
+     if (installed_version != available_version)
+     {
+       if (! differsByKernel(installed_version, available_version))
 diff --git a/src/sboui-backend.in b/src/sboui-backend.in
 index 6dff854..fa936d1 100644
 --- a/src/sboui-backend.in
@@ -39,16 +66,3 @@ index 6dff854..fa936d1 100644
  
    # Check if package was built successfully. Note version string can contain
    # trailing stuff like the kernel version.
-diff --git a/etc/sboui.conf b/etc/sboui.conf
-index 2a67553..7f9c5be 100644
---- a/etc/sboui.conf
-+++ b/etc/sboui.conf
-@@ -18,7 +18,7 @@ package_manager = "built-in"
- # reinstall_cmd = "sbopkg -B -i"
- 
- ## Tag at end of package name identifying repository
--# repo_tag = "_SBo"
-+repo_tag = "red"
- 
- ## Additional CLOs and environment variables when invoking package manager 
- # install_clos = ""

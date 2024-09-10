@@ -28,7 +28,7 @@ PRGNAM=discord
 VERSION=$(curl -sI \
   "https://discord.com/api/download?platform=linux&format=deb" | \
   grep -i location | awk -F/ '{print $NF}' | sed "s/$PRGNAM-\(.*\)\.deb/\1/" | tr -d '\r')
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-0}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -99,5 +99,4 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE \
-  && exit 1 # Prevent loop since this is out of structure package.
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

@@ -5,6 +5,6 @@ DOWNLOAD="https://pypi.python.org/packages/source/s/service-identity/service_ide
 MD5SUM="64267a4351ee3c225ee12a11bb29fc44"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-attrs cryptography python3-pyasn1-modules python3-hatch_vcs python3-hatch_fancy_pypi_readme"
+REQUIRES="python3-attrs cryptography python3-pyasn1-modules python3-hatch_fancy_pypi_readme"
 MAINTAINER="Yth - Arnaud"
 EMAIL="yth@ythogtha.org"

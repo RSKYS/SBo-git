@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/19/d3/7cb826e085a254888d8afb4a
 MD5SUM="f3b3f5738658bbf8d1fb8c7859ea95e6"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-hatch_vcs"
+REQUIRES=""
 MAINTAINER="Dimitris Zlatanidis"
 EMAIL="dslackw@gmail.com"

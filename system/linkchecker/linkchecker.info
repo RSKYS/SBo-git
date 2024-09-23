@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/db/8a/20cfbda1a4f5e9fd307cbb68
 MD5SUM="a3104cb85fa1319381dc912b394e82f1"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="BeautifulSoup4 python3-dnspython python3-hatch_vcs"
+REQUIRES="BeautifulSoup4 python3-dnspython"
 MAINTAINER="Willy Sudiarto Raharjo"
 EMAIL="willysr@slackbuilds.org"

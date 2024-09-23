@@ -29,7 +29,7 @@ VERSION=$(curl -sI \
   "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US" | \
   grep -i location | awk -F/ '{print $NF}' | sed 's/firefox-\(.*\)\.tar\.bz2/\1/' | tr -d '\r')
 SRCNAM=firefox-developer-edition
-BUILD=${BUILD:-0}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 

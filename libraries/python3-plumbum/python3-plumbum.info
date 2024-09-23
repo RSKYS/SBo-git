@@ -5,6 +5,6 @@ DOWNLOAD="https://files.pythonhosted.org/packages/source/p/plumbum/plumbum-1.8.3
 MD5SUM="02ac5ff47e1a20105b24e9f9b6be3b8e"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-hatch_vcs"
+REQUIRES=""
 MAINTAINER="fourtysixandtwo"
 EMAIL="fourtysixandtwo@sliderr.net"

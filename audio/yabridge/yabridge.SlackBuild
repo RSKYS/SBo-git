@@ -26,7 +26,7 @@ cd $(dirname $0) || exit 1 ; CWD=$(pwd)
 
 PRGNAM=yabridge
 VERSION=${VERSION:-5.1.0}
-BUILD=${BUILD:-2}
+BUILD=${BUILD:-3}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 ARG_CLAP=${ARG_CLAP:-NO}
@@ -91,6 +91,13 @@ elif [ $ARCH = "x86_64" ]; then
     echo "This  script look for wine and wine64 in PATH and needs them both for compiling and using yabridge on x86_64"
     exit 1
   fi
+fi
+
+export PATH="/opt/rust/bin:$PATH"
+if [ -z "$LD_LIBRARY_PATH" ]; then
+   export LD_LIBRARY_PATH="/opt/rust/lib$LIBDIRSUFFIX"
+else
+   export LD_LIBRARY_PATH="/opt/rust/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
 fi
 
 TMP=${TMP:-/tmp/SBo}

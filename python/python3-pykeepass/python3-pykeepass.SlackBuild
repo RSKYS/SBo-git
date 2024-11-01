@@ -67,8 +67,6 @@ find -L . \
 # fix dos line endings or patch will fail
 perl -pi -e 's/\r\n/\n/g' pyproject.toml
 
-
-
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
 

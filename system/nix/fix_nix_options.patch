@@ -1,21 +1,21 @@
 diff --git a/Makefile b/Makefile
-index 6c96ef5..29b57de 100644
+index dbf510a..fd04e3a 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -102,6 +102,8 @@ GLOBAL_CXXFLAGS += -g -Wall -Wdeprecated-copy -Wignored-qualifiers -Wimplicit-fa
+@@ -95,6 +95,8 @@ endif
  
- # Include the main lib, causing rules to be defined
+ GLOBAL_CXXFLAGS += -g -Wall -Wdeprecated-copy -Wignored-qualifiers -Wimplicit-fallthrough -Werror=unused-result -Werror=suggest-override -include $(buildprefix)config.h -std=c++2a -I src
  
 +GLOBAL_CFLAGS += $(CPPFLAGS)
 +
- include mk/lib.mk
+ # Include the main lib, causing rules to be defined
  
- # Fallback stub rules for better UX when things are disabled
+ include mk/lib.mk
 diff --git a/configure.ac b/configure.ac
-index 90a6d45..9eb3380 100644
+index 9858159..e752d37 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -417,7 +417,8 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
+@@ -414,7 +409,8 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
  AC_ARG_WITH(sandbox-shell, AS_HELP_STRING([--with-sandbox-shell=PATH],[path of a statically-linked shell to use as /bin/sh in sandboxes]),
    sandbox_shell=$withval)
  AC_SUBST(sandbox_shell)
@@ -26,7 +26,7 @@ index 90a6d45..9eb3380 100644
    # busybox shell sometimes allows executing other busybox applets,
    # even if they are not in the path, breaking our sandbox
 diff --git a/doc/manual/local.mk b/doc/manual/local.mk
-index 71ad5c8..8e7d5a0 100644
+index fcc50f4..51e4501 100644
 --- a/doc/manual/local.mk
 +++ b/doc/manual/local.mk
 @@ -24,15 +24,18 @@ man-pages += $(foreach subcommand, \
@@ -69,18 +69,18 @@ index 71ad5c8..8e7d5a0 100644
  $(d)/nix.json: $(doc_nix)
  	$(trace-gen) $(dummy-env) $(doc_nix) __dump-cli > $@.tmp
  	@mv $@.tmp $@
-@@ -124,36 +131,50 @@ $(d)/conf-file.json: $(doc_nix)
+@@ -124,30 +131,42 @@ $(d)/conf-file.json: $(doc_nix)
  	$(trace-gen) $(dummy-env) $(doc_nix) config show --json --experimental-features nix-command > $@.tmp
  	@mv $@.tmp $@
  
 +clean-files += $(d)/conf-file.json
 +
- $(d)/src/contributing/experimental-feature-descriptions.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features.nix $(doc_nix)
+ $(d)/src/development/experimental-feature-descriptions.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features.nix $(doc_nix)
  	@rm -rf $@ $@.tmp
  	$(trace-gen) $(nix-eval) --write-to $@.tmp --expr 'import doc/manual/generate-xp-features.nix (builtins.fromJSON (builtins.readFile $<))'
  	@mv $@.tmp $@
  
-+clean-files += $(d)/src/contributing/experimental-feature-descriptions.md
++clean-files += $(d)/src/development/experimental-feature-descriptions.md
 +
  $(d)/src/command-ref/experimental-features-shortlist.md: $(d)/xp-features.json $(d)/utils.nix $(d)/generate-xp-features-shortlist.nix $(doc_nix)
  	@rm -rf $@ $@.tmp
@@ -97,19 +97,11 @@ index 71ad5c8..8e7d5a0 100644
 +
  $(d)/src/language/builtins.md: $(d)/language.json $(d)/generate-builtins.nix $(d)/src/language/builtins-prefix.md $(doc_nix)
  	@cat doc/manual/src/language/builtins-prefix.md > $@.tmp
- 	$(trace-gen) $(nix-eval) --expr 'import doc/manual/generate-builtins.nix (builtins.fromJSON (builtins.readFile $<)).builtins' >> $@.tmp;
+ 	$(trace-gen) $(nix-eval) --expr 'import doc/manual/generate-builtins.nix (builtins.fromJSON (builtins.readFile $<))' >> $@.tmp;
  	@cat doc/manual/src/language/builtins-suffix.md >> $@.tmp
  	@mv $@.tmp $@
  
 +clean-files += $(d)/src/language/builtins.md
-+
- $(d)/src/language/builtin-constants.md: $(d)/language.json $(d)/generate-builtin-constants.nix $(d)/src/language/builtin-constants-prefix.md $(doc_nix)
- 	@cat doc/manual/src/language/builtin-constants-prefix.md > $@.tmp
- 	$(trace-gen) $(nix-eval) --expr 'import doc/manual/generate-builtin-constants.nix (builtins.fromJSON (builtins.readFile $<)).constants' >> $@.tmp;
- 	@cat doc/manual/src/language/builtin-constants-suffix.md >> $@.tmp
- 	@mv $@.tmp $@
- 
-+clean-files += $(d)/src/language/builtin-constants.md
 +
  $(d)/language.json: $(doc_nix)
  	$(trace-gen) $(dummy-env) $(doc_nix) __dump-language > $@.tmp
@@ -120,7 +112,7 @@ index 71ad5c8..8e7d5a0 100644
  # Generate "Upcoming release" notes (or clear it and remove from menu)
  $(d)/src/release-notes/rl-next.md: $(d)/rl-next $(d)/rl-next/*
  	@if type -p changelog-d > /dev/null; then \
-@@ -164,6 +185,8 @@ $(d)/src/release-notes/rl-next.md: $(d)/rl-next $(d)/rl-next/*
+@@ -158,6 +177,8 @@ $(d)/src/release-notes/rl-next.md: $(d)/rl-next $(d)/rl-next/*
  		true > $@; \
  	fi
  
@@ -129,7 +121,7 @@ index 71ad5c8..8e7d5a0 100644
  $(d)/src/SUMMARY-rl-next.md: $(d)/src/release-notes/rl-next.md
  	$(trace-gen) true
  	@if [ -s $< ]; then \
-@@ -172,6 +195,8 @@ $(d)/src/SUMMARY-rl-next.md: $(d)/src/release-notes/rl-next.md
+@@ -166,6 +187,8 @@ $(d)/src/SUMMARY-rl-next.md: $(d)/src/release-notes/rl-next.md
  	  true > $@; \
  	fi
  
@@ -138,10 +130,11 @@ index 71ad5c8..8e7d5a0 100644
  # Generate the HTML manual.
  .PHONY: manual-html
  manual-html: $(docdir)/manual/index.html
-@@ -218,20 +243,3 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
+@@ -211,21 +234,3 @@ doc/manual/generated/man1/nix3-manpages: $(d)/src/command-ref/new-cli
+ # `@docroot@` is to be preserved for documenting the mechanism
  # FIXME: maybe contributing guides should live right next to the code
  # instead of in the manual
- $(docdir)/manual/index.html: $(MANUAL_SRCS) $(d)/book.toml $(d)/anchors.jq $(d)/custom.css $(d)/src/SUMMARY.md $(d)/src/store/types $(d)/src/command-ref/new-cli $(d)/src/contributing/experimental-feature-descriptions.md $(d)/src/command-ref/conf-file.md $(d)/src/language/builtins.md $(d)/src/language/builtin-constants.md $(d)/src/release-notes/rl-next.md $(d)/src/figures $(d)/src/favicon.png $(d)/src/favicon.svg
+-$(docdir)/manual/index.html: $(MANUAL_SRCS) $(d)/book.toml $(d)/anchors.jq $(d)/custom.css $(d)/src/SUMMARY.md $(d)/src/store/types $(d)/src/command-ref/new-cli $(d)/src/development/experimental-feature-descriptions.md $(d)/src/command-ref/conf-file.md $(d)/src/language/builtins.md $(d)/src/release-notes/rl-next.md $(d)/src/figures $(d)/src/favicon.png $(d)/src/favicon.svg
 -	$(trace-gen) \
 -		tmp="$$(mktemp -d)"; \
 -		cp -r doc/manual "$$tmp"; \
@@ -159,11 +152,29 @@ index 71ad5c8..8e7d5a0 100644
 -	@rm -rf $(DESTDIR)$(docdir)/manual
 -	@mv $(DESTDIR)$(docdir)/manual.tmp/html $(DESTDIR)$(docdir)/manual
 -	@rm -rf $(DESTDIR)$(docdir)/manual.tmp
+diff --git a/doc/manual/src/command-ref/nix-store/query.md b/doc/manual/src/command-ref/nix-store/query.md
+index b4efa73..601f46a 100644
+--- a/doc/manual/src/command-ref/nix-store/query.md
++++ b/doc/manual/src/command-ref/nix-store/query.md
+@@ -104,7 +104,7 @@ symlink.
+ 
+   Prints a set of derivation files (`.drv`) which are supposed produce
+   said paths when realized. Might print nothing, for example for source paths
+-  or paths subsituted from a binary cache.
++  or paths substituted from a binary cache.
+ 
+ - `--graph`
+ 
+@@ -241,4 +241,3 @@ $ nix-store --query --roots $(which svn)
+ /nix/var/nix/profiles/default-82-link
+ /home/eelco/.local/state/nix/profiles/profile-97-link
+ ```
+-
 diff --git a/src/libexpr/local.mk b/src/libexpr/local.mk
-index ecadc5e..26e875e 100644
+index 68518e1..87dff0c 100644
 --- a/src/libexpr/local.mk
 +++ b/src/libexpr/local.mk
-@@ -37,7 +37,13 @@ $(d)/parser-tab.cc $(d)/parser-tab.hh: $(d)/parser.y
+@@ -38,7 +38,13 @@ $(d)/parser-tab.cc $(d)/parser-tab.hh: $(d)/parser.y
  $(d)/lexer-tab.cc $(d)/lexer-tab.hh: $(d)/lexer.l
  	$(trace-gen) flex --outfile $(libexpr_DIR)/lexer-tab.cc --header-file=$(libexpr_DIR)/lexer-tab.hh $<
  
@@ -178,63 +189,115 @@ index ecadc5e..26e875e 100644
  
  $(eval $(call install-file-in, $(buildprefix)$(d)/nix-expr.pc, $(libdir)/pkgconfig, 0644))
  
-diff --git a/src/libutil/ref.hh b/src/libutil/ref.hh
-index 03aa642..e2bf37a 100644
---- a/src/libutil/ref.hh
-+++ b/src/libutil/ref.hh
-@@ -25,14 +25,14 @@ public:
-         : p(r.p)
-     { }
+diff --git a/src/libexpr/primops/context.cc b/src/libexpr/primops/context.cc
+index 8c3f1b4..02683b1 100644
+--- a/src/libexpr/primops/context.cc
++++ b/src/libexpr/primops/context.cc
+@@ -86,7 +86,7 @@ static RegisterPrimOp primop_unsafeDiscardOutputDependency({
  
--    explicit ref<T>(const std::shared_ptr<T> & p)
-+    explicit ref(const std::shared_ptr<T> & p)
-         : p(p)
-     {
-         if (!p)
-             throw std::invalid_argument("null pointer cast to ref");
+       This is the opposite of [`builtins.addDrvOutputDependencies`](#builtins-addDrvOutputDependencies).
+ 
+-      This is unsafe because it allows us to "forget" store objects we would have otherwise refered to with the string context,
++      This is unsafe because it allows us to "forget" store objects we would have otherwise referred to with the string context,
+       whereas Nix normally tracks all dependencies consistently.
+       Safe operations "grow" but never "shrink" string contexts.
+       [`builtins.addDrvOutputDependencies`] in contrast is safe because "derivation deep" string context element always refers to the underlying derivation (among many more things).
+diff --git a/src/libexpr/primops/fetchTree.cc b/src/libexpr/primops/fetchTree.cc
+index 0e49cbc..d37f214 100644
+--- a/src/libexpr/primops/fetchTree.cc
++++ b/src/libexpr/primops/fetchTree.cc
+@@ -240,7 +240,7 @@ static RegisterPrimOp primop_fetchTree({
+       The following source types and associated input attributes are supported.
+ 
+       <!-- TODO: It would be soooo much more predictable to work with (and
+-      document) if `fetchTree` was a curried call with the first paramter for
++      document) if `fetchTree` was a curried call with the first parameter for
+       `type` or an attribute like `builtins.fetchTree.git`! -->
+ 
+       - `"file"`
+diff --git a/src/libstore/builtins/unpack-channel.cc b/src/libstore/builtins/unpack-channel.cc
+index d30626a..a6369ee 100644
+--- a/src/libstore/builtins/unpack-channel.cc
++++ b/src/libstore/builtins/unpack-channel.cc
+@@ -20,7 +20,7 @@ void builtinUnpackChannel(
+     auto & src = getAttr("src");
+ 
+     if (fs::path{channelName}.filename().string() != channelName) {
+-        throw Error("channelName is not allowed to contain filesystem seperators, got %1%", channelName);
++        throw Error("channelName is not allowed to contain filesystem separators, got %1%", channelName);
      }
  
--    explicit ref<T>(T * p)
-+    explicit ref(T * p)
-         : p(p)
-     {
-         if (!p)
+     try {
+diff --git a/src/libstore/local-overlay-store.md b/src/libstore/local-overlay-store.md
+index 1e1a3d2..d86b995 100644
+--- a/src/libstore/local-overlay-store.md
++++ b/src/libstore/local-overlay-store.md
+@@ -4,7 +4,7 @@ R"(
+ 
+ This store type is a variation of the [local store] designed to leverage Linux's [Overlay Filesystem](https://docs.kernel.org/filesystems/overlayfs.html) (OverlayFS for short).
+ Just as OverlayFS combines a lower and upper filesystem by treating the upper one as a patch against the lower, the local overlay store combines a lower store with an upper almost-[local store].
+-("almost" because while the upper fileystems for OverlayFS is valid on its own, the upper almost-store is not a valid local store on its own because some references will dangle.)
++("almost" because while the upper filesystems for OverlayFS is valid on its own, the upper almost-store is not a valid local store on its own because some references will dangle.)
+ To use this store, you will first need to configure an OverlayFS mountpoint [appropriately](#example-filesystem-layout) as Nix will not do this for you (though it will verify the mountpoint is configured correctly).
+ 
+ ### Conceptual parts of a local overlay store
+diff --git a/src/libstore/local.mk b/src/libstore/local.mk
+index 5dc8f33..d427657 100644
+--- a/src/libstore/local.mk
++++ b/src/libstore/local.mk
+@@ -59,7 +59,7 @@ NIX_ROOT =
+ endif
+ 
+ # Prefix all but `NIX_STORE_DIR`, since we aren't doing a local store
+-# yet so a "logical" store dir that is the same as unix is prefered.
++# yet so a "logical" store dir that is the same as unix is preferred.
+ #
+ # Also, it keeps the unit tests working.
+ 
 diff --git a/src/nix/local.mk b/src/nix/local.mk
-index 9883509..f439aba 100644
+index 28b30b5..d4afa1f 100644
 --- a/src/nix/local.mk
 +++ b/src/nix/local.mk
-@@ -42,22 +42,34 @@ $(eval $(call install-symlink, $(bindir)/nix, $(libexecdir)/nix/build-remote))
+@@ -42,16 +42,29 @@ $(eval $(call install-symlink, $(bindir)/nix, $(libexecdir)/nix/build-remote))
  
  src/nix-env/user-env.cc: src/nix-env/buildenv.nix.gen.hh
  
 +clean-files += src/nix-env/buildenv.nix.gen.hh
 +
- src/nix/develop.cc: src/nix/get-env.sh.gen.hh
+ $(d)/develop.cc: $(d)/get-env.sh.gen.hh
  
-+clean-files += src/nix/get-env.sh.gen.hh
++clean-files += $(d)/get-env.sh.gen.hh
 +
  src/nix-channel/nix-channel.cc: src/nix-channel/unpack-channel.nix.gen.hh
  
 +clean-files += src/nix-channel/unpack-channel.nix.gen.hh
 +
- src/nix/main.cc: \
+ $(d)/main.cc: \
    doc/manual/generate-manpage.nix.gen.hh \
    doc/manual/utils.nix.gen.hh doc/manual/generate-settings.nix.gen.hh \
    doc/manual/generate-store-info.nix.gen.hh \
-   src/nix/generated-doc/help-stores.md
+   $(d)/help-stores.md.gen.hh
  
 +clean-files += doc/manual/generate-manpage.nix.gen.hh \
 +  doc/manual/utils.nix.gen.hh doc/manual/generate-settings.nix.gen.hh \
-+  doc/manual/generate-store-info.nix.gen.hh
++  doc/manual/generate-store-info.nix.gen.hh \
++  $(d)/help-stores.md.gen.hh
 +
- src/nix/generated-doc/files/%.md: doc/manual/src/command-ref/files/%.md
- 	@mkdir -p $$(dirname $@)
- 	@cp $< $@
+ $(d)/profile.cc: $(d)/profile.md
  
- src/nix/profile.cc: src/nix/profile.md src/nix/generated-doc/files/profiles.md.gen.hh
- 
-+clean-files += src/nix/doc/files/profiles.md.gen.hh
+ $(d)/profile.md: $(d)/profiles.md.gen.hh
 +
- src/nix/generated-doc/help-stores.md: doc/manual/src/store/types/index.md.in
- 	@mkdir -p $$(dirname $@)
- 	@echo 'R"(' >> $@.tmp
++clean-files += $(d)/profiles.md.gen.hh
+diff --git a/src/nix/nix.md b/src/nix/nix.md
+index 56587d0..59a7b21 100644
+--- a/src/nix/nix.md
++++ b/src/nix/nix.md
+@@ -302,7 +302,7 @@ or with an **expression**:
+ terraform "$@"
+ ```
+ 
+-or with cascading interpreters. Note that the `#! nix` lines don't need to follow after the first line, to accomodate other interpreters.
++or with cascading interpreters. Note that the `#! nix` lines don't need to follow after the first line, to accommodate other interpreters.
+ 
+ ```
+ #!/usr/bin/env nix

@@ -82,7 +82,7 @@ find -L . \
 
 mkdir build
 cd build
-  cmake \
+  cmake -G Ninja \
     -DCMAKE_INSTALL_PREFIX:PATH="/usr" \
     -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
     -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
@@ -90,7 +90,8 @@ cd build
     -DLIB_INSTALL_DIR:PATH="lib${LIBDIRSUFFIX}" \
     -DCMAKE_BUILD_TYPE=Release ..
 
-  make install DESTDIR=$PKG
+  cmake --build .
+  cmake --install . --prefix $PKG
 cd -
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \

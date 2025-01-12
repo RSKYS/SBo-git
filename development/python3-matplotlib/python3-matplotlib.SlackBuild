@@ -93,6 +93,15 @@ then
  sed -i "s|#tests = False|tests = True|" mplsetup.cfg
 fi
 
+# We need the newer versions of setuptools and setuptools-scm as
+# provided by the python3-setuptools-opt and python3-setuptools-scm-opt
+# SlackBuilds. Thus the following two lines of code:
+#
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
+
 # It looks like one needs to use a pyproject.toml file with a lowered
 # minimal version of numpy. Disabling build isolation doesn't seem to
 # work. The build process exits complaining that numpy is not at least

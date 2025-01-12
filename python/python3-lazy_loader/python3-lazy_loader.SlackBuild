@@ -63,7 +63,10 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 # Use separate setuptools
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 # Add unused section to avoid ERROR message from setuptools_scm
 # Make it an if statement just in case upstream decides to update

@@ -27,7 +27,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=grpc
-VERSION=${VERSION:-1.67.1}
+VERSION=${VERSION:-1.68.2}
 OPENCENSUS_VERSION=${OPENCENSUS_VERSION:-0.3.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -118,7 +118,7 @@ cmake -Bbuild \
   -DgRPC_BUILD_GRPC_PHP_PLUGIN=ON \
   -DgRPC_BUILD_GRPC_PYTHON_PLUGIN=ON \
   -DgRPC_BUILD_GRPC_RUBY_PLUGIN=ON \
-  -GNinja 
+  -GNinja
 
 cd build
   cmake --build .

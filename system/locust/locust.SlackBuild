@@ -25,7 +25,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=locust
-VERSION=${VERSION:-2.32.1}
+VERSION=${VERSION:-2.32.5}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -64,7 +64,10 @@ find -L . \
 
 # Since dependency python3-pyzmq uses a newer version of setuptools via
 # python3-setuptools-opt, we need to adjust PYTHONPATH to use it here too.
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 python3 -m build --wheel --no-isolation
 

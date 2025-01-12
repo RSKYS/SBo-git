@@ -60,7 +60,10 @@ find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} + -o \
 # 20240822 bkw: this is still needed for v2.3.0.
 sed -i '/^write_to/d' pyproject.toml
 
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl

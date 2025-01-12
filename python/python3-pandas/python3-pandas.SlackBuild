@@ -74,7 +74,10 @@ sed -i 's/meson==/meson>=/' pyproject.toml
 sed -i 's/Cython==/Cython>=/' pyproject.toml
 
 # needs newer meson
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 # cannot build sdist, specify just wheel
 python3 -m build --wheel --no-isolation --skip-dependency-check

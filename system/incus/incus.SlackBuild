@@ -25,10 +25,12 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=incus
-VERSION=${VERSION:-6.6}
+VERSION=${VERSION:-6.8}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
+
+INCUS_UI=${PRGNAM}-ui-canonical_${VERSION}-ubuntu24.04-202412130713_amd64.deb
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -55,7 +57,7 @@ cd $TMP
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.xz
 cd $PRGNAM-$VERSION
-patch -p0 < $CWD/install_sh.diff
+#patch -p0 < $CWD/install_sh.diff
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
@@ -110,6 +112,12 @@ cp -a \
   doc/html/reference/manpages/* \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+# Add web ui
+cd $PKG
+ar p $CWD/$INCUS_UI data.tar.zst |tar xv --zst
+cp -a usr/share/doc/incus-ui-canonical $PKG/usr/doc/$PRGNAM-$VERSION/ 
+rm -rf $PKG/usr/share/doc
 
 INCUSD_GROUP=${INCUSD_GROUP:-wheel}
 mkdir -p $PKG/etc/default

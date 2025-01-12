@@ -29,8 +29,8 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=jellyfish
-VERSION=${VERSION:-1.1.0}
-BUILD=${BUILD:-2}
+VERSION=${VERSION:-1.1.2}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 VSBUILD=${VSBUILD:-1}
@@ -93,14 +93,10 @@ export CARGO_NET_OFFLINE=true
 # prevent cargo from writing outside of $TMP
 export CARGO_HOME=$(pwd)/.cargo
 
-export PATH="/opt/rust/bin:$PATH"
-if [ -z "$LD_LIBRARY_PATH" ]; then
-  export LD_LIBRARY_PATH="/opt/rust/lib$LIBDIRSUFFIX"
-else
-  export LD_LIBRARY_PATH="/opt/rust/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
 fi
-
-/
 
 # building from sdist is broken with python3-maturin-1.7.0
 python3 -m build --wheel --no-isolation

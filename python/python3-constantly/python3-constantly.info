@@ -5,6 +5,6 @@ DOWNLOAD="https://pypi.python.org/packages/source/c/constantly/constantly-23.10.
 MD5SUM="c090579309b2b34be04385b54b0a5a85"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="python3-versioneer"
+REQUIRES=""
 MAINTAINER="Yth - Arnaud"
 EMAIL="yth@ythogtha.org"

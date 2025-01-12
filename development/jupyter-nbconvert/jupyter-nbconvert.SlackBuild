@@ -65,12 +65,10 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Build jupyter-nbconvert offline
-# Code taken from Gentoo science project:
-# https://gitweb.gentoo.org/repo/gentoo.git/tree/dev-python/nbconvert/nbconvert-7.16.1.ebuild
-sed -e 's:css = .*:raise PermissionError("You shall not fetch!"):' -i hatch_build.py
-
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl

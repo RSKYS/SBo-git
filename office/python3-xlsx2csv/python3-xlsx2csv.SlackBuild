@@ -26,7 +26,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=python3-xlsx2csv
 SRCNAM=${PRGNAM#python3-*}
-VERSION=${VERSION:-0.8.3}
+VERSION=${VERSION:-0.8.4}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -64,7 +64,10 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
 
 # use newer setuptools
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl

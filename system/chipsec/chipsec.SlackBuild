@@ -80,6 +80,9 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 mkdir -pv build/lib.linux-${ARCH/i?86/i686}-cpython-${PYVER//./}/chipsec/helper/linux
 env -u ARCH python3 setup.py build_ext install --root=$PKG
 

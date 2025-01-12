@@ -24,7 +24,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=python3-qbittorrent-api
-VERSION=${VERSION:-2024.10.68}
+VERSION=${VERSION:-2024.12.71}
 SRCNAM=${SRCNAM:-qbittorrent-api}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -62,7 +62,10 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 export SETUPTOOLS_SCM_PRETEND_VERSION=$VERSION
 
 python3 -m build --wheel --no-isolation

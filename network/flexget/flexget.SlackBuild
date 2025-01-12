@@ -80,7 +80,10 @@ sed -i "s/==.*//" requirements.txt
 sed -i -E -e '/^(backports-zoneinfo|pkgutil-resolve-name)/d' \
   -e '/^(pywin32|win32-setctime)/d' requirements.txt
 
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl

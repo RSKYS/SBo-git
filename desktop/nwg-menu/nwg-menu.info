@@ -7,6 +7,6 @@ MD5SUM="2f956d68ec1cb9b16c40d2289302ed51 \
         a16f0895cdb4e067a80d3eed29f79538"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="google-go-lang gtk-layer-shell"
+REQUIRES="google-go-lang"
 MAINTAINER="Jay Lanagan"
 EMAIL="j@lngn.net"

@@ -26,7 +26,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=cryptography
-VERSION=${VERSION:-43.0.3}
+VERSION=${VERSION:-44.0.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -91,6 +91,11 @@ export CARGO_NET_OFFLINE=true
 
 # prevent cargo from writing outside of $TMP
 export CARGO_HOME=$(pwd)/$VSDIR/.cargo
+
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 rm -rf tests/bench
 git init

@@ -12,6 +12,9 @@
 # for clipgrab, haruna, xdman, ytfzf, and an optional dependency for
 # pipe-viewer, it has to exist on SBo.
 
+# 20241226 bkw: updated for v2024.12.23.
+# 20241209 bkw: updated for v2024.12.06.
+# 20241122 bkw: updated for v2024.11.18.
 # 20241101 bkw: updated for v2024.10.22.
 # 20241004 bkw: updated for v2024.09.27.
 # 20240814 bkw: updated for v2024.08.06.
@@ -43,7 +46,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=yt-dlp
-VERSION=${VERSION:-2024.10.22}
+VERSION=${VERSION:-2024.12.23}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -80,7 +83,10 @@ chown -R root:root .
 find -L .  -perm /111 -a \! -perm 755 -a -exec chmod 755 {} \+ -o \
         \! -perm /111 -a \! -perm 644 -a -exec chmod 644 {} \+
 
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 python3 -m build --wheel --no-isolation
 python3 -m installer --destdir "$PKG" dist/*.whl

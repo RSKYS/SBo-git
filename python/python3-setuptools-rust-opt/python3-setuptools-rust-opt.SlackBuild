@@ -27,7 +27,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=python3-setuptools-rust-opt
 SRCNAM=setuptools_rust
-VERSION=${VERSION:-1.10.1}
+VERSION=${VERSION:-1.10.2}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -66,8 +66,22 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
 
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
+
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
+
+if [ "$PKG/usr/" != "/usr/" ]; then
+  mkdir -p $PKG/opt
+  mv $PKG/usr/lib*/python$PYVER $PKG/opt/
+  rmdir $PKG/usr/lib*
+else
+  echo "ERROR: \$PKG is not set! We don't want to move the real /usr/lib*/python$PYVE$PYVERR"
+  exit 1
+fi
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true

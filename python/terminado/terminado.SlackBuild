@@ -25,8 +25,8 @@
 
 cd $(dirname $0) ; CWD=$(pwd)
 
-PRGNAM=terminado
-VERSION=${VERSION:-0.18.1}
+PRGNAM=instaloader
+VERSION=${VERSION:-4.14}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}

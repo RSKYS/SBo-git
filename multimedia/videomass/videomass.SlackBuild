@@ -30,7 +30,9 @@
 #   - Removed python3-build from requirements as it is already included in python3-hatchling requirements
 #   - As reported by fourtysixandtwo I added two new lines to the SlackBuild:
 #        PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
-#        export PYTHONPATH=/opt/python$PYVER/site-packages
+#        if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 
 cd $(dirname $0) ; CWD=$(pwd)
@@ -92,7 +94,10 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 python3 -m build --no-isolation
 python3 -m installer --destdir "$PKG" dist/*.whl

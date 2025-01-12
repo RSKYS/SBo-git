@@ -84,7 +84,10 @@ find -L . \
 # numpy 2.0.0 is requested for building the pypi packages but numpy 1.x is supported.
 sed -i 's/numpy>=2.0.0rc1/numpy>=1.19.3/' pyproject.toml
 
-
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ $PYVER = "3.9" ]; then
+  export PYTHONPATH=/opt/python$PYVER/site-packages/
+fi
 
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl

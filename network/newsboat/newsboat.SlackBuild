@@ -27,8 +27,8 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=newsboat
-VERSION=${VERSION:-2.37}
-BUILD=${BUILD:-2}
+VERSION=${VERSION:-2.38}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -152,13 +152,6 @@ find -L . \
 if [ "$CARGOTARGET" != "" ] ; then
   RELEASEDIR="$(echo "$CARGOTARGET" | cut -d' ' -f2)"
   sed -i "s|target/release|target/$RELEASEDIR/release|" Makefile
-fi
-
-export PATH="/opt/rust/bin:$PATH"
-if [ -z "$LD_LIBRARY_PATH" ]; then
-  export LD_LIBRARY_PATH="/opt/rust/lib$LIBDIRSUFFIX"
-else
-  export LD_LIBRARY_PATH="/opt/rust/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
 fi
 
 export CARGO_HOME=.cargo

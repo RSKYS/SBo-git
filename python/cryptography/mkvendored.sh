@@ -87,19 +87,6 @@ else
   LIBDIRSUFFIX=""
 fi
 
-# check if rust-opt is installed or in current, default cargo from rust is enough
-if [[ ! -d /opt/rust/bin && ! -f /usr/bin/cargo ]]; then
-  echo "ERROR: The rust-opt slackbuild is required to be installed"
-  exit 1
-else
-  export PATH="/opt/rust/bin:$PATH"
-  if [ -z "$LD_LIBRARY_PATH" ]; then
-    export LD_LIBRARY_PATH="/opt/rust/lib$LIBDIRSUFFIX"
-  else
-    export LD_LIBRARY_PATH="/opt/rust/lib$LIBDIRSUFFIX:$LD_LIBRARY_PATH"
-  fi
-fi
-
 # Configure cargo-vendor-filterer
   cat << EOF >> Cargo.toml
 [package.metadata.vendor-filter]

@@ -2,7 +2,7 @@
 
 # Slackware build script for macemu (BasiliskII and SheepShaver)
 
-# Copyright 2014-2018 Matteo Bernardini <ponce@slackbuilds.org>, Pisa, Italy
+# Copyright 2014-2024 Matteo Bernardini <ponce@slackbuilds.org>, Pisa, Italy
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -25,7 +25,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=macemu
-VERSION=${VERSION:-20240822_e517d73}
+VERSION=${VERSION:-20241124_95e2632}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -38,9 +38,6 @@ if [ -z "$ARCH" ]; then
   esac
 fi
 
-# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
-# the name of the created package would be, and then exit. This information
-# could be useful to other scripts.
 if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
   echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
   exit 0
@@ -110,11 +107,6 @@ CXXFLAGS="$SLKCFLAGS" \
 make
 make install DESTDIR=$PKG
 cd -
-
-# maybe not needed anymore?
-## SheepShaver is built with jit disabled by default on x86_64
-## or we get a relocation error
-#if [ "$ARCH" = "x86_64" ]; then jit="no"; else jit="yes"; fi
 
 cd $PRGNAM2/src/Unix
 

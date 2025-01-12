@@ -21,6 +21,6 @@ MD5SUM="c6c6411354639e8fdd30ca06a102cba3 \
         42f9bb3aacdd5c5907d1af1811738c00"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="zulu-openjdk11 flatbuffers tinyxml gtest fstrcmp spdlog tinyxml2 libdisplay-info rapidjson"
+REQUIRES="zulu-openjdk11 flatbuffers tinyxml gtest fstrcmp spdlog tinyxml2 rapidjson"
 MAINTAINER="Jeremy Hansen"
 EMAIL="jebrhansen+SBo@gmail.com"

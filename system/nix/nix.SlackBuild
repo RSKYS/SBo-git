@@ -46,7 +46,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=nix
-VERSION=${VERSION:-2.23.3}
+VERSION=${VERSION:-2.23.4}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -93,7 +93,6 @@ cd $PRGNAM-$VERSION
 # Broken symlinks, adios.
 find . -xtype l -exec rm -f {} \;
 
-# - Added global CFLAGS.
 # - Pointed shell as not sandbox, fixed zsh only build.
 # - Stopped nix from spamming root parition during "make" process.
 # - Disabled mdbook.
@@ -117,8 +116,11 @@ CXXFLAGS="$SLKCFLAGS" \
   --mandir=/usr/man \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --sysconfdir=/etc \
+  --localstatedir=/nix/var \
   --disable-unit-tests \
   --disable-functional-tests \
+  --enable-gc \
+  --enable-lto \
   --build=$ARCH-slackware-linux \
   --host=$ARCH-slackware-linux
 

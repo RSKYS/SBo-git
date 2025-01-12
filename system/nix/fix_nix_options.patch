@@ -1,21 +1,8 @@
-diff --git a/Makefile b/Makefile
-index 6c96ef5..29b57de 100644
---- a/Makefile
-+++ b/Makefile
-@@ -102,6 +102,8 @@ GLOBAL_CXXFLAGS += -g -Wall -Wdeprecated-copy -Wignored-qualifiers -Wimplicit-fa
- 
- # Include the main lib, causing rules to be defined
- 
-+GLOBAL_CFLAGS += $(CPPFLAGS)
-+
- include mk/lib.mk
- 
- # Fallback stub rules for better UX when things are disabled
 diff --git a/configure.ac b/configure.ac
-index 90a6d45..9eb3380 100644
+index f98a0a5..41a55fc 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -417,7 +417,8 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
+@@ -421,7 +421,8 @@ AC_CHECK_FUNCS([strsignal posix_fallocate sysconf])
  AC_ARG_WITH(sandbox-shell, AS_HELP_STRING([--with-sandbox-shell=PATH],[path of a statically-linked shell to use as /bin/sh in sandboxes]),
    sandbox_shell=$withval)
  AC_SUBST(sandbox_shell)

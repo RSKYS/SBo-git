@@ -116,8 +116,10 @@ CXXFLAGS="$SLKCFLAGS" \
   --mandir=/usr/man \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --sysconfdir=/etc \
+  --localstatedir=/nix/var \
   --disable-unit-tests \
   --disable-functional-tests \
+  --enable-lto \
   --build=$ARCH-slackware-linux \
   --host=$ARCH-slackware-linux
 

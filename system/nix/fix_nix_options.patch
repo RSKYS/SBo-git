@@ -204,3 +204,27 @@ index 28b30b5..d4afa1f 100644
  $(d)/profile.md: $(d)/profiles.md.gen.hh
 +
 +clean-files += $(d)/profiles.md.gen.hh
+diff --git a/src/libstore/unix/build/local-derivation-goal.cc b/src/libstore/unix/build/local-derivation-goal.cc
+index 06a2f85be..b1a9aa640 100644
+--- a/src/libstore/unix/build/local-derivation-goal.cc
++++ b/src/libstore/unix/build/local-derivation-goal.cc
+@@ -2927,8 +2927,17 @@ void LocalDerivationGoal::checkOutputs(const std::map<std::string, ValidPathInfo
+                         spec.insert(worker.store.parseStorePath(i));
+                     else if (auto output = get(outputs, i))
+                         spec.insert(output->path);
+-                    else
+-                        throw BuildError("derivation contains an illegal reference specifier '%s'", i);
++                    else {
++                        std::string allOutputs;
++                        for (auto & o : outputs) {
++                            if (! allOutputs.empty())
++                                allOutputs.append(", ");
++                            allOutputs.append(o.first);
++                        }
++                        throw BuildError("derivation '%s' output check for '%s' contains an illegal reference specifier '%s',"
++                            " expected store path or output name (one of [%s])",
++                            worker.store.printStorePath(drvPath), outputName, i, allOutputs);
++                    }
+                 }
+ 
+                 auto used = recursive

@@ -165,6 +165,19 @@ index ecadc5e..26e875e 100644
  
  $(eval $(call install-file-in, $(buildprefix)$(d)/nix-expr.pc, $(libdir)/pkgconfig, 0644))
  
+diff --git a/src/libexpr/primops/fromTOML.cc b/src/libexpr/primops/fromTOML.cc
+index 9bee8ca..a74cbaa 100644
+--- a/src/libexpr/primops/fromTOML.cc
++++ b/src/libexpr/primops/fromTOML.cc
+@@ -1,7 +1,7 @@
+ #include "primops.hh"
+ #include "eval-inline.hh"
+ 
+-#include "../../toml11/toml.hpp"
++#include "toml.hpp"
+ 
+ #include <sstream>
+ 
 diff --git a/src/libutil/ref.hh b/src/libutil/ref.hh
 index 03aa642..e2bf37a 100644
 --- a/src/libutil/ref.hh

@@ -29,7 +29,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=mdbook
-VERSION=${VERSION:-0.4.40}
+VERSION=${VERSION:-0.4.43}
 SRCNAM=mdBook
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}

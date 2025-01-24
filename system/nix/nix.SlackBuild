@@ -98,7 +98,13 @@ find . -xtype l -exec rm -f {} \;
 # - Stop nix from spamming root parition during "make" process.
 # - Disable mdbook.
 # - Simply, use my toml11 now!
-patch -p1 < $CWD/fix_nix_options.patch
+patch -p1 < $CWD/config/fix_nix_options.patch
+
+# Whether don't use mdBook or do so
+if [ ! "${MDBOOK:-no}" = "yes" ]; then
+  patch -p1 < "$CWD/config/optional_mdbook.patch"
+fi
+
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
